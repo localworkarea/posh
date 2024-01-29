@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         video.load();
                         // Сохраняем информацию о загрузке видео в локальное хранилище
                         localStorage.setItem("videoLoaded", "true");
-                    }, 2000);
+                    }, 1800);
                 } else {
                     // Если видео уже было загружено, начинаем его воспроизведение сразу
                     video.load();

@@ -199,7 +199,7 @@
                     source.src = source.getAttribute("data-src");
                     video.load();
                     localStorage.setItem("videoLoaded", "true");
-                }), 2e3); else {
+                }), 1800); else {
                     video.load();
                     source.src = source.getAttribute("data-src");
                     video.load();
