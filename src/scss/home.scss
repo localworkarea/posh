@@ -1,11 +1,15 @@
 body {
   background-color: $darkBlue;
+  // background-color: gray;
 }
 
 .hero {
   min-height: 100vh;
   position: relative;
   display: flex;
+  @media (max-width:$mobileSmall){
+     flex-direction: column; 
+  }
   // .hero__bg
   &__bg {
     position: absolute;
@@ -13,8 +17,30 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
+    overflow: hidden;
+    
+    &.hover {
+      img, video {
+        opacity: 0.47;
+      }
+    }
+    
+    @media (max-width:$mobileSmall){
+      position: relative; 
+      flex: 1;
+      min-height: toRem(230);
+    }
     img, video {
-      aspect-ratio: 1366 / 766;
+        transition: opacity .45s;
+        aspect-ratio: 1366 / 766;
+        @media (max-width:$tablet){
+          opacity: .47;
+        }
+      @media (max-width:$mobileSmall){
+         position: absolute;
+         top: 0;
+         left: 0; 
+      }
     }
   }
   // .hero__container
@@ -22,26 +48,62 @@ body {
     width: 100%;
     position: relative;
     z-index: 2;
-    padding-top: toRem(90);
+
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    @include adaptiveValue("padding-bottom", 80, 50,0,1920,1366.98);
+    @media (min-width:$mobileSmall){
+      padding-top: toRem(100);
+       row-gap: toRem(40); 
+    }
+    @media (max-width:$mobileSmall){
+      padding-top: toRem(32);
+    }
   }
   // .hero__body
   &__body {
-    color: #fff;
-    max-width: toRem(670);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    @include adaptiveValue("padding-top", 130, 0,2,1920,768.98);
+
+    @media (min-width:$mobile){
+      max-width: toRem(670);
+    }
+    @media (max-width:$mobileSmall){
+       justify-content: flex-end; 
+    }
   }
   // .hero__title
   &__title {
-    font-size: 60px;
-    font-weight: 800;
-    line-height: 1.25;
-    text-transform: uppercase;
+    @include adaptiveValue("margin-bottom", 16,11,0,768,480.98);
+    @media (min-width:$mobileSmall){
+       line-height: 1; 
+    }
+    @media (max-width:$mobileSmall){
+       position: absolute; 
+       z-index: 3;
+       bottom: 0;
+       left: 0;
+        padding: 0 toRem(24);
+    }
   }
   // .hero__btm
   &__btm {
     display: flex;
-    align-items: center;
+    @media (min-width:$mobile){
+      align-items: center;
+    }
+    @media (max-width:$mobile){
+       flex-direction: column; 
+       row-gap: toRem(34);
+    }
+    @media (max-width:$mobileSmall){
+       padding: toRem(0) toRem(24) toRem(50); 
+       margin: 0 toRem(-24) toRem(-50);
+       background-color: $darkBlue;
+    }
   }
   // .hero__txt
   &__txt {
@@ -49,111 +111,73 @@ body {
   // .hero__link
   &__link {
   }
+  // .hero__links
+  &__links {
+  }
+  // .hero__control
+  &__control {
+  }
 }
 
-.btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: toRem(12);
-  width: 100%;
-  max-width: fit-content;
-  overflow: hidden;
-
-  border-radius: toRem(25);
-  border: toRem(1) solid #fff;
-  position: relative;
-
-  &::before {
-    content: "";
+.control-hero {
+  @include adaptiveValue("right", 238, 182,2,1920,1200.98);
+  
+  @media (min-width:$tablet){
     position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 0%;
-    border-radius: toRem(24);
-    background-color: $lightBlue;
-    transition: width .5s ease;
+    top: 50%;
+    transform: translate(0, -50%);
+    border-radius: 50%;
+    border: toRem(2) solid $mainWhite;
+    width: toRem(96);
+    height: toRem(96);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  @media (any-hover: hover){
-    &:hover{
-      &::before {
-        width: 100%;
+  @media (max-width: em(1440.98)) and (min-width: $tablet){
+    top:calc(50% + 50px);
+  }
+  @media (max-width: em(1200.98)) and (min-width: $tablet){
+      right: toRem(24);
+  }
+  @media (max-width: $tablet){
+      display: none;
+  }
+  // .control-hero__ic
+  &__ic {
+    &.ic-pause {
+      .paused & {
+        display: none;
       }
-      .btn__arr-r {
-        animation: arr-right 0.5s forwards;
+    }
+    &.ic-play {
+      display: none;
+      padding-left: toRem(10);
+      .paused & {
+        display: block;
       }
     }
   }
-
-  &.btn--01 {
-    height: toRem(48);
-    font-size: toRem(24);
-    padding: 0 toRem(27);
-    .btn__arr-r {
-      filter: invert(100%) sepia(1%) saturate(908%) hue-rotate(57deg) brightness(116%) contrast(100%);
-    }
-  }
-  &.btn--02 {
-
-  }
-  &__txt,
-  &__arr-r {
-    position: relative;
-    z-index:2;
-  }
-  // .btn__txt
-  &__txt {
-    text-transform: uppercase;
-  }
-  // .btn__arr-r
-  &__arr-r {
-    // animation-play-state: paused;
-    transition: all .5s;
-  }
 }
 
-@keyframes arr-right {
-  0% {
-    transform: translateX(0);
-  }
-  20% {
-    opacity: 0;
-  }
-  70% {
-    opacity: 0;
-    transform: translateX(0px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(10px);
-  }
-}
 
-.mask {
-  position: fixed;
-  z-index: 200;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 0%;
-  background-color: $darkBlue;
-  pointer-events: none;
-  &.active {
-    // transform: translateY(0);
-    // transition-delay: .3s;
-    animation: maskAnim 0.5s forwards;
-  }
-  span {
 
+.links-hero {
+  @media (min-width:$mobileSmall){
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    column-gap: toRem(31);
+    row-gap: toRem(18);
+    max-width: toRem(891);
   }
-}
-@keyframes maskAnim {
-  90% {
-    height: 100%;
-    opacity: 1;
+  @media (max-width:$mobile){
+     gap: toRem(12) 
   }
-  100% {
-    opacity: 0;
+  @media (max-width:$mobileSmall){
+     display: none; 
+  }
+  // .links-hero__link
+  &__link {
   }
 }

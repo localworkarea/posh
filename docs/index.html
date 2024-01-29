@@ -10,75 +10,196 @@
 			opacity: 0;
 		}
 	</style>
-	<link rel="stylesheet" href="css/style.min.css?_v=20240111165249">
+	<link rel="stylesheet" href="css/style.min.css?_v=20240129123004">
 	<link rel="shortcut icon" href="favicon.ico">
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
-	<div class="wrapper">
+	<div class="wrapper page-hero">
 		<header data-scroll="20" class="header">
 			<div class="header__container">
 				<a href="index.html" class="header_logo link-page">
 					<img src="img/icon/logo.svg" alt="logo posh packaging desigh">
 				</a>
 				<div class="header__menu menu">
-					<button type="button" class="menu__icon icon-menu"><span></span></button>
 					<nav class="menu__body">
 						<ul class="menu__list">
-							<li class="menu__item"><a href="service.html" class="menu__link link-page">
+							<li class="menu__item"><a href="#" class="menu__link hover-line link-page">
+									Головна
+								</a></li>
+							<li class="menu__item"><a href="#" class="menu__link hover-line link-page">
 									Агенство
 								</a></li>
-							<li class="menu__item"><a href="service.html" class="menu__link link-page">
+							<li class="menu__item"><a href="#" class="menu__link hover-line link-page">
 									Послуги
 								</a></li>
-							<li class="menu__item"><a href="service.html" class="menu__link link-page">
+							<li class="menu__item"><a href="#" class="menu__link hover-line link-page">
 									Кейси
 								</a></li>
-							<li class="menu__item"><a href="service.html" class="menu__link link-page">
+							<li class="menu__item"><a href="#" class="menu__link hover-line link-page">
 									Контакти
 								</a></li>
 						</ul>
+						<div class="menu__footer">
+							<address class="menu__contact contact-menu">
+								<div class="contact-menu__item contact-menu__item-01"></div>
+								<div class="contact-menu__item">
+									<a href="mailto:brand@posh.pro" class="contact-menu__email hover-line">brand@posh.pro</a>
+								</div>
+								<div class="contact-menu__item">
+									<p class="contact-menu__location">
+										Україна, Київ, вул. Євгена Сверстюка, 11 БЦ “Armaris”, ст. м. Лівобережна
+									</p>
+								</div>
+							</address>
+							<ul class="menu__social social-menu">
+								<li class="social-menu__item">
+									<a href="https://www.facebook.com/poshpackagingsolutions/" target="_blank" class="social-menu__link hover-line">
+										<span>
+											facebook
+										</span>
+										<img src="img/icon/arr-deg.svg" alt="стрілка">
+									</a>
+								</li>
+								<li class="social-menu__item">
+									<a href="https://www.instagram.com/poshfmcg/" target="_blank" class="social-menu__link hover-line">
+										<span>
+											instagram
+										</span>
+										<img src="img/icon/arr-deg.svg" alt="стрілка">
+									</a>
+								</li>
+								<li class="social-menu__item">
+									<a href="https://www.behance.net/poshpackaging" target="_blank" class="social-menu__link hover-line">
+										<span>
+											behance
+										</span>
+										<img src="img/icon/arr-deg.svg" alt="стрілка">
+									</a>
+								</li>
+								<li class="social-menu__item">
+									<a href="#" target="_blank" class="social-menu__link hover-line">
+										<span>
+											dribble
+										</span>
+										<img src="img/icon/arr-deg.svg" alt="стрілка">
+									</a>
+								</li>
+								<li class="social-menu__item">
+									<a href="#" target="_blank" class="social-menu__link hover-line">
+										<span>
+											linkedin
+										</span>
+										<img src="img/icon/arr-deg.svg" alt="стрілка">
+									</a>
+								</li>
+							</ul>
+						</div>
 					</nav>
+					<button type="button" class="menu__icon icon-menu" aria-label="кнопка відкриття мобільного меню"><span></span></button>
 				</div>
 				<div class="header__side side-header">
-					<a href="tel:+380988234343" class="side-header__phone">+38 098 823 43 43</a>
-					<div class="side-header__lang">
-						<a href="#" class="side-header__link">UKR</a>
-					</div>
+					<a data-da=".contact-menu__item-01,1200.98,0" href="tel:+380988234343" class="side-header__phone hover-line ">+38 098 823 43 43</a>
+					<ul data-da=".menu__body,1200.98,0" class="side-header__lang lang-header">
+						<li class="lang-header__item">
+							<a href="#1" class="lang-header__link active"><span>UKR</span></a>
+						</li>
+						<li class="lang-header__item link-1">
+							<a href="#2" class="lang-header__link link-1"><span>ENG</span></a>
+						</li>
+						<li class="lang-header__item link-2">
+							<a href="#3" class="lang-header__link c"><span>RU</span></a>
+						</li>
+						<div class="lang-header__bg"></div>
+					</ul>
 				</div>
 			</div>
 		</header>
+
 		<main class="page">
 			<section class="hero">
 				<div class="hero__bg">
-					<!-- <picture><source srcset="files/posh-hero.webp" type="image/webp"><img class="ibg" src="files/posh-hero.webp" alt="hero video about product design"></picture> -->
-					<video class="ibg" width="100%" height="100%" muted playsinline poster="" autoplay loop>
-						<source src="files/posh-hero.mp4" type="video/mp4" />
+					<video id="heroVideo" class="hero__video ibg" width="100%" height="100%" muted playsinline poster="files/poster-hero.jpg" autoplay loop>
+						<source data-src="files/posh-hero.mp4" type="video/mp4" />
 					</video>
-
 				</div>
 				<div class="hero__container">
 					<div class="hero__body">
-						<h1 class="hero__title">
-							дизайн паковання<br> для fmcg брендів
+						<h1 data-da=".hero__bg,480.98,0" class="hero__title title-main">
+							дизайн паковання для fmcg брендів
 						</h1>
 						<div class="hero__btm">
-							<p class="hero__txt">
+							<p class="hero__txt txt-main">
 								Слідкуючи за тенденціями ринку потреб, керуючи
 								емоційною складовою бренду, робити продукт
 								більш релевантним стає простіше...
 							</p>
-							<a href="#" class="hero__link btn btn--01">
+							<a href="#" class="hero__link btn btn--01" aria-label="кнопка переходу на кейси">
 								<span class="btn__txt">Наші кейси</span>
 								<img class="btn__arr-r" src="img/icon/arr-btn.svg" alt="arrow to right">
 							</a>
 						</div>
 					</div>
-					<div class="hero__links links-hero"></div>
+					<button type="button" class="hero__control control-hero" aria-label="кнопка зупинки фонового відео">
+						<img class="control-hero__ic ic-pause" src="img/icon/pause.svg" alt="іконка pause">
+						<img class="control-hero__ic ic-play" src="img/icon/play.svg" alt="іконка play">
+					</button>
+					<div class="hero__links links-hero">
+						<a href="#" class="links-hero__link btn-mask btn-mask--02" aria-label="кнопка переходу на сторінку послуги">
+							<span class="btn-mask__body">
+								<span class="btn-mask__txt">позиціонування</span>
+								<img class="btn-mask__arr-r" src="img/icon/arr-btn.svg" alt="arrow to right">
+							</span>
+						</a>
+						<a href="#" class="links-hero__link btn-mask btn-mask--02" aria-label="кнопка переходу на сторінку послуги">
+							<span class="btn-mask__body">
+								<span class="btn-mask__txt">БРЕНД - СТРАТЕГІЯ</span>
+								<img class="btn-mask__arr-r" src="img/icon/arr-btn.svg" alt="arrow to right">
+							</span>
+						</a>
+						<a href="#" class="links-hero__link btn-mask btn-mask--02" aria-label="кнопка переходу на сторінку послуги">
+							<span class="btn-mask__body">
+								<span class="btn-mask__txt">МЕСЕДЖ</span>
+								<img class="btn-mask__arr-r" src="img/icon/arr-btn.svg" alt="arrow to right">
+							</span>
+						</a>
+						<a href="#" class="links-hero__link btn-mask btn-mask--02" aria-label="кнопка переходу на сторінку послуги">
+							<span class="btn-mask__body">
+								<span class="btn-mask__txt">ДИЗАЙН - СТРАТЕГІЯ</span>
+								<img class="btn-mask__arr-r" src="img/icon/arr-btn.svg" alt="arrow to right">
+							</span>
+						</a>
+						<a href="#" class="links-hero__link btn-mask btn-mask--02" aria-label="кнопка переходу на сторінку послуги">
+							<span class="btn-mask__body">
+								<span class="btn-mask__txt">арТ - дирекшн</span>
+								<img class="btn-mask__arr-r" src="img/icon/arr-btn.svg" alt="arrow to right">
+							</span>
+						</a>
+						<a href="#" class="links-hero__link btn-mask btn-mask--02" aria-label="кнопка переходу на сторінку послуги">
+							<span class="btn-mask__body">
+								<span class="btn-mask__txt">промо - сайт</span>
+								<img class="btn-mask__arr-r" src="img/icon/arr-btn.svg" alt="arrow to right">
+							</span>
+						</a>
+						<a href="#" class="links-hero__link btn-mask btn-mask--02" aria-label="кнопка переходу на сторінку послуги">
+							<span class="btn-mask__body">
+								<span class="btn-mask__txt">SALE презентація</span>
+								<img class="btn-mask__arr-r" src="img/icon/arr-btn.svg" alt="arrow to right">
+							</span>
+						</a>
+						<a href="#" class="links-hero__link btn-mask btn-mask--02" aria-label="кнопка переходу на сторінку послуги">
+							<span class="btn-mask__body">
+								<span class="btn-mask__txt">НЕЙМІНГ</span>
+								<img class="btn-mask__arr-r" src="img/icon/arr-btn.svg" alt="arrow to right">
+							</span>
+						</a>
+					</div>
 				</div>
 			</section>
+
+
 			<div>
 				<p class="lorem">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, id animi. Perspiciatis ipsam voluptatem ullam repellat, temporibus voluptatum dignissimos nisi est facilis, optio doloribus ducimus earum, facere consequuntur iste dolor!</p>
 				<br><br><br>
@@ -127,10 +248,10 @@
 			</div>
 		</footer>
 	</div>
-	<div class="mask">
-		<span></span>
-	</div>
-	<script src="js/app.min.js?_v=20240111165249"></script>
+	<!-- <div class="mask">
+			<span></span>
+		</div> -->
+	<script src="js/app.min.js?_v=20240129123004"></script>
 </body>
 
 </html>

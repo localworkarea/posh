@@ -4,37 +4,90 @@
 	"title":"Posh Home"
 	})
 	<body>
-		<div class="wrapper">
+		<div class="wrapper page-hero">
 			@@include('html/_header.htm',{})
 			<main class="page">
 				<section class="hero">
 					<div class="hero__bg">
-						<!-- <img class="ibg" src="files/posh-hero.webp" alt="hero video about product design"> -->
-						<video class="ibg" width="100%" height="100%" muted playsinline poster="" autoplay loop>
-							<source src="files/posh-hero.mp4" type="video/mp4"/>
+						<video  id="heroVideo" class="hero__video ibg" width="100%" height="100%" muted playsinline poster="files/poster-hero.jpg" autoplay loop>
+							<source data-src="files/posh-hero.mp4" type="video/mp4"/>
 						</video>
-
 					</div>
 					<div class="hero__container">
 						<div class="hero__body">
-							<h1 class="hero__title">
-								дизайн паковання<br> для fmcg брендів
+							<h1 data-da=".hero__bg,480.98,0" class="hero__title title-main">
+								дизайн паковання для fmcg брендів
 							</h1>
 							<div class="hero__btm">
-								<p class="hero__txt">
+								<p class="hero__txt txt-main">
 									Слідкуючи за тенденціями ринку потреб, керуючи
 									емоційною складовою бренду, робити продукт
 									більш релевантним стає простіше...
 								</p>
-								<a href="#" class="hero__link btn btn--01">
+								<a href="#" class="hero__link btn btn--01" aria-label="кнопка переходу на кейси">
 									<span class="btn__txt">Наші кейси</span>
 									<img class="btn__arr-r" src="@img/icon/arr-btn.svg" alt="arrow to right">
 								</a>
 							</div>
 						</div>
-						<div class="hero__links links-hero"></div>
+						<button type="button" class="hero__control control-hero" aria-label="кнопка зупинки фонового відео">
+							<img class="control-hero__ic ic-pause" src="@img/icon/pause.svg" alt="іконка pause">
+							<img class="control-hero__ic ic-play" src="@img/icon/play.svg" alt="іконка play">
+						</button>
+						<div class="hero__links links-hero">
+							<a href="#" class="links-hero__link btn-mask btn-mask--02" aria-label="кнопка переходу на сторінку послуги">
+								<span class="btn-mask__body">
+									<span class="btn-mask__txt">позиціонування</span>
+									<img class="btn-mask__arr-r" src="@img/icon/arr-btn.svg" alt="arrow to right">
+								</span>
+							</a>
+							<a href="#" class="links-hero__link btn-mask btn-mask--02" aria-label="кнопка переходу на сторінку послуги">
+								<span class="btn-mask__body">
+									<span class="btn-mask__txt">БРЕНД - СТРАТЕГІЯ</span>
+									<img class="btn-mask__arr-r" src="@img/icon/arr-btn.svg" alt="arrow to right">
+								</span>
+							</a>
+							<a href="#" class="links-hero__link btn-mask btn-mask--02" aria-label="кнопка переходу на сторінку послуги">
+								<span class="btn-mask__body">
+									<span class="btn-mask__txt">МЕСЕДЖ</span>
+									<img class="btn-mask__arr-r" src="@img/icon/arr-btn.svg" alt="arrow to right">
+								</span>
+							</a>
+							<a href="#" class="links-hero__link btn-mask btn-mask--02" aria-label="кнопка переходу на сторінку послуги">
+								<span class="btn-mask__body">
+									<span class="btn-mask__txt">ДИЗАЙН - СТРАТЕГІЯ</span>
+									<img class="btn-mask__arr-r" src="@img/icon/arr-btn.svg" alt="arrow to right">
+								</span>
+							</a>
+							<a href="#" class="links-hero__link btn-mask btn-mask--02" aria-label="кнопка переходу на сторінку послуги">
+								<span class="btn-mask__body">
+									<span class="btn-mask__txt">арТ - дирекшн</span>
+									<img class="btn-mask__arr-r" src="@img/icon/arr-btn.svg" alt="arrow to right">
+								</span>
+							</a>
+							<a href="#" class="links-hero__link btn-mask btn-mask--02" aria-label="кнопка переходу на сторінку послуги">
+								<span class="btn-mask__body">
+									<span class="btn-mask__txt">промо - сайт</span>
+									<img class="btn-mask__arr-r" src="@img/icon/arr-btn.svg" alt="arrow to right">
+								</span>
+							</a>
+							<a href="#" class="links-hero__link btn-mask btn-mask--02" aria-label="кнопка переходу на сторінку послуги">
+								<span class="btn-mask__body">
+									<span class="btn-mask__txt">SALE презентація</span>
+									<img class="btn-mask__arr-r" src="@img/icon/arr-btn.svg" alt="arrow to right">
+								</span>
+							</a>
+							<a href="#" class="links-hero__link btn-mask btn-mask--02" aria-label="кнопка переходу на сторінку послуги">
+								<span class="btn-mask__body">
+									<span class="btn-mask__txt">НЕЙМІНГ</span>
+									<img class="btn-mask__arr-r" src="@img/icon/arr-btn.svg" alt="arrow to right">
+								</span>
+							</a>
+						</div>
 					</div>
 				</section>
+
+
 				<div>
 					<p class="lorem">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, id animi. Perspiciatis ipsam voluptatem ullam repellat, temporibus voluptatum dignissimos nisi est facilis, optio doloribus ducimus earum, facere consequuntur iste dolor!</p>
 					<br><br><br>
@@ -80,9 +133,9 @@
 			</main>
 			@@include('html/_footer.htm',{})
 		</div>
-		<div class="mask">
+		<!-- <div class="mask">
 			<span></span>
-		</div>
+		</div> -->
 		@@include('html/_js.htm',{})
 	</body>
 </html>

@@ -1,1 +1,259 @@
 // Заголовки, загальні БЕМ блоки та інше...
+// .mask {
+//   position: fixed;
+//   z-index: 200;
+//   left: 0;
+//   bottom: 0;
+//   width: 100%;
+//   height: 0%;
+//   background-color: $darkBlue;
+//   pointer-events: none;
+//   &.active {
+//     // transform: translateY(0);
+//     // transition-delay: .3s;
+//     animation: maskAnim 0.5s forwards;
+//   }
+//   span {
+
+//   }
+// }
+// @keyframes maskAnim {
+//   90% {
+//     height: 100%;
+//     opacity: 1;
+//   }
+//   100% {
+//     opacity: 0;
+//   }
+// }
+[class*="__container"] {
+    @include adaptiveValue("max-width", 1488, 1228,0,1920,1366);
+    margin: 0 auto;
+    padding-left: toRem(24);
+    padding-right: toRem(24);
+    @media (max-width: em(365.98)){
+      padding-left: toRem(16);
+      padding-right: toRem(16);
+    }
+}
+[class*="__container-b"] {
+    @include adaptiveValue("max-width", 1648, 1348,0,1920,1366);
+    margin: 0 auto;
+    padding-left: toRem(24);
+    padding-right: toRem(24);
+    @media (max-width: em(365.98)){
+      padding-left: toRem(16);
+      padding-right: toRem(16);
+    }
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: toRem(12);
+  width: 100%;
+  max-width: fit-content;
+  overflow: hidden;
+
+  border-radius: toRem(25);
+  position: relative;
+  
+  &.btn--01 {
+    border: toRem(1) solid #fff;
+    height: toRem(48);
+    font-size: toRem(24);
+    padding: 0 toRem(27);
+    color: $mainWhite;
+    @media (min-width:$mobileSmall){
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 0%;
+        border-radius: toRem(24);
+        background-color: $lightBlue;
+        transition: width .5s ease;
+      }
+    }
+    &:hover{
+      &::before {
+        width: 100%;
+      }
+      .btn__arr-r {
+        animation: arr-right 0.8s ease forwards;
+        transform: translateX(10px);
+        transition-delay: .45s;
+      }
+    }
+
+    .btn__arr-r {
+      filter: invert(100%) sepia(0%) saturate(7427%) hue-rotate(314deg) brightness(125%) contrast(99%);
+    }
+  }
+
+  &__txt,
+  &__arr-r {
+    position: relative;
+    z-index:2;
+  }
+  // .btn__txt
+  &__txt {
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  // .btn__arr-r
+  &__arr-r {
+    transition: transform .35s ease 0s;
+  }
+}
+
+
+
+.btn-mask {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  max-width: fit-content;
+  overflow: hidden;
+  position: relative;
+
+    &:hover{
+      .btn-mask__body {
+        &.btn-mask-clone {
+          clip-path: inset(0 0 0 0 round toRem(25));
+        }
+      }
+      .btn-mask__arr-r {
+        animation: arr-right 0.8s ease forwards;
+        transform: translateX(10px);
+        transition-delay: .45s;
+        filter: invert(100%) sepia(0%) saturate(7427%) hue-rotate(314deg) brightness(125%) contrast(99%);
+      }
+    }
+
+  &.btn-mask--02 {
+    height: toRem(41);
+    font-size: toRem(16);
+    color: $darkBlue;
+    text-transform: uppercase;
+  }
+  // .btn-mask__body
+  &__body {
+    padding: 0 toRem(19);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $mainWhite;
+    gap: toRem(12);
+    // width: 100%;
+    width: calc(100% - 3px);
+    height: 100%;
+    border-radius: toRem(20);
+    position: relative;
+    z-index: 2;
+    &.btn-mask-clone {
+      height: 42px;
+      position: absolute;
+      z-index: 3;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      // width: calc(100% + 3px);
+      width: 100%;
+      background-color: $lightBlue;
+      clip-path: inset(0 100% 0 0 round toRem(25));
+      transition: clip-path .5s ease;
+      .btn-mask__txt {
+        color: $mainWhite;
+      }
+    }
+  }
+  // .btn-mask__txt
+  &__txt {
+    white-space: nowrap;
+  }
+  // .btn-mask__arr-r
+  &__arr-r {
+    transition: transform .35s ease 0s;
+    width: toRem(12);
+    filter: invert(11%) sepia(44%) saturate(679%) hue-rotate(192deg) brightness(91%) contrast(96%);
+  }
+}
+
+@keyframes arr-right {
+  0% {
+  }
+  10% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 0;
+  }
+  90% {
+    opacity: 1;
+  }
+}
+
+
+.hover-line {
+  @media (min-width:$mobileSmall){
+    position: relative;
+    &::before {
+      content:'';
+      position: absolute;
+      bottom: toRem(-2);
+      left: 0;
+      // width: 100%;
+      width: 0;
+      height: toRem(1);
+      background-color: #fff;
+      // transform: scaleX(0);
+      // transform-origin: 100% 50%;
+      // transition: transform .6s cubic-bezier(.215,.61,.355,1);
+      transition: width .6s cubic-bezier(.215,.61,.355,1);
+    }
+  }
+  @media (any-hover: hover){
+    &:hover{
+      &::before {
+        width: 100%;
+        // transform: scale(1);
+        // transform-origin: 0% 50%;
+      }
+    }
+  }
+}
+
+%animationMenuMob {
+  @media (max-width: em(1200.98)){
+    transform: translateY(100%);
+    opacity: 0;
+    transition: transform .5s .35s, opacity .45s ease .35s;
+    .menu-open & {
+        transform: translateY(0);
+        opacity: 1;
+      }
+  }
+}
+
+.title-main {
+  color: $mainWhite;
+  @include adaptiveValue("font-size", 60, 36,0,1366,375);
+  font-weight: 800;
+  line-height: 1.25;
+  text-transform: uppercase;
+  &_dark {
+  color: $darkBlue;
+  }
+}
+.txt-main {
+  color: $mainWhite;
+  @include adaptiveValue("font-size", 16, 18,0,1366,375);
+  font-weight: 600;
+  line-height: normal;
+}

@@ -37,6 +37,9 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
+address {
+	font-style: normal;
+}
 input,
 button,
 textarea {
@@ -69,3 +72,18 @@ h6 {
 	font-weight: inherit;
 	font-size: inherit;
 }
+
+// Стили для WebKit (Chrome, Safari, Edge)
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #1A1F35;
+	border-radius: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #FEFEFE;
+}
+
