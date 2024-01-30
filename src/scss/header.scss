@@ -5,7 +5,7 @@
   left: 0;
   width: 100%;
   color: $mainWhite;
-  font-weight: 600;
+  font-weight: 400;
   display: flex;
   align-items: flex-end;
   transition: min-height .5s, background-color .5s;
@@ -199,7 +199,6 @@
   &__email,
   &__location {
     @media (max-width: em(1200.98)){
-        font-weight: 600;
       font-size: toRem(18);
     }
   }
@@ -274,14 +273,7 @@
   }
   // .side-header__phone
   &__phone {
-    font-weight: 600;
     white-space: nowrap;
-    transition: opacity .3s;
-    @media (any-hover: hover){
-      &:hover{
-        opacity: .5;
-      }
-    }
     @media (min-width:em(1200.98)){
       font-size: toRem(21);
     }

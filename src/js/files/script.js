@@ -3,29 +3,7 @@ import { isMobile } from "./functions.js";
 // Підключення списку активних модулів
 import { flsModules } from "./modules.js";
 
-// document.addEventListener('DOMContentLoaded', function () {
-//   const links = document.querySelectorAll('.link-page');
-
-//   links.forEach(function (link) {
-//       link.addEventListener('click', function (event) {
-//           // Добавляем класс preloader
-//           document.documentElement.classList.add('preloader');
-
-//           // Предотвращаем сразу переход по ссылке
-//           event.preventDefault();
-
-//           const href = this.getAttribute('href');
-//           const mask = document.querySelector('.mask');
-//           if (mask) {
-//               mask.classList.add('active');
-//           }
-          
-//           setTimeout(function () {
-//               window.location.href = href;
-//           }, 600);
-//       });
-//   });
-// });
+// import Typed from 'typed.js';
 
 document.addEventListener("DOMContentLoaded", function() {
 
@@ -93,6 +71,53 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         }
     // -------------------------------------------------------------------------------------
+
+    // TYPED.JS ==============================================================
+        var typedElement = document.getElementById('typed');
+        if (typedElement) {
+          var options = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.5 // Порог видимости элемента во вьюпорте
+          };
+      
+          var observer = new IntersectionObserver(handleIntersection, options);
+      
+          // Начинаем наблюдение за элементом
+          observer.observe(typedElement);
+      
+          // Создаем Typed при загрузке страницы
+          var typed = new Typed('#typed', {
+            stringsElement: '#typed-strings',
+            typeSpeed: 50,
+            backSpeed: 20,
+            loop: true,
+            // loopCount: 3,
+            smartBackspace: true,
+            // showCursor: false, // Можно скрыть курсор при загрузке
+            onComplete: function () {
+              // Помечаем, что Typed завершил свой цикл
+              typedElement.setAttribute('data-typed-started', 'completed');
+            }
+          });
+          }
+    
+        function handleIntersection(entries, observer) {
+          entries.forEach(function(entry) {
+            // Если элемент виден во вьюпорте и Typed еще не начал свою анимацию
+            if (entry.isIntersecting && typedElement.getAttribute('data-typed-started') !== 'completed') {
+              typed.start();
+              // Помечаем, что Typed начал свою анимацию
+              typedElement.setAttribute('data-typed-started', 'true');
+            } else if (!entry.isIntersecting && typed) {
+              // Если элемент не виден во вьюпорте и Typed был запущен, останавливаем его
+              typed.stop();
+            }
+          });
+        }
+    // -------------------------------------------------------------------------------------
+
+
 
 });
 

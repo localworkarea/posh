@@ -201,30 +201,20 @@
 
 
 .hover-line {
-  @media (min-width:$mobileSmall){
-    position: relative;
-    &::before {
-      content:'';
-      position: absolute;
-      bottom: toRem(-2);
-      left: 0;
-      // width: 100%;
-      width: 0;
-      height: toRem(1);
-      background-color: #fff;
-      // transform: scaleX(0);
-      // transform-origin: 100% 50%;
-      // transition: transform .6s cubic-bezier(.215,.61,.355,1);
-      transition: width .6s cubic-bezier(.215,.61,.355,1);
-    }
+  position: relative;
+  &::before {
+    content:'';
+    position: absolute;
+    bottom: toRem(-2);
+    left: 0;
+    width: 0;
+    height: toRem(1);
+    background-color: #fff;
+    transition: width .6s cubic-bezier(.215,.61,.355,1);
   }
-  @media (any-hover: hover){
-    &:hover{
-      &::before {
-        width: 100%;
-        // transform: scale(1);
-        // transform-origin: 0% 50%;
-      }
+  &:hover{
+    &::before {
+      width: 100%;
     }
   }
 }
@@ -244,7 +234,7 @@
 .title-main {
   color: $mainWhite;
   @include adaptiveValue("font-size", 60, 36,0,1366,375);
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.25;
   text-transform: uppercase;
   &_dark {
@@ -254,6 +244,6 @@
 .txt-main {
   color: $mainWhite;
   @include adaptiveValue("font-size", 16, 18,0,1366,375);
-  font-weight: 600;
+  font-weight: 400;
   line-height: normal;
 }
