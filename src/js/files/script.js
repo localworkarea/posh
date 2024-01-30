@@ -8,32 +8,36 @@ import { flsModules } from "./modules.js";
 document.addEventListener("DOMContentLoaded", function() {
 
     // ОТЛОЖЕННАЯ ЗАГРУЗКА ВИДЕО ========================================================
-        window.addEventListener("load", function() {
-            var video = document.getElementById("heroVideo");
-            if (video) {
-                var source = video.querySelector("source");
-                // Проверка локального хранилища на наличие ключа
-                var videoLoaded = localStorage.getItem("videoLoaded");
-                video.addEventListener("canplay", function() {
-                    video.play();
-                });
-                // Если видео не было загружено ранее, устанавливаем таймер на 2 секунды
-                if (!videoLoaded) {
-                    setTimeout(function() {
-                        video.load();
-                        source.src = source.getAttribute("data-src");
-                        video.load();
-                        // Сохраняем информацию о загрузке видео в локальное хранилище
-                        localStorage.setItem("videoLoaded", "true");
-                    }, 1800);
-                } else {
-                    // Если видео уже было загружено, начинаем его воспроизведение сразу
+    window.addEventListener("load", function() {
+        var video = document.getElementById("heroVideo");
+        if (video) {
+            var source = video.querySelector("source");
+            // Проверка локального хранилища на наличие ключа
+            var videoLoaded = localStorage.getItem("videoLoaded");
+            video.addEventListener("canplay", function() {
+                video.play();
+            });
+            // Проверяем ширину экрана и устанавливаем соответствующую задержку
+            // Если ширина экрана меньше 500px, то устанавливается задержка одна, в противном случае — другая
+            var delay = window.matchMedia("(max-width: 500px)").matches ? 1200 : 1800;
+            // Если видео не было загружено ранее, устанавливаем таймер
+            if (!videoLoaded) {
+                setTimeout(function() {
                     video.load();
                     source.src = source.getAttribute("data-src");
                     video.load();
-                }
+                    // Сохраняем информацию о загрузке видео в локальное хранилище
+                    localStorage.setItem("videoLoaded", "true");
+                }, delay);
+            } else {
+                // Если видео уже было загружено, начинаем его воспроизведение сразу
+                video.load();
+                source.src = source.getAttribute("data-src");
+                video.load();
             }
-        });
+        }
+    });
+    
     // -------------------------------------------------------------------------------------
 
 
@@ -73,48 +77,78 @@ document.addEventListener("DOMContentLoaded", function() {
     // -------------------------------------------------------------------------------------
 
     // TYPED.JS ==============================================================
-        var typedElement = document.getElementById('typed');
-        if (typedElement) {
-          var options = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.5 // Порог видимости элемента во вьюпорте
-          };
-      
-          var observer = new IntersectionObserver(handleIntersection, options);
-      
-          // Начинаем наблюдение за элементом
-          observer.observe(typedElement);
-      
-          // Создаем Typed при загрузке страницы
-          var typed = new Typed('#typed', {
-            stringsElement: '#typed-strings',
-            typeSpeed: 50,
-            backSpeed: 20,
-            loop: true,
-            // loopCount: 3,
-            smartBackspace: true,
-            // showCursor: false, // Можно скрыть курсор при загрузке
-            onComplete: function () {
-              // Помечаем, что Typed завершил свой цикл
-              typedElement.setAttribute('data-typed-started', 'completed');
-            }
-          });
-          }
-    
-        function handleIntersection(entries, observer) {
-          entries.forEach(function(entry) {
-            // Если элемент виден во вьюпорте и Typed еще не начал свою анимацию
-            if (entry.isIntersecting && typedElement.getAttribute('data-typed-started') !== 'completed') {
-              typed.start();
-              // Помечаем, что Typed начал свою анимацию
-              typedElement.setAttribute('data-typed-started', 'true');
-            } else if (!entry.isIntersecting && typed) {
-              // Если элемент не виден во вьюпорте и Typed был запущен, останавливаем его
-              typed.stop();
-            }
-          });
+    var typedElement = document.getElementById('typed');
+    var typed;
+    var startDelay = 0; // Задержка в миллисекундах
+  
+    if (typedElement) {
+      // Создаем Typed при загрузке страницы
+      typed = new Typed('#typed', {
+        stringsElement: '#typed-strings',
+        typeSpeed: 50,
+        backSpeed: 20,
+        loop: true,
+        loopCount: Infinity,
+        smartBackspace: false,
+        startDelay: startDelay,
+        onComplete: function () {
+          // Помечаем, что Typed завершил свой цикл
+          typedElement.setAttribute('data-typed-started', 'completed');
         }
+      });
+  
+      // Проверяем при загрузке, есть ли у documentElement класс fp-section-1
+      if (document.documentElement.classList.contains('fp-section-1')) {
+        // Пауза перед стартом, если условие выполняется
+        setTimeout(function () {
+          typed.start();
+          typedElement.setAttribute('data-typed-started', 'true');
+        }, startDelay);
+      }
+  
+      // Наблюдаем за изменениями в атрибутах класса элемента
+      var observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          // Проверяем, добавлен ли класс fp-section-1 к documentElement
+          if (document.documentElement.classList.contains('fp-section-1')) {
+            // Пауза перед стартом, если условие выполняется
+            setTimeout(function () {
+              typed.start();
+              typedElement.setAttribute('data-typed-started', 'true');
+            }, startDelay);
+          } else {
+            // Если класс отсутствует, останавливаем Typed
+            typed.stop();
+            typedElement.setAttribute('data-typed-started', 'false');
+          }
+        });
+      });
+  
+      // Наблюдаем за изменениями в атрибутах класса documentElement
+      observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+  
+      // Наблюдаем за видимостью элемента
+      var intersectionObserver = new IntersectionObserver(handleIntersection, { threshold: 0.5 });
+  
+      intersectionObserver.observe(typedElement);
+    }
+  
+    function handleIntersection(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting && document.documentElement.classList.contains('fp-section-1')) {
+          // Если элемент виден во вьюпорте и document.documentElement содержит класс fp-section-1
+          // Пауза перед стартом, если условие выполняется
+          setTimeout(function () {
+            typed.start();
+            typedElement.setAttribute('data-typed-started', 'true');
+          }, startDelay);
+        } else {
+          // Если элемент не виден во вьюпорте или document.documentElement не содержит класс fp-section-1
+          typed.stop();
+          typedElement.setAttribute('data-typed-started', 'false');
+        }
+      });
+    }
     // -------------------------------------------------------------------------------------
 
     // // Находим кнопку и секцию about-main

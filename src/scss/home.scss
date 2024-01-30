@@ -1,6 +1,5 @@
 body {
   background-color: $darkBlue;
-  // background-color: gray;
 }
 
 
@@ -27,8 +26,6 @@ section {
   background-color: $darkBlue;
   @media (max-width:$mobileSmall){
      flex-direction: column; 
-    //  min-height: calc(100vh + 50px);
-    //   padding-bottom: 50px;
   }
   // .hero__bg
   &__bg {
@@ -239,18 +236,10 @@ section {
 .about-main {
   color: $mainWhite;
   position: relative;
-  background-color: $darkBlue;
-  // transform: translateY(100%);
-  // ._scrolled & {
-  //   transform: translateY(0);
-  // }
-  
-  // @media (max-width: em(1950)) and (min-width: $mobileSmall) {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  // }
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   // .about-main__container
   &__container {
     @include adaptiveValue("padding-top", 120, 40,0,1366,480.98);
@@ -351,25 +340,58 @@ section {
   vertical-align: middle;
   // .heart-main__ic-arr
   &__ic-arr {
+    transition: all .6s ease .6s;
+    opacity: 0;
     @media (max-width:$mobileSmall){
         width: toRem(18);
     }
     &.arr-left {
-      transform: scaleX(-1);
-      // transform: scaleX(-1) translateX(-120%);
+      transform: scaleX(-1) translateX(-120%);
+      .fp-section-1 & {
+          opacity: 1;
+          transform: scaleX(-1) translateX(0);
+      }
     }
     &.arr-right {
-      // transform: translateX(-120%);
+      transform: translateX(-120%);
+      .fp-section-1 & {
+        opacity: 1;
+        transform: translateX(0);
+      }
     }
   }
   // .heart-main__ic-heart
   &__ic-heart {
+    opacity: 0;
+    transition: opacity .6s ease .3s;
+    .fp-section-1 & {
+      opacity: 1;
+      animation: pulse .8s linear .3s 5 normal forwards;
+      @media (any-hover: hover){
+        &:hover{
+          animation: pulse .8s infinite;  
+        }
+      }
+      @media (max-width: em(1200.98)){
+        animation: pulse-mob .8s linear .3s infinite;
+      }
+    }
     @media (max-width:$mobileSmall){
        width: toRem(30); 
     }
   }
 }
 
+@keyframes pulse {
+	10% {transform: scale(1.1)}
+	// 30% {transform: scale(1)}
+	// 40% {transform: scale(1.1)}
+}
+@keyframes pulse-mob {
+	10% {transform: scale(1.2)}
+	// 30% {transform: scale(1)}
+	// 40% {transform: scale(1.2)}
+}
   
 .bg-women {
   @media (min-width:em(960.98)){
@@ -428,7 +450,6 @@ section {
   }
   // .bg-main__shelf
   &__shelf {
-    // @include adaptiveValue("width", 1200, 900,0,1920,1366);
     @include adaptiveValue("height", 740, 580,0,1920,1366);
     @media (min-width:em(1950.98)){
         width: toRem(900) !important;
@@ -439,8 +460,8 @@ section {
       left: 120%;
       opacity: 0;
       z-index: 1;
-      transition: left .9s cubic-bezier(.34,.05,.41,1.71), opacity .2s ease;
-      ._watcher-view & {
+      transition: left .65s ease, opacity .2s ease;
+      .fp-section-1 & {
         left: 17%;
         opacity: 1;
         transition-delay: .3s;

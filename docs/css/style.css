@@ -707,7 +707,6 @@ section {
 .about-main {
   color: #FEFEFE;
   position: relative;
-  background-color: #1A1F35;
   min-height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -759,10 +758,76 @@ section {
   vertical-align: middle;
 }
 
+.heart-main__ic-arr {
+  -webkit-transition: all 0.6s ease 0.6s;
+  transition: all 0.6s ease 0.6s;
+  opacity: 0;
+}
+
 .heart-main__ic-arr.arr-left {
-  -webkit-transform: scaleX(-1);
-      -ms-transform: scaleX(-1);
-          transform: scaleX(-1);
+  -webkit-transform: scaleX(-1) translateX(-120%);
+      -ms-transform: scaleX(-1) translateX(-120%);
+          transform: scaleX(-1) translateX(-120%);
+}
+
+.fp-section-1 .heart-main__ic-arr.arr-left {
+  opacity: 1;
+  -webkit-transform: scaleX(-1) translateX(0);
+      -ms-transform: scaleX(-1) translateX(0);
+          transform: scaleX(-1) translateX(0);
+}
+
+.heart-main__ic-arr.arr-right {
+  -webkit-transform: translateX(-120%);
+      -ms-transform: translateX(-120%);
+          transform: translateX(-120%);
+}
+
+.fp-section-1 .heart-main__ic-arr.arr-right {
+  opacity: 1;
+  -webkit-transform: translateX(0);
+      -ms-transform: translateX(0);
+          transform: translateX(0);
+}
+
+.heart-main__ic-heart {
+  opacity: 0;
+  -webkit-transition: opacity 0.6s ease 0.3s;
+  transition: opacity 0.6s ease 0.3s;
+}
+
+.fp-section-1 .heart-main__ic-heart {
+  opacity: 1;
+  -webkit-animation: pulse 0.8s linear 0.3s 5 normal forwards;
+          animation: pulse 0.8s linear 0.3s 5 normal forwards;
+}
+
+@-webkit-keyframes pulse {
+  10% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+}
+
+@keyframes pulse {
+  10% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+}
+
+@-webkit-keyframes pulse-mob {
+  10% {
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
+}
+
+@keyframes pulse-mob {
+  10% {
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
 }
 
 @media (min-width: 30.06125em) {
@@ -932,11 +997,11 @@ section {
     left: 120%;
     opacity: 0;
     z-index: 1;
-    -webkit-transition: left 0.9s cubic-bezier(0.34, 0.05, 0.41, 1.71), opacity 0.2s ease;
-    transition: left 0.9s cubic-bezier(0.34, 0.05, 0.41, 1.71), opacity 0.2s ease;
+    -webkit-transition: left 0.65s ease, opacity 0.2s ease;
+    transition: left 0.65s ease, opacity 0.2s ease;
   }
 
-  ._watcher-view .bg-main__shelf {
+  .fp-section-1 .bg-main__shelf {
     left: 17%;
     opacity: 1;
     -webkit-transition-delay: 0.3s;
@@ -1554,6 +1619,11 @@ section {
   .circle-hero {
     right: 0.0000000625rem;
   }
+
+  .fp-section-1 .heart-main__ic-heart {
+    -webkit-animation: pulse-mob 0.8s linear 0.3s infinite;
+            animation: pulse-mob 0.8s linear 0.3s infinite;
+  }
 }
 
 @media (max-width: 75.06125em) and (any-hover: hover) {
@@ -2081,13 +2151,20 @@ section {
 }
 
 @media (min-width: 60.06125em) and (max-width: 87.56125em) {
-  ._watcher-view .bg-main__shelf {
+  .fp-section-1 .bg-main__shelf {
     left: 10%;
   }
 }
 
 @media (min-width: 60.06125em) and (max-width: 68.81125em) {
-  ._watcher-view .bg-main__shelf {
+  .fp-section-1 .bg-main__shelf {
     left: 0;
+  }
+}
+
+@media (any-hover: hover) {
+  .fp-section-1 .heart-main__ic-heart:hover {
+    -webkit-animation: pulse 0.8s infinite;
+            animation: pulse 0.8s infinite;
   }
 }

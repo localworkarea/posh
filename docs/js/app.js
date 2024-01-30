@@ -648,12 +648,13 @@
                 video.addEventListener("canplay", (function() {
                     video.play();
                 }));
+                var delay = window.matchMedia("(max-width: 500px)").matches ? 1200 : 1800;
                 if (!videoLoaded) setTimeout((function() {
                     video.load();
                     source.src = source.getAttribute("data-src");
                     video.load();
                     localStorage.setItem("videoLoaded", "true");
-                }), 1800); else {
+                }), delay); else {
                     video.load();
                     source.src = source.getAttribute("data-src");
                     video.load();
@@ -678,31 +679,54 @@
             btnMaskElement.appendChild(clone);
         }));
         var typedElement = document.getElementById("typed");
+        var typed;
+        var startDelay = 0;
         if (typedElement) {
-            var options = {
-                root: null,
-                rootMargin: "0px",
-                threshold: .5
-            };
-            var observer = new IntersectionObserver(handleIntersection, options);
-            observer.observe(typedElement);
-            var typed = new Typed("#typed", {
+            typed = new Typed("#typed", {
                 stringsElement: "#typed-strings",
                 typeSpeed: 50,
                 backSpeed: 20,
                 loop: true,
-                smartBackspace: true,
+                loopCount: 1 / 0,
+                smartBackspace: false,
+                startDelay,
                 onComplete: function() {
                     typedElement.setAttribute("data-typed-started", "completed");
                 }
             });
+            if (document.documentElement.classList.contains("fp-section-1")) setTimeout((function() {
+                typed.start();
+                typedElement.setAttribute("data-typed-started", "true");
+            }), startDelay);
+            var observer = new MutationObserver((function(mutations) {
+                mutations.forEach((function(mutation) {
+                    if (document.documentElement.classList.contains("fp-section-1")) setTimeout((function() {
+                        typed.start();
+                        typedElement.setAttribute("data-typed-started", "true");
+                    }), startDelay); else {
+                        typed.stop();
+                        typedElement.setAttribute("data-typed-started", "false");
+                    }
+                }));
+            }));
+            observer.observe(document.documentElement, {
+                attributes: true,
+                attributeFilter: [ "class" ]
+            });
+            var intersectionObserver = new IntersectionObserver(handleIntersection, {
+                threshold: .5
+            });
+            intersectionObserver.observe(typedElement);
         }
-        function handleIntersection(entries, observer) {
+        function handleIntersection(entries) {
             entries.forEach((function(entry) {
-                if (entry.isIntersecting && typedElement.getAttribute("data-typed-started") !== "completed") {
+                if (entry.isIntersecting && document.documentElement.classList.contains("fp-section-1")) setTimeout((function() {
                     typed.start();
                     typedElement.setAttribute("data-typed-started", "true");
-                } else if (!entry.isIntersecting && typed) typed.stop();
+                }), startDelay); else {
+                    typed.stop();
+                    typedElement.setAttribute("data-typed-started", "false");
+                }
             }));
         }
     }));
