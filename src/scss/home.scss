@@ -3,12 +3,32 @@ body {
   // background-color: gray;
 }
 
+
+.first-block {
+}
+.second-block {
+}
+section {
+  overflow: hidden;
+}
+.other {
+  padding: 100px 0;
+  min-height: 100vh;
+  border-top: 3px solid $mainWhite;
+  border-bottom: 3px solid $mainWhite;
+}
+
+
+
 .hero {
   min-height: 100vh;
   position: relative;
   display: flex;
+  background-color: $darkBlue;
   @media (max-width:$mobileSmall){
      flex-direction: column; 
+    //  min-height: calc(100vh + 50px);
+    //   padding-bottom: 50px;
   }
   // .hero__bg
   &__bg {
@@ -219,13 +239,18 @@ body {
 .about-main {
   color: $mainWhite;
   position: relative;
+  background-color: $darkBlue;
+  // transform: translateY(100%);
+  // ._scrolled & {
+  //   transform: translateY(0);
+  // }
   
-  @media (max-width: em(1950)) and (min-width: $mobileSmall) {
+  // @media (max-width: em(1950)) and (min-width: $mobileSmall) {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-  }
+  // }
   // .about-main__container
   &__container {
     @include adaptiveValue("padding-top", 120, 40,0,1366,480.98);
@@ -433,8 +458,3 @@ body {
 
 
 
-
-.other {
-  background-color: $mainWhite;
-  padding: 100px 0;
-}

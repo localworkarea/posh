@@ -18,12 +18,18 @@
      min-height: toRem(77);
      padding: toRem(10) 0; 
   }
-  &._header-scroll {
+  .fp-section-1 & {
     background-color: $darkBlue;
     @media (min-width:$mobileSmall){
       min-height: toRem(70);
     }
   }
+  // &._header-scroll {
+  //   background-color: $darkBlue;
+  //   @media (min-width:$mobileSmall){
+  //     min-height: toRem(70);
+  //   }
+  // }
   
   // .header_logo
   &_logo {
@@ -32,9 +38,12 @@
       @media (min-width:$mobileSmall){
         transition: width .5s;
         width: toRem(221);
-        ._header-scroll & {
+        .fp-section-1 & {
           width: toRem(142);
         }
+        // ._header-scroll & {
+        //   width: toRem(142);
+        // }
       }
       @media (max-width:$mobileSmall){
          width: toRem(198); 

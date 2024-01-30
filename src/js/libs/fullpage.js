@@ -305,11 +305,11 @@ export class FullPage {
 			if (index === this.activeSectionId) {
 				section.style.opacity = '1';
 				section.style.pointerEvents = 'all';
-				//section.style.visibility = 'visible';
+				section.style.visibility = 'visible';
 			} else {
 				section.style.opacity = '0';
 				section.style.pointerEvents = 'none';
-				//section.style.visibility = 'hidden';
+				section.style.visibility = 'hidden';
 			}
 		}
 	}
@@ -498,6 +498,10 @@ export class FullPage {
 		if (this.goScroll && Math.abs(yCoord) > 20) {
 			this.choiceOfDirection(yCoord);
 		}
+
+
+	
+
 	}
 	//===============================
 	// Подія відпускання від екрану тач/пера/курсора

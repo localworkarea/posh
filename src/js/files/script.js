@@ -117,7 +117,72 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     // -------------------------------------------------------------------------------------
 
+    // // Находим кнопку и секцию about-main
+    // var moveToButton = document.querySelector('.move-to');
+    // var aboutMain = document.querySelector('.about-main');
+    // var heroSection = document.querySelector('.hero');
 
+    // // Переменные для отслеживания состояния
+    // var scrollingEnabled = true;
+    // var touchStartY = 0;
+    // var touchMoveThreshold = 10; // Минимальное расстояние для срабатывания события касания
+
+    // // Добавляем слушатель события click на кнопку
+    // moveToButton.addEventListener('click', function() {
+    //     // Используем метод scrollIntoView для прокрутки элемента в верхнюю часть браузера без анимации
+    //     aboutMain.scrollIntoView({ behavior: 'auto', block: 'start' });
+    // });
+
+    // // Добавляем слушатель события wheel (скролл мышью) на секцию hero
+    // heroSection.addEventListener('wheel', function(event) {
+    //     // Если первый экран находится в верхней точке окна браузера и происходит прокрутка вниз
+    //     if (window.scrollY === 0 && event.deltaY > 0 && scrollingEnabled) {
+    //         // Отключаем стандартное поведение прокрутки, чтобы контролировать скролл
+    //         event.preventDefault();
+
+    //         // Прокручиваем вниз на высоту окна браузера без анимации
+    //         window.scrollBy(0, window.innerHeight);
+
+    //         // Отключаем скроллинг и устанавливаем таймер задержки
+    //         scrollingEnabled = false;
+    //         setTimeout(function() {
+    //             scrollingEnabled = true;
+    //         }, 1000);
+    //     }
+    // });
+
+    // // Добавляем слушатель события touchstart (начало касания) на секцию hero для мобильных устройств
+    // heroSection.addEventListener('touchstart', function(startEvent) {
+    //     // Запоминаем начальное положение касания
+    //     touchStartY = startEvent.touches[0].clientY;
+    // });
+
+    // // Добавляем слушатель события touchmove (перемещение пальца) на секцию hero для мобильных устройств
+    // heroSection.addEventListener('touchmove', function(moveEvent) {
+    //     // Если палец двигается снизу вверх и первый экран находится в верхней точке окна браузера
+    //     if (window.scrollY === 0 && scrollingEnabled) {
+    //         // Запоминаем текущее положение пальца
+    //         var currentY = moveEvent.touches[0].clientY;
+
+    //         // Вычисляем расстояние, на которое проведен палец
+    //         var distanceY = Math.abs(currentY - touchStartY);
+
+    //         // Если расстояние больше заданного порога
+    //         if (distanceY >= touchMoveThreshold) {
+    //             // Отключаем стандартное поведение, чтобы контролировать скролл
+    //             moveEvent.preventDefault();
+
+    //             // Прокручиваем вниз на высоту окна браузера без анимации
+    //             window.scrollBy(0, window.innerHeight);
+
+    //             // Отключаем слушатели событий и устанавливаем таймер задержки
+    //             scrollingEnabled = false;
+    //             setTimeout(function() {
+    //                 scrollingEnabled = true;
+    //             }, 1000);
+    //         }
+    //     }
+    // });
 
 });
 
@@ -148,3 +213,125 @@ if (heroBg) {
     heroBody.addEventListener('mouseout', removeHoverClass);
     heroControlButton.addEventListener('mouseout', removeHoverClass);
 }
+
+
+
+
+
+// class Scroller {
+//     constructor(wrapper, aboutMain, moveToButton) {
+//         this.wrapper = wrapper;
+//         this.aboutMain = aboutMain;
+//         this.moveToButton = moveToButton;
+//         this.scrollingEnabled = true;
+//         this.touchStartY = 0;
+//         this.touchMoveThreshold = 50;
+
+//         this.events = {
+//             wheel: this.handleWheel.bind(this),
+//             touchstart: this.handleTouchStart.bind(this),
+//             touchmove: this.handleTouchMove.bind(this),
+//             touchend: this.handleTouchEnd.bind(this),
+//             touchcancel: this.handleTouchEnd.bind(this),
+//             click: this.handleClick.bind(this),
+//         };
+
+//         this.init();
+//     }
+
+//     init() {
+//         this.setEvents();
+//     }
+
+//     setEvents() {
+//         this.wrapper.addEventListener('wheel', this.events.wheel);
+//         this.wrapper.addEventListener('touchstart', this.events.touchstart);
+//         this.wrapper.addEventListener('touchmove', this.events.touchmove);
+//         this.wrapper.addEventListener('touchend', this.events.touchend);
+//         this.wrapper.addEventListener('touchcancel', this.events.touchcancel);
+
+//         if (this.moveToButton) {
+//             this.moveToButton.addEventListener('click', this.events.click);
+//         }
+
+//         // Добавляем слушатель события прокрутки страницы
+//         window.addEventListener('scroll', this.handleScroll.bind(this));
+//     }
+
+//     removeEvents() {
+//         this.wrapper.removeEventListener('wheel', this.events.wheel);
+//         this.wrapper.removeEventListener('touchstart', this.events.touchstart);
+//         this.wrapper.removeEventListener('touchmove', this.events.touchmove);
+//         this.wrapper.removeEventListener('touchend', this.events.touchend);
+//         this.wrapper.removeEventListener('touchcancel', this.events.touchcancel);
+
+//         if (this.moveToButton) {
+//             this.moveToButton.removeEventListener('click', this.events.click);
+//         }
+
+//         // Удаляем слушатель события прокрутки страницы
+//         window.removeEventListener('scroll', this.handleScroll.bind(this));
+//     }
+
+//     handleWheel(event) {
+//         if (window.scrollY === 0 && event.deltaY > 0 && this.scrollingEnabled) {
+//             event.preventDefault();
+//             window.scrollBy(0, window.innerHeight);
+//             this.disableScrolling();
+//         }
+//     }
+
+//     handleTouchStart(event) {
+//         this.touchStartY = event.touches[0].clientY;
+//     }
+
+//     handleTouchMove(event) {
+//         if (window.scrollY === 0 && this.scrollingEnabled) {
+//             const currentY = event.touches[0].clientY;
+//             const distanceY = Math.abs(currentY - this.touchStartY);
+
+//             if (distanceY >= this.touchMoveThreshold) {
+//                 event.preventDefault();
+//                 window.scrollBy(0, window.innerHeight);
+//                 this.disableScrolling();
+//             }
+//         }
+//     }
+
+//     handleTouchEnd() {
+//         // Дополнительная обработка для окончания касания, если необходимо
+//     }
+
+//     handleClick() {
+//         if (this.aboutMain) {
+//             this.aboutMain.scrollIntoView({ behavior: 'auto', block: 'start' });
+//         }
+//     }
+
+//     handleScroll() {
+//         // Добавляем класс _scrolled к <html> при прокрутке страницы вниз
+//         if (window.scrollY > 0) {
+//             document.documentElement.classList.add('_scrolled');
+//         } else {
+//             // Убираем класс _scrolled, если окно в верхней части
+//             document.documentElement.classList.remove('_scrolled');
+//         }
+//     }
+
+//     disableScrolling() {
+//         this.scrollingEnabled = false;
+//         setTimeout(() => {
+//             this.scrollingEnabled = true;
+//         }, 500);
+//     }
+// }
+
+// // Пример использования
+// const wrapper = document.querySelector('.hero');
+// const aboutMain = document.querySelector('.about-main');
+// const moveToButton = document.querySelector('.move-to');
+
+// const scroller = new Scroller(wrapper, aboutMain, moveToButton);
+
+// // Для удаления слушателей после использования
+// // scroller.removeEvents();
