@@ -4871,20 +4871,22 @@
                 const clonedLine = originalLine.cloneNode(true);
                 clonedLine.classList.add("clone-line");
                 tiker.appendChild(clonedLine);
-                if (tiker.classList.contains("tiker-hover") && !document.documentElement.classList.contains("touch")) {
-                    tiker.addEventListener("mouseover", (() => {
-                        const cloneLines = tiker.querySelectorAll(".clone-line");
-                        cloneLines.forEach((cloneLine => {
-                            cloneLine.style.animationPlayState = "paused";
+                document.addEventListener("DOMContentLoaded", (function() {
+                    if (tiker.classList.contains("tiker-hover") && !document.documentElement.classList.contains("touch")) {
+                        tiker.addEventListener("mouseover", (() => {
+                            const cloneLines = tiker.querySelectorAll(".clone-line");
+                            cloneLines.forEach((cloneLine => {
+                                cloneLine.style.animationPlayState = "paused";
+                            }));
                         }));
-                    }));
-                    tiker.addEventListener("mouseout", (() => {
-                        const cloneLines = tiker.querySelectorAll(".clone-line");
-                        cloneLines.forEach((cloneLine => {
-                            cloneLine.style.animationPlayState = "running";
+                        tiker.addEventListener("mouseout", (() => {
+                            const cloneLines = tiker.querySelectorAll(".clone-line");
+                            cloneLines.forEach((cloneLine => {
+                                cloneLine.style.animationPlayState = "running";
+                            }));
                         }));
-                    }));
-                }
+                    }
+                }));
             }
         }));
         window["FLS"] = false;

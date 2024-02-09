@@ -487,8 +487,7 @@ document.addEventListener("DOMContentLoaded", function() {
       // -------------------------------------------------------------------------------------
 
       
-});
-
+    });
     
     
     // CLONE TIKERS ==============================================================
@@ -509,25 +508,28 @@ document.addEventListener("DOMContentLoaded", function() {
         // setTimeout(() => {
         //   clonedLine.style.animation = animationProperties;
         // }, 0);
-    
-        // Проверяем наличие класса .tiker-hover и отсутствие класса .touch
-        if (tiker.classList.contains("tiker-hover") && !document.documentElement.classList.contains("touch")) {
-          // Добавляем обработчик событий для наведения мыши
-          tiker.addEventListener("mouseover", () => {
-            const cloneLines = tiker.querySelectorAll(".clone-line");
-            cloneLines.forEach((cloneLine) => {
-              cloneLine.style.animationPlayState = "paused";
+        document.addEventListener("DOMContentLoaded", function() {
+          // Проверяем наличие класса .tiker-hover и отсутствие класса .touch
+          if (tiker.classList.contains("tiker-hover") && !document.documentElement.classList.contains("touch")) {
+            // Добавляем обработчик событий для наведения мыши
+            tiker.addEventListener("mouseover", () => {
+              const cloneLines = tiker.querySelectorAll(".clone-line");
+              cloneLines.forEach((cloneLine) => {
+                cloneLine.style.animationPlayState = "paused";
+              });
             });
-          });
-    
-          // Добавляем обработчик событий для ухода мыши
-          tiker.addEventListener("mouseout", () => {
-            const cloneLines = tiker.querySelectorAll(".clone-line");
-            cloneLines.forEach((cloneLine) => {
-              cloneLine.style.animationPlayState = "running";
+      
+            // Добавляем обработчик событий для ухода мыши
+            tiker.addEventListener("mouseout", () => {
+              const cloneLines = tiker.querySelectorAll(".clone-line");
+              cloneLines.forEach((cloneLine) => {
+                cloneLine.style.animationPlayState = "running";
+              });
             });
-          });
-        }
+          }
+        });
+
       }
     });
       // -------------------------------------------------------------------------------------
+    
