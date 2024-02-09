@@ -32,7 +32,7 @@ import * as flsFunctions from "./files/functions.js";
 /* (i) необхідно для коректного відображення webp із css */
 flsFunctions.isWebp();
 /* Додавання класу touch для HTML якщо браузер мобільний */
-// flsFunctions.addTouchClass();
+flsFunctions.addTouchClass();
 /* Додавання loaded для HTML після повного завантаження сторінки */
 flsFunctions.addLoadedClass();
 /* Модуль для роботи з меню (Бургер) */
@@ -61,7 +61,7 @@ flsFunctions.menuInit();
 Документація: https://template.fls.guru/template-docs/modul-pokazat-eshhjo.html
 Сніппет (HTML): showmore
 */
-// flsFunctions.showMore();
+flsFunctions.showMore();
 
 /*
 Модуль "До/Після"
@@ -104,15 +104,13 @@ import * as flsForms from "./files/forms/forms.js";
 
 /* Робота з полями форми */
 /* Документація: https://template.fls.guru/template-docs/rabota-s-formami.html */
-/*
 flsForms.formFieldsInit({
 	viewPass: false,
 	autoHeight: false
 });
-*/
 /* Надсилання форми */
 /* Документація: https://template.fls.guru/template-docs/rabota-s-formami.html */
-// flsForms.formSubmit();
+flsForms.formSubmit();
 
 /* Модуль форми "кількість" */
 // flsForms.formQuantity();
@@ -162,7 +160,7 @@ flsForms.formFieldsInit({
 Документація плагіна: https://swiperjs.com/
 Сніппет(HTML): swiper
 */
-// import "./files/sliders.js";
+import "./files/sliders.js";
 
 // ========================================================================================================================================================================================================================================================
 // Модулі роботи з прокручуванням сторінки ========================================================================================================================================================================================================================================================
@@ -206,7 +204,7 @@ import * as flsScroll from "./files/scroll/scroll.js";
 
 // Функціонал додавання класів до хедеру під час прокручування
 // Документація: https://template.fls.guru/template-docs/modul-dobavleniya-klassov-k-shapke-pri-prokrutke-stranicy.html
-// flsScroll.headerScroll();
+flsScroll.headerScroll();
 
 // Модуль анімація цифрового лічильника
 // Документація: https://template.fls.guru/template-docs/modul-animacii-cifrovogo-lichilnika.html

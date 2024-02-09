@@ -498,10 +498,6 @@ export class FullPage {
 		if (this.goScroll && Math.abs(yCoord) > 20) {
 			this.choiceOfDirection(yCoord);
 		}
-
-
-	
-
 	}
 	//===============================
 	// Подія відпускання від екрану тач/пера/курсора

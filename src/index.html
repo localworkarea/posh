@@ -4,186 +4,821 @@
 	"title":"Posh Home"
 	})
 	<body>
-		<div class="wrapper page-main">
+		<div data-fp data-fp-effect="fade" class="wrapper page-main">
 			@@include('html/_header.htm',{})
-			<main data-fp data-fp-effect="fade" class="page">
-				<div data-fp-section class="first-block">
-					<section  class="hero">
-						<div class="hero__bg">
-							<video id="heroVideo" class="hero__video ibg" width="100%" height="100%" muted playsinline poster="files/poster-hero.webp" autoplay loop>
-								<source data-src="files/posh-hero-2.mp4" type="video/mp4"/>
-								<source data-src="files/posh-hero-3.mp4" type="video/mp4" media="(max-width: 31.25rem)"/>
-						</video>
+			<main class="page">
+				<div data-fp-section class="section-01">
+					<section class="hero">
+						<div class="hero__wrapper">
+							<div class="hero__bg">
+								<video id="heroVideo" class="hero__video ibg" width="1920" height="1080" muted playsinline poster="files/poster-hero.webp" autoplay loop>
+									<source data-src="files/posh-hero-2.mp4" type="video/mp4"/>
+									<source data-src="files/posh-hero-3.mp4" type="video/mp4" media="(max-width: 31.25rem)"/>
+								</video>
+							</div>
+							<div class="circle-hero-b">
+								<div class="circle-hero-b__container">
+									<div data-da=".hero__bg,480.98,2" class="hero__circle circle-hero">
+										<img class="circle-hero__img" src="@img/icon/circle-text.svg" alt="надпис по колу posh fmcg packaging design">
+									</div>
+								</div>
+							</div>
+							<div class="hero__container">
+								<div class="hero__body">
+									<h1 data-da=".hero__bg,480.98,0" class="hero__title title-main">
+										дизайн паковання для fmcg брендів
+									</h1>
+									<div class="hero__btm">
+										<p class="hero__txt txt-main">
+											Слідкуючи за тенденціями ринку потреб, керуючи
+											емоційною складовою бренду, робити продукт
+											більш релевантним стає простіше...
+										</p>
+										<a href="#" class="hero__link btn btn--01" aria-label="кнопка переходу на кейси">
+											<span class="btn__txt">Наші кейси</span>
+											<img class="btn__arr-r" src="@img/icon/arr-btn.svg" alt="arrow to right">
+										</a>
+									</div>
+								</div>
+								<button type="button" class="hero__control control-hero" aria-label="кнопка зупинки фонового відео">
+									<img class="control-hero__ic ic-pause" src="@img/icon/pause.svg" alt="іконка pause">
+									<img class="control-hero__ic ic-play" src="@img/icon/play.svg" alt="іконка play">
+								</button>
+								<div class="hero__links links-hero">
+									<a href="#" class="links-hero__link btn-mask btn-mask--02" aria-label="кнопка переходу на сторінку послуги">
+										<span class="btn-mask__body">
+											<span class="btn-mask__txt">позиціонування</span>
+											<img class="btn-mask__arr-r" src="@img/icon/arr-btn.svg" alt="arrow to right">
+										</span>
+									</a>
+									<a href="#" class="links-hero__link btn-mask btn-mask--02" aria-label="кнопка переходу на сторінку послуги">
+										<span class="btn-mask__body">
+											<span class="btn-mask__txt">БРЕНД - СТРАТЕГІЯ</span>
+											<img class="btn-mask__arr-r" src="@img/icon/arr-btn.svg" alt="arrow to right">
+										</span>
+									</a>
+									<a href="#" class="links-hero__link btn-mask btn-mask--02" aria-label="кнопка переходу на сторінку послуги">
+										<span class="btn-mask__body">
+											<span class="btn-mask__txt">МЕСЕДЖ</span>
+											<img class="btn-mask__arr-r" src="@img/icon/arr-btn.svg" alt="arrow to right">
+										</span>
+									</a>
+									<a href="#" class="links-hero__link btn-mask btn-mask--02" aria-label="кнопка переходу на сторінку послуги">
+										<span class="btn-mask__body">
+											<span class="btn-mask__txt">ДИЗАЙН - СТРАТЕГІЯ</span>
+											<img class="btn-mask__arr-r" src="@img/icon/arr-btn.svg" alt="arrow to right">
+										</span>
+									</a>
+									<a href="#" class="links-hero__link btn-mask btn-mask--02" aria-label="кнопка переходу на сторінку послуги">
+										<span class="btn-mask__body">
+											<span class="btn-mask__txt">арТ - дирекшн</span>
+											<img class="btn-mask__arr-r" src="@img/icon/arr-btn.svg" alt="arrow to right">
+										</span>
+									</a>
+									<a href="#" class="links-hero__link btn-mask btn-mask--02" aria-label="кнопка переходу на сторінку послуги">
+										<span class="btn-mask__body">
+											<span class="btn-mask__txt">промо - сайт</span>
+											<img class="btn-mask__arr-r" src="@img/icon/arr-btn.svg" alt="arrow to right">
+										</span>
+									</a>
+									<a href="#" class="links-hero__link btn-mask btn-mask--02" aria-label="кнопка переходу на сторінку послуги">
+										<span class="btn-mask__body">
+											<span class="btn-mask__txt">SALE презентація</span>
+											<img class="btn-mask__arr-r" src="@img/icon/arr-btn.svg" alt="arrow to right">
+										</span>
+									</a>
+									<a href="#" class="links-hero__link btn-mask btn-mask--02" aria-label="кнопка переходу на сторінку послуги">
+										<span class="btn-mask__body">
+											<span class="btn-mask__txt">НЕЙМІНГ</span>
+											<img class="btn-mask__arr-r" src="@img/icon/arr-btn.svg" alt="arrow to right">
+										</span>
+									</a>
+								</div>
+								<!-- <div data-da=".hero__bg,480.98,2" class="hero__circle circle-hero">
+									<img class="circle-hero__img" src="@img/icon/circle-text.svg" alt="надпис по колу posh fmcg packaging design">
+								</div> -->
+							</div>
 						</div>
-						<div class="hero__container">
-							<div class="hero__body">
-								<h1 data-da=".hero__bg,480.98,0" class="hero__title title-main">
-									дизайн паковання для fmcg брендів
-								</h1>
-								<div class="hero__btm">
-									<p class="hero__txt txt-main">
-										Слідкуючи за тенденціями ринку потреб, керуючи
-										емоційною складовою бренду, робити продукт
-										більш релевантним стає простіше...
+					</section>
+				</div>
+				<div data-fp-section class="section-02">
+					<section class="about-main">
+						<div class="about-main__wrapper">
+							<div class="about-main__container">
+								<div class="about-main__body">
+									<h2 class="about-main__title title-main">
+										будуємо комунікацію бренд 
+										<span class="about-main__heart heart-main">
+												<img class="heart-main__ic-arr arr-left" src="@img/icon/heart-arr.svg" alt="іконка стрілка вліво">
+												<img class="heart-main__ic-heart" src="@img/icon/heart.svg" alt="іконка сердце">
+												<img class="heart-main__ic-arr arr-right" src="@img/icon/heart-arr.svg" alt="іконка стрілка вправо">
+										</span> споживач
+									</h2>
+									<p class="about-main__sub-title">
+										Якщо бренд - здобуває любов, то паковання - створює першу симпатію!
 									</p>
-									<a href="#" class="hero__link btn btn--01" aria-label="кнопка переходу на кейси">
-										<span class="btn__txt">Наші кейси</span>
+									<p class="about-main__txt txt-main">
+										Саме на цьому питанні спеціалізується агентство POSH. Ось уже понад 10 років ми розробляємо паковання для продуктів із різних категорій і сегментів. Основна наша мета - релевантність. 
+									</p>
+									<div class="about-main__typed-body">
+										<div id="typed-strings">
+											<p>
+												Як зробити паковання помітним?
+											</p>
+											<p>
+												Як зробити паковання зрозумілим?
+											</p>
+											<p>
+												Як зробити паковання переконливим?
+											</p>
+											<p>
+												Як потрапити до рук покупця?
+											</p>
+											<p>
+												Як передбачити емоційні мотиви покупця?
+											</p>
+										</div>
+										<span id="typed" data-typed-started="false" class="about-main__typed"></span>
+									</div>
+									<a href="#" class="about-main__link btn btn--01" aria-label="кнопка переходу на сторінку Наш підхід">
+										<span class="btn__txt">ДЕТАЛЬНІШЕ</span>
 										<img class="btn__arr-r" src="@img/icon/arr-btn.svg" alt="arrow to right">
 									</a>
 								</div>
+								<div class="about-main__bg bg-main">
+									<img class="bg-main__shelf" src="@img/shelf.png" alt="шафа з полицями та товарами">
+								</div>
 							</div>
-							<button type="button" class="hero__control control-hero" aria-label="кнопка зупинки фонового відео">
-								<img class="control-hero__ic ic-pause" src="@img/icon/pause.svg" alt="іконка pause">
-								<img class="control-hero__ic ic-play" src="@img/icon/play.svg" alt="іконка play">
-							</button>
-							<div class="hero__links links-hero">
-								<a href="#" class="links-hero__link btn-mask btn-mask--02" aria-label="кнопка переходу на сторінку послуги">
-									<span class="btn-mask__body">
-										<span class="btn-mask__txt">позиціонування</span>
-										<img class="btn-mask__arr-r" src="@img/icon/arr-btn.svg" alt="arrow to right">
-									</span>
-								</a>
-								<a href="#" class="links-hero__link btn-mask btn-mask--02" aria-label="кнопка переходу на сторінку послуги">
-									<span class="btn-mask__body">
-										<span class="btn-mask__txt">БРЕНД - СТРАТЕГІЯ</span>
-										<img class="btn-mask__arr-r" src="@img/icon/arr-btn.svg" alt="arrow to right">
-									</span>
-								</a>
-								<a href="#" class="links-hero__link btn-mask btn-mask--02" aria-label="кнопка переходу на сторінку послуги">
-									<span class="btn-mask__body">
-										<span class="btn-mask__txt">МЕСЕДЖ</span>
-										<img class="btn-mask__arr-r" src="@img/icon/arr-btn.svg" alt="arrow to right">
-									</span>
-								</a>
-								<a href="#" class="links-hero__link btn-mask btn-mask--02" aria-label="кнопка переходу на сторінку послуги">
-									<span class="btn-mask__body">
-										<span class="btn-mask__txt">ДИЗАЙН - СТРАТЕГІЯ</span>
-										<img class="btn-mask__arr-r" src="@img/icon/arr-btn.svg" alt="arrow to right">
-									</span>
-								</a>
-								<a href="#" class="links-hero__link btn-mask btn-mask--02" aria-label="кнопка переходу на сторінку послуги">
-									<span class="btn-mask__body">
-										<span class="btn-mask__txt">арТ - дирекшн</span>
-										<img class="btn-mask__arr-r" src="@img/icon/arr-btn.svg" alt="arrow to right">
-									</span>
-								</a>
-								<a href="#" class="links-hero__link btn-mask btn-mask--02" aria-label="кнопка переходу на сторінку послуги">
-									<span class="btn-mask__body">
-										<span class="btn-mask__txt">промо - сайт</span>
-										<img class="btn-mask__arr-r" src="@img/icon/arr-btn.svg" alt="arrow to right">
-									</span>
-								</a>
-								<a href="#" class="links-hero__link btn-mask btn-mask--02" aria-label="кнопка переходу на сторінку послуги">
-									<span class="btn-mask__body">
-										<span class="btn-mask__txt">SALE презентація</span>
-										<img class="btn-mask__arr-r" src="@img/icon/arr-btn.svg" alt="arrow to right">
-									</span>
-								</a>
-								<a href="#" class="links-hero__link btn-mask btn-mask--02" aria-label="кнопка переходу на сторінку послуги">
-									<span class="btn-mask__body">
-										<span class="btn-mask__txt">НЕЙМІНГ</span>
-										<img class="btn-mask__arr-r" src="@img/icon/arr-btn.svg" alt="arrow to right">
-									</span>
-								</a>
+							<div class="about-main__bg-women bg-women">
+								<div class="bg-women__container">
+									<div class="bg-women__wrapper">
+										<img class="bg-women__women" width="269" height="609" src="@img/women.png" alt="жінка, що розгядає товари на полиці">
+									</div>
+								</div>
 							</div>
-							<div data-da=".hero__bg,480.98,2" class="hero__circle circle-hero">
-								<button class="move-to">
-									<img class="circle-hero__img" src="@img/icon/circle-text.svg" alt="надпис по колу posh fmcg packaging design">
-								</button>
+						</div>
+						<div class="about-main__tiker tiker tiker-blue tiker-01">
+							<ul class="tiker__line">
+								<li class="tiker__item">
+									<p>Налагоджуємо комунiкацiю Бренд</p> 
+										<span class="tiker__img">
+											<img src="@img/tiker-01.png" alt="жінка, що розглядає в руках напис на етикетці товару">
+										</span>
+										<p>Споживач</p>
+								</li>
+								<li class="tiker__item">
+									<p>Налагоджуємо комунiкацiю Бренд</p> 
+										<span class="tiker__img">
+											<img src="@img/tiker-01.png" alt="жінка, що розглядає в руках напис на етикетці товару">
+										</span>
+										<p>Споживач</p>
+								</li>
+							</ul>
+						</div>
+						<div class="cases-main">
+							<div class="cases-main__case case-card case-card_big">
+								<a href="#" class="case-card__link" aria-label="посилання на кейс">
+									<picture>
+										<source	media="(max-width: 30.06125em)" srcset="img/cases/nut-one-mob.webp" type="image/webp">
+										<source media="(max-width: 30.06125em)"	srcset="img/cases/nut-one-mob.jpg" type="image/jpg">
+										<source srcset="img/cases/nut-one.webp"	type="image/webp">
+										<source	srcset="img/cases/nut-one.jpg"type="image/jpg">
+										<img class="case-card__img ibg" src="img/cases/nut-one.jpg" srcset="img/cases/nut-one.jpg"	alt="roshen nut out">
+									</picture>
+								</a>
+								<div class="case-card__container">
+									<div class="case-card__footer">
+										<a href="#" class="case-card__title-link" aria-label="посилання на кейс">
+											<h3 class="case-card__title title-card">
+												<span>Roshen</span>
+												<img src="@img/icon/arr-btn.svg" alt="стрілочка направлена вліво">
+												<span>nut out</span>
+											</h3>
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="cases-main__container">
+								<div class="case-main__slider slider-main swiper">
+									<div class="slider-main__wrapper swiper-wrapper">
+										<div class="slider-main__slide swiper-slide">
+											<article class="slider-main__case-card case-card case-card_av">
+												<a href="#" class="case-card__link" aria-label="посилання на кейс">
+													<picture>
+														<source media="(max-width: 30.06125em)" srcset="img/cases/colonist-mob.webp" type="image/webp">
+														<source media="(max-width: 30.06125em)" srcset="img/cases/colonist-mob.jpg" type="image/jpg">
+														<source srcset="img/cases/colonist.webp" type="image/webp">
+														<source srcset="img/cases/colonist.jpg" type="image/jpg">
+														<img class="case-card__img ibg" src="img/cases/colonist.jpg" srcset="img/cases/colonist.jpg" alt="картинка">
+													</picture>
+												</a>
+												<div class="case-card__footer">
+													<a href="#" class="case-card__title-link" aria-label="посилання на кейс">
+														<h3 class="case-card__title title-card">
+															<span>kolonist</span>
+															<img src="@img/icon/arr-btn.svg" alt="стрілочка направлена вліво">
+															<span>fresh roasted coffee</span>
+														</h3>
+													</a>
+												</div>
+											</article>
+										</div>
+										<div class="slider-main__slide swiper-slide">
+											<article class="slider-main__case-card case-card case-card_av">
+												<a href="#" class="case-card__link" aria-label="посилання на кейс">
+													<picture>
+														<source media="(max-width: 30.06125em)" srcset="img/cases/powerup-mob.webp" type="image/webp">
+														<source media="(max-width: 30.06125em)" srcset="img/cases/powerup-mob.jpg" type="image/jpg">
+														<source srcset="img/cases/powerup.webp" type="image/webp">
+														<source srcset="img/cases/powerup.jpg" type="image/jpg">
+														<img class="case-card__img ibg" src="img/cases/powerup.jpg" srcset="img/cases/powerup.jpg" alt="картинка">
+													</picture>
+												</a>
+												<div class="case-card__footer">
+													<a href="#" class="case-card__title-link" aria-label="посилання на кейс">
+														<h3 class="case-card__title title-card">
+															<span>Varus</span>
+															<img src="@img/icon/arr-btn.svg" alt="стрілочка направлена вліво">
+															<span>pover up</span>
+														</h3>
+													</a>
+												</div>
+											</article>
+										</div>
+										<div class="slider-main__slide swiper-slide">
+											<article class="slider-main__case-card case-card case-card_av">
+												<a href="#" class="case-card__link" aria-label="посилання на кейс">
+													<picture>
+														<source media="(max-width: 30.06125em)" srcset="img/cases/coffee-mob.webp" type="image/webp">
+														<source media="(max-width: 30.06125em)" srcset="img/cases/coffee-mob.jpg" type="image/jpg">
+														<source srcset="img/cases/coffee.webp" type="image/webp">
+														<source srcset="img/cases/coffee.jpg" type="image/jpg">
+														<img class="case-card__img ibg" src="img/cases/coffee.jpg" srcset="img/cases/coffee.jpg" alt="картинка">
+													</picture>
+												</a>
+												<div class="case-card__footer">
+													<a href="#" class="case-card__title-link" aria-label="посилання на кейс">
+														<h3 class="case-card__title title-card">
+															<span>kolonist</span>
+															<img src="@img/icon/arr-btn.svg" alt="стрілочка направлена вліво">
+															<span>fresh roasted coffee</span>
+														</h3>
+													</a>
+												</div>
+											</article>
+										</div>
+										<div class="slider-main__slide swiper-slide">
+											<article class="slider-main__case-card case-card case-card_av">
+												<a href="#" class="case-card__link" aria-label="посилання на кейс">
+													<picture>
+														<source media="(max-width: 30.06125em)" srcset="img/cases/varus-mob.webp" type="image/webp">
+														<source media="(max-width: 30.06125em)" srcset="img/cases/varus-mob.jpg" type="image/jpg">
+														<source srcset="img/cases/varus.webp" type="image/webp">
+														<source srcset="img/cases/varus.jpg" type="image/jpg">
+														<img class="case-card__img ibg" src="img/cases/varus.jpg" srcset="img/cases/varus.jpg" alt="картинка">
+													</picture>
+												</a>
+												<div class="case-card__footer">
+													<a href="#" class="case-card__title-link" aria-label="посилання на кейс">
+														<h3 class="case-card__title title-card">
+															<span>Varus</span>
+															<img src="@img/icon/arr-btn.svg" alt="стрілочка направлена вліво">
+															<span>pover up</span>
+														</h3>
+													</a>
+												</div>
+											</article>
+										</div>
+										<div class="slider-main__slide swiper-slide slide-link">
+											<a href="#" class="slider-main__slide-link btn-mask" aria-label="кнопка посилання на всі кейси">
+												<span class="btn-mask__body">
+													<span class="btn-mask__txt-2">ВСІ КЕЙСИ</span>
+													<img class="btn-mask__arr-r" src="@img/icon/arr-btn.svg" alt="arrow to right">
+												</span>
+											</a>
+										</div>
+									</div>
+									<!-- <button type="button" class="slider-main__btn swiper-button-prev" aria-label="кнопка перемикання слайдів">
+										<svg width="40" height="34" viewBox="0 0 40 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M21.5959 0L40 16.6291V17.3709L21.5959 34L17.9966 31.0327L31.0357 19.3491H0V14.6509H31.0357L17.9966 2.96727L21.5959 0Z" fill="#FEFEFE"/>
+											</svg>
+									</button> -->
+									<button type="button" class="slider-main__btn swiper-button-next" aria-label="кнопка перемикання слайдів">
+										<svg width="40" height="34" viewBox="0 0 40 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M21.5959 0L40 16.6291V17.3709L21.5959 34L17.9966 31.0327L31.0357 19.3491H0V14.6509H31.0357L17.9966 2.96727L21.5959 0Z" fill="#FEFEFE"/>
+											</svg>
+									</button>
+								</div>
+								<a href="#" class="cases-main__link btn-mask btn-mask--04" aria-label="кнопка переходу на сторінку послуги">
+									<span class="btn-mask__body">
+										<span class="btn-mask__txt">наші кейси</span>
+										<img class="btn-mask__arr-r" src="@img/icon/arr-btn.svg" alt="arrow to right">
+									</span>
+								</a>
 							</div>
 						</div>
 					</section>
-				</div>
-				<div data-fp-section class="second-block">
-					<section class="about-main">
-						<div class="about-main__container">
-							<div class="about-main__body">
-								<h2 class="about-main__title title-main">
-									будуємо комунікацію бренд 
-									<span class="about-main__heart heart-main">
-											<img class="heart-main__ic-arr arr-left" src="@img/icon/heart-arr.svg" alt="іконка стрілка вліво">
-											<img class="heart-main__ic-heart" src="@img/icon/heart.svg" alt="іконка сердце">
-											<img class="heart-main__ic-arr arr-right" src="@img/icon/heart-arr.svg" alt="іконка стрілка вправо">
-									</span> споживач
-								</h2>
-								<p class="about-main__sub-title">
-									Якщо бренд - здобуває любов, то паковання - створює першу симпатію!
-								</p>
-								<p class="about-main__txt txt-main">
-									Саме на цьому питанні спеціалізується агентство POSH. Ось уже понад 10 років ми розробляємо паковання для продуктів із різних категорій і сегментів. Основна наша мета - релевантність. 
-								</p>
-								<div class="about-main__typed-body">
-									<div id="typed-strings">
-										<p>
-											Як зробити паковання помітним?
-										</p>
-										<p>
-											Як зробити паковання зрозумілим?
-										</p>
-										<p>
-											Як зробити паковання переконливим?
-										</p>
-										<p>
-											Як потрапити до рук покупця?
-										</p>
-										<p>
-											Як передбачити емоційні мотиви покупця?
-										</p>
+					<section class="services-main">
+						<div class="services-main__container">
+							<h2 class="services-main__title title-main title-main_dark">
+								послуги та сервІси 
+							</h2>
+							<div class="services-main__body">
+								<ul class="services-main__items items-serv-left">
+									<li class="items-serv-left__item">
+										<a href="#" class="items-serv-left__link btn-mask btn-mask--05" aria-label="кнопка переходу на сторінку послуги">
+											<span class="btn-mask__body">
+												<span class="btn-mask__txt">ПОЗИЦІОНУВАННЯ</span>
+												<img class="btn-mask__arr-r" src="@img/icon/arr-btn.svg" alt="arrow to right">
+											</span>
+										</a>
+									</li>
+									<li class="items-serv-left__item">
+										<a href="#" class="items-serv-left__link btn-mask btn-mask--05" aria-label="кнопка переходу на сторінку послуги">
+											<span class="btn-mask__body">
+												<span class="btn-mask__txt">БРЕНД - СТРАТЕГІЯ</span>
+												<img class="btn-mask__arr-r" src="@img/icon/arr-btn.svg" alt="arrow to right">
+											</span>
+										</a>
+									</li>
+									<li class="items-serv-left__item">
+										<a href="#" class="items-serv-left__link btn-mask btn-mask--05" aria-label="кнопка переходу на сторінку послуги">
+											<span class="btn-mask__body">
+												<span class="btn-mask__txt">МЕСЕДЖ</span>
+												<img class="btn-mask__arr-r" src="@img/icon/arr-btn.svg" alt="arrow to right">
+											</span>
+										</a>
+									</li>
+									<li class="items-serv-left__item">
+										<a href="#" class="items-serv-left__link btn-mask btn-mask--05" aria-label="кнопка переходу на сторінку послуги">
+											<span class="btn-mask__body">
+												<span class="btn-mask__txt">НЕЙМІНГ</span>
+												<img class="btn-mask__arr-r" src="@img/icon/arr-btn.svg" alt="arrow to right">
+											</span>
+										</a>
+									</li>
+									<li class="items-serv-left__item">
+										<a href="#" class="items-serv-left__link btn-mask btn-mask--05" aria-label="кнопка переходу на сторінку послуги">
+											<span class="btn-mask__body">
+												<span class="btn-mask__txt">ДИЗАЙН - СТРАТЕГІЯ</span>
+												<img class="btn-mask__arr-r" src="@img/icon/arr-btn.svg" alt="arrow to right">
+											</span>
+										</a>
+									</li>
+									<li class="items-serv-left__item">
+										<a href="#" class="items-serv-left__link btn-mask btn-mask--05" aria-label="кнопка переходу на сторінку послуги">
+											<span class="btn-mask__body">
+												<span class="btn-mask__txt">арТ - дирекшн</span>
+												<img class="btn-mask__arr-r" src="@img/icon/arr-btn.svg" alt="arrow to right">
+											</span>
+										</a>
+									</li>
+									<li class="items-serv-left__item">
+										<a href="#" class="items-serv-left__link btn-mask btn-mask--05" aria-label="кнопка переходу на сторінку послуги">
+											<span class="btn-mask__body">
+												<span class="btn-mask__txt">промо - сайт</span>
+												<img class="btn-mask__arr-r" src="@img/icon/arr-btn.svg" alt="arrow to right">
+											</span>
+										</a>
+									</li>
+									<li class="items-serv-left__item">
+										<a href="#" class="items-serv-left__link btn-mask btn-mask--05" aria-label="кнопка переходу на сторінку послуги">
+											<span class="btn-mask__body">
+												<span class="btn-mask__txt">SALE презентація</span>
+												<img class="btn-mask__arr-r" src="@img/icon/arr-btn.svg" alt="arrow to right">
+											</span>
+										</a>
+									</li>
+								</ul>
+								<ul class="services-main__items items-serv-right">
+									<li class="items-serv-right__item">
+										<a href="#" class="items-serv-right__link btn-change" aria-label="кнопка переходу на сторінку послуги">
+											<span class="btn-change__txt">
+												Сторітейлінг
+											</span>
+											<img class="btn-change__arr" src="@img/icon/arr-btn.svg" alt="arrow to right">
+										</a>
+									</li>
+									<li class="items-serv-right__item">
+										<a href="#" class="items-serv-right__link btn-change" aria-label="кнопка переходу на сторінку послуги">
+											<span class="btn-change__txt">
+												Предметна зйомка
+											</span>
+											<img class="btn-change__arr" src="@img/icon/arr-btn.svg" alt="arrow to right">
+										</a>
+									</li>
+									<li class="items-serv-right__item">
+										<a href="#" class="items-serv-right__link btn-change" aria-label="кнопка переходу на сторінку послуги">
+											<span class="btn-change__txt">Графічний дизайн</span>
+											<img class="btn-change__arr" src="@img/icon/arr-btn.svg" alt="arrow to right">
+										</a>
+									</li>
+									<li class="items-serv-right__item">
+										<a href="#" class="items-serv-right__link btn-change" aria-label="кнопка переходу на сторінку послуги">
+											<span class="btn-change__txt">
+												Ілюстрування
+											</span>
+											<img class="btn-change__arr" src="@img/icon/arr-btn.svg" alt="arrow to right">
+										</a>
+									</li>
+									<li class="items-serv-right__item">
+										<a href="#" class="items-serv-right__link btn-change" aria-label="кнопка переходу на сторінку послуги">
+											<span class="btn-change__txt">
+												Препресс
+											</span>
+											<img class="btn-change__arr" src="@img/icon/arr-btn.svg" alt="arrow to right">
+										</a>
+									</li>
+									<li class="items-serv-right__item">
+										<a href="#" class="items-serv-right__link btn-change" aria-label="кнопка переходу на сторінку послуги">
+											<span class="btn-change__txt">
+												3D моделювання
+											</span>
+											<img class="btn-change__arr" src="@img/icon/arr-btn.svg" alt="arrow to right">
+										</a>
+									</li>
+									<li class="items-serv-right__item">
+										<a href="#" class="items-serv-right__link btn-change" aria-label="кнопка переходу на сторінку послуги">
+											<span class="btn-change__txt">
+												Кольоропроба
+											</span>
+											<img class="btn-change__arr" src="@img/icon/arr-btn.svg" alt="arrow to right">
+										</a>
+									</li>
+									<li class="items-serv-right__item">
+										<a href="#" class="items-serv-right__link btn-change" aria-label="кнопка переходу на сторінку послуги">
+											<span class="btn-change__txt">
+												Digital вітрини
+											</span>
+											<img class="btn-change__arr" src="@img/icon/arr-btn.svg" alt="arrow to right">
+										</a>
+									</li>
+									<li class="items-serv-right__item">
+										<a href="#" class="items-serv-right__link btn-change" aria-label="кнопка переходу на сторінку послуги">
+											<span class="btn-change__txt">
+												Маркетинг-рисерч
+											</span>
+											<img class="btn-change__arr" src="@img/icon/arr-btn.svg" alt="arrow to right">
+										</a>
+									</li>
+									<li class="items-serv-right__item">
+										<a href="#" class="items-serv-right__link btn-change" aria-label="кнопка переходу на сторінку послуги">
+											<span class="btn-change__txt">
+												Консалтинг
+											</span>
+											<img class="btn-change__arr" src="@img/icon/arr-btn.svg" alt="arrow to right">
+										</a>
+									</li>
+								</ul>
+							</div>
+							<div class="services-main__more">
+								<a href="#" class="items-serv-left__link btn-mask btn-mask--03" aria-label="кнопка переходу на сторінку послуги">
+									<span class="btn-mask__body">
+										<span class="btn-mask__txt">ДЕТАЛЬНІШЕ</span>
+										<img class="btn-mask__arr-r" src="@img/icon/arr-btn.svg" alt="arrow to right">
+									</span>
+								</a>
+							</div>
+						</div>
+					</section>
+					<section class="relationship br-r br-r--white">
+						<div class="relationship__container">
+							<div class="relationship__head">
+									<h2 class="relationship__title title-main">
+										<span>ми</span> орієнтовані<br> на довгострокові стосунки
+									</h2>
+									<div data-da=".relationship__container,900.98,last" class="relationship__btn">
+										<a href="#" class="relationship__link btn btn--01" aria-label="кнопка переходу на сторінку Всі клієнти">
+											<span class="btn__txt">ВСІ КЛІЄНТИ</span>
+											<img class="btn__arr-r" src="@img/icon/arr-btn.svg" alt="arrow to right">
+										</a>
 									</div>
-									<span id="typed" data-typed-started="false" class="about-main__typed"></span>
 								</div>
-								<a href="#" class="about-main__link btn btn--01" aria-label="кнопка переходу на сторінку Наш підхід">
-									<span class="btn__txt">ДЕТАЛЬНІШЕ</span>
+								<p class="relationship__txt txt-main">
+									Саме тому ми максимально вмотивоні знаходити ефективні рішення для наших клієнтів. Кожен проєкт має індивідуальний підхід та завжди доводиться до логічного завершення. Ми забезпечуємо підтримку на етапі виробництва та подальше стабільне обслуговування продукту в подальшому на всіх етапах.
+								</p>
+								<ul class="relationship__brands">
+									<li class="relationship__brand">
+										<div class="relationship__img">
+											<img class="relationship__image" width="153" height="109" src="@img/brands/novus.png" alt="логотип Novus">
+										</div>
+									</li>
+									<li class="relationship__brand">
+										<div class="relationship__img">
+											<img class="relationship__image" width="153" height="109" src="@img/brands/atb.png" alt="логотип АТБ">
+										</div>
+									</li>
+									<li class="relationship__brand">
+										<div class="relationship__img">
+											<img class="relationship__image" width="153" height="109" src="@img/brands/lasunka.png" alt="логотип Ласунка">
+										</div>
+									</li>
+									<li class="relationship__brand">
+										<div class="relationship__img">
+											<img class="relationship__image" width="153" height="109" src="@img/brands/varus.png" alt="логотип Varus">
+										</div>
+									</li>
+									<li class="relationship__brand">
+										<div class="relationship__img">
+											<img class="relationship__image" width="153" height="109" src="@img/brands/lukas.png" alt="логотип Lukas">
+										</div>
+									</li>
+									<li class="relationship__brand">
+										<div class="relationship__img">
+											<img class="relationship__image" width="153" height="109" src="@img/brands/medoff.png" alt="логотип Medoff">
+										</div>
+									</li>
+									<li class="relationship__brand">
+										<div class="relationship__img">
+											<img class="relationship__image" width="153" height="109" src="@img/brands/rost.png" alt="логотип РОСТ">
+										</div>
+									</li>
+									<li class="relationship__brand">
+										<div class="relationship__img">
+											<img class="relationship__image" width="153" height="109" src="@img/brands/biodphere.png" alt="логотип Biosphere">
+										</div>
+									</li>
+									<li class="relationship__brand">
+										<div class="relationship__img">
+											<img class="relationship__image" width="153" height="109" src="@img/brands/grill.png" alt="логотип Mr.Grill">
+										</div>
+									</li>
+									<li class="relationship__brand">
+										<div class="relationship__img">
+											<img class="relationship__image" width="153" height="109" src="@img/brands/vega.png" alt="логотип Vega">
+										</div>
+									</li>
+									<li class="relationship__brand">
+										<div class="relationship__img">
+											<img class="relationship__image" width="153" height="109" src="@img/brands/roshen.png" alt="логотип Roshen">
+										</div>
+									</li>
+									<li class="relationship__brand">
+										<div class="relationship__img">
+											<img class="relationship__image" width="153" height="109" src="@img/brands/alef.png" alt="логотип Alef">
+										</div>
+									</li>
+									<li class="relationship__brand">
+										<div class="relationship__img">
+											<img class="relationship__image" width="153" height="109" src="@img/brands/truebrit.png" alt="логотип TRUE BRIT">
+										</div>
+									</li>
+									<li class="relationship__brand">
+										<div class="relationship__img">
+											<img class="relationship__image" width="153" height="109" src="@img/brands/koktebel.png" alt="логотип Коктебель">
+										</div>
+									</li>
+									<li class="relationship__brand">
+										<div class="relationship__img">
+											<img class="relationship__image" width="153" height="109" src="@img/brands/culynychi.png" alt="логотип Кулиничі">
+										</div>
+									</li>
+									<li class="relationship__brand">
+										<div class="relationship__img">
+											<img class="relationship__image" width="153" height="109" src="@img/brands/novus.png" alt="логотип Novus">
+										</div>
+									</li>
+									<li class="relationship__brand">
+										<div class="relationship__img">
+											<img class="relationship__image" width="153" height="109" src="@img/brands/atb.png" alt="логотип АТБ">
+										</div>
+									</li>
+									<li class="relationship__brand">
+										<div class="relationship__img">
+											<img class="relationship__image" width="153" height="109" src="@img/brands/lasunka.png" alt="логотип Ласунка">
+										</div>
+									</li>
+									<li class="relationship__brand">
+										<div class="relationship__img">
+											<img class="relationship__image" width="153" height="109" src="@img/brands/varus.png" alt="логотип Varus">
+										</div>
+									</li>
+									<li class="relationship__brand">
+										<div class="relationship__img">
+											<img class="relationship__image" width="153" height="109" src="@img/brands/lukas.png" alt="логотип Lukas">
+										</div>
+									</li>
+								</ul>
+						</div>
+					</section>
+					<section class="insights">
+						<div class="insights__container insights__container--a">
+							<h2 class="insights__title title-main">
+								інсайти та досвід
+							</h2>
+							<div data-da=".insights__container--b,900.98,first" class="insights__button">
+								<a href="#" class="insights__link btn btn--01" aria-label="кнопка переходу на сторінку Instagram">
+									<span class="btn__txt">instagram</span>
 									<img class="btn__arr-r" src="@img/icon/arr-btn.svg" alt="arrow to right">
 								</a>
 							</div>
-							<div class="about-main__bg bg-main">
-								<img class="bg-main__shelf" src="@img/shelf.png" alt="шафа з полицями та товарами">
-							</div>
 						</div>
-						<div class="about-main__bg-women bg-women">
-							<div class="bg-women__container">
-								<div class="bg-women__wrapper">
-									<img class="bg-women__women" src="@img/women.png" alt="жінка, що розгядає товари на полиці">
+						<div class="insights__tiker tiker tiker-hover tiker-insights">
+							<ul class="tiker__line">
+								<li class="tiker__insights insights-tiker">
+									<article class="insights-tiker__item">
+										<a href="#" class="insights-tiker__link" aria-label="посилання на сторінку в інстаграмм">
+											<img class="insights-tiker__img ibg ibg--contain" src="@img/instagram/01.jpg" alt="картинка з інстаграмм">
+											<span class="insights-tiker__cover">
+												<img class="insights-tiker__ic" src="@img/icon/insta.svg" alt="іконка інстаграмм">
+											</span>
+										</a>
+									</article>
+								</li>
+								<li class="tiker__insights insights-tiker">
+									<article class="insights-tiker__item">
+										<a href="#" class="insights-tiker__link" aria-label="посилання на сторінку в інстаграмм">
+											<img class="insights-tiker__img ibg ibg--contain" src="@img/instagram/02.jpg" alt="картинка з інстаграмм">
+											<span class="insights-tiker__cover">
+												<img class="insights-tiker__ic" src="@img/icon/insta.svg" alt="іконка інстаграмм">
+											</span>
+										</a>
+									</article>
+								</li>
+								<li class="tiker__insights insights-tiker">
+									<article class="insights-tiker__item">
+										<a href="#" class="insights-tiker__link" aria-label="посилання на сторінку в інстаграмм">
+											<img class="insights-tiker__img ibg ibg--contain" src="@img/instagram/03.jpg" alt="картинка з інстаграмм">
+											<span class="insights-tiker__cover">
+												<img class="insights-tiker__ic" src="@img/icon/insta.svg" alt="іконка інстаграмм">
+											</span>
+										</a>
+									</article>
+								</li>
+								<li class="tiker__insights insights-tiker">
+									<article class="insights-tiker__item">
+										<a href="#" class="insights-tiker__link" aria-label="посилання на сторінку в інстаграмм">
+											<img class="insights-tiker__img ibg ibg--contain" src="@img/instagram/04.jpg" alt="картинка з інстаграмм">
+											<span class="insights-tiker__cover">
+												<img class="insights-tiker__ic" src="@img/icon/insta.svg" alt="іконка інстаграмм">
+											</span>
+										</a>
+									</article>
+								</li>
+								<li class="tiker__insights insights-tiker">
+									<article class="insights-tiker__item">
+										<a href="#" class="insights-tiker__link" aria-label="посилання на сторінку в інстаграмм">
+											<img class="insights-tiker__img ibg ibg--contain" src="@img/instagram/01.jpg" alt="картинка з інстаграмм">
+											<span class="insights-tiker__cover">
+												<img class="insights-tiker__ic" src="@img/icon/insta.svg" alt="іконка інстаграмм">
+											</span>
+										</a>
+									</article>
+								</li>
+								<li class="tiker__insights insights-tiker">
+									<article class="insights-tiker__item">
+										<a href="#" class="insights-tiker__link" aria-label="посилання на сторінку в інстаграмм">
+											<img class="insights-tiker__img ibg ibg--contain" src="@img/instagram/02.jpg" alt="картинка з інстаграмм">
+											<span class="insights-tiker__cover">
+												<img class="insights-tiker__ic" src="@img/icon/insta.svg" alt="іконка інстаграмм">
+											</span>
+										</a>
+									</article>
+								</li>
+								<li class="tiker__insights insights-tiker">
+									<article class="insights-tiker__item">
+										<a href="#" class="insights-tiker__link" aria-label="посилання на сторінку в інстаграмм">
+											<img class="insights-tiker__img ibg ibg--contain" src="@img/instagram/03.jpg" alt="картинка з інстаграмм">
+											<span class="insights-tiker__cover">
+												<img class="insights-tiker__ic" src="@img/icon/insta.svg" alt="іконка інстаграмм">
+											</span>
+										</a>
+									</article>
+								</li>
+								<li class="tiker__insights insights-tiker">
+									<article class="insights-tiker__item">
+										<a href="#" class="insights-tiker__link" aria-label="посилання на сторінку в інстаграмм">
+											<img class="insights-tiker__img ibg ibg--contain" src="@img/instagram/04.jpg" alt="картинка з інстаграмм">
+											<span class="insights-tiker__cover">
+												<img class="insights-tiker__ic" src="@img/icon/insta.svg" alt="іконка інстаграмм">
+											</span>
+										</a>
+									</article>
+								</li>
+							</ul>
+						</div>
+						<div class="insights__container insights__container--b">
+							<ul class="insights__links links-insights">
+								<li class="links-insights__item">
+									<a href="#" class="links-insights__link">
+										Як співпрацювати з типографією щоб отримати задовільний результат?
+									</a>
+									<a href="#" class="links-insights__link-b btn btn--02">
+										<span class="btn__txt">Інсайти</span>
+										<span class="btn__body">
+											<span class="btn__txt">Читати</span>
+											<img class="btn__arr-r" src="@img/icon/arr-btn.svg" alt="arrow to right">
+										</span>
+									</a>
+								</li>
+								<li class="links-insights__item">
+									<a href="#" class="links-insights__link">
+										Правильна підготовка макета до друку. Стандарти, правила та чемність.
+									</a>
+									<a href="#" class="links-insights__link-b btn btn--02">
+										<span class="btn__txt">Інсайти</span>
+										<span class="btn__body">
+											<span class="btn__txt">Читати</span>
+											<img class="btn__arr-r" src="@img/icon/arr-btn.svg" alt="arrow to right">
+										</span>
+									</a>
+								</li>
+								<li class="links-insights__item">
+									<a href="#" class="links-insights__link">
+										Види паковання, матеріали, форми та принципи роботи з пакованням.
+									</a>
+									<a href="#" class="links-insights__link-b btn btn--02">
+										<span class="btn__txt">Інсайти</span>
+										<span class="btn__body">
+											<span class="btn__txt">Читати</span>
+											<img class="btn__arr-r" src="@img/icon/arr-btn.svg" alt="arrow to right">
+										</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</section>
+					<section class="cooperation">
+						<div class="cooperation__container">
+							<h2 class="cooperation__title title-main">
+								співпраця<br> з нами
+							</h2>
+							<p class="cooperation__txt txt-main">
+								Ми завжди раді новим корисним та цікамвим знайомствам з типографіями та виробниками пакувальної продукції. Це дає нам змогу ризвивати себе та своїх клієнтів ))
+							</p>
+							<div class="cooperation__partners">
+								<div class="cooperation__button">
+									<a href="#" class="cooperation__link btn btn--01" aria-label="кнопка переходу на сторінку Партнери">
+										<span class="btn__txt">НАШІ ПАРТНЕРИ</span>
+										<img class="btn__arr-r" src="@img/icon/arr-btn.svg" alt="arrow to right">
+									</a>
+								</div>
+								<ul class="cooperation__items">
+									<li class="cooperation__item">
+										<img src="@img/partners/vesna.png" alt="лого Vesna" class="cooperation__img ibg ibg--contain">
+									</li>
+									<li class="cooperation__item">
+										<img src="@img/partners/arias.png" alt="лого Arias" class="cooperation__img ibg ibg--contain">
+									</li>
+									<li class="cooperation__item">
+										<img src="@img/partners/itak.png" alt="лого ITAK" class="cooperation__img ibg ibg--contain">
+									</li>
+									<li class="cooperation__item">
+										<img src="@img/partners/basis.png" alt="лого Basis" class="cooperation__img ibg ibg--contain">
+									</li>
+									<li class="cooperation__item">
+										<img src="@img/partners/vesna.png" alt="лого Vesna" class="cooperation__img ibg ibg--contain">
+									</li>
+									<li class="cooperation__item">
+										<img src="@img/partners/arias.png" alt="лого Arias" class="cooperation__img ibg ibg--contain">
+									</li>
+								</ul>
+							</div>
+							<div data-showmore="items" class="cooperation__more more-cooperation">
+								<div data-showmore-content="3" class="more-cooperation__content">
+									<p>
+										<b>Ми диджиталізуємо бізнеси, створюємо екосистеми</b>
+									</p>
+									<p>
+										Нові технології – це не самоціль, й не прогрес заради прогресу. Вони мають робити наше життя кращим, дарувати нові можливості, розкривати творчий потенціал людини. Місія IT компанії WEZOM – трансформувати бізнес за допомогою технологій, надавати йому інструменти для сталого зростання.
+									</p>
+									<p>
+										Економіка майбутнього буде насамперед цифровою, а отже, інвестування у діджитал бізнес вже ніяк не уникнути. Питання лише в тому, як отримати з цих інвестицій максимальну 
+									</p>
+									<p>
+										Нові технології – це не самоціль, й не прогрес заради прогресу. Вони мають робити наше життя кращим, дарувати нові можливості, розкривати творчий потенціал людини. Місія IT компанії WEZOM – трансформувати бізнес за допомогою технологій, надавати йому інструменти для сталого зростання.
+									</p>
+									<p>
+										Економіка майбутнього буде насамперед цифровою, а отже, інвестування у діджитал бізнес вже ніяк не уникнути. Питання лише в тому, як отримати з цих інвестицій максимальну 
+									</p>
+									<p>
+										Нові технології – це не самоціль, й не прогрес заради прогресу. Вони мають робити наше життя кращим, дарувати нові можливості, розкривати творчий потенціал людини. Місія IT компанії WEZOM – трансформувати бізнес за допомогою технологій, надавати йому інструменти для сталого зростання.
+									</p>
+									<p>
+										Економіка майбутнього буде насамперед цифровою, а отже, інвестування у діджитал бізнес вже ніяк не уникнути. Питання лише в тому, як отримати з цих інвестицій максимальну 
+									</p>
+								</div>
+								<div class="more-cooperation__btn-body">
+									<button hidden data-showmore-button="6500" type="button" class="more-cooperation__button">
+										<span class="more-cooperation__btn-more">Розгорнути</span>
+										<span class="more-cooperation__btn-less">Згорнути</span>
+										<img class="more-cooperation__btn-ic" src="@img/icon/arr-dwn.svg" alt="стрілкв вверх/вниз">
+									</button>
 								</div>
 							</div>
 						</div>
 					</section>
-					<section class="other">
-						<div class="other__container">
-							<h2 class="title-main">Section 2</h2>
-						</div>
-					</section>
-					<section class="other">
-						<div class="other__container">
-							<h2 class="title-main">Section 3</h2>
-						</div>
-					</section>
-					<section class="other">
-						<div class="other__container">
-							<h2 class="title-main">Section 4</h2>
-						</div>
-					</section>
-					<section class="other">
-						<div class="other__container">
-							<h2 class="title-main">Section 5</h2>
-						</div>
-					</section>
-					<section class="other">
-						<div class="other__container">
-							<h2 class="title-main">Section 6</h2>
-						</div>
-					</section>
-					
+					<footer class="footer">
+						@@include('html/_footer-main.htm',{})
+					</footer>
 				</div>
 			</main>
-			@@include('html/_footer.htm',{})
 		</div>
 		<!-- <div class="mask">
 			<span></span>
 		</div> -->
-
 		<script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
 		@@include('html/_js.htm',{})
 	</body>
 </html>
+

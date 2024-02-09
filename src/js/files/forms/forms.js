@@ -129,7 +129,9 @@ export let formValidate = {
 			for (let index = 0; index < inputs.length; index++) {
 				const el = inputs[index];
 				el.parentElement.classList.remove('_form-focus');
+				el.parentElement.classList.remove('_text-input');
 				el.classList.remove('_form-focus');
+				el.classList.remove('_text-input');
 				formValidate.removeError(el);
 			}
 			let checkboxes = form.querySelectorAll('.checkbox__input');
@@ -220,14 +222,26 @@ export function formSubmit() {
 				popup ? flsModules.popup.open(popup) : null;
 			}
 		}, 0);
+		// Додаємо клас '_form-sent'
+    form.classList.add('_form-sent');
+    // Удаляем класс '_form-sent' через 10 секунд
+    setTimeout(() => {
+        form.classList.remove('_form-sent');
+    }, 5000);
+
+		    // Очищаем поле ввода файла и имя файла
+				const fileInput = form.querySelector('.file-upload__input');
+				const fileNameSpan = form.querySelector('.file-upload__file-name');
+				const fileErrorSpan = form.querySelector('.file-error');
+				
+				fileInput.value = ''; // Очищаем поле ввода файла
+				fileNameSpan.textContent = ''; // Очищаем имя файла
+				fileErrorSpan.textContent = ''; // Очищаем текст ошибки
+				
 		// Очищуємо форму
 		formValidate.formClean(form);
-		// Повідомляємо до консолі
-		formLogging(`Форму відправлено!`);
 	}
-	function formLogging(message) {
-		FLS(`[Форми]: ${message}`);
-	}
+
 }
 /* Модуль форми "кількість" */
 export function formQuantity() {

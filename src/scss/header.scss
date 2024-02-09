@@ -12,39 +12,39 @@
 
   @media (min-width:$mobileSmall){
     padding: toRem(15) 0;
-    min-height: toRem(91);
+    min-height: toRem(106);
   }
   @media (max-width:$mobileSmall){
      min-height: toRem(77);
      padding: toRem(10) 0; 
   }
+  &._header-scroll,
   .fp-section-1 & {
     background-color: $darkBlue;
     @media (min-width:$mobileSmall){
       min-height: toRem(70);
     }
   }
-  // &._header-scroll {
-  //   background-color: $darkBlue;
-  //   @media (min-width:$mobileSmall){
-  //     min-height: toRem(70);
-  //   }
-  // }
-  
   // .header_logo
   &_logo {
     display: inline-block;
     img {
-      @media (min-width:$mobileSmall){
-        transition: width .5s;
+      transition: width .5s;
+      @media (min-width:em(1288.98)){
         width: toRem(221);
+        ._header-scroll &,
         .fp-section-1 & {
           width: toRem(142);
         }
-        // ._header-scroll & {
-        //   width: toRem(142);
-        // }
       }
+      @media (max-width: em(1288.98)) and (min-width: $mobileSmall) {
+        width: toRem(207);
+        ._header-scroll &,
+        .fp-section-1 & {
+          width: toRem(140);
+        }
+      }
+
       @media (max-width:$mobileSmall){
          width: toRem(198); 
       }
@@ -149,8 +149,11 @@
   // .menu__link
   &__link {
     line-height: normal;
-    @media (min-width:em(1200.98)){
+    @media (min-width:em(1288.98)){
       font-size: toRem(16);
+    }
+    @media (max-width: em(1288.98)) and (min-width: em(1200.98)) {
+        font-size: toRem(13);
     }
     @media (max-width: em(1200.98)) and (min-width: $mobileSmall){
         font-size: toRem(38);
@@ -275,7 +278,12 @@
   @media (min-width:em(1200.98)){
     display: flex;
     align-items: center;
+  }
+  @media (min-width:em(1288.98)){
     column-gap: toRem(40);
+  }
+  @media (max-width: em(1288.98)) and (min-width: em(1200.98)){
+    column-gap: toRem(20);
   }
   @media (max-width: em(1200.98)){
       display: none;
@@ -284,7 +292,7 @@
   &__phone {
     white-space: nowrap;
     @media (min-width:em(1200.98)){
-      font-size: toRem(21);
+      font-size: toRem(20);
     }
     @media (max-width: em(1200.98)){
         font-size: toRem(28);
@@ -300,10 +308,12 @@
   position: relative;
   display: flex;
   align-items: center;
+  @media (min-width:em(1288.98)){
+      height: toRem(40);
+  }
   @media (min-width:em(1200.98)){
-    // gap: toRem(4);
     width: toRem(100);
-    height: toRem(40);
+    height: toRem(37);
     @media (any-hover: hover){
       &:hover{
         .lang-header__link {

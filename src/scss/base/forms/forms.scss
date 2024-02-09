@@ -1,19 +1,42 @@
-//<FORM>
-// Сніппет (HTML):
-.form {
-	&__row {
+//<INPUT>
+// Сніппет (HTML): inp
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+.input {
+	outline: none;
+	width: 100%;
+	display: block;
+	height: toRem(25);
+	padding: 0px 0 toRem(4) 0;
+	border-radius: 0 !important;
+	border-bottom: toRem(1) solid #7D7D7D;
+	font-size: toRem(12);
+	line-height: 1.2;
+	background-color: transparent;
+	&._form-focus {
 	}
-	&__column {
-	}
-	&__line {
-	}
-	&__input {
-	}
-	&__button {
-	}
-	&__error {
+	&._form-error {
+		color: #FF0000;
 	}
 }
+.input[placeholder]:not([data-placeholder-nohiden]) {
+	&::placeholder {
+		transition: opacity 0.3s;
+	}
+	&:focus::placeholder {
+		opacity: 0;
+	}
+}
+
+
+
+
 //</FORM>
 
 // <BUTTONS>
