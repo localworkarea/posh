@@ -759,16 +759,6 @@ body {
           animation: none;
 }
 
-.tiker-01 .tiker__line {
-  -webkit-animation: scroll 40s linear infinite;
-          animation: scroll 40s linear infinite;
-}
-
-.tiker-insights .tiker__line {
-  -webkit-animation: scroll 30s linear infinite;
-          animation: scroll 30s linear infinite;
-}
-
 .tiker__item {
   text-transform: uppercase;
   display: -webkit-box;
@@ -1562,6 +1552,10 @@ body {
 
 .side-form__email {
   font-size: 1.5rem;
+}
+
+.section-02 {
+  visibility: unset !important;
 }
 
 .hero {
@@ -4265,6 +4259,8 @@ body {
     position: absolute;
     z-index: 0;
     top: 0;
+    left: 0;
+    right: 0;
   }
 
   .form-footer__container form.popup-open {
@@ -7031,11 +7027,6 @@ body {
     opacity: 1;
     -webkit-transition-delay: 0.3s;
             transition-delay: 0.3s;
-  }
-
-  .tiker.tiker-hover:hover .tiker__line {
-    -webkit-animation-play-state: paused;
-            animation-play-state: paused;
   }
 
   .case-card_big .case-card__title:hover,

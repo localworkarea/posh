@@ -518,28 +518,12 @@ body {
       }
     }
   }
-  &.tiker-hover {
-    @media (any-hover: hover){
-      &:hover{
-        .tiker__line {
-          animation-play-state: paused;   
-        }
-      }
-    }
-  }
 	// .tiker__line
 	&__line {
     display: flex;
     flex-wrap: nowrap;
     &.clone-line {
       animation: none;
-    }
-    
-    .tiker-01 & {
-      animation: scroll 40s linear infinite;
-    }
-    .tiker-insights & {
-      animation: scroll 30s linear infinite;
     }
 	}
   // .tiker__item
@@ -560,6 +544,13 @@ body {
     display: block;
 	}
 }
+
+// .tiker-01  {
+//   animation: scroll 40s linear infinite;
+// }
+// .tiker-insights {
+//   animation: scroll 30s linear infinite;
+// }
 
 
 @keyframes scroll {

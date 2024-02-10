@@ -4868,19 +4868,20 @@
         tikers.forEach((tiker => {
             const originalLine = tiker.querySelector(".tiker__line");
             if (originalLine) {
+                if (tiker.classList.contains("tiker-01")) originalLine.style.animation = "scroll 40s linear infinite"; else if (tiker.classList.contains("tiker-insights")) originalLine.style.animation = "scroll 30s linear infinite";
                 const clonedLine = originalLine.cloneNode(true);
                 clonedLine.classList.add("clone-line");
                 tiker.appendChild(clonedLine);
                 document.addEventListener("DOMContentLoaded", (function() {
                     if (tiker.classList.contains("tiker-hover") && !document.documentElement.classList.contains("touch")) {
                         tiker.addEventListener("mouseover", (() => {
-                            const cloneLines = tiker.querySelectorAll(".clone-line");
+                            const cloneLines = tiker.querySelectorAll(".tiker__line");
                             cloneLines.forEach((cloneLine => {
                                 cloneLine.style.animationPlayState = "paused";
                             }));
                         }));
                         tiker.addEventListener("mouseout", (() => {
-                            const cloneLines = tiker.querySelectorAll(".clone-line");
+                            const cloneLines = tiker.querySelectorAll(".tiker__line");
                             cloneLines.forEach((cloneLine => {
                                 cloneLine.style.animationPlayState = "running";
                             }));

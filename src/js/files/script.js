@@ -489,47 +489,44 @@ document.addEventListener("DOMContentLoaded", function() {
       
     });
     
-    
     // CLONE TIKERS ==============================================================
+
     const tikers = document.querySelectorAll(".tiker");
-       
+
     tikers.forEach((tiker) => {
       const originalLine = tiker.querySelector(".tiker__line");
     
       if (originalLine) {
+        if (tiker.classList.contains("tiker-01")) {
+          originalLine.style.animation = "scroll 40s linear infinite";
+        } else if (tiker.classList.contains("tiker-insights")) {
+          originalLine.style.animation = "scroll 30s linear infinite";
+        }
+    
         const clonedLine = originalLine.cloneNode(true);
         clonedLine.classList.add("clone-line");
     
         tiker.appendChild(clonedLine);
     
-        // const animationProperties = getComputedStyle(originalLine).animation;
-        // clonedLine.style.animation = "none";
-    
-        // setTimeout(() => {
-        //   clonedLine.style.animation = animationProperties;
-        // }, 0);
         document.addEventListener("DOMContentLoaded", function() {
-          // Проверяем наличие класса .tiker-hover и отсутствие класса .touch
           if (tiker.classList.contains("tiker-hover") && !document.documentElement.classList.contains("touch")) {
-            // Добавляем обработчик событий для наведения мыши
             tiker.addEventListener("mouseover", () => {
-              const cloneLines = tiker.querySelectorAll(".clone-line");
+              const cloneLines = tiker.querySelectorAll(".tiker__line");
               cloneLines.forEach((cloneLine) => {
                 cloneLine.style.animationPlayState = "paused";
               });
             });
-      
-            // Добавляем обработчик событий для ухода мыши
+    
             tiker.addEventListener("mouseout", () => {
-              const cloneLines = tiker.querySelectorAll(".clone-line");
+              const cloneLines = tiker.querySelectorAll(".tiker__line");
               cloneLines.forEach((cloneLine) => {
                 cloneLine.style.animationPlayState = "running";
               });
             });
           }
         });
-
       }
     });
       // -------------------------------------------------------------------------------------
+    
     

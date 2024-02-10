@@ -1,3 +1,6 @@
+.section-02 {
+visibility: unset !important;
+}
 
 .circle-hero-b {
   @media (min-width:$mobileSmall){
@@ -888,6 +891,7 @@
 // ===== SECTION SERVICE-MAIN ======================================================
 .services-main {
 background-color: $mainWhite;
+// overflow: hidden;
 @include adaptiveValue("padding-top", 80, 38,2,1920,1280.98);
 @include adaptiveValue("padding-top", 38,68,3,1280.98,480.98);
 @include adaptiveValue("padding-bottom", 209, 95,2,1920,1280.98);
