@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function() {
             });
             // Проверяем ширину экрана и устанавливаем соответствующую задержку
             // Если ширина экрана меньше 500px, то устанавливается задержка одна, в противном случае — другая (1200 / 1800)
-            var delay = window.matchMedia("(max-width: 500px)").matches ? 1200 : 1800;
+            var delay = window.matchMedia("(max-width: 500px)").matches ? 0 : 0;
             // Если видео не было загружено ранее, устанавливаем таймер
             if (!videoLoaded) {
                 setTimeout(function() {

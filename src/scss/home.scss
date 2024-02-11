@@ -1,5 +1,15 @@
+.section-01 {
+  
+}
 .section-02 {
 visibility: unset !important;
+  // .about-main {
+  //   opacity: 0;
+  //   transition: opacity .3s .3s;
+  //   .loaded & {
+  //     opacity: 1;
+  //   }
+  // }
 }
 
 .circle-hero-b {
@@ -21,6 +31,13 @@ visibility: unset !important;
 }
 
 .hero {
+
+  // opacity: 0;
+  // transition: opacity .3s;
+  // .loaded & {
+  //   opacity: 1;
+  // }
+  
   // position: fixed;
   // z-index: 8;
   // top: 0;
@@ -31,6 +48,8 @@ visibility: unset !important;
   // overflow: auto;
   // visibility: visible;
 
+  position: relative;
+  overflow: hidden;
   min-height: 100vh;
   min-height: 100svh;
   background-color: $darkBlue;
@@ -74,6 +93,8 @@ visibility: unset !important;
     right: 0;
     bottom: 0;
     overflow: hidden;
+
+    
     
     &.hover {
      .hero__video  {
@@ -84,7 +105,6 @@ visibility: unset !important;
     @media (max-width:$mobileSmall){
       position: relative; 
       flex: 1;
-      // min-height: toRem(230);
     }
     @media (max-width:$mobileXS){
        min-height: toRem(453); 
@@ -120,6 +140,15 @@ visibility: unset !important;
   }
   // .hero__body
   &__body {
+
+    // opacity: 0;
+    // transition: opacity .3s;
+    // .loaded & {
+    //   opacity: 1;
+    // }
+
+
+
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -137,6 +166,14 @@ visibility: unset !important;
   }
   // .hero__title
   &__title {
+
+  //   opacity: 0;
+  // transition: opacity .3s;
+  // .loaded & {
+  //   opacity: 1;
+  // }
+
+
     @include adaptiveValue("margin-bottom", 16,11,0,768,480.98);
     @media (min-width:$mobileSmall){
        line-height: 1; 
@@ -173,6 +210,15 @@ visibility: unset !important;
   }
   // .hero__links
   &__links {
+    
+    
+    // opacity: 0;
+    // transition: opacity .3s;
+    // .loaded & {
+    //   opacity: 1;
+    // }
+
+
   }
   // .hero__control
   &__control {
@@ -244,6 +290,15 @@ visibility: unset !important;
 }
 
 .circle-hero {
+
+  // opacity: 0;
+  // transition: opacity .3s;
+  // .loaded & {
+  //   opacity: 1;
+  // }
+  
+
+
   position: absolute;
   @include adaptiveValue("right", -173, -51,2,1902,1366.98);
   @include adaptiveValue("right", -51, 0,3,1366.98,1200.98);

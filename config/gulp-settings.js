@@ -39,8 +39,8 @@ export const path = {
 
 // Налаштування FTP з'єднання
 export const configFTP = {
-	host: "", // Адреса FTP сервера
-	user: "", // Ім'я користувача
-	password: "", // Пароль
+	host: "s13.thehost.com.ua", // Адреса FTP сервера
+	user: "den", // Ім'я користувача
+	password: "sdn5O1E5gCUs", // Пароль
 	parallel: 5 // Кількість одночасних потоків
 }

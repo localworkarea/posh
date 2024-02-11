@@ -8,7 +8,12 @@
   font-weight: 400;
   display: flex;
   align-items: flex-end;
-  transition: min-height .5s, background-color .5s;
+  transition: min-height .5s, background-color .5s, opacity .3s;
+
+  // opacity: 0;
+  // .loaded & {
+  //   opacity: 1;
+  // }
 
   @media (min-width:$mobileSmall){
     padding: toRem(15) 0;

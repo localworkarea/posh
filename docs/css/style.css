@@ -876,8 +876,8 @@ body {
   -webkit-box-align: end;
       -ms-flex-align: end;
           align-items: flex-end;
-  -webkit-transition: min-height 0.5s, background-color 0.5s;
-  transition: min-height 0.5s, background-color 0.5s;
+  -webkit-transition: min-height 0.5s, background-color 0.5s, opacity 0.3s;
+  transition: min-height 0.5s, background-color 0.5s, opacity 0.3s;
 }
 
 .header._header-scroll,
@@ -1559,6 +1559,8 @@ body {
 }
 
 .hero {
+  position: relative;
+  overflow: hidden;
   min-height: 100vh;
   min-height: 100svh;
   background-color: #1A1F35;
