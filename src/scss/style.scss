@@ -106,6 +106,31 @@ body {
 Наприклад header__container, main__container і т.п.
 Сніппет (HTML): cnt
 */
+[class*="__container"] {
+	@include adaptiveValue("max-width", 1488, 1218,2,1920,1366.98);
+	@include adaptiveValue("max-width", 1218, 1148,3,1366.98,1280);
+	margin: 0 auto;
+	@media (min-width:em(365.98)){
+		padding-left: toRem(24);
+		padding-right: toRem(24);
+	}
+	@media (max-width: em(365.98)){
+		padding-left: toRem(16);
+		padding-right: toRem(16);
+	}
+}
+[class*="__container-b"] {
+	@include adaptiveValue("max-width", 1648, 1348,0,1920,1366);
+	margin: 0 auto;
+	@media (min-width:em(365.98)){
+		padding-left: toRem(24);
+		padding-right: toRem(24);
+	}
+	@media (max-width: em(365.98)){
+		padding-left: toRem(16);
+		padding-right: toRem(16);
+	}
+}
 // @if ($responsiveType==1) {
 // 	// Чуйна
 

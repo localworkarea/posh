@@ -4608,28 +4608,17 @@
         }
         const da = new DynamicAdapt("max");
         da.init();
+        var video = document.getElementById("heroVideo");
+        var deferredSource = document.getElementById("deferredSource");
+        var videoLoaded = localStorage.getItem("videoLoaded");
+        if (videoLoaded) deferredSource.src = deferredSource.dataset.src; else {
+            deferredSource.onload = function() {
+                video.appendChild(deferredSource.cloneNode(true));
+                localStorage.setItem("videoLoaded", true);
+            };
+            deferredSource.src = deferredSource.dataset.src;
+        }
         document.addEventListener("DOMContentLoaded", (function() {
-            window.addEventListener("load", (function() {
-                var video = document.getElementById("heroVideo");
-                if (video) {
-                    var source = video.querySelector("source");
-                    var videoLoaded = localStorage.getItem("videoLoaded");
-                    video.addEventListener("canplay", (function() {
-                        video.play();
-                    }));
-                    var delay = window.matchMedia("(max-width: 500px)").matches ? 0 : 0;
-                    if (!videoLoaded) setTimeout((function() {
-                        video.load();
-                        source.src = source.getAttribute("data-src");
-                        video.load();
-                        localStorage.setItem("videoLoaded", "true");
-                    }), delay); else {
-                        video.load();
-                        source.src = source.getAttribute("data-src");
-                        video.load();
-                    }
-                }
-            }));
             var video = document.getElementById("heroVideo");
             var playPauseButton = document.querySelector(".hero__control");
             if (playPauseButton) playPauseButton.addEventListener("click", (function() {

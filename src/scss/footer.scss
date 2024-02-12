@@ -147,18 +147,18 @@
 	&__location {
     font-size: toRem(18);
     line-height: 1.2;
-    text-underline-position: under;
+    // text-underline-position: under;
     span {
       display: inline-block;
     }
     @media (min-width:$mobileSmall){
        max-width: toRem(370); 
     }
-    @media (any-hover: hover){
-      &:hover{
-        text-decoration: underline;
-      }
-    }
+    // @media (any-hover: hover){
+    //   &:hover{
+    //     text-decoration: underline;
+    //   }
+    // }
 	}
   // .footer-main__right -------------------------------------------------------
   &__right {
@@ -644,7 +644,7 @@
   &__checkbox {
    
     &:not(:last-child) {
-      @include adaptiveValue("margin-bottom", 52, 27,0,1366,480);
+      @include adaptiveValue("margin-bottom", 52, 20,0,1366,480);
     }
   }
   // .form-footer__bottom
@@ -659,7 +659,7 @@
     }
     @media (max-width:$mobileSmall){
         flex-direction: column;
-        row-gap: toRem(6);
+        row-gap: toRem(12);
     }
   }
   // .form-footer__button
@@ -738,7 +738,7 @@
     display: inline-block;
   }
   @media (max-width:$mobileSmall){
-     order: 1; 
+    order: 1; 
   }
 	// .file-upload__input
 	&__input {
@@ -756,6 +756,33 @@
     position: relative;
     z-index: 2;
     cursor: pointer;
+    &::before {
+      background-color: #000;
+      @media (min-width:$mobileSmall){
+        bottom: toRem(2);
+      }
+      @media (max-width:$mobileSmall){
+          width: 100%;
+          bottom: toRem(0);
+      }
+    }
+    @media (max-width:$mobileSmall){
+        &::after {
+          content:'';
+          top: toRem(1);
+          margin-left: toRem(7);
+          position: relative;
+          background-image: url(../img/icon/arr-dwn-2.svg);
+          background-repeat: no-repeat;
+          background-size: contain;
+          width: toRem(7);
+          height: toRem(9);
+        }
+    }
+    @media (max-width:$mobileSmall){
+      font-size: toRem(12);
+      line-height: 1.25; 
+    }
 	}
   // .file-upload__file-name
   &__file-name {
@@ -860,7 +887,7 @@
         content:'';
         position: absolute;
         top: toRem(-69);
-        background-image: url(../img/icon/arr-deg-dwn.svg);
+        background-image: url(../img/icon/arr-deg-dwn.png);
         background-repeat: no-repeat;
         background-size: contain;
         width: toRem(21);

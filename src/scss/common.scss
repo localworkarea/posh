@@ -30,31 +30,7 @@ body {
   background-color: $darkBlue;
 }
 
-[class*="__container"] {
-    @include adaptiveValue("max-width", 1488, 1218,2,1920,1366.98);
-    @include adaptiveValue("max-width", 1218, 1148,3,1366.98,1280);
-    margin: 0 auto;
-    @media (min-width:em(365.98)){
-      padding-left: toRem(24);
-      padding-right: toRem(24);
-    }
-    @media (max-width: em(365.98)){
-      padding-left: toRem(16);
-      padding-right: toRem(16);
-    }
-}
-[class*="__container-b"] {
-    @include adaptiveValue("max-width", 1648, 1348,0,1920,1366);
-    margin: 0 auto;
-    @media (min-width:em(365.98)){
-      padding-left: toRem(24);
-      padding-right: toRem(24);
-    }
-    @media (max-width: em(365.98)){
-      padding-left: toRem(16);
-      padding-right: toRem(16);
-    }
-}
+
 
 .hover-line {
   position: relative;
@@ -607,9 +583,11 @@ body {
         border-radius: toRem(8);
       }
     }
-    &:hover {
-      .case-card__img {
-        transform: scale(1.04);
+    @media (any-hover: hover){
+      &:hover{
+        .case-card__img {
+          transform: scale(1.04);
+        }
       }
     }
   }
@@ -626,6 +604,12 @@ body {
     }
     .case-card_av & {
       aspect-ratio: 624/441;
+      // @media (min-width:$mobileSmall){
+      //   border-radius: toRem(19);
+      // }
+      // @media (max-width:$mobileSmall){
+      //   border-radius: toRem(8);
+      // }
     }
   }
   // .case-card__footer
@@ -645,10 +629,10 @@ body {
     .case-card_av & {
       @include adaptiveValue("font-size", 28, 26,2,1366,1280.98);
       @include adaptiveValue("font-size", 26, 22,3,1280.98,480.98);
-      text-transform: uppercase;
     }
     .case-card_big &,
     .case-card_av & {
+      text-transform: uppercase;
       transition: opacity .3s ease;
       @media (any-hover: hover){
         &:hover{
@@ -669,7 +653,6 @@ body {
   }
   @include adaptiveValue("column-gap", 23, 15,0,1366,480.98);
   &_big {
-
   }
   &_av {
 

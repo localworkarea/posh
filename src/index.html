@@ -11,9 +11,9 @@
 					<section class="hero">
 						<div class="hero__wrapper">
 							<div class="hero__bg">
-								<video id="heroVideo" class="hero__video ibg" width="1920" height="1080" muted playsinline poster="files/poster-hero.webp" autoplay loop>
-									<source data-src="files/posh-hero-2.mp4" type="video/mp4"/>
-									<source data-src="files/posh-hero-3.mp4" type="video/mp4" media="(max-width: 31.25rem)"/>
+								<video  autoplay loop muted playsinline id="heroVideo" class="hero__video ibg" width="1920" height="1080" poster="files/poster-hero.webp">
+									<source src="files/posh-hero-2.mp4" type="video/mp4"/>
+									<source id="deferredSource"  data-src="files/posh-hero-3.mp4" type="video/mp4" media="(max-width: 31.25rem)"/>
 								</video>
 							</div>
 							<div class="circle-hero-b">
@@ -94,9 +94,6 @@
 										</span>
 									</a>
 								</div>
-								<!-- <div data-da=".hero__bg,480.98,2" class="hero__circle circle-hero">
-									<img class="circle-hero__img" src="@img/icon/circle-text.svg" alt="надпис по колу posh fmcg packaging design">
-								</div> -->
 							</div>
 						</div>
 					</section>
@@ -147,6 +144,13 @@
 								</div>
 								<div class="about-main__bg bg-main">
 									<img class="bg-main__shelf" src="@img/shelf.png" alt="шафа з полицями та товарами">
+								</div>
+							</div>
+							<div class="about-main__circle circle-about">
+								<div class="circle-about__container">
+									<div class="circle-hero">
+										<img class="circle-hero__img" src="@img/icon/circle-text.svg" alt="надпис по колу posh fmcg packaging design">
+									</div>
 								</div>
 							</div>
 							<div class="about-main__bg-women bg-women">
@@ -239,7 +243,7 @@
 														<h3 class="case-card__title title-card">
 															<span>Varus</span>
 															<img src="@img/icon/arr-btn.svg" alt="стрілочка направлена вліво">
-															<span>pover up</span>
+															<span>power up</span>
 														</h3>
 													</a>
 												</div>
@@ -298,11 +302,6 @@
 											</a>
 										</div>
 									</div>
-									<!-- <button type="button" class="slider-main__btn swiper-button-prev" aria-label="кнопка перемикання слайдів">
-										<svg width="40" height="34" viewBox="0 0 40 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-											<path d="M21.5959 0L40 16.6291V17.3709L21.5959 34L17.9966 31.0327L31.0357 19.3491H0V14.6509H31.0357L17.9966 2.96727L21.5959 0Z" fill="#FEFEFE"/>
-											</svg>
-									</button> -->
 									<button type="button" class="slider-main__btn swiper-button-next" aria-label="кнопка перемикання слайдів">
 										<svg width="40" height="34" viewBox="0 0 40 34" fill="none" xmlns="http://www.w3.org/2000/svg">
 											<path d="M21.5959 0L40 16.6291V17.3709L21.5959 34L17.9966 31.0327L31.0357 19.3491H0V14.6509H31.0357L17.9966 2.96727L21.5959 0Z" fill="#FEFEFE"/>

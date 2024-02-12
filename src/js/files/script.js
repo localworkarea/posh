@@ -79,44 +79,60 @@ import { flsModules } from "./modules.js";
 // targetElement.addEventListener("touchmove", handleTouchMove);
 
 
-
-
-
+ var video = document.getElementById("heroVideo");
+    var deferredSource = document.getElementById("deferredSource");
+    
+    var videoLoaded = localStorage.getItem("videoLoaded");
+    if (videoLoaded) {
+        // Если информация о загруженном видео есть в локальном хранилище,
+        // устанавливаем src для отложенного источника
+        deferredSource.src = deferredSource.dataset.src;
+    } else {
+        // Если информации нет, то загружаем видео и после успешной загрузки сохраняем флаг в локальное хранилище
+        deferredSource.onload = function() {
+            video.appendChild(deferredSource.cloneNode(true));
+            localStorage.setItem("videoLoaded", true);
+        };
+        deferredSource.src = deferredSource.dataset.src;
+    }
 
 
 
 document.addEventListener("DOMContentLoaded", function() {
 
     // ОТЛОЖЕННАЯ ЗАГРУЗКА ВИДЕО ========================================================
-    window.addEventListener("load", function() {
-        var video = document.getElementById("heroVideo");
-        if (video) {
-            var source = video.querySelector("source");
-            // Проверка локального хранилища на наличие ключа
-            var videoLoaded = localStorage.getItem("videoLoaded");
-            video.addEventListener("canplay", function() {
-                video.play();
-            });
-            // Проверяем ширину экрана и устанавливаем соответствующую задержку
-            // Если ширина экрана меньше 500px, то устанавливается задержка одна, в противном случае — другая (1200 / 1800)
-            var delay = window.matchMedia("(max-width: 500px)").matches ? 0 : 0;
-            // Если видео не было загружено ранее, устанавливаем таймер
-            if (!videoLoaded) {
-                setTimeout(function() {
-                    video.load();
-                    source.src = source.getAttribute("data-src");
-                    video.load();
-                    // Сохраняем информацию о загрузке видео в локальное хранилище
-                    localStorage.setItem("videoLoaded", "true");
-                }, delay);
-            } else {
-                // Если видео уже было загружено, начинаем его воспроизведение сразу
-                video.load();
-                source.src = source.getAttribute("data-src");
-                video.load();
-            }
-        }
-    });
+    // window.addEventListener("load", function() {
+    //     var video = document.getElementById("heroVideo");
+    //     if (video) {
+    //         var source = video.querySelector("source");
+    //         // Проверка локального хранилища на наличие ключа
+    //         var videoLoaded = localStorage.getItem("videoLoaded");
+    //         video.addEventListener("canplay", function() {
+    //             video.play();
+    //         });
+    //         // Проверяем ширину экрана и устанавливаем соответствующую задержку
+    //         // Если ширина экрана меньше 500px, то устанавливается задержка одна, в противном случае — другая (1200 / 1800)
+    //         var delay = window.matchMedia("(max-width: 500px)").matches ? 0 : 0;
+    //         // Если видео не было загружено ранее, устанавливаем таймер
+    //         if (!videoLoaded) {
+    //             setTimeout(function() {
+    //                 video.load();
+    //                 source.src = source.getAttribute("data-src");
+    //                 video.load();
+    //                 // Сохраняем информацию о загрузке видео в локальное хранилище
+    //                 localStorage.setItem("videoLoaded", "true");
+    //             }, delay);
+    //         } else {
+    //             // Если видео уже было загружено, начинаем его воспроизведение сразу
+    //             video.load();
+    //             source.src = source.getAttribute("data-src");
+    //             video.load();
+    //         }
+    //     }
+    // });
+
+
+   
     
     // -------------------------------------------------------------------------------------
 

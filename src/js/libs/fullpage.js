@@ -306,6 +306,12 @@ export class FullPage {
 				section.style.opacity = '1';
 				section.style.pointerEvents = 'all';
 				section.style.visibility = 'visible';
+				// if (section.classList.contains("section-02") && section.classList.contains('active-section') ) {
+				// 	// section.style.visibility = 'inherit';
+				// 	setTimeout(() => {
+				// 		// section.style.visibility = 'unset';
+				// 	}, 0);
+				// }
 			} else {
 				section.style.opacity = '0';
 				section.style.pointerEvents = 'none';

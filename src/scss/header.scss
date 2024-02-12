@@ -221,6 +221,9 @@
   }
   // .contact-menu__location
   &__location {
+    span {
+      display: inline-block;
+    }
     @media (max-width: em(1200.98)){
         max-width: toRem(380);
         text-decoration: underline;
