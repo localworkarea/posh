@@ -731,11 +731,11 @@
                     form.classList.remove("_form-sent");
                 }), 5e3);
                 const fileInput = form.querySelector(".file-upload__input");
-                const fileNameSpan = form.querySelector(".file-upload__file-name");
                 const fileErrorSpan = form.querySelector(".file-error");
+                const fileInputBody = document.querySelector(".file-upload");
                 fileInput.value = "";
-                fileNameSpan.textContent = "";
-                fileErrorSpan.textContent = "";
+                fileInputBody.classList.remove("_upload");
+                if (fileErrorSpan) fileErrorSpan.textContent = "";
                 formValidate.formClean(form);
             }
         }
@@ -3674,170 +3674,6 @@
             }));
         }));
         Swiper.use([ Resize, Observer ]);
-        function create_element_if_not_defined_createElementIfNotDefined(swiper, originalParams, params, checkProps) {
-            if (swiper.params.createElements) Object.keys(checkProps).forEach((key => {
-                if (!params[key] && params.auto === true) {
-                    let element = utils_elementChildren(swiper.el, `.${checkProps[key]}`)[0];
-                    if (!element) {
-                        element = utils_createElement("div", checkProps[key]);
-                        element.className = checkProps[key];
-                        swiper.el.append(element);
-                    }
-                    params[key] = element;
-                    originalParams[key] = element;
-                }
-            }));
-            return params;
-        }
-        function Navigation(_ref) {
-            let {swiper, extendParams, on, emit} = _ref;
-            extendParams({
-                navigation: {
-                    nextEl: null,
-                    prevEl: null,
-                    hideOnClick: false,
-                    disabledClass: "swiper-button-disabled",
-                    hiddenClass: "swiper-button-hidden",
-                    lockClass: "swiper-button-lock",
-                    navigationDisabledClass: "swiper-navigation-disabled"
-                }
-            });
-            swiper.navigation = {
-                nextEl: null,
-                prevEl: null
-            };
-            const makeElementsArray = el => (Array.isArray(el) ? el : [ el ]).filter((e => !!e));
-            function getEl(el) {
-                let res;
-                if (el && typeof el === "string" && swiper.isElement) {
-                    res = swiper.el.querySelector(el);
-                    if (res) return res;
-                }
-                if (el) {
-                    if (typeof el === "string") res = [ ...document.querySelectorAll(el) ];
-                    if (swiper.params.uniqueNavElements && typeof el === "string" && res.length > 1 && swiper.el.querySelectorAll(el).length === 1) res = swiper.el.querySelector(el);
-                }
-                if (el && !res) return el;
-                return res;
-            }
-            function toggleEl(el, disabled) {
-                const params = swiper.params.navigation;
-                el = makeElementsArray(el);
-                el.forEach((subEl => {
-                    if (subEl) {
-                        subEl.classList[disabled ? "add" : "remove"](...params.disabledClass.split(" "));
-                        if (subEl.tagName === "BUTTON") subEl.disabled = disabled;
-                        if (swiper.params.watchOverflow && swiper.enabled) subEl.classList[swiper.isLocked ? "add" : "remove"](params.lockClass);
-                    }
-                }));
-            }
-            function update() {
-                const {nextEl, prevEl} = swiper.navigation;
-                if (swiper.params.loop) {
-                    toggleEl(prevEl, false);
-                    toggleEl(nextEl, false);
-                    return;
-                }
-                toggleEl(prevEl, swiper.isBeginning && !swiper.params.rewind);
-                toggleEl(nextEl, swiper.isEnd && !swiper.params.rewind);
-            }
-            function onPrevClick(e) {
-                e.preventDefault();
-                if (swiper.isBeginning && !swiper.params.loop && !swiper.params.rewind) return;
-                swiper.slidePrev();
-                emit("navigationPrev");
-            }
-            function onNextClick(e) {
-                e.preventDefault();
-                if (swiper.isEnd && !swiper.params.loop && !swiper.params.rewind) return;
-                swiper.slideNext();
-                emit("navigationNext");
-            }
-            function init() {
-                const params = swiper.params.navigation;
-                swiper.params.navigation = create_element_if_not_defined_createElementIfNotDefined(swiper, swiper.originalParams.navigation, swiper.params.navigation, {
-                    nextEl: "swiper-button-next",
-                    prevEl: "swiper-button-prev"
-                });
-                if (!(params.nextEl || params.prevEl)) return;
-                let nextEl = getEl(params.nextEl);
-                let prevEl = getEl(params.prevEl);
-                Object.assign(swiper.navigation, {
-                    nextEl,
-                    prevEl
-                });
-                nextEl = makeElementsArray(nextEl);
-                prevEl = makeElementsArray(prevEl);
-                const initButton = (el, dir) => {
-                    if (el) el.addEventListener("click", dir === "next" ? onNextClick : onPrevClick);
-                    if (!swiper.enabled && el) el.classList.add(...params.lockClass.split(" "));
-                };
-                nextEl.forEach((el => initButton(el, "next")));
-                prevEl.forEach((el => initButton(el, "prev")));
-            }
-            function destroy() {
-                let {nextEl, prevEl} = swiper.navigation;
-                nextEl = makeElementsArray(nextEl);
-                prevEl = makeElementsArray(prevEl);
-                const destroyButton = (el, dir) => {
-                    el.removeEventListener("click", dir === "next" ? onNextClick : onPrevClick);
-                    el.classList.remove(...swiper.params.navigation.disabledClass.split(" "));
-                };
-                nextEl.forEach((el => destroyButton(el, "next")));
-                prevEl.forEach((el => destroyButton(el, "prev")));
-            }
-            on("init", (() => {
-                if (swiper.params.navigation.enabled === false) disable(); else {
-                    init();
-                    update();
-                }
-            }));
-            on("toEdge fromEdge lock unlock", (() => {
-                update();
-            }));
-            on("destroy", (() => {
-                destroy();
-            }));
-            on("enable disable", (() => {
-                let {nextEl, prevEl} = swiper.navigation;
-                nextEl = makeElementsArray(nextEl);
-                prevEl = makeElementsArray(prevEl);
-                if (swiper.enabled) {
-                    update();
-                    return;
-                }
-                [ ...nextEl, ...prevEl ].filter((el => !!el)).forEach((el => el.classList.add(swiper.params.navigation.lockClass)));
-            }));
-            on("click", ((_s, e) => {
-                let {nextEl, prevEl} = swiper.navigation;
-                nextEl = makeElementsArray(nextEl);
-                prevEl = makeElementsArray(prevEl);
-                const targetEl = e.target;
-                if (swiper.params.navigation.hideOnClick && !prevEl.includes(targetEl) && !nextEl.includes(targetEl)) {
-                    if (swiper.pagination && swiper.params.pagination && swiper.params.pagination.clickable && (swiper.pagination.el === targetEl || swiper.pagination.el.contains(targetEl))) return;
-                    let isHidden;
-                    if (nextEl.length) isHidden = nextEl[0].classList.contains(swiper.params.navigation.hiddenClass); else if (prevEl.length) isHidden = prevEl[0].classList.contains(swiper.params.navigation.hiddenClass);
-                    if (isHidden === true) emit("navigationShow"); else emit("navigationHide");
-                    [ ...nextEl, ...prevEl ].filter((el => !!el)).forEach((el => el.classList.toggle(swiper.params.navigation.hiddenClass)));
-                }
-            }));
-            const enable = () => {
-                swiper.el.classList.remove(...swiper.params.navigation.navigationDisabledClass.split(" "));
-                init();
-                update();
-            };
-            const disable = () => {
-                swiper.el.classList.add(...swiper.params.navigation.navigationDisabledClass.split(" "));
-                destroy();
-            };
-            Object.assign(swiper.navigation, {
-                enable,
-                disable,
-                update,
-                init,
-                destroy
-            });
-        }
         function freeMode(_ref) {
             let {swiper, extendParams, emit, once} = _ref;
             extendParams({
@@ -4003,7 +3839,7 @@
         }
         function initSliders() {
             if (document.querySelector(".slider-main")) new Swiper(".slider-main", {
-                modules: [ Navigation, freeMode ],
+                modules: [ freeMode ],
                 observer: true,
                 observeParents: true,
                 slidesPerView: "auto",
@@ -4014,10 +3850,6 @@
                     momentumBounce: false
                 },
                 nested: true,
-                navigation: {
-                    prevEl: ".slider-main .swiper-button-prev",
-                    nextEl: ".slider-main .swiper-button-next"
-                },
                 breakpoints: {
                     300: {
                         spaceBetween: 16
@@ -4491,27 +4323,26 @@
         if (document.querySelector("[data-fp]")) modules_flsModules.fullpage = new FullPage(document.querySelector("[data-fp]"), "");
         let addWindowScrollEvent = false;
         function headerScroll() {
-            addWindowScrollEvent = true;
+            let addWindowScrollEvent = true;
             const header = document.querySelector("header.header");
             const headerShow = header.hasAttribute("data-scroll-show");
-            const headerShowTimer = header.dataset.scrollShow ? header.dataset.scrollShow : 500;
+            header.dataset.scrollShow && header.dataset.scrollShow;
             const startPoint = header.dataset.scroll ? header.dataset.scroll : 1;
             let scrollDirection = 0;
             let timer;
-            document.addEventListener("windowScroll", (function(e) {
-                const scrollTop = window.scrollY;
+            const sectionTwo = document.querySelector(".section-02");
+            sectionTwo.addEventListener("scroll", (function(e) {
+                if (!addWindowScrollEvent) return;
+                const scrollTop = sectionTwo.scrollTop;
                 clearTimeout(timer);
                 if (scrollTop >= startPoint) {
-                    !header.classList.contains("_header-scroll") ? header.classList.add("_header-scroll") : null;
-                    if (headerShow) {
-                        if (scrollTop > scrollDirection) header.classList.contains("_header-show") ? header.classList.remove("_header-show") : null; else !header.classList.contains("_header-show") ? header.classList.add("_header-show") : null;
-                        timer = setTimeout((() => {
-                            !header.classList.contains("_header-show") ? header.classList.add("_header-show") : null;
-                        }), headerShowTimer);
-                    }
+                    if (!header.classList.contains("_header-scroll")) header.classList.add("_header-scroll");
+                    if (headerShow) if (scrollTop > scrollDirection) {
+                        if (header.classList.contains("_header-show")) header.classList.remove("_header-show");
+                    } else if (!header.classList.contains("_header-show")) header.classList.add("_header-show");
                 } else {
-                    header.classList.contains("_header-scroll") ? header.classList.remove("_header-scroll") : null;
-                    if (headerShow) header.classList.contains("_header-show") ? header.classList.remove("_header-show") : null;
+                    if (header.classList.contains("_header-scroll")) header.classList.remove("_header-scroll");
+                    if (headerShow) if (header.classList.contains("_header-show")) header.classList.remove("_header-show");
                 }
                 scrollDirection = scrollTop <= 0 ? 0 : scrollTop;
             }));
@@ -4619,15 +4450,35 @@
             deferredSource.src = deferredSource.dataset.src;
         }
         document.addEventListener("DOMContentLoaded", (function() {
+            const header = document.querySelector("header");
+            const heroBg = document.querySelector(".hero__bg");
+            const heroBody = document.querySelector(".hero__body");
+            const heroControlButton = document.querySelector(".hero__control");
+            if (heroBg) {
+                const addHoverClass = () => {
+                    if (window.innerWidth > 30.06125 * parseFloat(getComputedStyle(document.documentElement).fontSize)) heroBg.classList.add("hover");
+                };
+                const removeHoverClass = () => {
+                    if (window.innerWidth > 30.06125 * parseFloat(getComputedStyle(document.documentElement).fontSize)) heroBg.classList.remove("hover");
+                };
+                header.addEventListener("mouseover", addHoverClass);
+                heroBody.addEventListener("mouseover", addHoverClass);
+                heroControlButton.addEventListener("mouseover", addHoverClass);
+                header.addEventListener("mouseout", removeHoverClass);
+                heroBody.addEventListener("mouseout", removeHoverClass);
+                heroControlButton.addEventListener("mouseout", removeHoverClass);
+            }
             var video = document.getElementById("heroVideo");
             var playPauseButton = document.querySelector(".hero__control");
             if (playPauseButton) playPauseButton.addEventListener("click", (function() {
                 if (video.paused) {
                     video.play();
                     playPauseButton.classList.remove("paused");
+                    video.classList.remove("paused");
                 } else {
                     video.pause();
                     playPauseButton.classList.add("paused");
+                    video.classList.add("paused");
                 }
             }));
             var btnMaskElements = document.querySelectorAll(".btn-mask");
@@ -4686,24 +4537,6 @@
                         typedElement.setAttribute("data-typed-started", "false");
                     }
                 }));
-            }
-            const header = document.querySelector("header");
-            const heroBg = document.querySelector(".hero__bg");
-            const heroBody = document.querySelector(".hero__body");
-            const heroControlButton = document.querySelector(".hero__control");
-            if (heroBg) {
-                const addHoverClass = () => {
-                    if (window.innerWidth > 30.06125 * parseFloat(getComputedStyle(document.documentElement).fontSize)) heroBg.classList.add("hover");
-                };
-                const removeHoverClass = () => {
-                    if (window.innerWidth > 30.06125 * parseFloat(getComputedStyle(document.documentElement).fontSize)) heroBg.classList.remove("hover");
-                };
-                header.addEventListener("mouseover", addHoverClass);
-                heroBody.addEventListener("mouseover", addHoverClass);
-                heroControlButton.addEventListener("mouseover", addHoverClass);
-                header.addEventListener("mouseout", removeHoverClass);
-                heroBody.addEventListener("mouseout", removeHoverClass);
-                heroControlButton.addEventListener("mouseout", removeHoverClass);
             }
             function setupGroupAnimation(groupSelector, circleId, hoverRadius) {
                 const group = document.querySelector(groupSelector);
@@ -4770,31 +4603,46 @@
                 watcherClassAdded = true;
                 startIntervalForWatcher();
             }
-            const fileInput = document.getElementById("file-upload");
-            const fileNameSpan = document.querySelector(".file-upload__file-name");
-            const fileErrorSpan = document.createElement("span");
-            if (fileInput) {
-                fileErrorSpan.classList.add("file-error");
-                document.querySelector(".file-upload").appendChild(fileErrorSpan);
-                fileInput.addEventListener("change", (function() {
-                    if (this.files && this.files.length > 0) {
-                        const fileSizeInMB = this.files[0].size / (1024 * 1024);
-                        if (fileSizeInMB > 10) {
-                            const errorMessage = this.getAttribute("data-fe");
-                            fileInput.classList.add("error");
-                            fileErrorSpan.textContent = errorMessage;
-                            fileNameSpan.textContent = "";
-                        } else {
-                            fileInput.classList.remove("error");
-                            fileErrorSpan.textContent = "";
-                            fileNameSpan.textContent = this.files[0].name;
+            const fileInputBody = document.querySelector(".file-upload");
+            const fileInput = document.getElementById("file-upload-input");
+            let fileErrorSpan = null;
+            let previousFile = null;
+            if (fileInput) fileInput.addEventListener("change", (function(event) {
+                if (this.files && this.files.length > 0) {
+                    const fileSizeInMB = this.files[0].size / (1024 * 1024);
+                    if (fileSizeInMB > 10) {
+                        const errorMessage = this.getAttribute("data-fe");
+                        fileInput.classList.add("error");
+                        if (!fileErrorSpan) {
+                            fileErrorSpan = document.createElement("span");
+                            fileErrorSpan.classList.add("file-error");
+                            fileInputBody.appendChild(fileErrorSpan);
                         }
+                        fileErrorSpan.textContent = errorMessage;
+                        fileErrorSpan.style.display = "block";
+                        setTimeout((() => {
+                            fileInputBody.removeChild(fileErrorSpan);
+                            fileErrorSpan = null;
+                        }), 3e3);
+                        event.preventDefault();
                     } else {
-                        fileErrorSpan.textContent = "";
-                        fileNameSpan.textContent = "";
+                        fileInput.classList.remove("error");
+                        if (fileErrorSpan) {
+                            fileInputBody.removeChild(fileErrorSpan);
+                            fileErrorSpan = null;
+                        }
+                        if (!fileInputBody.classList.contains("_upload")) fileInputBody.classList.add("_upload");
+                        previousFile = this.files[0];
                     }
-                }));
-            }
+                } else {
+                    fileInput.classList.remove("error");
+                    if (fileErrorSpan) {
+                        fileInputBody.removeChild(fileErrorSpan);
+                        fileErrorSpan = null;
+                    }
+                    fileInputBody.classList.remove("_upload");
+                }
+            }));
             const inputElements = document.querySelectorAll(".input");
             if (inputElements) inputElements.forEach((input => {
                 input.addEventListener("input", (function() {

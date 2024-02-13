@@ -1,5 +1,5 @@
 // Підключення функціоналу "Чертоги Фрілансера"
-import { isMobile,bodyLockStatus, bodyLock, bodyUnlock, bodyLockToggle  } from "./functions.js";
+import {isMobile,  bodyLockStatus, bodyLock, bodyUnlock, bodyLockToggle  } from "./functions.js";
 // Підключення списку активних модулів
 import { flsModules } from "./modules.js";
 
@@ -130,11 +130,38 @@ document.addEventListener("DOMContentLoaded", function() {
     //         }
     //     }
     // });
-
-
-   
-    
     // -------------------------------------------------------------------------------------
+
+
+    // HOVER HEADER - OPACITY HERO SECTION VIDEO ==============================================================
+    const header = document.querySelector('header');
+    const heroBg = document.querySelector('.hero__bg');
+    const heroBody = document.querySelector('.hero__body');
+    const heroControlButton = document.querySelector('.hero__control');
+
+    if (heroBg) {
+        const addHoverClass = () => {
+            if (window.innerWidth > 30.06125 * parseFloat(getComputedStyle(document.documentElement).fontSize)) {
+                heroBg.classList.add('hover');
+            }
+        };
+      
+        const removeHoverClass = () => {
+            if (window.innerWidth > 30.06125 * parseFloat(getComputedStyle(document.documentElement).fontSize)) {
+                heroBg.classList.remove('hover');
+            }
+        };
+      
+        header.addEventListener('mouseover', addHoverClass);
+        heroBody.addEventListener('mouseover', addHoverClass);
+        heroControlButton.addEventListener('mouseover', addHoverClass);
+      
+        header.addEventListener('mouseout', removeHoverClass);
+        heroBody.addEventListener('mouseout', removeHoverClass);
+        heroControlButton.addEventListener('mouseout', removeHoverClass);
+    }
+    // -------------------------------------------------------------------------------------
+
 
 
     // ОСТАНОВИТЬ/ВОСПРОИЗВЕСТИ ГЛАВНОЕ ВИДЕО ПО КЛИКУ ===========================================
@@ -146,9 +173,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (video.paused) {
                     video.play();
                     playPauseButton.classList.remove('paused');
+                    video.classList.remove('paused');
                 } else {
                     video.pause();
                     playPauseButton.classList.add('paused');
+                    video.classList.add('paused');
                 }
             });
         }
@@ -245,36 +274,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
       });
     }
-    // -------------------------------------------------------------------------------------
-
-    
-    // HOVER HEADER - OPACITY HERO SECTION VIDEO ==============================================================
-      const header = document.querySelector('header');
-      const heroBg = document.querySelector('.hero__bg');
-      const heroBody = document.querySelector('.hero__body');
-      const heroControlButton = document.querySelector('.hero__control');
-
-      if (heroBg) {
-          const addHoverClass = () => {
-              if (window.innerWidth > 30.06125 * parseFloat(getComputedStyle(document.documentElement).fontSize)) {
-                  heroBg.classList.add('hover');
-              }
-          };
-        
-          const removeHoverClass = () => {
-              if (window.innerWidth > 30.06125 * parseFloat(getComputedStyle(document.documentElement).fontSize)) {
-                  heroBg.classList.remove('hover');
-              }
-          };
-        
-          header.addEventListener('mouseover', addHoverClass);
-          heroBody.addEventListener('mouseover', addHoverClass);
-          heroControlButton.addEventListener('mouseover', addHoverClass);
-        
-          header.addEventListener('mouseout', removeHoverClass);
-          heroBody.addEventListener('mouseout', removeHoverClass);
-          heroControlButton.addEventListener('mouseout', removeHoverClass);
-      }
     // -------------------------------------------------------------------------------------
 
       
@@ -383,42 +382,77 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
      // UPLOAD FILE (FORM) ==============================================================
-     const fileInput = document.getElementById('file-upload');
-     const fileNameSpan = document.querySelector('.file-upload__file-name');
-     const fileErrorSpan = document.createElement('span'); // Создаем новый элемент span для вывода ошибки
+     const fileInputBody = document.querySelector('.file-upload');
+     const fileInput = document.getElementById('file-upload-input');
+     let fileErrorSpan = null; // Переменная для хранения ссылки на элемент span ошибки
+     
+     let previousFile = null;
+     
      if (fileInput) {
-       fileErrorSpan.classList.add('file-error'); // Добавляем класс для стилизации ошибки
-       
-       // Вставляем элемент span перед закрывающим тегом </div> внутри блока .file-upload
-       document.querySelector('.file-upload').appendChild(fileErrorSpan);
-       
-       // Добавляем слушатель события изменения значения input файлов
-       fileInput.addEventListener('change', function() {
-           // Проверяем, выбран ли файл
-           if (this.files && this.files.length > 0) {
-               // Проверяем размер файла
-               const fileSizeInMB = this.files[0].size / (1024 * 1024); // конвертируем размер файла в МБ
-               if (fileSizeInMB > 10) {
-                   // Если размер файла больше 10 МБ, добавляем класс ошибки и устанавливаем текст ошибки
-                   const errorMessage = this.getAttribute('data-fe');
-                   fileInput.classList.add('error');
-                   fileErrorSpan.textContent = errorMessage;
-                   fileNameSpan.textContent = ''; // Очищаем имя файла
-               } else {
-                   // Если размер файла в норме, удаляем класс ошибки и очищаем текст ошибки
-                   fileInput.classList.remove('error');
-                   fileErrorSpan.textContent = '';
-                   // Отображаем имя файла
-                   fileNameSpan.textContent = this.files[0].name;
-               }
-           } else {
-               // Если файл не выбран, очищаем текст ошибки и имя файла
-               fileErrorSpan.textContent = '';
-               fileNameSpan.textContent = '';
-           }
-       });
-       
+         fileInput.addEventListener('change', function(event) {
+             if (this.files && this.files.length > 0) {
+                 const fileSizeInMB = this.files[0].size / (1024 * 1024); // конвертируем размер файла в МБ
+                 if (fileSizeInMB > 10) {
+                     const errorMessage = this.getAttribute('data-fe');
+                     fileInput.classList.add('error');
+                     
+                     // Создаем элемент span для ошибки, если он еще не был создан
+                     if (!fileErrorSpan) {
+                         fileErrorSpan = document.createElement('span');
+                         fileErrorSpan.classList.add('file-error');
+                         fileInputBody.appendChild(fileErrorSpan); // Добавляем созданный элемент span в контейнер .file-upload
+                     }
+                     
+                     fileErrorSpan.textContent = errorMessage;
+                     fileErrorSpan.style.display = 'block'; // Показываем элемент span с ошибкой
+                     
+                     // Устанавливаем задержку для удаления ошибки через 3 секунды
+                     setTimeout(() => {
+                         fileInputBody.removeChild(fileErrorSpan);
+                         fileErrorSpan = null;
+                     }, 3000);
+                     
+                     // Отменяем стандартное действие браузера (загрузку файла)
+                     event.preventDefault();
+                 } else {
+                     // Если размер файла в норме, удаляем класс ошибки и очищаем текст ошибки
+                     fileInput.classList.remove('error');
+                     
+                     // Удаляем элемент span ошибки, если он был создан ранее
+                     if (fileErrorSpan) {
+                         fileInputBody.removeChild(fileErrorSpan);
+                         fileErrorSpan = null;
+                     }
+                     
+                     // Проверяем наличие класса _upload и добавляем его, если он отсутствует
+                     if (!fileInputBody.classList.contains('_upload')) {
+                         fileInputBody.classList.add('_upload');
+                     }
+                     
+                     // Сохраняем предыдущий файл, чтобы позже проверить, нужно ли его удалить
+                     previousFile = this.files[0];
+                    //  console.log(`Загружено файлов: ${this.files.length}`);
+                 }
+     
+             } else {
+                 // Если файл не выбран, очищаем текст ошибки
+                 fileInput.classList.remove('error');
+                 
+                 // Удаляем элемент span ошибки, если он был создан ранее
+                 if (fileErrorSpan) {
+                     fileInputBody.removeChild(fileErrorSpan);
+                     fileErrorSpan = null;
+                 }
+                 
+                 fileInputBody.classList.remove('_upload');
+     
+                //  console.log('Файл не выбран');
+                //  console.log(`Загружено файлов: ${this.files.length}`);
+             }
+         });
      }
+     
+
      
       // -------------------------------------------------------------------------------------
      
@@ -544,5 +578,222 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     });
       // -------------------------------------------------------------------------------------
-    
-    
+     
+
+
+ 
+      
+//       const tikers = document.querySelectorAll(".tiker");
+//       const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+// tikers.forEach((tiker) => {
+//     const originalLines = tiker.querySelectorAll(".tiker__line");
+
+//     originalLines.forEach((originalLine) => {
+//         if (originalLine) {
+//             if (tiker.classList.contains("tiker-01")) {
+//                 originalLine.style.animation = "scroll 40s linear infinite";
+//             } else if (tiker.classList.contains("tiker-insights")) {
+//                 originalLine.style.animation = "scroll 30s linear infinite";
+//             }
+
+//             const clonedLine = originalLine.cloneNode(true);
+//             clonedLine.classList.add("clone-line");
+
+//             tiker.appendChild(clonedLine);
+//         }
+//     });
+
+//     document.addEventListener("DOMContentLoaded", function() {
+//         if (tiker.classList.contains("tiker-hover") && !document.documentElement.classList.contains("touch")) {
+//             tiker.addEventListener("mouseover", () => {
+//                 const allLines = tiker.querySelectorAll(".tiker__line, .clone-line");
+//                 allLines.forEach((line) => {
+//                     line.style.animationPlayState = "paused";
+//                 });
+//             });
+
+//             tiker.addEventListener("mouseout", () => {
+//                 const allLines = tiker.querySelectorAll(".tiker__line, .clone-line");
+//                 allLines.forEach((line) => {
+//                     line.style.animationPlayState = "running";
+//                 });
+//             });
+//         }
+
+//         let startX = null;
+//         let startTranslateX = 0;
+
+//         if (isMobile.iOS()) {
+//             tiker.addEventListener("touchmove", (e) => {
+//                 e.preventDefault();
+//             });
+
+//             tiker.addEventListener("touchstart", (e) => {
+//                 const targetElement = e.target;
+
+//                 if (targetElement) {
+//                     if (targetElement.scrollHeight !== targetElement.clientHeight) {
+//                         if (targetElement.scrollTop === 0) {
+//                             targetElement.scrollTop = 1;
+//                         }
+//                         if (targetElement.scrollTop === targetElement.scrollHeight - targetElement.clientHeight) {
+//                             targetElement.scrollTop = targetElement.scrollHeight - targetElement.clientHeight - 1;
+//                         }
+//                     }
+
+//                     tiker.allowUp = targetElement.scrollTop > 0;
+//                     tiker.allowDown = targetElement.scrollTop < (targetElement.scrollHeight - targetElement.clientHeight);
+//                     tiker.lastY = e.changedTouches[0].pageY;
+//                 }
+//             });
+
+//             tiker.addEventListener("touchmove", (e) => {
+//                 const targetElement = e.target;
+//                 const up = e.changedTouches[0].pageY > tiker.lastY;
+//                 const down = !up;
+//                 tiker.lastY = e.changedTouches[0].pageY;
+
+//                 if (targetElement) {
+//                     if ((up && tiker.allowUp) || (down && tiker.allowDown)) {
+//                         e.stopPropagation();
+//                     } else if (e.cancelable) {
+//                         e.preventDefault();
+//                     }
+//                 }
+//             });
+//         } else if (isSafari) {
+//           // Проверяем, является ли браузер Safari
+//             tiker.addEventListener("touchstart", (e) => {
+//                 const touch = e.touches[0];
+//                 startX = touch.clientX;
+//                 startScrollLeft = tiker.scrollLeft;
+//             });
+        
+//             tiker.addEventListener("touchmove", (e) => {
+//                 const touch = e.touches[0];
+//                 const diffX = startX - touch.clientX;
+//                 tiker.scrollLeft = startScrollLeft + diffX;
+//             });
+        
+//             tiker.addEventListener("touchend", () => {
+//                 // Возобновить анимацию всех .tiker__line и .clone-line при окончании касания
+//                 const allLines = tiker.querySelectorAll(".tiker__line, .clone-line");
+//                 allLines.forEach((line) => {
+//                     line.style.animationPlayState = "running";
+//                 });
+//             });
+//         } else {
+//             tiker.addEventListener("touchstart", (e) => {
+//                 // Остановить анимацию всех .tiker__line и .clone-line при касании
+//                 const allLines = tiker.querySelectorAll(".tiker__line, .clone-line");
+//                 allLines.forEach((line) => {
+//                     line.style.animationPlayState = "paused";
+//                 });
+//                 const touch = e.touches[0];
+//                 startX = touch.clientX;
+//                 startTranslateX = parseInt(originalLines[0].style.transform.replace("translateX(", "").replace("px)", ""), 10) || 0;
+//             });
+
+//             tiker.addEventListener("touchmove", (e) => {
+//                 const touch = e.touches[0];
+//                 const moveX = touch.clientX;
+//                 const diffX = moveX - startX;
+//                 const newTranslateX = startTranslateX + diffX;
+
+//                 // Прокрутка в зависимости от направления
+//                 const allLines = tiker.querySelectorAll(".tiker__line, .clone-line");
+//                 allLines.forEach((line) => {
+//                     line.style.transform = `translateX(${newTranslateX}px)`;
+//                 });
+//             });
+
+//             tiker.addEventListener("touchend", () => {
+//                 // Возобновить анимацию всех .tiker__line и .clone-line при окончании касания
+//                 const allLines = tiker.querySelectorAll(".tiker__line, .clone-line");
+//                 allLines.forEach((line) => {
+//                     line.style.animationPlayState = "running";
+//                 });
+//             });
+//         }
+//     });
+// });
+
+// const tikers = document.querySelectorAll(".tiker");
+
+// tikers.forEach((tiker) => {
+//     const originalLines = tiker.querySelectorAll(".tiker__line");
+
+//     originalLines.forEach((originalLine) => {
+//         if (originalLine) {
+//             if (tiker.classList.contains("tiker-01")) {
+//                 originalLine.style.animation = "scroll 40s linear infinite";
+//             } else if (tiker.classList.contains("tiker-insights")) {
+//                 originalLine.style.animation = "scroll 30s linear infinite";
+//             }
+
+//             const clonedLine = originalLine.cloneNode(true);
+//             clonedLine.classList.add("clone-line");
+
+//             tiker.appendChild(clonedLine);
+//         }
+//     });
+
+//     document.addEventListener("DOMContentLoaded", function() {
+//         if (tiker.classList.contains("tiker-hover") && !document.documentElement.classList.contains("touch")) {
+//             tiker.addEventListener("mouseover", () => {
+//                 const allLines = tiker.querySelectorAll(".tiker__line, .clone-line");
+//                 allLines.forEach((line) => {
+//                     line.style.animationPlayState = "paused";
+//                 });
+//             });
+
+//             tiker.addEventListener("mouseout", () => {
+//                 const allLines = tiker.querySelectorAll(".tiker__line, .clone-line");
+//                 allLines.forEach((line) => {
+//                     line.style.animationPlayState = "running";
+//                 });
+//             });
+//         }
+
+//         let startX = null;
+//         let startY = null;
+//         let translateX = 0;
+//         let translateY = 0;
+//         let isDragging = false;
+
+//         tiker.addEventListener("touchstart", (e) => {
+//             const touch = e.touches[0];
+//             startX = touch.clientX;
+//             startY = touch.clientY;
+//             isDragging = true;
+//         });
+
+//         tiker.addEventListener("touchmove", (e) => {
+//             if (!isDragging) return;
+
+//             const touch = e.touches[0];
+//             const diffX = touch.clientX - startX;
+//             const diffY = touch.clientY - startY;
+
+//             if (Math.abs(diffX) > Math.abs(diffY)) {
+//                 e.preventDefault();
+//                 translateX += diffX;
+//                 tiker.style.transform = `translateX(${translateX}px)`;
+//             }
+
+//             startX = touch.clientX;
+//             startY = touch.clientY;
+//         });
+
+//         tiker.addEventListener("touchend", () => {
+//             isDragging = false;
+//             // Возобновить анимацию всех .tiker__line и .clone-line при окончании касания
+//             const allLines = tiker.querySelectorAll(".tiker__line, .clone-line");
+//             allLines.forEach((line) => {
+//                 line.style.animationPlayState = "running";
+//             });
+//         });
+//     });
+// });
+

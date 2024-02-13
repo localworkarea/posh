@@ -231,12 +231,15 @@ export function formSubmit() {
 
 		    // Очищаем поле ввода файла и имя файла
 				const fileInput = form.querySelector('.file-upload__input');
-				const fileNameSpan = form.querySelector('.file-upload__file-name');
 				const fileErrorSpan = form.querySelector('.file-error');
+				const fileInputBody = document.querySelector('.file-upload');
 				
 				fileInput.value = ''; // Очищаем поле ввода файла
-				fileNameSpan.textContent = ''; // Очищаем имя файла
-				fileErrorSpan.textContent = ''; // Очищаем текст ошибки
+				fileInputBody.classList.remove('_upload'); // Удаляем класс _upload, если он был добавлен ранее
+			// Проверяем, существует ли fileErrorSpan, прежде чем его очистить
+			if (fileErrorSpan) {
+        fileErrorSpan.textContent = ''; // Очищаем текст ошибки
+    }
 				
 		// Очищуємо форму
 		formValidate.formClean(form);

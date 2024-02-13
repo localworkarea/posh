@@ -8,7 +8,7 @@
 // При необхідності підключаємо додаткові модулі слайдера, вказуючи їх у {} через кому
 // Приклад: { Navigation, Autoplay }
 import Swiper from 'swiper';
-import { Navigation, FreeMode } from 'swiper/modules';
+import { FreeMode } from 'swiper/modules';
 /*
 Основні модулі слайдера:
 Navigation, Pagination, Autoplay, 
@@ -28,38 +28,33 @@ import "../../scss/base/swiper.scss";
 function initSliders() {
 	if (document.querySelector('.slider-main')) {
 		new Swiper('.slider-main', { 
-			modules: [Navigation, FreeMode],
+			modules: [FreeMode],
 			observer: true,
 			observeParents: true,
 			slidesPerView: "auto",
-			// spaceBetween: 0,
 			speed: 800,
 			grabCursor: true,
 
-			// freeMode: true,
 			freeMode: {
 				enabled: true,
 				// momentum: true,
 				momentumBounce: false,
 			},
-		
-			// mousewheel: {
-			// 	sensitivity: 1,
+			// autoplay: {
+			// 	delay: -10,
+			// 	disableOnInteraction: false,
+			// 	// waitForTransition: false, // Новая настройка для непрерывного автоплея
 			// },
-			// touchRatio: 0,
-			// allowTouchMove: true,
-			// edgeSwipeDetection: 10,
+		
 			nested: true,
-			// edgeSwipeDetection: true,
-			// simulateTouch: true,
-			//loop: true,
+			// loop: true,
 			//preloadImages: false,
 			//lazy: true,
 
-			navigation: {
-				prevEl: '.slider-main .swiper-button-prev',
-				nextEl: '.slider-main .swiper-button-next',
-			},
+			// navigation: {
+			// 	prevEl: '.slider-main .swiper-button-prev',
+			// 	nextEl: '.slider-main .swiper-button-next',
+			// },
 			breakpoints: {
 				300: {
 					spaceBetween: 16,
@@ -84,7 +79,46 @@ function initSliders() {
 
 			}
 		});
+		
 	}
+	// if (document.querySelector('.slider-insights')) {
+	// 	new Swiper('.slider-insights', { 
+	// 		modules: [Autoplay, FreeMode],
+	// 		// observer: true,
+	// 		// observeParents: true,
+	// 		slidesPerView: "auto",
+	// 		speed: 2500,
+	// 		grabCursor: true,
+	// 		spaceBetween: 32,
+
+	// 		autoplay: {
+	// 			delay: 500,
+	// 			disableOnInteraction: false,
+	// 			pauseOnMouseEnter: true,
+	// 			// waitForTransition: false, // Новая настройка для непрерывного автоплея
+	// 		},
+	// 		freeMode: {
+	// 			enabled: true,
+	// 			// momentum: true,
+	// 			momentumBounce: false,
+	// 		},
+	// 		// slideActiveClass: false,
+	// 		// slidePrevClass: false,
+	// 		// slideNextClass: false,
+		
+	// 		nested: true,
+	// 		loop: true,
+	// 		//preloadImages: false,
+	// 		//lazy: true,
+
+	// 		// Події
+	// 		on: {
+
+	// 		}
+	// 	});
+	// }
+
+
 	// if (document.querySelector('.swiper')) {
 	// 	new Swiper('.swiper', { 
 	// 		modules: [Navigation],
@@ -155,34 +189,6 @@ function initSliders() {
 	// 	});
 	// }
 }
-// Скролл на базі слайдера (за класом swiper scroll для оболонки слайдера)
-// function initSlidersScroll() {
-// 	let sliderScrollItems = document.querySelectorAll('.swiper_scroll');
-// 	if (sliderScrollItems.length > 0) {
-// 		for (let index = 0; index < sliderScrollItems.length; index++) {
-// 			const sliderScrollItem = sliderScrollItems[index];
-// 			const sliderScrollBar = sliderScrollItem.querySelector('.swiper-scrollbar');
-// 			const sliderScroll = new Swiper(sliderScrollItem, {
-// 				observer: true,
-// 				observeParents: true,
-// 				direction: 'vertical',
-// 				slidesPerView: 'auto',
-// 				freeMode: {
-// 					enabled: true,
-// 				},
-// 				scrollbar: {
-// 					el: sliderScrollBar,
-// 					draggable: true,
-// 					snapOnRelease: false
-// 				},
-// 				mousewheel: {
-// 					releaseOnEdges: true,
-// 				},
-// 			});
-// 			sliderScroll.scrollbar.updateSize();
-// 		}
-// 	}
-// }
 
 window.addEventListener("load", function (e) {
 	// Запуск ініціалізації слайдерів
