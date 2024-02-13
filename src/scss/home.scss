@@ -765,6 +765,7 @@
   }
   // .bg-main__shelf
   &__shelf {
+    width: auto;
     @include adaptiveValue("height", 740, 580,0,1920,1366);
     @media (min-width:em(1950.98)){
         width: toRem(900) !important;

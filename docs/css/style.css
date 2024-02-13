@@ -1791,6 +1791,10 @@ body {
   height: 72%;
 }
 
+.bg-main__shelf {
+  width: auto;
+}
+
 .cases-main {
   background-color: #FEFEFE;
 }
