@@ -6,79 +6,6 @@ import { flsModules } from "./modules.js";
 // import Typed from 'typed.js';
 
 
-// // Переменная для отслеживания начальной точки касания
-// let startY = null;
-
-// // Функция, которая будет вызываться при событии touchstart
-// function handleTouchStart(event) {
-//   const touch = event.touches[0];
-//   startY = touch.clientY;
-// }
-
-// // Функция, которая будет вызываться при событии touchmove
-// function handleTouchMove(event) {
-//   if (!startY) return;
-
-//   const touch = event.touches[0];
-//   const deltaY = touch.clientY - startY;
-//   const direction = chooseDirection(deltaY);
-
-//   // Если направление движения вниз, запускаем функцию checkContentHeight()
-//   if (direction === -1) {
-//     checkContentHeight();
-//   }
-
-//   // Сбрасываем начальную точку касания
-//   startY = null;
-// }
-
-// // Функция, которая будет вызываться при событии wheel
-// function handleWheel(event) {
-//   const deltaY = event.deltaY; // Получаем значение deltaY (изменение по вертикали)
-//   const direction = chooseDirection(deltaY);
-//   console.log("Direction:", direction); // выводим в консколь 1 или -1
-
-//   // Если направление движения вниз, запускаем функцию checkContentHeight()
-//   if (direction === 1) {
-//     checkContentHeight();
-//   }
-// }
-
-// // Функция для прокрутки вниз
-// function scrollDown() {
-//   document.documentElement.classList.add('section-01');
-//   setTimeout(bodyUnlock, 500); // Вызываем bodyUnlock() через 500мс
-// }
-
-// // Функция для проверки высоты контента внутри секции "hero"
-// function checkContentHeight() {
-//   const heroSection = document.querySelector(".hero");
-//   const contentHeight = heroSection.scrollHeight;
-//   const sectionHeight = heroSection.clientHeight;
-
-//    // Если высота контента меньше или равна высоте секции
-//    if (contentHeight <= sectionHeight) {
-//       scrollDown();
-    
-//   } else if (heroSection.scrollTop + sectionHeight >= heroSection.scrollHeight) {
-//       scrollDown();
-//     }
-// }
-
-// Функция, которая определяет направление движения колеса
-// function chooseDirection(deltaY) {
-//   return deltaY > 0 ? 1 : -1; // Например, 1 - вниз, -1 - вверх
-// }
-
-// // Элемент, на который будем навешивать обработчик событий
-// const targetElement = document.querySelector(".hero");
-
-// // Навешиваем обработчики событий
-// targetElement.addEventListener("wheel", handleWheel);
-// targetElement.addEventListener("touchstart", handleTouchStart);
-// targetElement.addEventListener("touchmove", handleTouchMove);
-
-
  var video = document.getElementById("heroVideo");
     var deferredSource = document.getElementById("deferredSource");
     
@@ -279,7 +206,7 @@ document.addEventListener("DOMContentLoaded", function() {
       
       
       // ANIMATION SVG MASSAGE (FOOTER) ==============================================================
-      function setupGroupAnimation(groupSelector, circleId, hoverRadius) {
+    function setupGroupAnimation(groupSelector, circleId, hoverRadius) {
         const group = document.querySelector(groupSelector);
         const animCircle = group.querySelector(`#${circleId}`); // Используем querySelector внутри группы
       
@@ -452,8 +379,6 @@ document.addEventListener("DOMContentLoaded", function() {
          });
      }
      
-
-     
       // -------------------------------------------------------------------------------------
      
       // TAPING TXT in input (FORM) ==============================================================
@@ -537,263 +462,53 @@ document.addEventListener("DOMContentLoaded", function() {
       // -------------------------------------------------------------------------------------
 
       
-    });
-    
-    // CLONE TIKERS ==============================================================
+}); // END OF DOMContentLoaded ----------------------------------------------------------------------------
 
-    const tikers = document.querySelectorAll(".tiker");
 
-    tikers.forEach((tiker) => {
-      const originalLine = tiker.querySelector(".tiker__line");
-    
-      if (originalLine) {
-        if (tiker.classList.contains("tiker-01")) {
-          originalLine.style.animation = "scroll 40s linear infinite";
-        } else if (tiker.classList.contains("tiker-insights")) {
-          originalLine.style.animation = "scroll 30s linear infinite";
-        }
-    
-        const clonedLine = originalLine.cloneNode(true);
-        clonedLine.classList.add("clone-line");
-    
-        tiker.appendChild(clonedLine);
-    
-        document.addEventListener("DOMContentLoaded", function() {
-          if (tiker.classList.contains("tiker-hover") && !document.documentElement.classList.contains("touch")) {
-            tiker.addEventListener("mouseover", () => {
-              const cloneLines = tiker.querySelectorAll(".tiker__line");
-              cloneLines.forEach((cloneLine) => {
-                cloneLine.style.animationPlayState = "paused";
-              });
-            });
-    
-            tiker.addEventListener("mouseout", () => {
-              const cloneLines = tiker.querySelectorAll(".tiker__line");
-              cloneLines.forEach((cloneLine) => {
-                cloneLine.style.animationPlayState = "running";
-              });
-            });
-          }
-        });
+
+
+
+  // CLONE TIKERS ==============================================================
+  const tikers = document.querySelectorAll(".tiker");
+  tikers.forEach((tiker) => {
+    const originalLine = tiker.querySelector(".tiker__line");
+  
+    if (originalLine) {
+      if (tiker.classList.contains("tiker-01")) {
+        originalLine.style.animation = "scroll 40s linear infinite";
       }
-    });
-      // -------------------------------------------------------------------------------------
-     
-
-
- 
-      
-//       const tikers = document.querySelectorAll(".tiker");
-//       const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-
-// tikers.forEach((tiker) => {
-//     const originalLines = tiker.querySelectorAll(".tiker__line");
-
-//     originalLines.forEach((originalLine) => {
-//         if (originalLine) {
-//             if (tiker.classList.contains("tiker-01")) {
-//                 originalLine.style.animation = "scroll 40s linear infinite";
-//             } else if (tiker.classList.contains("tiker-insights")) {
-//                 originalLine.style.animation = "scroll 30s linear infinite";
-//             }
-
-//             const clonedLine = originalLine.cloneNode(true);
-//             clonedLine.classList.add("clone-line");
-
-//             tiker.appendChild(clonedLine);
-//         }
-//     });
-
-//     document.addEventListener("DOMContentLoaded", function() {
-//         if (tiker.classList.contains("tiker-hover") && !document.documentElement.classList.contains("touch")) {
-//             tiker.addEventListener("mouseover", () => {
-//                 const allLines = tiker.querySelectorAll(".tiker__line, .clone-line");
-//                 allLines.forEach((line) => {
-//                     line.style.animationPlayState = "paused";
-//                 });
-//             });
-
-//             tiker.addEventListener("mouseout", () => {
-//                 const allLines = tiker.querySelectorAll(".tiker__line, .clone-line");
-//                 allLines.forEach((line) => {
-//                     line.style.animationPlayState = "running";
-//                 });
-//             });
-//         }
-
-//         let startX = null;
-//         let startTranslateX = 0;
-
-//         if (isMobile.iOS()) {
-//             tiker.addEventListener("touchmove", (e) => {
-//                 e.preventDefault();
-//             });
-
-//             tiker.addEventListener("touchstart", (e) => {
-//                 const targetElement = e.target;
-
-//                 if (targetElement) {
-//                     if (targetElement.scrollHeight !== targetElement.clientHeight) {
-//                         if (targetElement.scrollTop === 0) {
-//                             targetElement.scrollTop = 1;
-//                         }
-//                         if (targetElement.scrollTop === targetElement.scrollHeight - targetElement.clientHeight) {
-//                             targetElement.scrollTop = targetElement.scrollHeight - targetElement.clientHeight - 1;
-//                         }
-//                     }
-
-//                     tiker.allowUp = targetElement.scrollTop > 0;
-//                     tiker.allowDown = targetElement.scrollTop < (targetElement.scrollHeight - targetElement.clientHeight);
-//                     tiker.lastY = e.changedTouches[0].pageY;
-//                 }
-//             });
-
-//             tiker.addEventListener("touchmove", (e) => {
-//                 const targetElement = e.target;
-//                 const up = e.changedTouches[0].pageY > tiker.lastY;
-//                 const down = !up;
-//                 tiker.lastY = e.changedTouches[0].pageY;
-
-//                 if (targetElement) {
-//                     if ((up && tiker.allowUp) || (down && tiker.allowDown)) {
-//                         e.stopPropagation();
-//                     } else if (e.cancelable) {
-//                         e.preventDefault();
-//                     }
-//                 }
-//             });
-//         } else if (isSafari) {
-//           // Проверяем, является ли браузер Safari
-//             tiker.addEventListener("touchstart", (e) => {
-//                 const touch = e.touches[0];
-//                 startX = touch.clientX;
-//                 startScrollLeft = tiker.scrollLeft;
-//             });
-        
-//             tiker.addEventListener("touchmove", (e) => {
-//                 const touch = e.touches[0];
-//                 const diffX = startX - touch.clientX;
-//                 tiker.scrollLeft = startScrollLeft + diffX;
-//             });
-        
-//             tiker.addEventListener("touchend", () => {
-//                 // Возобновить анимацию всех .tiker__line и .clone-line при окончании касания
-//                 const allLines = tiker.querySelectorAll(".tiker__line, .clone-line");
-//                 allLines.forEach((line) => {
-//                     line.style.animationPlayState = "running";
-//                 });
-//             });
-//         } else {
-//             tiker.addEventListener("touchstart", (e) => {
-//                 // Остановить анимацию всех .tiker__line и .clone-line при касании
-//                 const allLines = tiker.querySelectorAll(".tiker__line, .clone-line");
-//                 allLines.forEach((line) => {
-//                     line.style.animationPlayState = "paused";
-//                 });
-//                 const touch = e.touches[0];
-//                 startX = touch.clientX;
-//                 startTranslateX = parseInt(originalLines[0].style.transform.replace("translateX(", "").replace("px)", ""), 10) || 0;
-//             });
-
-//             tiker.addEventListener("touchmove", (e) => {
-//                 const touch = e.touches[0];
-//                 const moveX = touch.clientX;
-//                 const diffX = moveX - startX;
-//                 const newTranslateX = startTranslateX + diffX;
-
-//                 // Прокрутка в зависимости от направления
-//                 const allLines = tiker.querySelectorAll(".tiker__line, .clone-line");
-//                 allLines.forEach((line) => {
-//                     line.style.transform = `translateX(${newTranslateX}px)`;
-//                 });
-//             });
-
-//             tiker.addEventListener("touchend", () => {
-//                 // Возобновить анимацию всех .tiker__line и .clone-line при окончании касания
-//                 const allLines = tiker.querySelectorAll(".tiker__line, .clone-line");
-//                 allLines.forEach((line) => {
-//                     line.style.animationPlayState = "running";
-//                 });
-//             });
-//         }
-//     });
-// });
-
-// const tikers = document.querySelectorAll(".tiker");
-
-// tikers.forEach((tiker) => {
-//     const originalLines = tiker.querySelectorAll(".tiker__line");
-
-//     originalLines.forEach((originalLine) => {
-//         if (originalLine) {
-//             if (tiker.classList.contains("tiker-01")) {
-//                 originalLine.style.animation = "scroll 40s linear infinite";
-//             } else if (tiker.classList.contains("tiker-insights")) {
-//                 originalLine.style.animation = "scroll 30s linear infinite";
-//             }
-
-//             const clonedLine = originalLine.cloneNode(true);
-//             clonedLine.classList.add("clone-line");
-
-//             tiker.appendChild(clonedLine);
-//         }
-//     });
-
-//     document.addEventListener("DOMContentLoaded", function() {
-//         if (tiker.classList.contains("tiker-hover") && !document.documentElement.classList.contains("touch")) {
-//             tiker.addEventListener("mouseover", () => {
-//                 const allLines = tiker.querySelectorAll(".tiker__line, .clone-line");
-//                 allLines.forEach((line) => {
-//                     line.style.animationPlayState = "paused";
-//                 });
-//             });
-
-//             tiker.addEventListener("mouseout", () => {
-//                 const allLines = tiker.querySelectorAll(".tiker__line, .clone-line");
-//                 allLines.forEach((line) => {
-//                     line.style.animationPlayState = "running";
-//                 });
-//             });
-//         }
-
-//         let startX = null;
-//         let startY = null;
-//         let translateX = 0;
-//         let translateY = 0;
-//         let isDragging = false;
-
-//         tiker.addEventListener("touchstart", (e) => {
-//             const touch = e.touches[0];
-//             startX = touch.clientX;
-//             startY = touch.clientY;
-//             isDragging = true;
-//         });
-
-//         tiker.addEventListener("touchmove", (e) => {
-//             if (!isDragging) return;
-
-//             const touch = e.touches[0];
-//             const diffX = touch.clientX - startX;
-//             const diffY = touch.clientY - startY;
-
-//             if (Math.abs(diffX) > Math.abs(diffY)) {
-//                 e.preventDefault();
-//                 translateX += diffX;
-//                 tiker.style.transform = `translateX(${translateX}px)`;
-//             }
-
-//             startX = touch.clientX;
-//             startY = touch.clientY;
-//         });
-
-//         tiker.addEventListener("touchend", () => {
-//             isDragging = false;
-//             // Возобновить анимацию всех .tiker__line и .clone-line при окончании касания
-//             const allLines = tiker.querySelectorAll(".tiker__line, .clone-line");
-//             allLines.forEach((line) => {
-//                 line.style.animationPlayState = "running";
-//             });
-//         });
-//     });
-// });
-
+      const clonedLine = originalLine.cloneNode(true);
+      clonedLine.classList.add("clone-line");
+  
+      tiker.appendChild(clonedLine);
+    }
+  });
+    
+  window.addEventListener("load", function (e) {
+    // Проверяем, является ли устройство мобильным
+    if (!isMobile.any()) {
+      // Находим элементы тикера
+      const tikerInsights = document.querySelector('.slider-insights');
+      const tikerLine = document.querySelector('.slider-insights__wrapper');
+      const clonedLine = tikerLine.cloneNode(true);
+      // Добавляем клон в конец элемента тикера
+      tikerInsights.appendChild(clonedLine);
+      // Присваиваем анимацию обоим линиям тикера
+      tikerLine.style.animation = "scroll 40s linear infinite";
+      clonedLine.style.animation = "scroll 40s linear infinite";
+      // Функция для приостановки анимации
+      function playStatePaused() {
+          tikerLine.style.animationPlayState = "paused";
+          clonedLine.style.animationPlayState = "paused";
+      }
+      // Функция для возобновления анимации
+      function playStateRunning() {
+          tikerLine.style.animationPlayState = "running";
+          clonedLine.style.animationPlayState = "running";
+      }
+      // Обработчики событий для мыши и касаний
+      tikerInsights.addEventListener("mouseover", playStatePaused);
+      tikerInsights.addEventListener("mouseout", playStateRunning);
+    }
+  });
+  // -------------------------------------------------------------------------------------

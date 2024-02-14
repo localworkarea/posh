@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20240213230329">
+	<link rel="stylesheet" href="css/style.min.css?_v=20240214163140">
 	<link rel="shortcut icon" href="favicon.ico">
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -119,7 +119,7 @@
 				<section class="hero">
 					<div class="hero__wrapper">
 						<div class="hero__bg">
-							<video autoplay loop muted playsinline id="heroVideo" class="hero__video ibg" width="1920" height="1080" poster="files/poster-hero.webp">
+							<video autoplay loop muted playsinline id="heroVideo" class="hero__video ibg" width="1920" height="1080" poster="files/video.webp">
 								<source src="files/posh-hero-2.mp4" type="video/mp4" />
 								<source id="deferredSource" data-src="files/posh-hero-3.mp4" type="video/mp4" media="(max-width: 31.25rem)" />
 							</video>
@@ -720,9 +720,9 @@
 							</a>
 						</div>
 					</div>
-					<div class="insights__tiker tiker tiker-hover tiker-insights">
-						<ul class="tiker__line">
-							<li class="tiker__insights insights-tiker">
+					<div class="insights__slider slider-insights swiper">
+						<ul class="slider-insights__wrapper swiper-wrapper">
+							<li class="slider-insights__slide swiper-slide">
 								<article class="insights-tiker__item">
 									<a href="#" class="insights-tiker__link" aria-label="посилання на сторінку в інстаграмм">
 										<picture><source srcset="img/instagram/01.webp" type="image/webp"><img class="insights-tiker__img ibg ibg--contain" src="img/instagram/01.jpg" alt="картинка з інстаграмм"></picture>
@@ -732,7 +732,7 @@
 									</a>
 								</article>
 							</li>
-							<li class="tiker__insights insights-tiker">
+							<li class="slider-insights__slide swiper-slide">
 								<article class="insights-tiker__item">
 									<a href="#" class="insights-tiker__link" aria-label="посилання на сторінку в інстаграмм">
 										<picture><source srcset="img/instagram/02.webp" type="image/webp"><img class="insights-tiker__img ibg ibg--contain" src="img/instagram/02.jpg" alt="картинка з інстаграмм"></picture>
@@ -742,7 +742,7 @@
 									</a>
 								</article>
 							</li>
-							<li class="tiker__insights insights-tiker">
+							<li class="slider-insights__slide swiper-slide">
 								<article class="insights-tiker__item">
 									<a href="#" class="insights-tiker__link" aria-label="посилання на сторінку в інстаграмм">
 										<picture><source srcset="img/instagram/03.webp" type="image/webp"><img class="insights-tiker__img ibg ibg--contain" src="img/instagram/03.jpg" alt="картинка з інстаграмм"></picture>
@@ -752,7 +752,7 @@
 									</a>
 								</article>
 							</li>
-							<li class="tiker__insights insights-tiker">
+							<li class="slider-insights__slide swiper-slide">
 								<article class="insights-tiker__item">
 									<a href="#" class="insights-tiker__link" aria-label="посилання на сторінку в інстаграмм">
 										<picture><source srcset="img/instagram/04.webp" type="image/webp"><img class="insights-tiker__img ibg ibg--contain" src="img/instagram/04.jpg" alt="картинка з інстаграмм"></picture>
@@ -762,37 +762,97 @@
 									</a>
 								</article>
 							</li>
-							<li class="tiker__insights insights-tiker">
+							<li class="slider-insights__slide swiper-slide">
 								<article class="insights-tiker__item">
 									<a href="#" class="insights-tiker__link" aria-label="посилання на сторінку в інстаграмм">
-										<picture><source srcset="img/instagram/01.webp" type="image/webp"><img class="insights-tiker__img ibg ibg--contain" src="img/instagram/01.jpg" alt="картинка з інстаграмм"></picture>
+										<picture><source srcset="img/instagram/04.webp" type="image/webp"><img class="insights-tiker__img ibg ibg--contain" src="img/instagram/04.jpg" alt="картинка з інстаграмм"></picture>
 										<span class="insights-tiker__cover">
 											<img class="insights-tiker__ic" src="img/icon/insta.svg" alt="іконка інстаграмм">
 										</span>
 									</a>
 								</article>
 							</li>
-							<li class="tiker__insights insights-tiker">
+							<li class="slider-insights__slide swiper-slide">
 								<article class="insights-tiker__item">
 									<a href="#" class="insights-tiker__link" aria-label="посилання на сторінку в інстаграмм">
-										<picture><source srcset="img/instagram/02.webp" type="image/webp"><img class="insights-tiker__img ibg ibg--contain" src="img/instagram/02.jpg" alt="картинка з інстаграмм"></picture>
+										<picture><source srcset="img/instagram/04.webp" type="image/webp"><img class="insights-tiker__img ibg ibg--contain" src="img/instagram/04.jpg" alt="картинка з інстаграмм"></picture>
 										<span class="insights-tiker__cover">
 											<img class="insights-tiker__ic" src="img/icon/insta.svg" alt="іконка інстаграмм">
 										</span>
 									</a>
 								</article>
 							</li>
-							<li class="tiker__insights insights-tiker">
+							<li class="slider-insights__slide swiper-slide">
 								<article class="insights-tiker__item">
 									<a href="#" class="insights-tiker__link" aria-label="посилання на сторінку в інстаграмм">
-										<picture><source srcset="img/instagram/03.webp" type="image/webp"><img class="insights-tiker__img ibg ibg--contain" src="img/instagram/03.jpg" alt="картинка з інстаграмм"></picture>
+										<picture><source srcset="img/instagram/04.webp" type="image/webp"><img class="insights-tiker__img ibg ibg--contain" src="img/instagram/04.jpg" alt="картинка з інстаграмм"></picture>
 										<span class="insights-tiker__cover">
 											<img class="insights-tiker__ic" src="img/icon/insta.svg" alt="іконка інстаграмм">
 										</span>
 									</a>
 								</article>
 							</li>
-							<li class="tiker__insights insights-tiker">
+							<li class="slider-insights__slide swiper-slide">
+								<article class="insights-tiker__item">
+									<a href="#" class="insights-tiker__link" aria-label="посилання на сторінку в інстаграмм">
+										<picture><source srcset="img/instagram/04.webp" type="image/webp"><img class="insights-tiker__img ibg ibg--contain" src="img/instagram/04.jpg" alt="картинка з інстаграмм"></picture>
+										<span class="insights-tiker__cover">
+											<img class="insights-tiker__ic" src="img/icon/insta.svg" alt="іконка інстаграмм">
+										</span>
+									</a>
+								</article>
+							</li>
+							<li class="slider-insights__slide swiper-slide">
+								<article class="insights-tiker__item">
+									<a href="#" class="insights-tiker__link" aria-label="посилання на сторінку в інстаграмм">
+										<picture><source srcset="img/instagram/04.webp" type="image/webp"><img class="insights-tiker__img ibg ibg--contain" src="img/instagram/04.jpg" alt="картинка з інстаграмм"></picture>
+										<span class="insights-tiker__cover">
+											<img class="insights-tiker__ic" src="img/icon/insta.svg" alt="іконка інстаграмм">
+										</span>
+									</a>
+								</article>
+							</li>
+							<li class="slider-insights__slide swiper-slide">
+								<article class="insights-tiker__item">
+									<a href="#" class="insights-tiker__link" aria-label="посилання на сторінку в інстаграмм">
+										<picture><source srcset="img/instagram/04.webp" type="image/webp"><img class="insights-tiker__img ibg ibg--contain" src="img/instagram/04.jpg" alt="картинка з інстаграмм"></picture>
+										<span class="insights-tiker__cover">
+											<img class="insights-tiker__ic" src="img/icon/insta.svg" alt="іконка інстаграмм">
+										</span>
+									</a>
+								</article>
+							</li>
+							<li class="slider-insights__slide swiper-slide">
+								<article class="insights-tiker__item">
+									<a href="#" class="insights-tiker__link" aria-label="посилання на сторінку в інстаграмм">
+										<picture><source srcset="img/instagram/04.webp" type="image/webp"><img class="insights-tiker__img ibg ibg--contain" src="img/instagram/04.jpg" alt="картинка з інстаграмм"></picture>
+										<span class="insights-tiker__cover">
+											<img class="insights-tiker__ic" src="img/icon/insta.svg" alt="іконка інстаграмм">
+										</span>
+									</a>
+								</article>
+							</li>
+							<li class="slider-insights__slide swiper-slide">
+								<article class="insights-tiker__item">
+									<a href="#" class="insights-tiker__link" aria-label="посилання на сторінку в інстаграмм">
+										<picture><source srcset="img/instagram/04.webp" type="image/webp"><img class="insights-tiker__img ibg ibg--contain" src="img/instagram/04.jpg" alt="картинка з інстаграмм"></picture>
+										<span class="insights-tiker__cover">
+											<img class="insights-tiker__ic" src="img/icon/insta.svg" alt="іконка інстаграмм">
+										</span>
+									</a>
+								</article>
+							</li>
+							<li class="slider-insights__slide swiper-slide">
+								<article class="insights-tiker__item">
+									<a href="#" class="insights-tiker__link" aria-label="посилання на сторінку в інстаграмм">
+										<picture><source srcset="img/instagram/04.webp" type="image/webp"><img class="insights-tiker__img ibg ibg--contain" src="img/instagram/04.jpg" alt="картинка з інстаграмм"></picture>
+										<span class="insights-tiker__cover">
+											<img class="insights-tiker__ic" src="img/icon/insta.svg" alt="іконка інстаграмм">
+										</span>
+									</a>
+								</article>
+							</li>
+							<li class="slider-insights__slide swiper-slide">
 								<article class="insights-tiker__item">
 									<a href="#" class="insights-tiker__link" aria-label="посилання на сторінку в інстаграмм">
 										<picture><source srcset="img/instagram/04.webp" type="image/webp"><img class="insights-tiker__img ibg ibg--contain" src="img/instagram/04.jpg" alt="картинка з інстаграмм"></picture>
@@ -804,150 +864,6 @@
 							</li>
 						</ul>
 					</div>
-					<!-- <div class="insights__slider slider-insights swiper">
-							<div class="slider-insights__wrapper swiper-wrapper">
-								<div class="slider-insights__slide swiper-slide">
-									<article class="insights-tiker__item">
-										<a href="#" class="insights-tiker__link" aria-label="посилання на сторінку в інстаграмм">
-											<picture><source srcset="img/instagram/01.webp" type="image/webp"><img class="insights-tiker__img ibg ibg--contain" src="img/instagram/01.jpg" alt="картинка з інстаграмм"></picture>
-											<span class="insights-tiker__cover">
-												<img class="insights-tiker__ic" src="img/icon/insta.svg" alt="іконка інстаграмм">
-											</span>
-										</a>
-									</article>
-								</div>
-								<div class="slider-insights__slide swiper-slide">
-									<article class="insights-tiker__item">
-										<a href="#" class="insights-tiker__link" aria-label="посилання на сторінку в інстаграмм">
-											<picture><source srcset="img/instagram/01.webp" type="image/webp"><img class="insights-tiker__img ibg ibg--contain" src="img/instagram/01.jpg" alt="картинка з інстаграмм"></picture>
-											<span class="insights-tiker__cover">
-												<img class="insights-tiker__ic" src="img/icon/insta.svg" alt="іконка інстаграмм">
-											</span>
-										</a>
-									</article>
-								</div>
-								<div class="slider-insights__slide swiper-slide">
-									<article class="insights-tiker__item">
-										<a href="#" class="insights-tiker__link" aria-label="посилання на сторінку в інстаграмм">
-											<picture><source srcset="img/instagram/01.webp" type="image/webp"><img class="insights-tiker__img ibg ibg--contain" src="img/instagram/01.jpg" alt="картинка з інстаграмм"></picture>
-											<span class="insights-tiker__cover">
-												<img class="insights-tiker__ic" src="img/icon/insta.svg" alt="іконка інстаграмм">
-											</span>
-										</a>
-									</article>
-								</div>
-								<div class="slider-insights__slide swiper-slide">
-									<article class="insights-tiker__item">
-										<a href="#" class="insights-tiker__link" aria-label="посилання на сторінку в інстаграмм">
-											<picture><source srcset="img/instagram/01.webp" type="image/webp"><img class="insights-tiker__img ibg ibg--contain" src="img/instagram/01.jpg" alt="картинка з інстаграмм"></picture>
-											<span class="insights-tiker__cover">
-												<img class="insights-tiker__ic" src="img/icon/insta.svg" alt="іконка інстаграмм">
-											</span>
-										</a>
-									</article>
-								</div>
-								<div class="slider-insights__slide swiper-slide">
-									<article class="insights-tiker__item">
-										<a href="#" class="insights-tiker__link" aria-label="посилання на сторінку в інстаграмм">
-											<picture><source srcset="img/instagram/01.webp" type="image/webp"><img class="insights-tiker__img ibg ibg--contain" src="img/instagram/01.jpg" alt="картинка з інстаграмм"></picture>
-											<span class="insights-tiker__cover">
-												<img class="insights-tiker__ic" src="img/icon/insta.svg" alt="іконка інстаграмм">
-											</span>
-										</a>
-									</article>
-								</div>
-								<div class="slider-insights__slide swiper-slide">
-									<article class="insights-tiker__item">
-										<a href="#" class="insights-tiker__link" aria-label="посилання на сторінку в інстаграмм">
-											<picture><source srcset="img/instagram/01.webp" type="image/webp"><img class="insights-tiker__img ibg ibg--contain" src="img/instagram/01.jpg" alt="картинка з інстаграмм"></picture>
-											<span class="insights-tiker__cover">
-												<img class="insights-tiker__ic" src="img/icon/insta.svg" alt="іконка інстаграмм">
-											</span>
-										</a>
-									</article>
-								</div>
-								<div class="slider-insights__slide swiper-slide">
-									<article class="insights-tiker__item">
-										<a href="#" class="insights-tiker__link" aria-label="посилання на сторінку в інстаграмм">
-											<picture><source srcset="img/instagram/01.webp" type="image/webp"><img class="insights-tiker__img ibg ibg--contain" src="img/instagram/01.jpg" alt="картинка з інстаграмм"></picture>
-											<span class="insights-tiker__cover">
-												<img class="insights-tiker__ic" src="img/icon/insta.svg" alt="іконка інстаграмм">
-											</span>
-										</a>
-									</article>
-								</div>
-								<div class="slider-insights__slide swiper-slide">
-									<article class="insights-tiker__item">
-										<a href="#" class="insights-tiker__link" aria-label="посилання на сторінку в інстаграмм">
-											<picture><source srcset="img/instagram/01.webp" type="image/webp"><img class="insights-tiker__img ibg ibg--contain" src="img/instagram/01.jpg" alt="картинка з інстаграмм"></picture>
-											<span class="insights-tiker__cover">
-												<img class="insights-tiker__ic" src="img/icon/insta.svg" alt="іконка інстаграмм">
-											</span>
-										</a>
-									</article>
-								</div>
-								<div class="slider-insights__slide swiper-slide">
-									<article class="insights-tiker__item">
-										<a href="#" class="insights-tiker__link" aria-label="посилання на сторінку в інстаграмм">
-											<picture><source srcset="img/instagram/01.webp" type="image/webp"><img class="insights-tiker__img ibg ibg--contain" src="img/instagram/01.jpg" alt="картинка з інстаграмм"></picture>
-											<span class="insights-tiker__cover">
-												<img class="insights-tiker__ic" src="img/icon/insta.svg" alt="іконка інстаграмм">
-											</span>
-										</a>
-									</article>
-								</div>
-								<div class="slider-insights__slide swiper-slide">
-									<article class="insights-tiker__item">
-										<a href="#" class="insights-tiker__link" aria-label="посилання на сторінку в інстаграмм">
-											<picture><source srcset="img/instagram/01.webp" type="image/webp"><img class="insights-tiker__img ibg ibg--contain" src="img/instagram/01.jpg" alt="картинка з інстаграмм"></picture>
-											<span class="insights-tiker__cover">
-												<img class="insights-tiker__ic" src="img/icon/insta.svg" alt="іконка інстаграмм">
-											</span>
-										</a>
-									</article>
-								</div>
-								<div class="slider-insights__slide swiper-slide">
-									<article class="insights-tiker__item">
-										<a href="#" class="insights-tiker__link" aria-label="посилання на сторінку в інстаграмм">
-											<picture><source srcset="img/instagram/01.webp" type="image/webp"><img class="insights-tiker__img ibg ibg--contain" src="img/instagram/01.jpg" alt="картинка з інстаграмм"></picture>
-											<span class="insights-tiker__cover">
-												<img class="insights-tiker__ic" src="img/icon/insta.svg" alt="іконка інстаграмм">
-											</span>
-										</a>
-									</article>
-								</div>
-								<div class="slider-insights__slide swiper-slide">
-									<article class="insights-tiker__item">
-										<a href="#" class="insights-tiker__link" aria-label="посилання на сторінку в інстаграмм">
-											<picture><source srcset="img/instagram/01.webp" type="image/webp"><img class="insights-tiker__img ibg ibg--contain" src="img/instagram/01.jpg" alt="картинка з інстаграмм"></picture>
-											<span class="insights-tiker__cover">
-												<img class="insights-tiker__ic" src="img/icon/insta.svg" alt="іконка інстаграмм">
-											</span>
-										</a>
-									</article>
-								</div>
-								<div class="slider-insights__slide swiper-slide">
-									<article class="insights-tiker__item">
-										<a href="#" class="insights-tiker__link" aria-label="посилання на сторінку в інстаграмм">
-											<picture><source srcset="img/instagram/01.webp" type="image/webp"><img class="insights-tiker__img ibg ibg--contain" src="img/instagram/01.jpg" alt="картинка з інстаграмм"></picture>
-											<span class="insights-tiker__cover">
-												<img class="insights-tiker__ic" src="img/icon/insta.svg" alt="іконка інстаграмм">
-											</span>
-										</a>
-									</article>
-								</div>
-								<div class="slider-insights__slide swiper-slide">
-									<article class="insights-tiker__item">
-										<a href="#" class="insights-tiker__link" aria-label="посилання на сторінку в інстаграмм">
-											<picture><source srcset="img/instagram/01.webp" type="image/webp"><img class="insights-tiker__img ibg ibg--contain" src="img/instagram/01.jpg" alt="картинка з інстаграмм"></picture>
-											<span class="insights-tiker__cover">
-												<img class="insights-tiker__ic" src="img/icon/insta.svg" alt="іконка інстаграмм">
-											</span>
-										</a>
-									</article>
-								</div>
-							</div>
-						</div> -->
 					<div class="insights__container insights__container--b">
 						<ul class="insights__links links-insights">
 							<li class="links-insights__item">
@@ -1377,8 +1293,8 @@
 	<!-- <div class="mask">
 			<span></span>
 		</div> -->
-	<script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js?_v=20240213230329"></script>
-	<script src="js/app.min.js?_v=20240213230329"></script>
+	<script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js?_v=20240214163140"></script>
+	<script src="js/app.min.js?_v=20240214163140"></script>
 </body>
 
 </html>
