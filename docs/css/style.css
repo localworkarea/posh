@@ -1934,7 +1934,7 @@ body {
   background-color: #1A1F35;
 }
 
-.slider-insights:not(.touch .slider-insights) {
+.slider-insights {
   overflow: hidden;
   width: -webkit-max-content;
   width: -moz-max-content;
@@ -1948,12 +1948,30 @@ body {
   position: relative;
 }
 
-.slider-insights__wrapper:not(.touch .slider-insights__wrapper) {
+.touch .slider-insights {
+  width: auto;
+  display: block;
+  -webkit-box-align: unset;
+      -ms-flex-align: unset;
+          align-items: unset;
+}
+
+.slider-insights__wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
+}
+
+.touch .slider-insights__wrapper {
+  -ms-flex-wrap: unset;
+      flex-wrap: unset;
+}
+
+.touch .insights-tiker__item {
+  margin-left: unset;
+  margin-right: unset;
 }
 
 .insights-tiker__link {
@@ -3497,11 +3515,11 @@ body {
     padding-right: 0.0000000625rem;
   }
 
-  .insights-tiker__item:not(.touch .insights-tiker__item) {
+  .insights-tiker__item {
     margin-left: 1.25rem;
   }
 
-  .insights-tiker__item:not(.touch .insights-tiker__item) {
+  .insights-tiker__item {
     margin-right: 1.25rem;
   }
 
@@ -3555,11 +3573,11 @@ body {
     max-width: 9.625rem;
   }
 
-  .insights-tiker__item:not(.touch .insights-tiker__item) {
+  .insights-tiker__item {
     margin-left: 0.8125rem;
   }
 
-  .insights-tiker__item:not(.touch .insights-tiker__item) {
+  .insights-tiker__item {
     margin-right: 0.8125rem;
   }
 
@@ -6918,25 +6936,25 @@ body {
 }
 
 @supports (margin-left: clamp( 0.8125rem , -0.0625rem  +  1.09375vw , 1.25rem )) {
-    .insights-tiker__item:not(.touch .insights-tiker__item) {
+    .insights-tiker__item {
       margin-left: clamp( 0.8125rem , -0.0625rem  +  1.09375vw , 1.25rem );
     }
 }
 
 @supports not (margin-left: clamp( 0.8125rem , -0.0625rem  +  1.09375vw , 1.25rem )) {
-    .insights-tiker__item:not(.touch .insights-tiker__item) {
+    .insights-tiker__item {
       margin-left: calc(0.8125rem + 0.4375 * (100vw - 80rem) / 40);
     }
 }
 
 @supports (margin-right: clamp( 0.8125rem , -0.0625rem  +  1.09375vw , 1.25rem )) {
-    .insights-tiker__item:not(.touch .insights-tiker__item) {
+    .insights-tiker__item {
       margin-right: clamp( 0.8125rem , -0.0625rem  +  1.09375vw , 1.25rem );
     }
 }
 
 @supports not (margin-right: clamp( 0.8125rem , -0.0625rem  +  1.09375vw , 1.25rem )) {
-    .insights-tiker__item:not(.touch .insights-tiker__item) {
+    .insights-tiker__item {
       margin-right: calc(0.8125rem + 0.4375 * (100vw - 80rem) / 40);
     }
 }

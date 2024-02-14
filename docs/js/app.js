@@ -4115,7 +4115,6 @@
             });
         }
         window.addEventListener("load", (function(e) {
-            initSliders();
             let mySwipers = {};
             function initSlider(selector, options) {
                 if (!mySwipers[selector]) mySwipers[selector] = new Swiper(selector, options);
@@ -4132,15 +4131,9 @@
                     observer: true,
                     observeParents: true,
                     slidesPerView: "auto",
-                    speed: 2500,
+                    speed: 1500,
                     autoplay: {
-                        delay: 350,
-                        disableOnInteraction: false,
-                        pauseOnMouseEnter: true
-                    },
-                    freeMode: {
-                        enabled: true,
-                        momentumBounce: false
+                        delay: 500
                     },
                     nested: true,
                     loop: true,
@@ -4156,6 +4149,7 @@
                 });
             };
             touchScreenChecker();
+            initSliders();
         }));
         class ScrollWatcher {
             constructor(props) {

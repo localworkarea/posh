@@ -65,68 +65,74 @@ function initSliders() {
 	}
 }
 
+
+
+
+
 window.addEventListener("load", function (e) {
-	initSliders();
-	
-	
 	let mySwipers = {};
-	
-	function initSlider(selector, options) {
-		if (!mySwipers[selector]) {
-			mySwipers[selector] = new Swiper(selector, options);
-		}
+
+function initSlider(selector, options) {
+	if (!mySwipers[selector]) {
+		mySwipers[selector] = new Swiper(selector, options);
 	}
-	
-	const touchScreenChecker = function () {
-		if (isMobile.any()) {
-			enableSwipers();
-		} else {
-			for (const selector in mySwipers) {
-				if (mySwipers[selector] !== undefined) {
-					mySwipers[selector].destroy(true, true);
-					mySwipers[selector] = undefined;
-				}
+}
+
+const touchScreenChecker = function () {
+	if (isMobile.any()) {
+		enableSwipers();
+	} else {
+		for (const selector in mySwipers) {
+			if (mySwipers[selector] !== undefined) {
+				mySwipers[selector].destroy(true, true);
+				mySwipers[selector] = undefined;
 			}
 		}
-	};
-	
-	const enableSwipers = function () {
-		if (document.querySelector('.slider-insights')) {
-			initSlider('.slider-insights', {
-				modules: [Autoplay, FreeMode],
-				observer: true,
-				observeParents: true,
-				slidesPerView: "auto",
-				speed: 2500,
-				autoplay: {
-					delay: 350,
-					disableOnInteraction: false,
-					pauseOnMouseEnter: true,
-				},
-				freeMode: {
-					enabled: true,
-					momentumBounce: false,
-				},
-				nested: true,
-				loop: true,
-				breakpoints: {
-					300: {
-						spaceBetween: 24,
-					},
-					1500: {
-						spaceBetween: 40,
-					},
-				},
-				on: {
-					// Добавьте обработчики событий, если необходимо
-				}
-			});
-		}
-	};
-	
-	touchScreenChecker();
-});
+	}
+};
 
+const enableSwipers = function () {
+	if (document.querySelector('.slider-insights')) {
+		initSlider('.slider-insights', {
+			modules: [Autoplay, FreeMode],
+			observer: true,
+			observeParents: true,
+			slidesPerView: "auto",
+			speed: 1500,
+			autoplay: {
+				delay: 500,
+				// disableOnInteraction: false,
+				// pauseOnMouseEnter: true,
+			},
+			// freeMode: {
+			// 	enabled: true,
+			// 	momentumBounce: false,
+			// 	momentumRatio: 0.3,
+			// },
+			nested: true,
+			loop: true,
+			breakpoints: {
+				300: {
+					spaceBetween: 24,
+				},
+				1500: {
+					spaceBetween: 40,
+				},
+			},
+			on: {
+				// Добавьте обработчики событий, если необходимо
+			}
+		});
+	}
+};
+
+touchScreenChecker();
+
+
+
+	initSliders();
+	
+});
 
 
 

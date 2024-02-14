@@ -1250,20 +1250,24 @@ background-color: $mainWhite;
 }
   
 .slider-insights {
-  &:not(.touch &) {
     overflow: hidden;
     width: max-content;
     display: flex;
     align-items: center;
     position: relative;
-  }
+    .touch & {
+      width: auto;
+      display: block;
+      align-items: unset;
+    }
   // .slider-insights__wrapper
   &__wrapper {
     // transition-timing-function: linear;
-    &:not(.touch &) {
       display: flex;
       flex-wrap: nowrap;
-    }
+      .touch & {
+        flex-wrap: unset;
+      }
   }
   // .slider-insights__slide
   &__slide {
@@ -1273,10 +1277,12 @@ background-color: $mainWhite;
 .insights-tiker {
   // .insights-tiker__item
   &__item {
-    &:not(.touch &) {
       @include adaptiveValue("margin-left", 20,13,0,1920,1280);
       @include adaptiveValue("margin-right", 20,13,0,1920,1280);
-    }
+      .touch & {
+        margin-left: unset;
+        margin-right: unset;
+      }
   }
   // .insights-tiker__link
   &__link {
