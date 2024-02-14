@@ -16,11 +16,7 @@
   display: flex;
   align-items: flex-end;
   will-change: top;
-
-  
   transition: min-height .5s, background-color .5s, transform .6s ease, top .6s ease;
-
-
 
   @media (min-width:$mobileSmall){
     padding: toRem(15) 0;
@@ -31,8 +27,6 @@
      padding: toRem(10) 0; 
   }
   
- 
-  
   .fp-section-1 & {
     background-color: $darkBlue;
     @media (min-width:$mobileSmall){
@@ -41,18 +35,19 @@
   }
   &._header-scroll {
     top: toRem(-110);
-    // transform: translateY(-100%);
   }
   &._header-show {
     top:0;
-    // transform: translateY(0);
   }
   // .header_logo
   &_logo {
     display: inline-block;
     @media (max-width:$mobileSmall){
-      opacity: 0;
-      pointer-events: none;
+      transition: opacity .6s ease;
+      .fp-section-1 & {
+        opacity: 0;
+        pointer-events: none;
+      }
     }
     img {
       transition: width .5s ;
