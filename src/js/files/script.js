@@ -111,6 +111,36 @@ document.addEventListener("DOMContentLoaded", function() {
     // -------------------------------------------------------------------------------------
 
 
+    // КНОПКА ПЕРЕКЛЮЧИЕНИЯ ЯЗЫКА НА ТОЧСКРИНАХ ===========================================
+       // Функция для проверки ширины экрана
+    // function isScreenWideEnough() {
+    //   return window.innerWidth > 75.06125 * parseFloat(getComputedStyle(document.documentElement).fontSize);
+    // }
+    // // Функция для добавления класса .touch-btn к .lang-header на устройствах "точкскрин" и широком экране
+    // function addTouchBtnClass() {
+    //   if (isMobile.any() && isScreenWideEnough()) {
+    //       let langHeader = document.querySelector('.lang-header');
+    //       langHeader.classList.add('touch-btn');
+    //   }
+    // }
+    // // Обработчик события поворота экрана
+    // window.addEventListener('resize', function() {
+    //   let langHeader = document.querySelector('.lang-header');
+    //   if (!isMobile.any() || !isScreenWideEnough()) {
+    //       langHeader.classList.remove('touch-btn');
+    //   }
+    // });
+
+    // // Добавляем класс .touch-btn при загрузке страницы
+    // window.addEventListener('load', addTouchBtnClass);
+
+    // // Добавляем класс .touch-btn при первой загрузке, если окно уже с широким экраном
+    // addTouchBtnClass();
+
+    // -------------------------------------------------------------------------------------
+    
+
+
     // КЛОНИРОВАНИЕ КНОПОК .btn-mask ==============================================================
         // Находим все элементы с классом btn-mask
         var btnMaskElements = document.querySelectorAll('.btn-mask');

@@ -1,9 +1,3 @@
-.fp-section-1.fp-down {
-  .header {
-    // transform: translateY(-100%);
-  }
-}
-
 
 .header {
   position: fixed;
@@ -29,8 +23,11 @@
   
   .fp-section-1 & {
     background-color: $darkBlue;
-    @media (min-width:$mobileSmall){
-      min-height: toRem(70);
+    @media (min-width:em(136.98)){
+        min-height: toRem(70);
+    }
+    @media (max-width: em(1366.98)) and (min-width:$mobileSmall){
+      min-height: toRem(66);
     }
   }
   &._header-scroll {
@@ -51,26 +48,22 @@
     }
     img {
       transition: width .5s ;
-      @media (min-width:em(1288.98)){
+      height: auto;
+      @media (min-width:em(1440.98)){
         width: toRem(221);
-        
-        .fp-section-1 & {
+      }
+      @media (max-width: em(1440.98)){
+        width: toRem(198);
+      }
+      
+      .fp-section-1 & {
+        @media (min-width:em(1440.98)){
           width: toRem(142);
-          // transition-delay: .5s;
+        }
+        @media (max-width: em(1440.98)) and (min-width: $mobileSmall) {
+          width: toRem(126);
         }
       }
-      @media (max-width: em(1288.98)) and (min-width: $mobileSmall) {
-        width: toRem(207);
-       
-        .fp-section-1 & {
-          width: toRem(140);
-          // transition-delay: .5s;
-        }
-      }
-
-      // @media (max-width:$mobileSmall){
-      //    width: toRem(198); 
-      // }
     }
   }
   // .header__container
@@ -129,10 +122,15 @@
   &__list {
     display: flex;
     row-gap: toRem(13);
+    @media (min-width:em(1366.98)){
+        column-gap: toRem(40);
+    }
+    @media (max-width: em(1366.98)) and (min-width: em(1200.98)){
+      column-gap: toRem(36);
+    }
     @media (min-width:em(1200.98)){
       flex-wrap: wrap;
       align-items: center;
-      column-gap: toRem(40);
     }
     @media (max-width: em(1200.98)){
         flex-direction: column;
@@ -175,12 +173,7 @@
   // .menu__link
   &__link {
     line-height: normal;
-    @media (min-width:em(1288.98)){
-      font-size: toRem(16);
-    }
-    @media (max-width: em(1288.98)) and (min-width: em(1200.98)) {
-        font-size: toRem(13);
-    }
+    @include adaptiveValue("font-size", 16, 12,2,1920,1200.98);
     @media (max-width: em(1200.98)) and (min-width: $mobileSmall){
         font-size: toRem(38);
     }
@@ -308,10 +301,10 @@
     display: flex;
     align-items: center;
   }
-  @media (min-width:em(1288.98)){
+  @media (min-width:em(1366.98)){
     column-gap: toRem(40);
   }
-  @media (max-width: em(1288.98)) and (min-width: em(1200.98)){
+  @media (max-width: em(1366.98)) and (min-width: em(1200.98)){
     column-gap: toRem(20);
   }
   @media (max-width: em(1200.98)){
@@ -320,11 +313,9 @@
   // .side-header__phone
   &__phone {
     white-space: nowrap;
-    @media (min-width:em(1200.98)){
-      font-size: toRem(20);
-    }
+    @include adaptiveValue("font-size", 21, 19,0,1920,1366);
     @media (max-width: em(1200.98)){
-        font-size: toRem(28);
+        font-size: toRem(28) !important;
         width: max-content;
     }
   }
@@ -337,12 +328,15 @@
   position: relative;
   display: flex;
   align-items: center;
-  @media (min-width:em(1288.98)){
-      height: toRem(40);
+  @media (min-width:em(1366.98)){
+    width: toRem(100);
+    height: toRem(40);
+  }
+  @media (max-width:em(1366.98)) and (min-width: em(1200.98)) {
+    width: toRem(89);
+    height: toRem(36);
   }
   @media (min-width:em(1200.98)){
-    width: toRem(100);
-    height: toRem(37);
     @media (any-hover: hover){
       &:hover{
         .lang-header__link {
@@ -393,21 +387,12 @@
         }
       }
     }
+    
     @extend %animationMenuMob;
     @media (max-width: em(1200.98)){
       transform: translateY(0);
       .menu-open & {
-          &:nth-child(1) {
             transition-delay: .1s;
-          }
-          &:nth-child(2) {
-            // transition-delay: .13s;
-            transition-delay: .1s;
-          }
-          &:nth-child(3) {
-            // transition-delay: .16s;
-            transition-delay: .1s;
-          }
         }
     }
 	}
@@ -417,9 +402,13 @@
     z-index: 2;
     text-align: center;
     transition: opacity .45s ease, width .45s ease, border .45s ease;
-    
+    @media (min-width:em(1366.98)){
+        font-size: toRem(17);
+    }
+    @media (max-width:em(1366.98)) and (min-width: em(1200.98)) {
+      font-size: toRem(15);
+    }
     @media (min-width:em(1200.98)){
-      font-size: toRem(17);
       border-radius: toRem(173);
       border: 1px solid $mainWhite;
       height: 100%;
@@ -430,6 +419,9 @@
       justify-content: center;
 
       opacity: 0;
+      .touch & {
+        opacity: 1;
+      }
       @media (any-hover: hover){
         &:hover{
           border-color: transparent;
@@ -456,6 +448,9 @@
         position: absolute;
         top: 0;
         left: 0;      
+        .touch & {
+          opacity: 0;
+        }
       }
       @media (max-width: em(1200.98)){
           font-weight: 800;

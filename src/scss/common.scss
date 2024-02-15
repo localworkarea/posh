@@ -64,10 +64,6 @@ body {
 }
 
 
-.ovrf-hidden {
-  overflow: hidden;
-}
-
 .btn {
   display: flex;
   align-items: center;
@@ -83,15 +79,15 @@ body {
   
   &.btn--01 {
     border-radius: toRem(25);
-    padding: 0 toRem(27);
-    @include adaptiveValue("font-size", 24, 22,0,1366,1280);
-    @include adaptiveValue("height", 48, 45,0,1366,1280);
-    .btn__txt {
-      text-transform: uppercase;
-    }
+    padding: 0 toRem(25);
+    @include adaptiveValue("font-size", 24, 21,0,1920,1366);
+    @include adaptiveValue("height", 48, 42,0,1920,1366);
     @media (max-width:$mobileSmall){
       font-size: toRem(24) !important;
       height: toRem(48) !important;
+    }
+    .btn__txt {
+      text-transform: uppercase;
     }
   }
   
@@ -100,7 +96,8 @@ body {
     border-radius: toRem(25);
     padding: 0 toRem(20) 0 toRem(17);
     font-size: toRem(16);
-    height: toRem(36);
+    @include adaptiveValue("height", 36, 34,2,1920,1366.98);
+    @include adaptiveValue("height", 34, 36,3,1366.98,480.98);
     .btn__arr-r {
       width: toRem(11);
     }
@@ -147,6 +144,11 @@ body {
   }
   // .btn__arr-r
   &__arr-r {
+    height: auto;
+    width: toRem(15);
+    @media (max-width:em(1366.98)) and (min-width:$mobileSmall) {
+        width: toRem(12);
+    }
     transition: transform .35s ease 0s;
     filter: invert(100%) sepia(0%) saturate(7427%) hue-rotate(314deg) brightness(125%) contrast(99%);
   }
@@ -224,7 +226,7 @@ body {
 
   &.btn-mask--03,
   &.btn-mask--04 {
-    @include adaptiveValue("min-width", 287, 254,0,1366,480.98);
+    @include adaptiveValue("min-width", 287, 251,0,1920,1366.98);
   }
   // .btn-mask__body
   &__body {
@@ -241,22 +243,28 @@ body {
     width: 100%;
     
     .btn-mask--02 & {
-      height: toRem(41);
+      @include adaptiveValue("height", 41, 37,0,1920,1366);
       background-color: $mainWhite;
     }
     .btn-mask--03 & {
-      height: toRem(48);
       background-color: $lightBlue;
+      height: toRem(48);
     }
     .btn-mask--04 & {
-      height: toRem(48);
+      @include adaptiveValue("height", 48, 42,0,1920,1366);
+      @media (max-width:$mobileSmall){
+        height: toRem(48) !important;
+      }
       gap: toRem(23);
     }
     .btn-mask--05 & {
-      @include adaptiveValue("height", 40, 30,0,1366,480.98);
-      @include adaptiveValue("gap", 12, 9,0,1366,480.98);
-      @include adaptiveValue("padding-left", 18, 14,0,1280,480.98);
-      @include adaptiveValue("padding-right", 18, 14,0,1280,480.98);
+      @include adaptiveValue("height", 40, 37,2,1920,1366.98);
+      @include adaptiveValue("height", 37,30,3,1366.98,480.98);
+
+      @include adaptiveValue("gap", 12, 11,2,1920,1366.98);
+      @include adaptiveValue("gap", 11, 9,3,1366.98,480.98);
+      @include adaptiveValue("padding-left", 18, 14,0,1520,480.98);
+      @include adaptiveValue("padding-right", 18, 14,0,1520,480.98);
     }
 
     &.btn-mask-clone {
@@ -293,7 +301,7 @@ body {
 
     .btn-mask--02 &{
       color: $darkBlue;
-      font-size: toRem(16);
+      @include adaptiveValue("font-size", 16, 14,0,1920,1366);
     }
     .btn-mask--03 & {
       color: $mainWhite;
@@ -304,10 +312,15 @@ body {
       color: $darkBlue;
       font-size: toRem(24);
       padding-top: toRem(2);
+
+      @include adaptiveValue("font-size", 24, 21,0,1920,1366);
+      @media (max-width:$mobileSmall){
+        font-size: toRem(24) !important;
+      }
     }
     .btn-mask--05 & {
       padding-top: toRem(2);
-      @include adaptiveValue("font-size", 15, 12,0,1280,480.98);
+      @include adaptiveValue("font-size", 16, 12,0,1720,480.98);
     }
   }
   // .btn-mask__arr-r
@@ -341,7 +354,7 @@ body {
   align-items: center;
   gap: toRem(5);
   white-space: nowrap;
-  font-size: toRem(18);
+  @include adaptiveValue("font-size", 18, 17,0,1920,1366.98);
   line-height: 1.86;
   @media (any-hover: hover){
     &:hover{
@@ -408,8 +421,8 @@ body {
   &__txt {
     display: block;
     white-space: nowrap;
+    @include adaptiveValue("font-size", 18, 16,2,1920,900.98);
     @media (min-width:em(900.98)){
-      font-size: toRem(18);
       line-height: 1.86;
     }
     @include adaptiveValue("font-size", 13.6,12,3,900.98,480.98 );
@@ -448,8 +461,8 @@ body {
 
 .title-main {
   color: $mainWhite;
-  @include adaptiveValue("font-size", 60, 56,2,1366,1280.98);
-  @include adaptiveValue("font-size", 56, 36,3,1280.98, 480.98);
+  @include adaptiveValue("font-size", 60, 52,2,1920,1366.98);
+  @include adaptiveValue("font-size", 52, 36,3,1366.98, 480.98);
   font-weight: 700;
   line-height: 1.25;
   text-transform: uppercase;
@@ -459,8 +472,8 @@ body {
 }
 .txt-main {
   color: $mainWhite;
-  @include adaptiveValue("font-size", 16, 15,2,1366,1280.98);
-  @include adaptiveValue("font-size", 15, 18,3,1280.98,480.98);
+  @include adaptiveValue("font-size", 16, 14,2,1920,1366.98);
+  @include adaptiveValue("font-size", 14, 18,3,1366.98,480.98);
   font-weight: 400;
   line-height: normal;
 }
@@ -475,13 +488,13 @@ body {
   &.tiker-blue {
     background-color: $lightBlue;
     color: $mainWhite;
-    @include adaptiveValue("height", 90, 62,0,1280,480.98);
+    @include adaptiveValue("height", 90, 62,0,1920,480.98);
   }
   &.tiker-01 {
     overflow: visible;
     .tiker__img {
       position: relative;
-      @include adaptiveValue("width", 96, 65,0,1280,480.98);
+      @include adaptiveValue("width", 96, 65,0,1920,480.98);
       height: 100%;
       img {
         position: absolute;
@@ -505,8 +518,8 @@ body {
 	}
   // .tiker__item
   &__item {
-    @include adaptiveValue("font-size", 58, 54,2,1366,1280.98);
-    @include adaptiveValue("font-size", 54, 37,3,1280.98,480);
+    @include adaptiveValue("font-size", 58, 50,2,1366,1366.98);
+    @include adaptiveValue("font-size", 50, 37,3,1366.98,480);
     text-transform: uppercase;
     display: flex;
     align-items: center;
@@ -521,14 +534,6 @@ body {
     display: block;
 	}
 }
-
-// .tiker-01  {
-//   animation: scroll 40s linear infinite;
-// }
-// .tiker-insights {
-//   animation: scroll 30s linear infinite;
-// }
-
 
 @keyframes scroll {
   to {
@@ -565,18 +570,18 @@ body {
     // .case-card_av
     &_av {
       
-      @include adaptiveValue("width", 666, 624,2,1366,1280.98);
-      @include adaptiveValue("width", 624,304,3,1280.98,480.98);
+      @include adaptiveValue("width", 666, 520,2,1920,1366.98);
+      @include adaptiveValue("width", 520,304,3,1366.98,480.98);
     }
   // .case-card__link
   &__link {
     display: block;
     overflow: hidden;
     .case-card_big & {
-      @include adaptiveValue("margin-bottom", 23, 15,0,1366,480.98);
+      @include adaptiveValue("margin-bottom", 23, 15,0,1920,480.98);
     }
     .case-card_av & {
-      @include adaptiveValue("margin-bottom", 20, 9,0,1366,480.98);
+      @include adaptiveValue("margin-bottom", 20, 9,0,1920,480.98);
       @media (min-width:$mobileSmall){
         border-radius: toRem(19);
       }
@@ -599,18 +604,15 @@ body {
       @media (min-width:$mobileSmall){
         aspect-ratio: 1280/630;
       }
+      @media (max-width: em(1366.98)) and (max-height: em(650.98)) {
+          aspect-ratio: 1366/546;
+      }
       @media (max-width:$mobileSmall){
           aspect-ratio: 1/1;
       }      
     }
     .case-card_av & {
       aspect-ratio: 624/441;
-      // @media (min-width:$mobileSmall){
-      //   border-radius: toRem(19);
-      // }
-      // @media (max-width:$mobileSmall){
-      //   border-radius: toRem(8);
-      // }
     }
   }
   // .case-card__footer
@@ -622,14 +624,13 @@ body {
   }
   // .case-card__title
   &__title {
-    // 28 26 22
     .case-card_big & {
-      @include adaptiveValue("font-size", 35, 32,2,1366,1280.98);
-      @include adaptiveValue("font-size", 32, 22,3,1280.98,480.98);
+      @include adaptiveValue("font-size", 35, 31,2,1920,1366.98);
+      @include adaptiveValue("font-size", 31, 22,3,1366.98,480.98);
     }
     .case-card_av & {
-      @include adaptiveValue("font-size", 28, 26,2,1366,1280.98);
-      @include adaptiveValue("font-size", 26, 22,3,1280.98,480.98);
+      @include adaptiveValue("font-size", 28, 25,2,1920,1366.98);
+      @include adaptiveValue("font-size", 25, 22,3,1366.98,480.98);
     }
     .case-card_big &,
     .case-card_av & {

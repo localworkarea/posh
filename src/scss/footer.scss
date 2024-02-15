@@ -9,8 +9,8 @@
 	// .footer-main__presentaion
 	&__presentaion {
     display: grid;
-    @include adaptiveValue("margin-bottom", 63, 54,2,1920,1280.98);
-    @include adaptiveValue("margin-bottom", 54, 40,3,1280.98,480);
+    @include adaptiveValue("margin-bottom", 63, 45,2,1920,1366.98);
+    @include adaptiveValue("margin-bottom", 45, 40,3,1366.98,480);
     @media (min-width:em(1440.98)){
       grid-template-columns: auto 1fr auto;
     }
@@ -27,7 +27,8 @@
   // .footer-main__title
   &__title {
     color: $mainWhite;
-    @include adaptiveValue("font-size", 50, 36,0,1366,480);
+    @include adaptiveValue("font-size", 50, 42,2,1920,1366.98);
+    @include adaptiveValue("font-size", 42, 36,3,1366.98,480.98);
     text-transform: uppercase;
     br {
       @media (min-width:$mobileSmall){
@@ -77,7 +78,8 @@
     @include adaptiveValue("border-radius", 36, 30,0,1366,480);
     background-color: $mainWhite;
     @include adaptiveValue("padding-top", 55, 43,0,1366,480);
-    @include adaptiveValue("padding-bottom", 34, 26,0,1366,480);
+    @include adaptiveValue("padding-bottom", 34, 22,2,1920,1366.98);
+    @include adaptiveValue("padding-bottom", 22, 26,3,1366.98,480.98);
     transition: all .3s ease, opacity .3s 0s;
     height: 100%;
     &.form-open {
@@ -88,9 +90,13 @@
   // .footer-main__head
   &__head {
     display: grid;
-    @media (min-width:em(1100.98)){
+    @media (min-width:em(1366.98)){
       gap: toRem(33);
       grid-template-columns: 1fr toRem(514);
+    }
+    @media (max-width: em(1366.98)) and (min-width:em(1100.98)) {
+      gap: toRem(33);
+      grid-template-columns: 1fr toRem(467);
     }
     @media (max-width: em(1100.98)) and (min-width:em(750.98)){
         grid-template-columns: 1fr 1fr;
@@ -106,21 +112,20 @@
 	&__sub-title {
     color: $darkBlue;
     text-transform: uppercase;
-    @include adaptiveValue("font-size", 50, 30,0,1366,480);
+    @include adaptiveValue("font-size", 50, 40,2,1920,1366.98);
+    @include adaptiveValue("font-size", 40,30,3,1366.98,480.98);
     line-height: 1.25;
-    @media (min-width:$mobileSmall){
-      margin-bottom: toRem(41);
-    }
+    @include adaptiveValue("margin-bottom", 41, 36,0,1920,1366.98);
     @media (max-width:$mobileSmall){
        line-height: 1.2; 
-       margin-bottom: toRem(21);
+       margin-bottom: toRem(21) !important;
     }
 	}
 	// .footer-main__address
 	&__address {
     display: flex;
     flex-direction: column;
-    row-gap: toRem(3);
+    row-gap: toRem(5);
 	}
   &__email,
   &__phone {
@@ -130,20 +135,22 @@
 	// .footer-main__email
 	&__email {
     white-space: nowrap;
-    font-size: toRem(24);
-    
+    @include adaptiveValue("font-size", 24, 20,2,1920,1366.98);
+    @include adaptiveValue("font-size", 20, 24,3,1366.98,480.98);
 	}
 	// .footer-main__phone
 	&__phone {
     white-space: nowrap;
-    font-size: toRem(39);
+    @include adaptiveValue("font-size", 39, 33,2,1920,1366.98);
+    @include adaptiveValue("font-size", 33, 39,3,1366.98,480.98);
     &::before {
       bottom: toRem(5);
     }
 	}
 	// .footer-main__location
 	&__location {
-    font-size: toRem(18);
+    @include adaptiveValue("font-size", 18, 15,2,1920,1366.98);
+    @include adaptiveValue("font-size", 15, 18,3,1366.98,480.98);
     line-height: 1.2;
     text-underline-position: under;
     @media (any-hover: hover){
@@ -162,11 +169,16 @@
 	}
   // .footer-main__right -------------------------------------------------------
   &__right {
-    @include adaptiveValue("padding-right", 54, 45,2,1920,1280.98);
-    @include adaptiveValue("padding-right", 45, 0,3,1280.98,1100);
-    @media  (min-width: em(750.98)){
+    @include adaptiveValue("padding-right", 54, 0,2,1920,1366.98);
+    @media (min-width:em(1366.98)){
       padding-top: toRem(30);
       padding-bottom: toRem(20);
+    }
+    @media (max-width: em(1366.98)) and (min-width: em(750.98)) {
+      padding-top: toRem(23);
+      padding-bottom: toRem(20);
+    }
+    @media  (min-width: em(750.98)){
       display: flex;
       flex-direction: column;
     }
@@ -185,7 +197,8 @@
 	// .footer-main__tiker-wrap
 	&__tiker-wrap {
     overflow: hidden;
-    @include adaptiveValue("margin-top", 22, 32,0,1366,480);
+    @include adaptiveValue("margin-top", 22, 39,2,1920,1366.98);
+    @include adaptiveValue("margin-top", 39, 32,3,1366.98,480.98);
 	}
   // .footer-main__tiker
   &__tiker {
@@ -197,8 +210,8 @@
       font-weight: 600;
       display: flex;
       align-items: center;
-      @include adaptiveValue("padding-top", 42, 16,0,1366,480);
-      @include adaptiveValue("padding-bottom", 32, 16,0,1366,480);
+      @include adaptiveValue("padding-top", 42, 16,0,1920,900);
+      @include adaptiveValue("padding-bottom", 32, 16,0,1920,900);
       @media (min-width:em(550.98)){
         justify-content: space-between;
       }
@@ -210,7 +223,7 @@
     // .footer-main__posh
     &__posh {
       text-transform: uppercase;
-      @include adaptiveValue("font-size", 15, 10,0,1366,480);
+      @include adaptiveValue("font-size", 15, 10,0,1920,480);
       line-height: 1.2;
     }
     // .footer-main__policy
@@ -222,7 +235,7 @@
     // .footer-main__link
     &__link {
       line-height: 1.2;
-      @include adaptiveValue("font-size", 14, 9,0,1366,480);
+      @include adaptiveValue("font-size", 14, 9,0,1920,480);
       position: relative;
       &:not(:last-child) {
         &::after {
@@ -253,8 +266,11 @@
   @include adaptiveValue("gap", 35, 10,0,1366,900);
   align-items: center;
   display: flex;
-  @media (min-width:em(750.98)){
+  @media (min-width:em(1366.98)){
     margin-bottom: toRem(61);
+  }
+  @media (max-width: em(1366.98)) and (min-width: em(750.98)) {
+    margin-bottom: toRem(37);      
   }
   @media (max-width: em(750.98)){
       margin-bottom: toRem(66);
@@ -329,7 +345,8 @@
   &__txt {
     line-height: 1.3;
     text-transform: uppercase;
-    @include adaptiveValue("font-size", 24, 21,0,1366,480);
+    @include adaptiveValue("font-size", 24, 23,2,1920,1366.98);
+    @include adaptiveValue("font-size", 23, 21,3,1366.98,480.98);
   }
 }
 .msg {
@@ -418,15 +435,23 @@
 
 .pages-links {
   @include adaptiveValue("column-gap", 44, 20,0,1366,900);
+  @media (min-width:em(1366.98)){
+    row-gap: toRem(5);
+    margin-bottom: toRem(62);
+  }
+  @media (max-width:em(1366.98)) and (min-width:em(900.98)) {
+    row-gap: toRem(7);
+  }
+  @media (max-width:em(1366.98)) and (min-width:em(750.98)) {
+    margin-bottom: toRem(47);
+  }
   @media (min-width:em(900.98)){
     grid-template-columns: repeat(3, 1fr);
-    row-gap: toRem(5);
   }
   @media (max-width: em(900.98)) and (min-width:em(750.98)){
     grid-template-columns: repeat(2,1fr);
   }
   @media (min-width:em(750.98)){
-    margin-bottom: toRem(62);
     display: grid;
   }
   @media (max-width: em(750.98)){
@@ -476,7 +501,7 @@
   align-items: center;
   // .tiker-footer__line
   &__line {
-    @include adaptiveValue("height", 121, 91,0,1366,480);
+    @include adaptiveValue("height", 121, 91,0,1920,480.98);
     animation: scroll 45s linear infinite;
     img {
       height: 100%;
@@ -522,7 +547,8 @@
   // .form-footer__container
   &__container {
     display: grid;
-    @include adaptiveValue("padding-top", 80, 30,0,1366,480);
+    @include adaptiveValue("padding-top", 80, 50,2,1920,1366.98);
+    @include adaptiveValue("padding-top", 50, 30,3,1366.98,480.98);
     // @include adaptiveValue("padding-bottom", 72, 37,0,1366,480);
     padding-bottom: toRem(37);
     form {
@@ -578,7 +604,8 @@
   // .form-footer__title
   &__title {
     text-transform: uppercase;
-    @include adaptiveValue("font-size", 50, 36,0,1366,480);
+    @include adaptiveValue("font-size", 50, 42,2,1920,1366.98);
+    @include adaptiveValue("font-size", 42, 36,3,1366.98,480.98);
     margin-bottom: toRem(34);
     @media (max-width:$mobileSmall){
        text-align: center;

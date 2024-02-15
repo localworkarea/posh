@@ -54,6 +54,9 @@ function initSliders() {
 					spaceBetween: 24,
 				},
 				769: {
+					spaceBetween: 26,
+				},
+				1367: {
 					spaceBetween: 32,
 				},
 			},

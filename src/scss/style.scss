@@ -107,8 +107,8 @@ body {
 Сніппет (HTML): cnt
 */
 [class*="__container"] {
-	@include adaptiveValue("max-width", 1488, 1218,2,1920,1366.98);
-	@include adaptiveValue("max-width", 1218, 1148,3,1366.98,1280);
+	@include adaptiveValue("max-width", 1488, 1100,0,1920,1366.98);
+	// @include adaptiveValue("max-width", 1100, 1030,3,1366.98,1280);
 	margin: 0 auto;
 	@media (min-width:em(365.98)){
 		padding-left: toRem(24);
@@ -120,7 +120,7 @@ body {
 	}
 }
 [class*="__container-b"] {
-	@include adaptiveValue("max-width", 1648, 1348,0,1920,1366);
+	@include adaptiveValue("max-width", 1648, 1228,0,1920,1366.98);
 	margin: 0 auto;
 	@media (min-width:em(365.98)){
 		padding-left: toRem(24);
