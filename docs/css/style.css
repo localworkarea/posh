@@ -861,10 +861,19 @@ body {
       -ms-flex-align: end;
           align-items: flex-end;
   will-change: top;
-  -webkit-transition: min-height 0.5s, background-color 0.5s, top 0.6s ease, -webkit-transform 0.6s ease;
-  transition: min-height 0.5s, background-color 0.5s, top 0.6s ease, -webkit-transform 0.6s ease;
-  transition: min-height 0.5s, background-color 0.5s, transform 0.6s ease, top 0.6s ease;
-  transition: min-height 0.5s, background-color 0.5s, transform 0.6s ease, top 0.6s ease, -webkit-transform 0.6s ease;
+  -webkit-transition: min-height 0.5s, background-color 0.5s, top 0.6s ease, opacity 1.5s ease 0s, -webkit-transform 0.6s ease, -webkit-clip-path 1.5s ease;
+  transition: min-height 0.5s, background-color 0.5s, top 0.6s ease, opacity 1.5s ease 0s, -webkit-transform 0.6s ease, -webkit-clip-path 1.5s ease;
+  transition: min-height 0.5s, background-color 0.5s, transform 0.6s ease, top 0.6s ease, opacity 1.5s ease 0s, clip-path 1.5s ease;
+  transition: min-height 0.5s, background-color 0.5s, transform 0.6s ease, top 0.6s ease, opacity 1.5s ease 0s, clip-path 1.5s ease, -webkit-transform 0.6s ease, -webkit-clip-path 1.5s ease;
+  opacity: 0;
+}
+
+.loaded .header {
+  opacity: 1;
+  -webkit-transition: min-height 0.5s, background-color 0.5s, top 0.6s ease, opacity 1.5s ease 4s, -webkit-transform 0.6s ease, -webkit-clip-path 1.5s ease;
+  transition: min-height 0.5s, background-color 0.5s, top 0.6s ease, opacity 1.5s ease 4s, -webkit-transform 0.6s ease, -webkit-clip-path 1.5s ease;
+  transition: min-height 0.5s, background-color 0.5s, transform 0.6s ease, top 0.6s ease, opacity 1.5s ease 4s, clip-path 1.5s ease;
+  transition: min-height 0.5s, background-color 0.5s, transform 0.6s ease, top 0.6s ease, opacity 1.5s ease 4s, clip-path 1.5s ease, -webkit-transform 0.6s ease, -webkit-clip-path 1.5s ease;
 }
 
 .fp-section-1 .header {
@@ -1595,6 +1604,11 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  opacity: 0;
+}
+
+.loaded .hero__container {
+  opacity: 1;
 }
 
 .hero__bg {
@@ -1636,9 +1650,93 @@ body {
           justify-content: center;
 }
 
+.hero__title.split-lines span {
+  -webkit-transition: -webkit-transform 0.65s ease;
+  transition: -webkit-transform 0.65s ease;
+  transition: transform 0.65s ease;
+  transition: transform 0.65s ease, -webkit-transform 0.65s ease;
+}
+
+.hero__title.split-lines .line {
+  overflow: hidden;
+}
+
+.hero__title.split-lines .line span {
+  -webkit-transform: translateY(110%);
+      -ms-transform: translateY(110%);
+          transform: translateY(110%);
+}
+
+.loaded .hero__title.split-lines .line span {
+  -webkit-transform: translateY(0);
+      -ms-transform: translateY(0);
+          transform: translateY(0);
+}
+
+.hero__title.split-lines .line:nth-child(1) span {
+  -webkit-transition-delay: 3.13s;
+          transition-delay: 3.13s;
+}
+
+.hero__title.split-lines .line:nth-child(2) span {
+  -webkit-transition-delay: 3.26s;
+          transition-delay: 3.26s;
+}
+
+.hero__title.split-lines .line:nth-child(3) span {
+  -webkit-transition-delay: 3.39s;
+          transition-delay: 3.39s;
+}
+
+.hero__title.split-lines .line:nth-child(4) span {
+  -webkit-transition-delay: 3.52s;
+          transition-delay: 3.52s;
+}
+
+.hero__title.split-lines .line:nth-child(5) span {
+  -webkit-transition-delay: 3.65s;
+          transition-delay: 3.65s;
+}
+
 .hero__btm {
   display: -ms-grid;
   display: grid;
+}
+
+.loaded .hero__txt {
+  -webkit-transition-delay: 3.5s;
+          transition-delay: 3.5s;
+}
+
+.loaded .hero__link {
+  -webkit-transition-delay: 3.65s;
+          transition-delay: 3.65s;
+}
+
+.loaded .hero__control {
+  -webkit-transition-delay: 4.3s;
+          transition-delay: 4.3s;
+}
+
+.loaded .hero__circle {
+  -webkit-transition-delay: 4.3s;
+          transition-delay: 4.3s;
+}
+
+.hero__txt,
+.hero__link,
+.hero__control,
+.hero__circle {
+  opacity: 0;
+  -webkit-transition: opacity 0.65s ease;
+  transition: opacity 0.65s ease;
+}
+
+.loaded .hero__txt,
+.loaded .hero__link,
+.loaded .hero__control,
+.loaded .hero__circle {
+  opacity: 1;
 }
 
 .control-hero__ic {
@@ -2300,6 +2398,74 @@ body {
         flex-wrap: wrap;
   }
 
+  .links-hero__link {
+    -webkit-transition: opacity 0.45s linear, -webkit-transform 0.55s ease;
+    transition: opacity 0.45s linear, -webkit-transform 0.55s ease;
+    transition: opacity 0.45s linear, transform 0.55s ease;
+    transition: opacity 0.45s linear, transform 0.55s ease, -webkit-transform 0.55s ease;
+    opacity: 0;
+    -webkit-transform: translateY(50%);
+        -ms-transform: translateY(50%);
+            transform: translateY(50%);
+  }
+
+  .loaded .links-hero__link {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+        -ms-transform: translateY(0);
+            transform: translateY(0);
+  }
+
+  .links-hero__link:nth-child(1) {
+    -webkit-transition-delay: 3.76s;
+            transition-delay: 3.76s;
+  }
+
+  .links-hero__link:nth-child(2) {
+    -webkit-transition-delay: 3.82s;
+            transition-delay: 3.82s;
+  }
+
+  .links-hero__link:nth-child(3) {
+    -webkit-transition-delay: 3.88s;
+            transition-delay: 3.88s;
+  }
+
+  .links-hero__link:nth-child(4) {
+    -webkit-transition-delay: 3.94s;
+            transition-delay: 3.94s;
+  }
+
+  .links-hero__link:nth-child(5) {
+    -webkit-transition-delay: 4s;
+            transition-delay: 4s;
+  }
+
+  .links-hero__link:nth-child(6) {
+    -webkit-transition-delay: 4.06s;
+            transition-delay: 4.06s;
+  }
+
+  .links-hero__link:nth-child(7) {
+    -webkit-transition-delay: 4.12s;
+            transition-delay: 4.12s;
+  }
+
+  .links-hero__link:nth-child(8) {
+    -webkit-transition-delay: 4.18s;
+            transition-delay: 4.18s;
+  }
+
+  .links-hero__link:nth-child(9) {
+    -webkit-transition-delay: 4.24s;
+            transition-delay: 4.24s;
+  }
+
+  .links-hero__link:nth-child(10) {
+    -webkit-transition-delay: 4.3s;
+            transition-delay: 4.3s;
+  }
+
   .circle-hero-b {
     position: absolute;
     top: 0;
@@ -2561,7 +2727,7 @@ body {
     -webkit-transform: translateY(-50%);
         -ms-transform: translateY(-50%);
             transform: translateY(-50%);
-    width: 0.125rem;
+    width: 0.0625rem;
     height: 14.875rem;
     background-color: #000;
   }

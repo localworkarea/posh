@@ -63,6 +63,33 @@ body {
   }
 }
 
+// .hero__title {
+//   &.split-lines {
+//     $initial-delay: 3s; // Начальная задержка
+//     $delay-step: 0.13s; // Шаг задержки
+//     span {
+//       transition: .65s ease;
+//     }
+//     .line {
+//       overflow: hidden;
+//       span {
+//         transform: translateY(110%);
+//         .loaded & {
+//           transform: translateY(0);
+//         }
+//       }
+//     }
+//     @for $i from 1 through 5 {
+//       .line:nth-child(#{$i}) {
+//         span {
+//           transition-delay: $initial-delay + ($delay-step * $i);
+//         }
+//       }
+//     }
+//   }
+
+// }  
+
 
 .btn {
   display: flex;

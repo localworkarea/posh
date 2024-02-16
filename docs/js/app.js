@@ -4737,6 +4737,24 @@
             deferredSource.src = deferredSource.dataset.src;
         }
         document.addEventListener("DOMContentLoaded", (function() {
+            const splitTextLines = document.querySelectorAll(".split-lines");
+            const splitTextWords = document.querySelectorAll(".split-words");
+            if (splitTextLines.length > 0) splitTextLines.forEach((element => {
+                const splitText = new SplitType(element, {
+                    types: "lines"
+                });
+                window.addEventListener("resize", (function() {
+                    splitText.split();
+                }));
+            }));
+            if (splitTextWords.length > 0) splitTextWords.forEach((element => {
+                const splitText = new SplitType(element, {
+                    types: "words"
+                });
+                window.addEventListener("resize", (function() {
+                    splitText.split();
+                }));
+            }));
             const header = document.querySelector("header");
             const heroBg = document.querySelector(".hero__bg");
             const heroBody = document.querySelector(".hero__body");

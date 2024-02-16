@@ -6,26 +6,67 @@ import { flsModules } from "./modules.js";
 // import Typed from 'typed.js';
 
 
- var video = document.getElementById("heroVideo");
-    var deferredSource = document.getElementById("deferredSource");
+var video = document.getElementById("heroVideo");
+var deferredSource = document.getElementById("deferredSource");
+
+var videoLoaded = localStorage.getItem("videoLoaded");
+if (videoLoaded) {
+    // Если информация о загруженном видео есть в локальном хранилище,
+    // устанавливаем src для отложенного источника
+    deferredSource.src = deferredSource.dataset.src;
+} else {
+    // Если информации нет, то загружаем видео и после успешной загрузки сохраняем флаг в локальное хранилище
+    deferredSource.onload = function() {
+        video.appendChild(deferredSource.cloneNode(true));
+        localStorage.setItem("videoLoaded", true);
+    };
+    deferredSource.src = deferredSource.dataset.src;
+}
+
     
-    var videoLoaded = localStorage.getItem("videoLoaded");
-    if (videoLoaded) {
-        // Если информация о загруженном видео есть в локальном хранилище,
-        // устанавливаем src для отложенного источника
-        deferredSource.src = deferredSource.dataset.src;
-    } else {
-        // Если информации нет, то загружаем видео и после успешной загрузки сохраняем флаг в локальное хранилище
-        deferredSource.onload = function() {
-            video.appendChild(deferredSource.cloneNode(true));
-            localStorage.setItem("videoLoaded", true);
-        };
-        deferredSource.src = deferredSource.dataset.src;
-    }
+
+// const splitTextElements = document.querySelectorAll('.split');
+// const splitTextLines = document.querySelectorAll('.split-lines');
+// const splitTextWords = document.querySelectorAll('.split-words');
+
+// if (splitTextElements.length > 0) {
+//   const splitText = new SplitType('.split-text', { types: 'lines' });
+
+//   window.addEventListener("resize", function() {
+//     splitText.split();
+//   });
+// }
+
+
 
 
 
 document.addEventListener("DOMContentLoaded", function() {
+
+  const splitTextLines = document.querySelectorAll('.split-lines');
+    const splitTextWords = document.querySelectorAll('.split-words');
+    
+    if (splitTextLines.length > 0) {
+      splitTextLines.forEach(element => {
+        const splitText = new SplitType(element, { types: 'lines' });
+    
+        window.addEventListener("resize", function() {
+          splitText.split();
+        });
+      });
+    }
+    
+    if (splitTextWords.length > 0) {
+      splitTextWords.forEach(element => {
+        const splitText = new SplitType(element, { types: 'words' });
+    
+        window.addEventListener("resize", function() {
+          splitText.split();
+        });
+      });
+    }
+
+
 
     // ОТЛОЖЕННАЯ ЗАГРУЗКА ВИДЕО ========================================================
     // window.addEventListener("load", function() {
@@ -513,8 +554,10 @@ document.addEventListener("DOMContentLoaded", function() {
       tiker.appendChild(clonedLine);
     }
   });
-    
+
   window.addEventListener("load", function (e) {
+
+  
     // Проверяем, является ли устройство мобильным
     if (!isMobile.any()) {
       // Находим элементы тикера

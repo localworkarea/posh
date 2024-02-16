@@ -43,6 +43,13 @@
   &__container {
     display: flex;
     flex-direction: column;
+
+    opacity: 0;
+    .loaded & {
+      opacity: 1;
+    }
+
+
     @media (min-width:$mobileSmall){
       flex: 1 1 auto;
       width: 100%;
@@ -122,6 +129,30 @@
   // .hero__title
   &__title {
     @include adaptiveValue("margin-bottom", 16, 9,0,1920,1366.98);
+
+    &.split-lines {
+      $initial-delay: 3s; // Начальная задержка
+      $delay-step: 0.13s; // Шаг задержки
+      span {
+        transition: transform .65s ease;
+      }
+      .line {
+        overflow: hidden;
+        span {
+          transform: translateY(110%);
+          .loaded & {
+            transform: translateY(0);
+          }
+        }
+      }
+      @for $i from 1 through 5 {
+        .line:nth-child(#{$i}) {
+          span {
+            transition-delay: $initial-delay + ($delay-step * $i);
+          }
+        }
+      }
+    }
     
     @media (min-width:$mobileSmall){
        line-height: 1.05; 
@@ -154,9 +185,17 @@
   }
   // .hero__txt
   &__txt {
+    @extend %heroOpacity;
+    .loaded & {
+      transition-delay: 3.5s;
+    }
   }
   // .hero__link
   &__link {
+    @extend %heroOpacity;
+    .loaded & {
+      transition-delay: 3.65s;
+    }
     @include adaptiveValue("width", 232, 210,0,1920,1366);
     @media (max-width:$mobileSmall){
        width: auto !important; 
@@ -167,11 +206,28 @@
   }
   // .hero__control
   &__control {
+    @extend %heroOpacity;
+    .loaded & {
+      transition-delay: 4.3s;
+    }
   }
   // .hero__circle
   &__circle {
+    @extend %heroOpacity;
+    .loaded & {
+      transition-delay: 4.3s;
+    }
   }
 }
+
+%heroOpacity {
+  opacity: 0;
+  transition: opacity .65s ease;
+  .loaded & {
+    opacity: 1;
+  }
+}
+
 
 .control-hero {
   @include adaptiveValue("right", 238, 182,2,1920,1200.98);
@@ -239,6 +295,22 @@
   }
   // .links-hero__link
   &__link {
+    $initial-delay: 3.7s;
+    $delay-step: 0.06s;
+    @media (min-width:$mobileSmall){
+      transition: opacity .45s linear, transform .55s ease;
+      opacity: 0;
+      transform: translateY(50%);
+      .loaded & {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      @for $i from 1 through 10 {
+        &:nth-child(#{$i}) {
+            transition-delay: $initial-delay + ($delay-step * $i);
+        }
+      }
+    }
   }
 }
 
@@ -766,7 +838,7 @@ background-color: $mainWhite;
       top: 50%;
       right: 0;
       transform: translateY(-50%);
-      width: toRem(2);
+      width: toRem(1);
       height: toRem(238);
       background-color: #000;
     }
