@@ -14,7 +14,9 @@
 }
 .section-02 {
   overflow: hidden !important;
+  top: 105% !important;
   &.active-section {
+    top: 0 !important;
     overflow: auto !important;
   }
   background-color: $mainWhite;
