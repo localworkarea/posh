@@ -101,19 +101,24 @@ const enableSwipers = function () {
 			observer: true,
 			observeParents: true,
 			slidesPerView: "auto",
-			speed: 1500,
+			speed: 2500,
+			centeredSlides: false,
+			longSwipes: true,
 			autoplay: {
-				delay: 500,
-				// disableOnInteraction: false,
-				// pauseOnMouseEnter: true,
+				delay: -1,
+				disableOnInteraction: false,
+				pauseOnMouseEnter: true,
 			},
-			// freeMode: {
-			// 	enabled: true,
-			// 	momentumBounce: false,
-			// 	momentumRatio: 0.3,
-			// },
+			freeMode: {
+				enabled: true,
+				momentumBounce: false,
+				// sticky: true,
+				// momentumRatio: 0.3,
+			},
 			nested: true,
 			loop: true,
+			loopAddBlankSlides: true,
+			loopAdditionalSlides: 5,
 			breakpoints: {
 				300: {
 					spaceBetween: 24,
@@ -123,7 +128,12 @@ const enableSwipers = function () {
 				},
 			},
 			on: {
-				// Добавьте обработчики событий, если необходимо
+				touchStart: function() {
+					this.autoplay.stop();
+				},
+				touchEnd: function() {
+						this.autoplay.start();
+				}
 			}
 		});
 	}

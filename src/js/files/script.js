@@ -6,24 +6,8 @@ import { flsModules } from "./modules.js";
 // import Typed from 'typed.js';
 
 
-var video = document.getElementById("heroVideo");
-var deferredSource = document.getElementById("deferredSource");
 
-var videoLoaded = localStorage.getItem("videoLoaded");
-if (videoLoaded) {
-    // Если информация о загруженном видео есть в локальном хранилище,
-    // устанавливаем src для отложенного источника
-    deferredSource.src = deferredSource.dataset.src;
-} else {
-    // Если информации нет, то загружаем видео и после успешной загрузки сохраняем флаг в локальное хранилище
-    deferredSource.onload = function() {
-        video.appendChild(deferredSource.cloneNode(true));
-        localStorage.setItem("videoLoaded", true);
-    };
-    deferredSource.src = deferredSource.dataset.src;
-}
 
-    
 
 // const splitTextElements = document.querySelectorAll('.split');
 // const splitTextLines = document.querySelectorAll('.split-lines');
@@ -37,14 +21,53 @@ if (videoLoaded) {
 //   });
 // }
 
+// Получаем элементы видео и отложенного источника
+var video = document.getElementById("heroVideo");
+var deferredSource = document.getElementById("deferredSource");
+// Функция для установки постера на мобильный формат
+function setPosterForMobile() {
+  if (window.innerWidth > 500) { // 31.25rem = 500px
+      video.setAttribute("poster", "files/video.webp");
+  }
+}
 
+// Вызываем функцию смены постера перед загрузкой видео
+setPosterForMobile();
+
+    // Функция для загрузки видео с задержкой
+    function loadVideoWithDelay(delay) {
+      setTimeout(function() {
+          // Если информация о загруженном видео есть в локальном хранилище,
+          // устанавливаем src для отложенного источника
+          var videoLoaded = localStorage.getItem("videoLoaded");
+          if (videoLoaded) {
+              deferredSource.src = deferredSource.dataset.src;
+          } else {
+              // Если информации нет, то загружаем видео и после успешной загрузки сохраняем флаг в локальное хранилище
+              deferredSource.onload = function() {
+                  video.appendChild(deferredSource.cloneNode(true));
+                  localStorage.setItem("videoLoaded", true);
+              };
+              deferredSource.src = deferredSource.dataset.src;
+          }
+      }, delay);
+  }
+
+  document.addEventListener("DOMContentLoaded", function() {
+    // Загружаем видео после загрузки DOM-дерева с задержкой 2000 миллисекунд (2 секунды)
+   loadVideoWithDelay(100);
+  });
 
 
 
 document.addEventListener("DOMContentLoaded", function() {
 
+ 
+
+
   const splitTextLines = document.querySelectorAll('.split-lines');
     const splitTextWords = document.querySelectorAll('.split-words');
+    const splitTextBoth = document.querySelectorAll('.split-both');
     
     if (splitTextLines.length > 0) {
       splitTextLines.forEach(element => {
@@ -66,9 +89,64 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     }
 
+    if (splitTextBoth.length > 0) {
+      splitTextBoth.forEach(element => {
+        const splitText = new SplitType(element, { types: 'lines, words' });
+    
+        window.addEventListener("resize", function() {
+          splitText.split();
+        });
+      });
+    }
 
+    // Функция для обновления индексов и расстановки их заново
+  function updateIndexes() {
+    const splitBoth = document.querySelectorAll('.split-both');
+    
+    splitBoth.forEach((splitElement) => {
+      const words = splitElement.querySelectorAll('.word');
+      
+      words.forEach((word, index) => {
+        word.style.setProperty('--index', index);
+      });
+    });
+  }
+  
+  // Вызов функции при загрузке страницы
+  updateIndexes();
+  
+  // Добавление слушателя события resize к окну
+  window.addEventListener("resize", function() {
+    // Вызов функции для обновления индексов при изменении размера окна
+    updateIndexes();
+  });
+
+
+    // ИНДЕКСЫ ДЛЯ TRANSITION-DELAY (блок services-main) ========================================================
+    const leftItems = document.querySelectorAll('.items-serv-left__item');
+    const rightItems = document.querySelectorAll('.items-serv-right__item');
+    const brandsRelationship = document.querySelectorAll('.relationship__brand');
+    const lastIndex = leftItems.length > 0 ? leftItems.length - 1 : 0;
+    const startIndex = lastIndex + 1;
+    
+    if (leftItems && rightItems && brandsRelationship) {
+      leftItems.forEach((item, index) => {
+        item.style.setProperty('--index', index);
+      });
+      brandsRelationship.forEach((item, index) => {
+        item.style.setProperty('--index', index);
+      });
+    
+      rightItems.forEach((item, index) => {
+        item.style.setProperty('--index', startIndex + index);
+      });
+    }
+    
 
     // ОТЛОЖЕННАЯ ЗАГРУЗКА ВИДЕО ========================================================
+
+      
+
     // window.addEventListener("load", function() {
     //     var video = document.getElementById("heroVideo");
     //     if (video) {
@@ -202,7 +280,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // TYPED.JS ==============================================================
     var typedElement = document.getElementById('typed');
     var typed;
-    var startDelay = 0; // Задержка в миллисекундах
+    var startDelay = 1200; // Задержка в миллисекундах
   
     if (typedElement) {
       // Создаем Typed при загрузке страницы
@@ -351,7 +429,9 @@ document.addEventListener("DOMContentLoaded", function() {
            if (buttonForm.classList.contains('_watcher-view')) {
              if (!watcherClassAdded) {
                watcherClassAdded = true;
-               startIntervalForWatcher();
+               setTimeout(() => {
+                 startIntervalForWatcher();
+               }, 1000);
              }
            } else {
              if (watcherClassAdded) {
@@ -368,13 +448,6 @@ document.addEventListener("DOMContentLoaded", function() {
      
      buttonForm.addEventListener('mouseenter', stopIntervalForWatcher);
      buttonForm.addEventListener('mouseleave', startIntervalForWatcher);
-     
-     // Проверяем начальное состояние кнопки
-     if (buttonForm.classList.contains('_watcher-view')) {
-       watcherClassAdded = true;
-       startIntervalForWatcher();
-     }
-     
      
     // -------------------------------------------------------------------------------------
 
@@ -532,7 +605,7 @@ document.addEventListener("DOMContentLoaded", function() {
       }
       // -------------------------------------------------------------------------------------
 
-      
+    
 }); // END OF DOMContentLoaded ----------------------------------------------------------------------------
 
 

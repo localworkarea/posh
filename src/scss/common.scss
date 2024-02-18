@@ -31,7 +31,6 @@ body {
 }
 
 
-
 .hover-line {
   position: relative;
   &::before {
@@ -50,6 +49,100 @@ body {
     }
   }
 }
+.split-lines,
+.split-words,
+.split-both {
+  font-kerning: none;
+}
+
+.split-both {
+  .line {
+    overflow: hidden;
+  }
+  // КРУПНЫЕ ЗАГОЛОВКИ =======================================
+  &.title-main {
+    .line {
+      &:nth-child(1) {
+        .word {
+          transition-delay: 0.1s;
+        }
+      }
+      &:nth-child(2) {
+        .word {
+          transition-delay: 0.2s;
+        }
+      }
+      &:nth-child(3) {
+        .word {
+          transition-delay: 0.3s;
+        }
+      }
+      &:nth-child(4) {
+        .word {
+          transition-delay: 0.4s;
+        }
+      }
+      &:nth-child(5) {
+        .word {
+          transition-delay: 0.5s;
+        }
+      }
+    }
+    .word {
+      transform: translateY(100%);
+      transition: transform 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+  
+      ._watcher-view & {
+        transform: translateY(0);
+      }
+    }
+    &._watcher-view {
+      .word {
+        transform: translateY(0);
+      }
+    }
+  }
+
+  // ЗАГОЛОВКИ КАРТОЧЕК ===================================
+  &.title-card {
+    .line,
+    .word {
+      display: inline-block !important;
+      width: auto !important;
+    }
+    img {
+      opacity: 0;
+      transform: translate(0, 100%);
+      transition: opacity .45s ease 0.2s, transform 0.35s ease 0.2s;
+      ._watcher-view & {
+        opacity: 1;
+        transform: translate(0%, 0%);
+      }
+    }
+    .word {
+      transform: translateY(100%);
+      transition: transform 0.55s ease;
+      ._watcher-view & {
+        transform: translateY(0%);
+        transition-delay: calc(var(--index) * .06s)
+      }
+    }
+  }
+
+  // ТЕКСТОВЫЕ БЛОКИ =======================================
+  &.txt-anim {
+    .word {
+      transform: translateY(100%);
+      transition: transform 0.35s ease;
+    }
+    &._watcher-view {
+      .word {
+        transform: translateY(0%);
+        transition-delay: calc(var(--index) * .03s)
+      }
+    }
+  }
+}
 
 %animationMenuMob {
   @media (max-width: em(1200.98)){
@@ -63,32 +156,16 @@ body {
   }
 }
 
-// .hero__title {
-//   &.split-lines {
-//     $initial-delay: 3s; // Начальная задержка
-//     $delay-step: 0.13s; // Шаг задержки
-//     span {
-//       transition: .65s ease;
-//     }
-//     .line {
-//       overflow: hidden;
-//       span {
-//         transform: translateY(110%);
-//         .loaded & {
-//           transform: translateY(0);
-//         }
-//       }
-//     }
-//     @for $i from 1 through 5 {
-//       .line:nth-child(#{$i}) {
-//         span {
-//           transition-delay: $initial-delay + ($delay-step * $i);
-//         }
-//       }
-//     }
-//   }
-
-// }  
+%buttonsWhatcher {
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity .55s ease, transform .55s ease;
+  ._watcher-view &,
+  &._watcher-view {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
 
 
 .btn {
@@ -353,6 +430,7 @@ body {
   // .btn-mask__arr-r
   &__arr-r {
     transition: transform .35s ease 0s;
+    height: auto;
     .btn-mask--02 &,
     .btn-mask--04 &,
     .btn-mask--05 & {
@@ -401,6 +479,7 @@ body {
   }
   img {
     width: toRem(10);
+    height: auto;
       opacity: 0;
       transition: transform .3s ease 0s, opacity .3s ease 0s;
   }
@@ -462,6 +541,7 @@ body {
   // .btn-change__arr
   &__arr {
     width: toRem(10);
+    height: auto;
     @media (min-width:em(900.98)){
       opacity: 0;
       transition: transform .35s ease 0s, opacity .35s ease 0s;
@@ -572,33 +652,46 @@ body {
   position: relative;
   @include adaptiveValue("border-start-start-radius", 50, 36,0,1366,480);
   @include adaptiveValue("border-start-end-radius", 50, 36,0,1366,480);
-  &::before {
-    content:'';
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    left:0;
-    width: 100%;
-    @include adaptiveValue("height", 50, 36,0,1366,480);
-  }
-  &.br-r--white {
-    &::before {
-      background-color: $mainWhite;
-    }
-  }
+  // &::before {
+  //   content:'';
+  //   position: absolute;
+  //   z-index: -1;
+  //   top: 0;
+  //   left:0;
+  //   width: 100%;
+  //   @include adaptiveValue("height", 50, 36,0,1366,480);
+  // }
+  // &.br-r--white {
+  //   &::before {
+  //     background-color: $mainWhite;
+  //   }
+  // }
 }
 
 .case-card {
   width: 100%;  
-  // .case-card_big
+    // .case-card_big
     &_big {
-
     }
     // .case-card_av
     &_av {
-      
       @include adaptiveValue("width", 666, 520,2,1920,1366.98);
       @include adaptiveValue("width", 520,304,3,1366.98,480.98);
+      position: relative;
+      &:before {
+        content: '';
+        position: absolute;
+        z-index: 5;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-color: $mainWhite;
+        transition: height 1s ease;
+        ._watcher-view & {
+          height: 0;
+        }
+      }
     }
   // .case-card__link
   &__link {
@@ -680,10 +773,11 @@ body {
   span {
     display: inline-block;
   }
-  @include adaptiveValue("column-gap", 23, 15,0,1366,480.98);
-  &_big {
-  }
-  &_av {
-
+  img {
+    display: inline-block;
+    vertical-align: middle;
+    @include adaptiveValue("margin-left", 23, 15,0,1366,480.98);
+    @include adaptiveValue("margin-right", 23, 15,0,1366,480.98);
+    padding-bottom: toRem(2);
   }
 }

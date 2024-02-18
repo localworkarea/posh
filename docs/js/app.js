@@ -4134,12 +4134,22 @@
                     observer: true,
                     observeParents: true,
                     slidesPerView: "auto",
-                    speed: 1500,
+                    speed: 2500,
+                    centeredSlides: false,
+                    longSwipes: true,
                     autoplay: {
-                        delay: 500
+                        delay: -1,
+                        disableOnInteraction: false,
+                        pauseOnMouseEnter: true
+                    },
+                    freeMode: {
+                        enabled: true,
+                        momentumBounce: false
                     },
                     nested: true,
                     loop: true,
+                    loopAddBlankSlides: true,
+                    loopAdditionalSlides: 5,
                     breakpoints: {
                         300: {
                             spaceBetween: 24
@@ -4148,7 +4158,14 @@
                             spaceBetween: 40
                         }
                     },
-                    on: {}
+                    on: {
+                        touchStart: function() {
+                            this.autoplay.stop();
+                        },
+                        touchEnd: function() {
+                            this.autoplay.start();
+                        }
+                    }
                 });
             };
             touchScreenChecker();
@@ -4728,17 +4745,29 @@
         da.init();
         var video = document.getElementById("heroVideo");
         var deferredSource = document.getElementById("deferredSource");
-        var videoLoaded = localStorage.getItem("videoLoaded");
-        if (videoLoaded) deferredSource.src = deferredSource.dataset.src; else {
-            deferredSource.onload = function() {
-                video.appendChild(deferredSource.cloneNode(true));
-                localStorage.setItem("videoLoaded", true);
-            };
-            deferredSource.src = deferredSource.dataset.src;
+        function setPosterForMobile() {
+            if (window.innerWidth > 500) video.setAttribute("poster", "files/video.webp");
         }
+        setPosterForMobile();
+        function loadVideoWithDelay(delay) {
+            setTimeout((function() {
+                var videoLoaded = localStorage.getItem("videoLoaded");
+                if (videoLoaded) deferredSource.src = deferredSource.dataset.src; else {
+                    deferredSource.onload = function() {
+                        video.appendChild(deferredSource.cloneNode(true));
+                        localStorage.setItem("videoLoaded", true);
+                    };
+                    deferredSource.src = deferredSource.dataset.src;
+                }
+            }), delay);
+        }
+        document.addEventListener("DOMContentLoaded", (function() {
+            loadVideoWithDelay(100);
+        }));
         document.addEventListener("DOMContentLoaded", (function() {
             const splitTextLines = document.querySelectorAll(".split-lines");
             const splitTextWords = document.querySelectorAll(".split-words");
+            const splitTextBoth = document.querySelectorAll(".split-both");
             if (splitTextLines.length > 0) splitTextLines.forEach((element => {
                 const splitText = new SplitType(element, {
                     types: "lines"
@@ -4755,6 +4784,43 @@
                     splitText.split();
                 }));
             }));
+            if (splitTextBoth.length > 0) splitTextBoth.forEach((element => {
+                const splitText = new SplitType(element, {
+                    types: "lines, words"
+                });
+                window.addEventListener("resize", (function() {
+                    splitText.split();
+                }));
+            }));
+            function updateIndexes() {
+                const splitBoth = document.querySelectorAll(".split-both");
+                splitBoth.forEach((splitElement => {
+                    const words = splitElement.querySelectorAll(".word");
+                    words.forEach(((word, index) => {
+                        word.style.setProperty("--index", index);
+                    }));
+                }));
+            }
+            updateIndexes();
+            window.addEventListener("resize", (function() {
+                updateIndexes();
+            }));
+            const leftItems = document.querySelectorAll(".items-serv-left__item");
+            const rightItems = document.querySelectorAll(".items-serv-right__item");
+            const brandsRelationship = document.querySelectorAll(".relationship__brand");
+            const lastIndex = leftItems.length > 0 ? leftItems.length - 1 : 0;
+            const startIndex = lastIndex + 1;
+            if (leftItems && rightItems && brandsRelationship) {
+                leftItems.forEach(((item, index) => {
+                    item.style.setProperty("--index", index);
+                }));
+                brandsRelationship.forEach(((item, index) => {
+                    item.style.setProperty("--index", index);
+                }));
+                rightItems.forEach(((item, index) => {
+                    item.style.setProperty("--index", startIndex + index);
+                }));
+            }
             const header = document.querySelector("header");
             const heroBg = document.querySelector(".hero__bg");
             const heroBody = document.querySelector(".hero__body");
@@ -4794,7 +4860,7 @@
             }));
             var typedElement = document.getElementById("typed");
             var typed;
-            var startDelay = 0;
+            var startDelay = 1200;
             if (typedElement) {
                 typed = new Typed("#typed", {
                     stringsElement: "#typed-strings",
@@ -4891,7 +4957,9 @@
                 for (let mutation of mutationsList) if (mutation.type === "attributes" && mutation.attributeName === "class") if (buttonForm.classList.contains("_watcher-view")) {
                     if (!watcherClassAdded) {
                         watcherClassAdded = true;
-                        startIntervalForWatcher();
+                        setTimeout((() => {
+                            startIntervalForWatcher();
+                        }), 1e3);
                     }
                 } else if (watcherClassAdded) {
                     watcherClassAdded = false;
@@ -4904,10 +4972,6 @@
             });
             buttonForm.addEventListener("mouseenter", stopIntervalForWatcher);
             buttonForm.addEventListener("mouseleave", startIntervalForWatcher);
-            if (buttonForm.classList.contains("_watcher-view")) {
-                watcherClassAdded = true;
-                startIntervalForWatcher();
-            }
             const fileInputBody = document.querySelector(".file-upload");
             const fileInput = document.getElementById("file-upload-input");
             let fileErrorSpan = null;
