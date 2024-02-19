@@ -343,7 +343,7 @@ body {
   left: 0;
   width: 0;
   height: 0.0625rem;
-  background-color: #fff;
+  background-color: #FEFEFE;
   -webkit-transition: width 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
   transition: width 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
@@ -2404,11 +2404,6 @@ body {
 .links-insights__link {
   color: #FEFEFE;
   line-height: normal;
-  text-underline-position: under;
-}
-
-.links-insights__link:hover {
-  text-decoration: underline;
 }
 
 .cooperation {
@@ -3070,6 +3065,25 @@ body {
     grid-template-columns: repeat(3, 1fr);
   }
 
+  .links-insights__link .line {
+    width: -webkit-fit-content !important;
+    width: -moz-fit-content !important;
+    width: fit-content !important;
+    position: relative;
+  }
+
+  .links-insights__link .line::before {
+    content: "";
+    position: absolute;
+    bottom: 0rem;
+    left: 0;
+    width: 0;
+    height: 0.0625rem;
+    background-color: #FEFEFE;
+    -webkit-transition: width 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition: width 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
   .cooperation__partners {
     display: -ms-grid;
     display: grid;
@@ -3384,7 +3398,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: -1;
+    z-index: 0;
     opacity: 0;
     -webkit-transition: opacity 0.8s ease;
     transition: opacity 0.8s ease;
@@ -8617,6 +8631,35 @@ body {
     -webkit-transform: translateY(0);
         -ms-transform: translateY(0);
             transform: translateY(0);
+  }
+
+  .links-insights__link:hover .line::before {
+    width: 100%;
+  }
+
+  .links-insights__link:hover .line:nth-child(1)::before {
+    -webkit-transition-delay: 0s;
+            transition-delay: 0s;
+  }
+
+  .links-insights__link:hover .line:nth-child(2)::before {
+    -webkit-transition-delay: 0.06s;
+            transition-delay: 0.06s;
+  }
+
+  .links-insights__link:hover .line:nth-child(3)::before {
+    -webkit-transition-delay: 0.12s;
+            transition-delay: 0.12s;
+  }
+
+  .links-insights__link:hover .line:nth-child(4)::before {
+    -webkit-transition-delay: 0.18s;
+            transition-delay: 0.18s;
+  }
+
+  .links-insights__link:hover .line:nth-child(5)::before {
+    -webkit-transition-delay: 0.24s;
+            transition-delay: 0.24s;
   }
 }
 

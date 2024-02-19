@@ -726,7 +726,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: -1;
+    z-index: 0;
 
     opacity: 0;
     transition: opacity .8s ease;
@@ -1302,10 +1302,40 @@ background-color: $mainWhite;
     @include adaptiveValue("font-size", 24, 22,2,1920,1366.98);
     @include adaptiveValue("font-size", 22, 21,3,1366.98,480);
     line-height: normal;
-    text-underline-position: under;
     @include adaptiveValue("margin-bottom", 33, 20,2,1920,1280);
-    &:hover {
-      text-decoration: underline;
+    @media (any-hover: hover) {
+      &:hover {
+        .line {
+          &::before {
+            width: 100%; 
+          }
+    
+          @for $i from 1 through 5 {
+            &:nth-child(#{$i}) {
+              &::before {
+                transition-delay: #{0.06 * ($i - 1)}s;
+              }
+            }
+          }
+        }
+      }
+    }
+    
+    .line {
+      @media (min-width:$mobile){
+        width: fit-content !important;
+        position: relative;
+        &::before {
+          content:'';
+          position: absolute;
+          bottom: toRem(0);
+          left: 0;
+          width: 0;
+          height: toRem(1);
+          background-color: $mainWhite;
+          transition: width .6s cubic-bezier(.215,.61,.355,1);
+        }
+      }
     }
     @media (max-width: em(1279.98)){
         margin-bottom: toRem(33);
