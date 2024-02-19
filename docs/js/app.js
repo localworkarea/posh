@@ -4788,7 +4788,14 @@
             }));
             function updateIndexes() {
                 const splitBoth = document.querySelectorAll(".split-both");
+                const splitWords = document.querySelectorAll(".split-words");
                 splitBoth.forEach((splitElement => {
+                    const words = splitElement.querySelectorAll(".word");
+                    words.forEach(((word, index) => {
+                        word.style.setProperty("--index", index);
+                    }));
+                }));
+                splitWords.forEach((splitElement => {
                     const words = splitElement.querySelectorAll(".word");
                     words.forEach(((word, index) => {
                         word.style.setProperty("--index", index);
@@ -4796,9 +4803,6 @@
                 }));
             }
             updateIndexes();
-            window.addEventListener("resize", (function() {
-                updateIndexes();
-            }));
             const leftItems = document.querySelectorAll(".items-serv-left__item");
             const rightItems = document.querySelectorAll(".items-serv-right__item");
             const brandsRelationship = document.querySelectorAll(".relationship__brand");
@@ -4815,6 +4819,21 @@
                     item.style.setProperty("--index", startIndex + index);
                 }));
             }
+            const splitWordsElements = document.querySelectorAll(".split-words.txt-anim");
+            function createSpanInWord() {
+                if (splitWordsElements) splitWordsElements.forEach((splitWordsElement => {
+                    const words = splitWordsElement.querySelectorAll(".word");
+                    words.forEach((word => {
+                        const text = word.textContent.trim();
+                        word.innerHTML = `<span class="word-span">${text}</span>`;
+                    }));
+                }));
+            }
+            createSpanInWord();
+            window.addEventListener("resize", (function() {
+                createSpanInWord();
+                updateIndexes();
+            }));
             const header = document.querySelector("header");
             const heroBg = document.querySelector(".hero__bg");
             const heroBody = document.querySelector(".hero__body");

@@ -1052,8 +1052,8 @@ background-color: $mainWhite;
   }
   // .relationship__txt
   &__txt {
-    // 518
     color: $mainWhite;
+    line-height: 1.1;
     @include adaptiveValue("max-width", 600,518,0,1920,1366.98);
     &:not(:last-child) {
       @include adaptiveValue("margin-bottom", 114, 70,2,1920,1366.98);
@@ -1302,42 +1302,62 @@ background-color: $mainWhite;
     color:$mainWhite;
     @include adaptiveValue("font-size", 24, 22,2,1920,1366.98);
     @include adaptiveValue("font-size", 22, 21,3,1366.98,480);
-    line-height: normal;
+    line-height: 1.1;
     @include adaptiveValue("margin-bottom", 33, 20,2,1920,1280);
     @media (any-hover: hover) {
       &:hover {
-        .line {
+        .word-span {
           &::before {
-            width: 100%; 
-          }
-    
-          @for $i from 1 through 5 {
-            &:nth-child(#{$i}) {
-              &::before {
-                transition-delay: #{0.06 * ($i - 1)}s;
-              }
-            }
+            opacity: 1;
           }
         }
+        // .line {
+        //   &::before {
+        //     width: 100%; 
+        //   }
+    
+        //   @for $i from 1 through 5 {
+        //     &:nth-child(#{$i}) {
+        //       &::before {
+        //         transition-delay: #{0.06 * ($i - 1)}s;
+        //       }
+        //     }
+        //   }
+        // }
       }
     }
-    
-    .line {
-      @media (min-width:$mobile){
-        width: fit-content !important;
-        position: relative;
-        &::before {
+    .word-span {
+      @media (min-width:$mobileSmall){
+         position: relative;
+         &::before {
           content:'';
           position: absolute;
-          bottom: toRem(0);
           left: 0;
-          width: 0;
+          bottom: 0;
+          width: 100%;
           height: toRem(1);
           background-color: $mainWhite;
-          transition: width .6s cubic-bezier(.215,.61,.355,1);
-        }
+          opacity: 0;
+          transition: opacity .3s ease;
+         } 
       }
     }
+    // .line {
+      // @media (min-width:$mobile){
+      //   width: fit-content !important;
+      //   position: relative;
+      //   &::before {
+      //     content:'';
+      //     position: absolute;
+      //     bottom: toRem(0);
+      //     left: 0;
+      //     width: 0;
+      //     height: toRem(1);
+      //     background-color: $mainWhite;
+      //     transition: width .6s cubic-bezier(.215,.61,.355,1);
+      //   }
+      // }
+    // }
     @media (max-width: em(1279.98)){
         margin-bottom: toRem(33);
     }

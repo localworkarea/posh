@@ -62,48 +62,52 @@ setPosterForMobile();
 
 document.addEventListener("DOMContentLoaded", function() {
 
- 
-
-
   const splitTextLines = document.querySelectorAll('.split-lines');
-    const splitTextWords = document.querySelectorAll('.split-words');
-    const splitTextBoth = document.querySelectorAll('.split-both');
-    
-    if (splitTextLines.length > 0) {
-      splitTextLines.forEach(element => {
-        const splitText = new SplitType(element, { types: 'lines' });
-    
-        window.addEventListener("resize", function() {
-          splitText.split();
-        });
+  const splitTextWords = document.querySelectorAll('.split-words');
+  const splitTextBoth = document.querySelectorAll('.split-both');
+  
+  if (splitTextLines.length > 0) {
+    splitTextLines.forEach(element => {
+      const splitText = new SplitType(element, { types: 'lines' });
+  
+      window.addEventListener("resize", function() {
+        splitText.split();
       });
-    }
-    
-    if (splitTextWords.length > 0) {
-      splitTextWords.forEach(element => {
-        const splitText = new SplitType(element, { types: 'words' });
-    
-        window.addEventListener("resize", function() {
-          splitText.split();
-        });
+    });
+  }
+  
+  if (splitTextWords.length > 0) {
+    splitTextWords.forEach(element => {
+      const splitText = new SplitType(element, { types: 'words' });
+  
+      window.addEventListener("resize", function() {
+        splitText.split();
       });
-    }
-
-    if (splitTextBoth.length > 0) {
-      splitTextBoth.forEach(element => {
-        const splitText = new SplitType(element, { types: 'lines, words' });
-    
-        window.addEventListener("resize", function() {
-          splitText.split();
-        });
+    });
+  }
+  if (splitTextBoth.length > 0) {
+    splitTextBoth.forEach(element => {
+      const splitText = new SplitType(element, { types: 'lines, words' });
+  
+      window.addEventListener("resize", function() {
+        splitText.split();
       });
-    }
+    });
+  }
 
     // Функция для обновления индексов и расстановки их заново
   function updateIndexes() {
     const splitBoth = document.querySelectorAll('.split-both');
+    const splitWords = document.querySelectorAll('.split-words');
     
     splitBoth.forEach((splitElement) => {
+      const words = splitElement.querySelectorAll('.word');
+      
+      words.forEach((word, index) => {
+        word.style.setProperty('--index', index);
+      });
+    });
+    splitWords.forEach((splitElement) => {
       const words = splitElement.querySelectorAll('.word');
       
       words.forEach((word, index) => {
@@ -115,11 +119,7 @@ document.addEventListener("DOMContentLoaded", function() {
   // Вызов функции при загрузке страницы
   updateIndexes();
   
-  // Добавление слушателя события resize к окну
-  window.addEventListener("resize", function() {
-    // Вызов функции для обновления индексов при изменении размера окна
-    updateIndexes();
-  });
+ 
 
 
     // ИНДЕКСЫ ДЛЯ TRANSITION-DELAY (блок services-main) ========================================================
@@ -142,6 +142,28 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     }
     
+
+    const splitWordsElements = document.querySelectorAll('.split-words.txt-anim');
+  
+    function createSpanInWord() {
+      if (splitWordsElements) {
+        splitWordsElements.forEach(splitWordsElement => {
+          const words = splitWordsElement.querySelectorAll('.word');
+          
+          words.forEach(word => {
+            const text = word.textContent.trim();
+            word.innerHTML = `<span class="word-span">${text}</span>`;
+          });
+        });
+      }
+    }
+    createSpanInWord();
+
+     // Добавление слушателя события resize к окну
+  window.addEventListener("resize", function() {
+    createSpanInWord();
+    updateIndexes();
+  });
 
     // ОТЛОЖЕННАЯ ЗАГРУЗКА ВИДЕО ========================================================
 
