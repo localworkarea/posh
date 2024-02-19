@@ -628,33 +628,33 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
 
-  window.addEventListener("load", function (e) {
+  // window.addEventListener("load", function (e) {
 
   
-    // Проверяем, является ли устройство мобильным
-    if (!isMobile.any()) {
-      // Находим элементы тикера
-      const tikerInsights = document.querySelector('.slider-insights');
-      const tikerLine = document.querySelector('.slider-insights__wrapper');
-      const clonedLine = tikerLine.cloneNode(true);
-      // Добавляем клон в конец элемента тикера
-      tikerInsights.appendChild(clonedLine);
-      // Присваиваем анимацию обоим линиям тикера
-      tikerLine.style.animation = "scroll 40s linear infinite";
-      clonedLine.style.animation = "scroll 40s linear infinite";
-      // Функция для приостановки анимации
-      function playStatePaused() {
-          tikerLine.style.animationPlayState = "paused";
-          clonedLine.style.animationPlayState = "paused";
-      }
-      // Функция для возобновления анимации
-      function playStateRunning() {
-          tikerLine.style.animationPlayState = "running";
-          clonedLine.style.animationPlayState = "running";
-      }
-      // Обработчики событий для мыши и касаний
-      tikerInsights.addEventListener("mouseover", playStatePaused);
-      tikerInsights.addEventListener("mouseout", playStateRunning);
-    }
-  });
+  //   // Проверяем, является ли устройство мобильным
+  //   if (!isMobile.any()) {
+  //     // Находим элементы тикера
+  //     const tikerInsights = document.querySelector('.slider-insights');
+  //     const tikerLine = document.querySelector('.slider-insights__wrapper');
+  //     const clonedLine = tikerLine.cloneNode(true);
+  //     // Добавляем клон в конец элемента тикера
+  //     tikerInsights.appendChild(clonedLine);
+  //     // Присваиваем анимацию обоим линиям тикера
+  //     tikerLine.style.animation = "scroll 40s linear infinite";
+  //     clonedLine.style.animation = "scroll 40s linear infinite";
+  //     // Функция для приостановки анимации
+  //     function playStatePaused() {
+  //         tikerLine.style.animationPlayState = "paused";
+  //         clonedLine.style.animationPlayState = "paused";
+  //     }
+  //     // Функция для возобновления анимации
+  //     function playStateRunning() {
+  //         tikerLine.style.animationPlayState = "running";
+  //         clonedLine.style.animationPlayState = "running";
+  //     }
+  //     // Обработчики событий для мыши и касаний
+  //     tikerInsights.addEventListener("mouseover", playStatePaused);
+  //     tikerInsights.addEventListener("mouseout", playStateRunning);
+  //   }
+  // });
   // -------------------------------------------------------------------------------------

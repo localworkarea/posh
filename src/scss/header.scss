@@ -17,7 +17,7 @@
 
   .loaded & {
     opacity: 1;
-    transition: min-height .5s, background-color .5s, transform .6s ease, top .6s ease, opacity 1.5s ease 4s, clip-path 1.5s ease;
+    transition: min-height .5s, background-color .5s, transform .6s ease, top .6s ease, opacity 1.5s ease 2s, clip-path 1.5s ease;
     // clip-path: inset(0 0 0 0);
   }
 
@@ -355,10 +355,10 @@
         .lang-header__link {
           opacity: 1;
           &.link-1 {
-            transition-delay: .3s;
+            transition-delay: .25s;
           }
           &.link-2 {
-            transition-delay: .35s;
+            transition-delay: .3s;
           }
         }
         .lang-header__link.active {
@@ -414,7 +414,7 @@
     position: relative;
     z-index: 2;
     text-align: center;
-    transition: opacity .45s ease, width .45s ease, border .45s ease;
+    transition: opacity .3s ease, width .3s ease, border .3s ease;
     @media (min-width:em(1366.98)){
         font-size: toRem(17);
     }
@@ -453,7 +453,7 @@
 
     
     &.active {
-      transition: opacity .3s ease , width .45s ease .2s;
+      transition: opacity .3s ease , width .35s ease .2s;
       @media (min-width:em(1200.98)){
         pointer-events: none;
         opacity: 1;
@@ -492,7 +492,7 @@
       background-color: $lightBlue;
       border: 1px solid transparent;
       opacity: 0;
-      transition: opacity .2s, transform .45s ease .2s, margin .45s ease .2s;
+      transition: opacity .2s, transform .3s ease .2s, margin .3s ease .2s;
     }
     @media (max-width: em(1200.98)){
         display: none;

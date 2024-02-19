@@ -4116,20 +4116,9 @@
                 },
                 on: {}
             });
-        }
-        window.addEventListener("load", (function(e) {
-            let mySwipers = {};
-            function initSlider(selector, options) {
-                if (!mySwipers[selector]) mySwipers[selector] = new Swiper(selector, options);
-            }
-            const touchScreenChecker = function() {
-                if (isMobile.any()) enableSwipers(); else for (const selector in mySwipers) if (mySwipers[selector] !== void 0) {
-                    mySwipers[selector].destroy(true, true);
-                    mySwipers[selector] = void 0;
-                }
-            };
-            const enableSwipers = function() {
-                if (document.querySelector(".slider-insights")) initSlider(".slider-insights", {
+            if (document.querySelector(".slider-insights")) {
+                document.querySelector(".slider-insights__wrapper");
+                new Swiper(".slider-insights", {
                     modules: [ Autoplay, freeMode ],
                     observer: true,
                     observeParents: true,
@@ -4137,9 +4126,10 @@
                     speed: 2500,
                     centeredSlides: false,
                     longSwipes: true,
+                    simulateTouch: true,
+                    grabCursor: true,
                     autoplay: {
                         delay: -1,
-                        disableOnInteraction: false,
                         pauseOnMouseEnter: true
                     },
                     freeMode: {
@@ -4154,6 +4144,9 @@
                         300: {
                             spaceBetween: 24
                         },
+                        1200: {
+                            spaceBetween: 30
+                        },
                         1500: {
                             spaceBetween: 40
                         }
@@ -4167,8 +4160,9 @@
                         }
                     }
                 });
-            };
-            touchScreenChecker();
+            }
+        }
+        window.addEventListener("load", (function(e) {
             initSliders();
         }));
         class ScrollWatcher {
@@ -5078,26 +5072,6 @@
                 const clonedLine = originalLine.cloneNode(true);
                 clonedLine.classList.add("clone-line");
                 tiker.appendChild(clonedLine);
-            }
-        }));
-        window.addEventListener("load", (function(e) {
-            if (!isMobile.any()) {
-                const tikerInsights = document.querySelector(".slider-insights");
-                const tikerLine = document.querySelector(".slider-insights__wrapper");
-                const clonedLine = tikerLine.cloneNode(true);
-                tikerInsights.appendChild(clonedLine);
-                tikerLine.style.animation = "scroll 40s linear infinite";
-                clonedLine.style.animation = "scroll 40s linear infinite";
-                function playStatePaused() {
-                    tikerLine.style.animationPlayState = "paused";
-                    clonedLine.style.animationPlayState = "paused";
-                }
-                function playStateRunning() {
-                    tikerLine.style.animationPlayState = "running";
-                    clonedLine.style.animationPlayState = "running";
-                }
-                tikerInsights.addEventListener("mouseover", playStatePaused);
-                tikerInsights.addEventListener("mouseout", playStateRunning);
             }
         }));
         window["FLS"] = false;
