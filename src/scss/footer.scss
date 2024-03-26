@@ -1,5 +1,9 @@
 .footer {
   background-color: $darkBlue;
+  padding-top: toRem(70);
+  .page-main & {
+    padding-top: unset;
+  }
 }
 
 .footer-main {
@@ -593,6 +597,18 @@
   transition: opacity .45s, clip-path .8s ease;
 
   clip-path: inset(0 0 100% 0);
+  
+  .page-contacts & {
+    position: relative;
+    left: unset;
+    transform: unset;
+    clip-path: inset(0 0 0 0);
+    pointer-events: all;
+    border-radius: unset !important;
+    @media (min-width: em(1200.98)){
+      width: 100% !important;
+    }
+  }
 
   &.form-open {
     clip-path: inset(0 0 0 0);
@@ -619,8 +635,12 @@
     @include adaptiveValue("padding-top", 50, 30,3,1366.98,480.98);
     // @include adaptiveValue("padding-bottom", 72, 37,0,1366,480);
     padding-bottom: toRem(37);
+   
     form {
       @include adaptiveValue("max-width", 653, 546,0,1920,1366);   
+      .page-contacts & {
+        max-width: unset !important;
+      }
       @media (max-width: em(650.98)){
         order: 2;
         position: absolute;
@@ -628,6 +648,9 @@
         top: 0;
         left: 0;
         right: 0;
+        .page-contacts & {
+          position: relative;
+        }
         &.popup-open {
           position: relative;
         }
@@ -642,6 +665,9 @@
     }
     @media (max-width: em(650.98)){
         row-gap: toRem(85);
+        .page-contacts & {
+          row-gap: toRem(50);
+        }
     }
   }
   // .form-footer__close
@@ -1077,6 +1103,11 @@
     display: flex;
     justify-content: center;
     @include adaptiveValue("column-gap", 17, 14,0,1366,480);
+    .page-contacts & {
+      @media (max-width: em(650.98)){
+          margin: toRem(16) 0 toRem(28);
+      }
+    }
   }
   // .side-form__link
   &__link {
@@ -1138,6 +1169,15 @@
     }
     @media (max-width:em(650.98)){
        display: none; 
+    }
+    .page-contacts & {
+      @media (max-width: em(650.98)){
+         display: block;
+         font-size: toRem(20); 
+      }
+      @media (max-width:$mobileSmall){
+        text-align: left;
+      }
     }
   }
 }

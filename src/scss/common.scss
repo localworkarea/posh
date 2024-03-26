@@ -187,6 +187,16 @@ body {
   }
 }
 
+%marginSection {
+  overflow: hidden;
+  background-color: $mainWhite;
+  @media (min-width:$mobileSmall){
+    margin-top: toRem(126);
+  }
+  @media (max-width:$mobileSmall){
+     margin-top: toRem(96); 
+  }
+} 
 
 .btn {
   display: flex;
@@ -672,20 +682,20 @@ body {
   position: relative;
   @include adaptiveValue("border-start-start-radius", 50, 36,0,1366,480);
   @include adaptiveValue("border-start-end-radius", 50, 36,0,1366,480);
-  // &::before {
-  //   content:'';
-  //   position: absolute;
-  //   z-index: -1;
-  //   top: 0;
-  //   left:0;
-  //   width: 100%;
-  //   @include adaptiveValue("height", 50, 36,0,1366,480);
-  // }
-  // &.br-r--white {
-  //   &::before {
-  //     background-color: $mainWhite;
-  //   }
-  // }
+  &.br-r--white {
+    &::before {
+      content:'';
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      left:0;
+      width: 100%;
+      background-color: $mainWhite;
+      @include adaptiveValue("height", 50, 36,0,1366,480);
+    }
+    &::before {
+    }
+  }
 }
 
 .case-card {

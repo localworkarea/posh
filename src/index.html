@@ -5,7 +5,9 @@
 	})
 	<body>
 		<div data-fp data-fp-effect="fade" class="wrapper page-main">
-			@@include('html/_header.htm',{})
+			<header data-scroll="0" data-scroll-show class="header header-home">
+				@@include('html/_header.htm',{})
+			</header>
 			<main class="page">
 				<div data-fp-section class="section-01">
 					<section class="hero">
@@ -478,7 +480,7 @@
 							</div>
 						</div>
 					</section>
-					<section data-watch data-watch-once class="relationship br-r br-r--white">
+					<section data-watch data-watch-once class="relationship br-r">
 						<div class="relationship__container">
 							<div class="relationship__head">
 									<h2 data-watch data-watch-once data-watch-threshold="1" class="relationship__title title-main split-both">
@@ -865,7 +867,7 @@
 							</div>
 						</div>
 					</section>
-					<footer class="footer ">
+					<footer class="footer">
 						@@include('html/_footer-main.htm',{})
 					</footer>
 				</div>
@@ -874,8 +876,6 @@
 		<!-- <div class="mask">
 			<span></span>
 		</div> -->
-		<script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
-		<script src="https://unpkg.com/split-type"></script>
 		@@include('html/_js.htm',{})
 	</body>
 </html>

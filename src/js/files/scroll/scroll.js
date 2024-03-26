@@ -239,15 +239,9 @@ export function headerScroll() {
 	const startPoint = header.dataset.scroll ? header.dataset.scroll : 1;
 	let scrollDirection = 0;
 	let timer;
-	
-	const sectionTwo = document.querySelector('.section-02');
 
-	sectionTwo.addEventListener("scroll", function (e) {
-			if (!addWindowScrollEvent) return;
-
-			const scrollTop = sectionTwo.scrollTop;
+	const handleScroll = (scrollTop) => {
 			clearTimeout(timer);
-
 			if (scrollTop >= startPoint) {
 					if (!header.classList.contains('_header-scroll')) {
 							header.classList.add('_header-scroll');
@@ -255,22 +249,14 @@ export function headerScroll() {
 
 					if (headerShow) {
 							if (scrollTop > scrollDirection) {
-									// downscroll code
 									if (header.classList.contains('_header-show')) {
 											header.classList.remove('_header-show');
 									}
 							} else {
-									// upscroll code
 									if (!header.classList.contains('_header-show')) {
 											header.classList.add('_header-show');
 									}
 							}
-
-							// timer = setTimeout(() => {
-							// 		if (!header.classList.contains('_header-show')) {
-							// 				header.classList.add('_header-show');
-							// 		}
-							// }, headerShowTimer);
 					}
 			} else {
 					if (header.classList.contains('_header-scroll')) {
@@ -282,10 +268,23 @@ export function headerScroll() {
 							}
 					}
 			}
-
 			scrollDirection = scrollTop <= 0 ? 0 : scrollTop;
-	});
+	};
+
+	const sectionTwo = document.querySelector('.section-02');
+	if (sectionTwo) {
+			sectionTwo.addEventListener("scroll", function (e) {
+					if (!addWindowScrollEvent) return;
+					handleScroll(sectionTwo.scrollTop);
+			});
+	} else {
+			window.addEventListener("scroll", function (e) {
+					if (!addWindowScrollEvent) return;
+					handleScroll(window.scrollY);
+			});
+	}
 }
+
 
 
 

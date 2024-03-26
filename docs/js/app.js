@@ -1,6 +1,6 @@
 (() => {
     var __webpack_modules__ = {
-        2: function(module, exports, __webpack_require__) {
+        496: function(module, exports, __webpack_require__) {
             var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
  /*! smooth-scroll v16.1.3 | (c) 2020 Chris Ferdinandi | MIT License | http://github.com/cferdinandi/smooth-scroll */            window.Element && !Element.prototype.closest && (Element.prototype.closest = function(e) {
                 var t, n = (this.document || this.ownerDocument).querySelectorAll(e), o = this;
@@ -193,7 +193,7 @@
     })();
     (() => {
         "use strict";
-        const modules_flsModules = {};
+        const flsModules = {};
         function isWebp() {
             function testWebP(callback) {
                 let webP = new Image;
@@ -236,6 +236,9 @@
                     document.documentElement.classList.add("loaded");
                 }), 0);
             }));
+        }
+        function getHash() {
+            if (location.hash) return location.hash.replace("#", "");
         }
         let _slideUp = (target, duration = 500, showmore = 0) => {
             if (!target.classList.contains("_slide")) {
@@ -349,7 +352,7 @@
                 }
             }));
         }
-        function functions_menuClose() {
+        function menuClose() {
             bodyUnlock();
             document.documentElement.classList.remove("menu-open");
         }
@@ -508,8 +511,8 @@
                 }
             }
         }
-        var smooth_scroll_polyfills_min = __webpack_require__(2);
-        let gotoblock_gotoBlock = (targetBlock, noHeader = false, speed = 500, offsetTop = 0) => {
+        var smooth_scroll_polyfills_min = __webpack_require__(496);
+        let gotoBlock = (targetBlock, noHeader = false, speed = 500, offsetTop = 0) => {
             const targetBlockElement = document.querySelector(targetBlock);
             if (targetBlockElement) {
                 let headerItem = "";
@@ -534,7 +537,7 @@
                     offset: offsetTop,
                     easing: "easeOutQuad"
                 };
-                document.documentElement.classList.contains("menu-open") ? functions_menuClose() : null;
+                document.documentElement.classList.contains("menu-open") ? menuClose() : null;
                 if (typeof smooth_scroll_polyfills_min !== "undefined") (new smooth_scroll_polyfills_min).animateScroll(targetBlockElement, "", options); else {
                     let targetBlockElementPosition = targetBlockElement.getBoundingClientRect().top + scrollY;
                     targetBlockElementPosition = headerItemHeight ? targetBlockElementPosition - headerItemHeight : targetBlockElementPosition;
@@ -655,11 +658,11 @@
                         const checkbox = checkboxes[index];
                         checkbox.checked = false;
                     }
-                    if (modules_flsModules.select) {
+                    if (flsModules.select) {
                         let selects = form.querySelectorAll(".select");
                         if (selects.length) for (let index = 0; index < selects.length; index++) {
                             const select = selects[index].querySelector("select");
-                            modules_flsModules.select.selectBuild(select);
+                            flsModules.select.selectBuild(select);
                         }
                     }
                 }), 0);
@@ -710,7 +713,7 @@
                     e.preventDefault();
                     if (form.querySelector("._form-error") && form.hasAttribute("data-goto-error")) {
                         const formGoToErrorClass = form.dataset.gotoError ? form.dataset.gotoError : "._form-error";
-                        gotoblock_gotoBlock(formGoToErrorClass, true, 1e3);
+                        gotoBlock(formGoToErrorClass, true, 1e3);
                     }
                 }
             }
@@ -721,9 +724,9 @@
                     }
                 }));
                 setTimeout((() => {
-                    if (modules_flsModules.popup) {
+                    if (flsModules.popup) {
                         const popup = form.dataset.popupMessage;
-                        popup ? modules_flsModules.popup.open(popup) : null;
+                        popup ? flsModules.popup.open(popup) : null;
                     }
                 }), 0);
                 form.classList.add("_form-sent");
@@ -1109,6 +1112,7 @@
         let browser;
         function calcBrowser() {
             const window = ssr_window_esm_getWindow();
+            const device = getDevice();
             let needPerspectiveFix = false;
             function isSafari() {
                 const ua = window.navigator.userAgent.toLowerCase();
@@ -1121,10 +1125,14 @@
                     needPerspectiveFix = major < 16 || major === 16 && minor < 2;
                 }
             }
+            const isWebView = /(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/i.test(window.navigator.userAgent);
+            const isSafariBrowser = isSafari();
+            const need3dFix = isSafariBrowser || isWebView && device.ios;
             return {
-                isSafari: needPerspectiveFix || isSafari(),
+                isSafari: needPerspectiveFix || isSafariBrowser,
                 needPerspectiveFix,
-                isWebView: /(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/i.test(window.navigator.userAgent)
+                need3dFix,
+                isWebView
             };
         }
         function getBrowser() {
@@ -1993,7 +2001,7 @@
             let slideIndex = index;
             if (slideIndex < 0) slideIndex = 0;
             const {params, snapGrid, slidesGrid, previousIndex, activeIndex, rtlTranslate: rtl, wrapperEl, enabled} = swiper;
-            if (swiper.animating && params.preventInteractionOnTransition || !enabled && !internal && !initial) return false;
+            if (swiper.animating && params.preventInteractionOnTransition || !enabled && !internal && !initial || swiper.destroyed) return false;
             const skip = Math.min(swiper.params.slidesPerGroupSkip, slideIndex);
             let snapIndex = skip + Math.floor((slideIndex - skip) / swiper.params.slidesPerGroup);
             if (snapIndex >= snapGrid.length) snapIndex = snapGrid.length - 1;
@@ -2089,6 +2097,7 @@
                 index = indexAsNumber;
             }
             const swiper = this;
+            if (swiper.destroyed) return;
             const gridEnabled = swiper.grid && swiper.params.grid && swiper.params.grid.rows > 1;
             let newIndex = index;
             if (swiper.params.loop) if (swiper.virtual && swiper.params.virtual.enabled) newIndex += swiper.virtual.slidesBefore; else {
@@ -2130,7 +2139,7 @@
             if (runCallbacks === void 0) runCallbacks = true;
             const swiper = this;
             const {enabled, params, animating} = swiper;
-            if (!enabled) return swiper;
+            if (!enabled || swiper.destroyed) return swiper;
             let perGroup = params.slidesPerGroup;
             if (params.slidesPerView === "auto" && params.slidesPerGroup === 1 && params.slidesPerGroupAuto) perGroup = Math.max(swiper.slidesPerViewDynamic("current", true), 1);
             const increment = swiper.activeIndex < params.slidesPerGroupSkip ? 1 : perGroup;
@@ -2156,7 +2165,7 @@
             if (runCallbacks === void 0) runCallbacks = true;
             const swiper = this;
             const {params, snapGrid, slidesGrid, rtlTranslate, enabled, animating} = swiper;
-            if (!enabled) return swiper;
+            if (!enabled || swiper.destroyed) return swiper;
             const isVirtual = swiper.virtual && params.virtual.enabled;
             if (params.loop) {
                 if (animating && !isVirtual && params.loopPreventsSliding) return false;
@@ -2204,6 +2213,7 @@
             if (speed === void 0) speed = this.params.speed;
             if (runCallbacks === void 0) runCallbacks = true;
             const swiper = this;
+            if (swiper.destroyed) return;
             return swiper.slideTo(swiper.activeIndex, speed, runCallbacks, internal);
         }
         function slideToClosest(speed, runCallbacks, internal, threshold) {
@@ -2211,6 +2221,7 @@
             if (runCallbacks === void 0) runCallbacks = true;
             if (threshold === void 0) threshold = .5;
             const swiper = this;
+            if (swiper.destroyed) return;
             let index = swiper.activeIndex;
             const skip = Math.min(swiper.params.slidesPerGroupSkip, index);
             const snapIndex = skip + Math.floor((index - skip) / swiper.params.slidesPerGroup);
@@ -2230,6 +2241,7 @@
         }
         function slideToClickedSlide() {
             const swiper = this;
+            if (swiper.destroyed) return;
             const {params, slidesEl} = swiper;
             const slidesPerView = params.slidesPerView === "auto" ? swiper.slidesPerViewDynamic() : params.slidesPerView;
             let slideToIndex = swiper.clickedIndex;
@@ -2386,7 +2398,7 @@
                     const newSlideTranslate = swiper.slidesGrid[activeIndex + slidesPrepended];
                     const diff = newSlideTranslate - currentSlideTranslate;
                     if (byMousewheel) swiper.setTranslate(swiper.translate - diff); else {
-                        swiper.slideTo(activeIndex + slidesPrepended, 0, false, true);
+                        swiper.slideTo(activeIndex + Math.ceil(slidesPrepended), 0, false, true);
                         if (setTranslate) {
                             swiper.touchEventsData.startTranslate = swiper.touchEventsData.startTranslate - diff;
                             swiper.touchEventsData.currentTranslate = swiper.touchEventsData.currentTranslate - diff;
@@ -3142,6 +3154,7 @@
             init: true,
             direction: "horizontal",
             oneWayMovement: false,
+            swiperElementNodeName: "SWIPER-CONTAINER",
             touchEventsTarget: "wrapper",
             initialSlide: 0,
             speed: 300,
@@ -3464,10 +3477,10 @@
                 let spv = 1;
                 if (typeof params.slidesPerView === "number") return params.slidesPerView;
                 if (params.centeredSlides) {
-                    let slideSize = slides[activeIndex] ? slides[activeIndex].swiperSlideSize : 0;
+                    let slideSize = slides[activeIndex] ? Math.ceil(slides[activeIndex].swiperSlideSize) : 0;
                     let breakLoop;
                     for (let i = activeIndex + 1; i < slides.length; i += 1) if (slides[i] && !breakLoop) {
-                        slideSize += slides[i].swiperSlideSize;
+                        slideSize += Math.ceil(slides[i].swiperSlideSize);
                         spv += 1;
                         if (slideSize > swiperSize) breakLoop = true;
                     }
@@ -3556,7 +3569,7 @@
                 if (typeof el === "string") el = document.querySelector(el);
                 if (!el) return false;
                 el.swiper = swiper;
-                if (el.parentNode && el.parentNode.host && el.parentNode.host.nodeName === "SWIPER-CONTAINER") swiper.isElement = true;
+                if (el.parentNode && el.parentNode.host && el.parentNode.host.nodeName === swiper.params.swiperElementNodeName.toUpperCase()) swiper.isElement = true;
                 const getWrapperSelector = () => `.${(swiper.params.wrapperClass || "").trim().split(" ").join(".")}`;
                 const getWrapper = () => {
                     if (el && el.shadowRoot && el.shadowRoot.querySelector) {
@@ -4244,7 +4257,7 @@
                 }));
             }
         }
-        modules_flsModules.watcher = new ScrollWatcher({});
+        flsModules.watcher = new ScrollWatcher({});
         class FullPage {
             constructor(element, options) {
                 let config = {
@@ -4618,8 +4631,53 @@
                 }
             }
         }
-        if (document.querySelector("[data-fp]")) modules_flsModules.fullpage = new FullPage(document.querySelector("[data-fp]"), "");
+        if (document.querySelector("[data-fp]")) flsModules.fullpage = new FullPage(document.querySelector("[data-fp]"), "");
         let addWindowScrollEvent = false;
+        function pageNavigation() {
+            document.addEventListener("click", pageNavigationAction);
+            document.addEventListener("watcherCallback", pageNavigationAction);
+            function pageNavigationAction(e) {
+                if (e.type === "click") {
+                    const targetElement = e.target;
+                    if (targetElement.closest("[data-goto]")) {
+                        const gotoLink = targetElement.closest("[data-goto]");
+                        const gotoLinkSelector = gotoLink.dataset.goto ? gotoLink.dataset.goto : "";
+                        const noHeader = gotoLink.hasAttribute("data-goto-header") ? true : false;
+                        const gotoSpeed = gotoLink.dataset.gotoSpeed ? gotoLink.dataset.gotoSpeed : 500;
+                        const offsetTop = gotoLink.dataset.gotoTop ? parseInt(gotoLink.dataset.gotoTop) : 0;
+                        if (flsModules.fullpage) {
+                            const fullpageSection = document.querySelector(`${gotoLinkSelector}`).closest("[data-fp-section]");
+                            const fullpageSectionId = fullpageSection ? +fullpageSection.dataset.fpId : null;
+                            if (fullpageSectionId !== null) {
+                                flsModules.fullpage.switchingSection(fullpageSectionId);
+                                document.documentElement.classList.contains("menu-open") ? menuClose() : null;
+                            }
+                        } else gotoBlock(gotoLinkSelector, noHeader, gotoSpeed, offsetTop);
+                        e.preventDefault();
+                    }
+                } else if (e.type === "watcherCallback" && e.detail) {
+                    const entry = e.detail.entry;
+                    const targetElement = entry.target;
+                    if (targetElement.dataset.watch === "navigator") {
+                        document.querySelector(`[data-goto]._navigator-active`);
+                        let navigatorCurrentItem;
+                        if (targetElement.id && document.querySelector(`[data-goto="#${targetElement.id}"]`)) navigatorCurrentItem = document.querySelector(`[data-goto="#${targetElement.id}"]`); else if (targetElement.classList.length) for (let index = 0; index < targetElement.classList.length; index++) {
+                            const element = targetElement.classList[index];
+                            if (document.querySelector(`[data-goto=".${element}"]`)) {
+                                navigatorCurrentItem = document.querySelector(`[data-goto=".${element}"]`);
+                                break;
+                            }
+                        }
+                        if (entry.isIntersecting) navigatorCurrentItem ? navigatorCurrentItem.classList.add("_navigator-active") : null; else navigatorCurrentItem ? navigatorCurrentItem.classList.remove("_navigator-active") : null;
+                    }
+                }
+            }
+            if (getHash()) {
+                let goToHash;
+                if (document.querySelector(`#${getHash()}`)) goToHash = `#${getHash()}`; else if (document.querySelector(`.${getHash()}`)) goToHash = `.${getHash()}`;
+                goToHash ? gotoBlock(goToHash, true, 500, 20) : null;
+            }
+        }
         function headerScroll() {
             let addWindowScrollEvent = true;
             const header = document.querySelector("header.header");
@@ -4628,10 +4686,7 @@
             const startPoint = header.dataset.scroll ? header.dataset.scroll : 1;
             let scrollDirection = 0;
             let timer;
-            const sectionTwo = document.querySelector(".section-02");
-            sectionTwo.addEventListener("scroll", (function(e) {
-                if (!addWindowScrollEvent) return;
-                const scrollTop = sectionTwo.scrollTop;
+            const handleScroll = scrollTop => {
                 clearTimeout(timer);
                 if (scrollTop >= startPoint) {
                     if (!header.classList.contains("_header-scroll")) header.classList.add("_header-scroll");
@@ -4643,6 +4698,14 @@
                     if (headerShow) if (header.classList.contains("_header-show")) header.classList.remove("_header-show");
                 }
                 scrollDirection = scrollTop <= 0 ? 0 : scrollTop;
+            };
+            const sectionTwo = document.querySelector(".section-02");
+            if (sectionTwo) sectionTwo.addEventListener("scroll", (function(e) {
+                if (!addWindowScrollEvent) return;
+                handleScroll(sectionTwo.scrollTop);
+            })); else window.addEventListener("scroll", (function(e) {
+                if (!addWindowScrollEvent) return;
+                handleScroll(window.scrollY);
             }));
         }
         setTimeout((() => {
@@ -4737,12 +4800,12 @@
         }
         const da = new DynamicAdapt("max");
         da.init();
-        var video = document.getElementById("heroVideo");
+        var videoHero = document.getElementById("heroVideo");
         var deferredSource = document.getElementById("deferredSource");
         function setPosterForMobile() {
-            if (window.innerWidth > 500) video.setAttribute("poster", "files/video.webp");
+            if (window.innerWidth > 500) videoHero.setAttribute("poster", "files/video.webp");
         }
-        setPosterForMobile();
+        if (videoHero) setPosterForMobile();
         function loadVideoWithDelay(delay) {
             setTimeout((function() {
                 var videoLoaded = localStorage.getItem("videoLoaded");
@@ -4756,7 +4819,7 @@
             }), delay);
         }
         document.addEventListener("DOMContentLoaded", (function() {
-            loadVideoWithDelay(100);
+            if (deferredSource) loadVideoWithDelay(100);
         }));
         document.addEventListener("DOMContentLoaded", (function() {
             const splitTextLines = document.querySelectorAll(".split-lines");
@@ -4786,9 +4849,9 @@
                     splitText.split();
                 }));
             }));
+            const splitBoth = document.querySelectorAll(".split-both");
+            const splitWords = document.querySelectorAll(".split-words");
             function updateIndexes() {
-                const splitBoth = document.querySelectorAll(".split-both");
-                const splitWords = document.querySelectorAll(".split-words");
                 splitBoth.forEach((splitElement => {
                     const words = splitElement.querySelectorAll(".word");
                     words.forEach(((word, index) => {
@@ -4802,7 +4865,7 @@
                     }));
                 }));
             }
-            updateIndexes();
+            if (splitBoth || splitWords) updateIndexes();
             const leftItems = document.querySelectorAll(".items-serv-left__item");
             const rightItems = document.querySelectorAll(".items-serv-right__item");
             const brandsRelationship = document.querySelectorAll(".relationship__brand");
@@ -5037,50 +5100,53 @@
                     }
                 }));
             }));
+            const pageContacts = document.querySelector(".page-contacts");
             const buttonFormElement = document.querySelector(".button-form");
             const closeFromBtn = document.querySelector(".form-footer__close");
             const footerContainer = document.querySelector(".form-footer__container form");
-            let formFooter, footerMainBody;
-            function updateFooterHeight() {
-                const formFooterHeight = formFooter.offsetHeight;
-                footerMainBody.style.height = `${formFooterHeight}px`;
-            }
-            if (buttonFormElement && closeFromBtn) {
-                let buttonDisabled = false;
-                function handleClick() {
-                    if (buttonDisabled) return;
-                    buttonDisabled = true;
-                    formFooter = document.querySelector(".form-footer");
-                    footerMainBody = document.querySelector(".footer-main__body");
-                    if (formFooter && footerMainBody) {
-                        formFooter.classList.add("form-open");
-                        footerMainBody.classList.add("form-open");
-                        setTimeout((function() {
-                            updateFooterHeight();
-                        }), 400);
-                        footerContainer.classList.add("popup-open");
-                        window.addEventListener("orientationchange", updateFooterHeight);
-                        window.addEventListener("resize", updateFooterHeight);
-                    }
-                    setTimeout((function() {
-                        buttonDisabled = false;
-                    }), 1500);
+            if (!pageContacts) {
+                let formFooter, footerMainBody;
+                function updateFooterHeight() {
+                    const formFooterHeight = formFooter.offsetHeight;
+                    footerMainBody.style.height = `${formFooterHeight}px`;
                 }
-                buttonFormElement.addEventListener("click", handleClick);
-                closeFromBtn.addEventListener("click", (function(event) {
-                    if (formFooter && footerMainBody) {
-                        formFooter.classList.remove("form-open");
-                        footerMainBody.classList.remove("form-open");
+                if (buttonFormElement && closeFromBtn) {
+                    let buttonDisabled = false;
+                    function handleClick() {
+                        if (buttonDisabled) return;
+                        buttonDisabled = true;
+                        formFooter = document.querySelector(".form-footer");
+                        footerMainBody = document.querySelector(".footer-main__body");
+                        if (formFooter && footerMainBody) {
+                            formFooter.classList.add("form-open");
+                            footerMainBody.classList.add("form-open");
+                            setTimeout((function() {
+                                updateFooterHeight();
+                            }), 400);
+                            footerContainer.classList.add("popup-open");
+                            window.addEventListener("orientationchange", updateFooterHeight);
+                            window.addEventListener("resize", updateFooterHeight);
+                        }
                         setTimeout((function() {
-                            footerMainBody.style.height = "initial";
-                        }), 400);
-                        setTimeout((function() {
-                            footerContainer.classList.remove("popup-open");
-                        }), 800);
-                        window.removeEventListener("orientationchange", updateFooterHeight);
-                        window.removeEventListener("resize", updateFooterHeight);
+                            buttonDisabled = false;
+                        }), 1500);
                     }
-                }));
+                    buttonFormElement.addEventListener("click", handleClick);
+                    closeFromBtn.addEventListener("click", (function(event) {
+                        if (formFooter && footerMainBody) {
+                            formFooter.classList.remove("form-open");
+                            footerMainBody.classList.remove("form-open");
+                            setTimeout((function() {
+                                footerMainBody.style.height = "initial";
+                            }), 400);
+                            setTimeout((function() {
+                                footerContainer.classList.remove("popup-open");
+                            }), 800);
+                            window.removeEventListener("orientationchange", updateFooterHeight);
+                            window.removeEventListener("resize", updateFooterHeight);
+                        }
+                    }));
+                }
             }
         }));
         const tikers = document.querySelectorAll(".tiker");
@@ -5104,6 +5170,7 @@
             autoHeight: false
         });
         formSubmit();
+        pageNavigation();
         headerScroll();
     })();
 })();

@@ -21,43 +21,40 @@ import { flsModules } from "./modules.js";
 //   });
 // }
 
-// Получаем элементы видео и отложенного источника
-var video = document.getElementById("heroVideo");
+var videoHero = document.getElementById("heroVideo");
 var deferredSource = document.getElementById("deferredSource");
-// Функция для установки постера на мобильный формат
 function setPosterForMobile() {
-  if (window.innerWidth > 500) { // 31.25rem = 500px
-      video.setAttribute("poster", "files/video.webp");
+  if (window.innerWidth > 500) {
+    videoHero.setAttribute("poster", "files/video.webp");
   }
 }
+if (videoHero) {
+  setPosterForMobile();
+}
 
-// Вызываем функцию смены постера перед загрузкой видео
-setPosterForMobile();
 
-    // Функция для загрузки видео с задержкой
-    function loadVideoWithDelay(delay) {
-      setTimeout(function() {
-          // Если информация о загруженном видео есть в локальном хранилище,
-          // устанавливаем src для отложенного источника
-          var videoLoaded = localStorage.getItem("videoLoaded");
-          if (videoLoaded) {
-              deferredSource.src = deferredSource.dataset.src;
-          } else {
-              // Если информации нет, то загружаем видео и после успешной загрузки сохраняем флаг в локальное хранилище
-              deferredSource.onload = function() {
-                  video.appendChild(deferredSource.cloneNode(true));
-                  localStorage.setItem("videoLoaded", true);
-              };
-              deferredSource.src = deferredSource.dataset.src;
-          }
-      }, delay);
+function loadVideoWithDelay(delay) {
+    setTimeout(function() {
+        // Если информация о загруженном видео есть в локальном хранилище,
+        // устанавливаем src для отложенного источника
+        var videoLoaded = localStorage.getItem("videoLoaded");
+        if (videoLoaded) {
+            deferredSource.src = deferredSource.dataset.src;
+        } else {
+            // Если информации нет, то загружаем видео и после успешной загрузки сохраняем флаг в локальное хранилище
+            deferredSource.onload = function() {
+                video.appendChild(deferredSource.cloneNode(true));
+                localStorage.setItem("videoLoaded", true);
+            };
+            deferredSource.src = deferredSource.dataset.src;
+        }
+    }, delay);
+}
+document.addEventListener("DOMContentLoaded", function() {
+  if(deferredSource) {
+    loadVideoWithDelay(100);
   }
-
-  document.addEventListener("DOMContentLoaded", function() {
-    // Загружаем видео после загрузки DOM-дерева с задержкой 2000 миллисекунд (2 секунды)
-   loadVideoWithDelay(100);
-  });
-
+});
 
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -65,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const splitTextLines = document.querySelectorAll('.split-lines');
   const splitTextWords = document.querySelectorAll('.split-words');
   const splitTextBoth = document.querySelectorAll('.split-both');
-  
+
   if (splitTextLines.length > 0) {
     splitTextLines.forEach(element => {
       const splitText = new SplitType(element, { types: 'lines' });
@@ -95,10 +92,12 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
-    // Функция для обновления индексов и расстановки их заново
+  // Функция для обновления индексов и расстановки их заново
+  const splitBoth = document.querySelectorAll('.split-both');
+  const splitWords = document.querySelectorAll('.split-words');
   function updateIndexes() {
-    const splitBoth = document.querySelectorAll('.split-both');
-    const splitWords = document.querySelectorAll('.split-words');
+    // const splitBoth = document.querySelectorAll('.split-both');
+    // const splitWords = document.querySelectorAll('.split-words');
     
     splitBoth.forEach((splitElement) => {
       const words = splitElement.querySelectorAll('.word');
@@ -116,8 +115,9 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
   
-  // Вызов функции при загрузке страницы
-  updateIndexes();
+  if (splitBoth || splitWords) {
+    updateIndexes();
+  }
   
  
 
@@ -165,42 +165,6 @@ document.addEventListener("DOMContentLoaded", function() {
     updateIndexes();
   });
 
-    // ОТЛОЖЕННАЯ ЗАГРУЗКА ВИДЕО ========================================================
-
-      
-
-    // window.addEventListener("load", function() {
-    //     var video = document.getElementById("heroVideo");
-    //     if (video) {
-    //         var source = video.querySelector("source");
-    //         // Проверка локального хранилища на наличие ключа
-    //         var videoLoaded = localStorage.getItem("videoLoaded");
-    //         video.addEventListener("canplay", function() {
-    //             video.play();
-    //         });
-    //         // Проверяем ширину экрана и устанавливаем соответствующую задержку
-    //         // Если ширина экрана меньше 500px, то устанавливается задержка одна, в противном случае — другая (1200 / 1800)
-    //         var delay = window.matchMedia("(max-width: 500px)").matches ? 0 : 0;
-    //         // Если видео не было загружено ранее, устанавливаем таймер
-    //         if (!videoLoaded) {
-    //             setTimeout(function() {
-    //                 video.load();
-    //                 source.src = source.getAttribute("data-src");
-    //                 video.load();
-    //                 // Сохраняем информацию о загрузке видео в локальное хранилище
-    //                 localStorage.setItem("videoLoaded", "true");
-    //             }, delay);
-    //         } else {
-    //             // Если видео уже было загружено, начинаем его воспроизведение сразу
-    //             video.load();
-    //             source.src = source.getAttribute("data-src");
-    //             video.load();
-    //         }
-    //     }
-    // });
-    // -------------------------------------------------------------------------------------
-
-
     // HOVER HEADER - OPACITY HERO SECTION VIDEO ==============================================================
     const header = document.querySelector('header');
     const heroBg = document.querySelector('.hero__bg');
@@ -231,18 +195,17 @@ document.addEventListener("DOMContentLoaded", function() {
     // -------------------------------------------------------------------------------------
 
 
-
     // ОСТАНОВИТЬ/ВОСПРОИЗВЕСТИ ГЛАВНОЕ ВИДЕО ПО КЛИКУ ===========================================
         var video = document.getElementById('heroVideo');
         var playPauseButton = document.querySelector('.hero__control');
 
         if (playPauseButton) {
-            playPauseButton.addEventListener('click', function () {
-                if (video.paused) {
-                    video.play();
-                    playPauseButton.classList.remove('paused');
-                    video.classList.remove('paused');
-                } else {
+          playPauseButton.addEventListener('click', function () {
+            if (video.paused) {
+              video.play();
+              playPauseButton.classList.remove('paused');
+              video.classList.remove('paused');
+            } else {
                     video.pause();
                     playPauseButton.classList.add('paused');
                     video.classList.add('paused');
@@ -250,36 +213,6 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         }
     // -------------------------------------------------------------------------------------
-
-
-    // КНОПКА ПЕРЕКЛЮЧИЕНИЯ ЯЗЫКА НА ТОЧСКРИНАХ ===========================================
-       // Функция для проверки ширины экрана
-    // function isScreenWideEnough() {
-    //   return window.innerWidth > 75.06125 * parseFloat(getComputedStyle(document.documentElement).fontSize);
-    // }
-    // // Функция для добавления класса .touch-btn к .lang-header на устройствах "точкскрин" и широком экране
-    // function addTouchBtnClass() {
-    //   if (isMobile.any() && isScreenWideEnough()) {
-    //       let langHeader = document.querySelector('.lang-header');
-    //       langHeader.classList.add('touch-btn');
-    //   }
-    // }
-    // // Обработчик события поворота экрана
-    // window.addEventListener('resize', function() {
-    //   let langHeader = document.querySelector('.lang-header');
-    //   if (!isMobile.any() || !isScreenWideEnough()) {
-    //       langHeader.classList.remove('touch-btn');
-    //   }
-    // });
-
-    // // Добавляем класс .touch-btn при загрузке страницы
-    // window.addEventListener('load', addTouchBtnClass);
-
-    // // Добавляем класс .touch-btn при первой загрузке, если окно уже с широким экраном
-    // addTouchBtnClass();
-
-    // -------------------------------------------------------------------------------------
-    
 
 
     // КЛОНИРОВАНИЕ КНОПОК .btn-mask ==============================================================
@@ -569,61 +502,64 @@ document.addEventListener("DOMContentLoaded", function() {
       // -------------------------------------------------------------------------------------
 
       // OPEN FORM POPUP, PAGE HOME (FORM) ==============================================================
+      const pageContacts = document.querySelector('.page-contacts');
       const buttonFormElement = document.querySelector('.button-form');
       const closeFromBtn = document.querySelector('.form-footer__close');
       const footerContainer = document.querySelector('.form-footer__container form');
-      let formFooter, footerMainBody;
-  
-      function updateFooterHeight() {
-          const formFooterHeight = formFooter.offsetHeight;
-          footerMainBody.style.height = `${formFooterHeight}px`;
-      }
-  
-      if (buttonFormElement && closeFromBtn) {
-        let buttonDisabled = false;
-
-        function handleClick() {
-            if (buttonDisabled) {
-                return; // Если кнопка неактивна, игнорируем клик
-            }
-        
-            buttonDisabled = true; // Делаем кнопку неактивной
-        
-            formFooter = document.querySelector('.form-footer');
-            footerMainBody = document.querySelector('.footer-main__body');
-            if (formFooter && footerMainBody) {
-                formFooter.classList.add('form-open');
-                footerMainBody.classList.add('form-open');
-                setTimeout(function() {
-                    updateFooterHeight();
-                }, 400);
-                footerContainer.classList.add('popup-open');
-                window.addEventListener('orientationchange', updateFooterHeight);
-                window.addEventListener('resize', updateFooterHeight);
-            }
-        
-            setTimeout(function() {
-                buttonDisabled = false; // После 1 секунды делаем кнопку снова активной
-            }, 1500);
+      if (!pageContacts) {
+        let formFooter, footerMainBody;
+    
+        function updateFooterHeight() {
+            const formFooterHeight = formFooter.offsetHeight;
+            footerMainBody.style.height = `${formFooterHeight}px`;
         }
-        
-        buttonFormElement.addEventListener('click', handleClick);
-        
+    
+        if (buttonFormElement && closeFromBtn) {
+          let buttonDisabled = false;
   
-          closeFromBtn.addEventListener('click', function(event) {
-              if (formFooter && footerMainBody) {
-                  formFooter.classList.remove('form-open');
-                  footerMainBody.classList.remove('form-open');
-                  setTimeout(function() {
-                      footerMainBody.style.height = 'initial';
-                  }, 400);
-                  setTimeout(function() {
-                    footerContainer.classList.remove('popup-open');
-                  }, 800);
-                  window.removeEventListener('orientationchange', updateFooterHeight);
-                  window.removeEventListener('resize', updateFooterHeight);
+          function handleClick() {
+              if (buttonDisabled) {
+                  return; // Если кнопка неактивна, игнорируем клик
               }
-          });
+          
+              buttonDisabled = true; // Делаем кнопку неактивной
+          
+              formFooter = document.querySelector('.form-footer');
+              footerMainBody = document.querySelector('.footer-main__body');
+              if (formFooter && footerMainBody) {
+                  formFooter.classList.add('form-open');
+                  footerMainBody.classList.add('form-open');
+                  setTimeout(function() {
+                      updateFooterHeight();
+                  }, 400);
+                  footerContainer.classList.add('popup-open');
+                  window.addEventListener('orientationchange', updateFooterHeight);
+                  window.addEventListener('resize', updateFooterHeight);
+              }
+          
+              setTimeout(function() {
+                  buttonDisabled = false; // После 1 секунды делаем кнопку снова активной
+              }, 1500);
+          }
+          
+          buttonFormElement.addEventListener('click', handleClick);
+          
+    
+            closeFromBtn.addEventListener('click', function(event) {
+                if (formFooter && footerMainBody) {
+                    formFooter.classList.remove('form-open');
+                    footerMainBody.classList.remove('form-open');
+                    setTimeout(function() {
+                        footerMainBody.style.height = 'initial';
+                    }, 400);
+                    setTimeout(function() {
+                      footerContainer.classList.remove('popup-open');
+                    }, 800);
+                    window.removeEventListener('orientationchange', updateFooterHeight);
+                    window.removeEventListener('resize', updateFooterHeight);
+                }
+            });
+        }
       }
       // -------------------------------------------------------------------------------------
 

@@ -12,13 +12,18 @@
   will-change: top;
   transition: min-height .5s, background-color .5s, transform .6s ease, top .6s ease, opacity 1.5s ease 0s, clip-path 1.5s ease;
 
-  opacity: 0;
   // clip-path: inset(0 100% 0 0);
-
+  opacity: 0;
+  &.header-home {
+    .loaded & {
+      opacity: 1;
+      transition: min-height .5s, background-color .5s, transform .6s ease, top .6s ease, opacity 1.5s ease 2s, clip-path 1.5s ease;
+      // clip-path: inset(0 0 0 0);
+    }
+  }
   .loaded & {
-    opacity: 1;
-    transition: min-height .5s, background-color .5s, transform .6s ease, top .6s ease, opacity 1.5s ease 2s, clip-path 1.5s ease;
-    // clip-path: inset(0 0 0 0);
+       opacity: 1;
+      transition: min-height .5s, background-color .5s, transform .6s ease, top .6s ease, opacity 0.5s ease 0s, clip-path 1.5s ease;
   }
 
   @media (min-width:$mobileSmall){
@@ -29,7 +34,11 @@
      min-height: toRem(77);
      padding: toRem(10) 0; 
   }
-  
+
+  background-color: $darkBlue;
+  .page-main & {
+    background-color: transparent;
+  }
   .fp-section-1 & {
     background-color: $darkBlue;
     @media (min-width:em(136.98)){
@@ -37,6 +46,16 @@
     }
     @media (max-width: em(1366.98)) and (min-width:$mobileSmall){
       min-height: toRem(66);
+    }
+  }
+  &.header-all {
+    &._header-scroll {
+      @media (min-width:em(136.98)){
+        min-height: toRem(70);
+      }
+      @media (max-width: em(1366.98)) and (min-width:$mobileSmall){
+        min-height: toRem(66);
+      }
     }
   }
   &._header-scroll {
@@ -50,7 +69,8 @@
     display: inline-block;
     @media (max-width:$mobileSmall){
       transition: opacity .6s ease;
-      .fp-section-1 & {
+      .fp-section-1 &,
+      ._header-scroll & {
         opacity: 0;
         pointer-events: none;
       }

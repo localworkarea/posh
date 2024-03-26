@@ -1491,3 +1491,96 @@ background-color: $mainWhite;
     }
   }
 }
+
+
+
+
+//==================
+//===============================
+// == CONTACTS PAGE ==========================
+//----------------------
+.contacts {
+  @extend %marginSection;
+  @include adaptiveValue("padding-top", 100, 0,2,1920,1366.98);
+  @include adaptiveValue("padding-bottom", 200, 30,0,1920,1366.98);
+  .footer-main__form {
+    opacity: 0;
+    .loaded & {
+      opacity: 1;
+      transition: opacity 1s ease 0s;
+    }
+    @include adaptiveValue("max-width", 1250, 1100,2,1920,1366.98);
+    margin: 0 auto;
+  }
+}
+
+
+//==================
+//===============================
+// == 404 PAGE ==========================
+//----------------------
+.not-found {
+  @extend %marginSection;
+  @include adaptiveValue("padding-top", 48, 38,0,1920,1366.98);
+  // .not-found__container
+  &__container {
+  }
+  // .not-found__title
+  &__title {
+    @include adaptiveValue("font-size", 96, 58,2,1920,1366.98);
+    @include adaptiveValue("font-size", 58, 56,3,1366.98,480.98);
+    font-weight: 600;
+    color: $darkBlue;
+  }
+  // .not-found__txt
+  &__txt {
+    @include adaptiveValue("font-size", 23, 15,2,1920,1366.98);
+    @include adaptiveValue("font-size", 15, 13,3,1366.98,480.98);
+  }
+  &__title,
+  &__txt {
+    text-align: center;
+    text-transform: uppercase;
+    line-height: 1.24;
+  }
+  // .not-found__body
+  &__body {
+    position: relative;
+    @include adaptiveValue("margin-top", 55, 40,0,1920,1366.98);
+  }
+  // .not-found__wrapper
+  &__wrapper {
+    width: fit-content;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    @include adaptiveValue("gap", 42, 32,2,1920,1366.98);
+    @include adaptiveValue("gap", 32, 19,3,1366.98,480.98);
+    @include adaptiveValue("padding-bottom", 255, 128,2,1920,1366.98);
+    @include adaptiveValue("padding-bottom", 128, 110,3,1366.98,480.98);
+  }
+  // .not-found__number
+  &__number {
+    display: block;
+    @include adaptiveValue("font-size", 197, 151,2,1920,1366.98);
+    @include adaptiveValue("font-size", 151,87,3,1366.98,480.98);
+    font-weight: 400;
+  }
+  // .not-found__circle
+  &__circle {
+    height: auto;
+    @include adaptiveValue("width", 398, 305,2,1920,1366.98);
+    @include adaptiveValue("width", 305, 175,3,1366.98,480.98 );
+    animation: circle-hero 40s linear infinite;
+  }
+	// .not-found__women
+	&__women {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-38%,0);
+    height: auto;
+    @include adaptiveValue("width", 240, 160,2,1920,1366.98);
+    @include adaptiveValue("width", 160, 105,3,1366.98,480.98 );
+	}
+}
