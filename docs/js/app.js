@@ -5148,12 +5148,52 @@
                     }));
                 }
             }
+            const casesFooter = document.querySelector(".footer");
+            const casesNav = document.querySelector(".cases-nav");
+            let casesMobButtons = document.querySelectorAll(".cases-nav__mob");
+            let casesNavWrappers = document.querySelectorAll(".cases-nav__wrapper");
+            const casesCloseButton = document.querySelector(".cases-nav__close");
+            const lockWidthThreshold = 30.06125;
+            if (casesNav) {
+                const clonedNav = casesNav.cloneNode(true);
+                clonedNav.classList.add("cases-nav-clone");
+                casesFooter.insertBefore(clonedNav, casesFooter.firstChild);
+                const clonedWrapper = clonedNav.querySelector(".cases-nav__wrapper");
+                if (clonedWrapper) {
+                    clonedWrapper.classList.remove("origin-wrapper");
+                    clonedWrapper.classList.add("wrapper-clone");
+                }
+                casesMobButtons = document.querySelectorAll(".cases-nav__mob");
+                casesNavWrappers = document.querySelectorAll(".cases-nav__wrapper");
+                casesMobButtons.forEach((function(button) {
+                    button.addEventListener("click", (function() {
+                        casesNavWrappers.forEach((function(wrapper) {
+                            if (wrapper.classList.contains("origin-wrapper")) wrapper.classList.add("_active");
+                        }));
+                        if (window.innerWidth / parseFloat(getComputedStyle(document.documentElement).fontSize) <= lockWidthThreshold) document.documentElement.classList.add("lock");
+                        window.addEventListener("resize", (function() {
+                            document.documentElement.classList.remove("lock");
+                            casesNavWrappers.forEach((function(wrapper) {
+                                if (wrapper.classList.contains("origin-wrapper")) wrapper.classList.remove("_active");
+                            }));
+                        }));
+                    }));
+                }));
+                casesCloseButton.addEventListener("click", (function() {
+                    casesNavWrappers.forEach((function(wrapper) {
+                        wrapper.classList.remove("_active");
+                    }));
+                    if (window.innerWidth / parseFloat(getComputedStyle(document.documentElement).fontSize) <= lockWidthThreshold) document.documentElement.classList.remove("lock");
+                }));
+            }
         }));
         const tikers = document.querySelectorAll(".tiker");
         tikers.forEach((tiker => {
             const originalLine = tiker.querySelector(".tiker__line");
             if (originalLine) {
                 if (tiker.classList.contains("tiker-01")) originalLine.style.animation = "scroll 40s linear infinite";
+                if (tiker.classList.contains("tiker-02")) originalLine.style.animation = "scroll-rev 40s linear infinite";
+                if (tiker.classList.contains("tiker-03")) originalLine.style.animation = "scroll 50s linear infinite";
                 const clonedLine = originalLine.cloneNode(true);
                 clonedLine.classList.add("clone-line");
                 tiker.appendChild(clonedLine);
