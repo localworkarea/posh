@@ -31,11 +31,10 @@ body {
 }
 
 .page {
-  .page-cases & {
-    @include adaptiveValue("padding-top", 270, 215,2,1920,1366.98);
-    @include adaptiveValue("padding-top", 215, 180,3,1366.98,480.98);
+  .page-case & {
   }
 }
+
 .hover-line {
   position: relative;
   &::before {
@@ -202,6 +201,16 @@ body {
      margin-top: toRem(96); 
   }
 } 
+
+%paddingArticleCase {
+  @include adaptiveValue("padding-top", 150, 120,0,1366.98,480.98);
+  @include adaptiveValue("padding-bottom", 44, 22,0,1366.98,480.98);
+}
+%bgPaddArticleCase {
+  background-color: $mainWhite;
+  @include adaptiveValue("padding-top", 70, 46,0,1366.98,480.98);
+  @include adaptiveValue("padding-bottom", 100, 74,0,1366.98,480.98);
+}
 
 .btn {
   display: flex;
@@ -646,7 +655,8 @@ body {
 .title-x {
   font-weight: 400;
   line-height: 1.24;
-  @include adaptiveValue("font-size", 50, 36,0,1366.98,480.98);
+  @include adaptiveValue("font-size", 50, 45,2,1920,1366.98);
+  @include adaptiveValue("font-size", 45, 36,3,1366.98,480.98);
 }
 
 .tiker {
@@ -770,6 +780,49 @@ body {
     }
   }
 }
+
+
+.head-section {
+  @media (min-width:$tablet) and (max-height:em(1080.98)) {
+      display: flex;
+      flex-direction: column;
+      min-height: 80vh;
+      .cases-nav {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        margin: toRem(50) 0;
+      }
+      .tiker {
+        margin-top: 30vh;
+      }
+  }
+  @media (min-width:$tablet) and (min-height:em(1080.98)) {
+    padding-top: toRem(270);
+    padding-bottom: toRem(100);
+  }
+  @media (max-width:$tablet) and (min-width:$mobileSmall) {
+    padding-top: toRem(180);
+    padding-bottom: toRem(80);
+  }
+  @media (max-width:$mobileSmall){
+    padding-top: toRem(180);
+    padding-bottom: toRem(44); 
+  }
+  .tiker {
+    @media (min-width:$tablet) and (min-height:em(1080.98)) {
+      margin-bottom: toRem(98);
+    }
+    @media (max-width:$tablet) and (min-width:$mobileSmall) {
+      margin-bottom: toRem(80);
+    }
+    @media (max-width:$mobileSmall){
+       margin-bottom: toRem(54); 
+    }
+  }
+  .cases-nav {}
+}
+
 
 .case-card {
   width: 100%;  

@@ -566,13 +566,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
       // CASES MOBILE MENU FOR BUTTONS (CASES, CASE PAGES) ==============================================================
       const casesFooter = document.querySelector('.footer');
+      const headNav = document.querySelector('.head-section');
+      const footerNav = document.querySelector('.footer__case-nav');
       const casesNav = document.querySelector('.cases-nav');
       let casesMobButtons = document.querySelectorAll('.cases-nav__mob'); 
       let casesNavWrappers = document.querySelectorAll('.cases-nav__wrapper'); 
       const casesCloseButton = document.querySelector('.cases-nav__close');
       const lockWidthThreshold = 30.06125; // задаем пороговое значение для ширины экрана в em
-      
-      if (casesNav) {
+      if (headNav) {
           const clonedNav = casesNav.cloneNode(true);
           clonedNav.classList.add('cases-nav-clone');
           casesFooter.insertBefore(clonedNav, casesFooter.firstChild);
@@ -584,36 +585,41 @@ document.addEventListener("DOMContentLoaded", function() {
           // Обновлено после клонирования:
           casesMobButtons = document.querySelectorAll('.cases-nav__mob'); 
           casesNavWrappers = document.querySelectorAll('.cases-nav__wrapper'); 
-      
-          casesMobButtons.forEach(function(button) {
-              button.addEventListener('click', function() {
-                  casesNavWrappers.forEach(function(wrapper) {
-                      if (wrapper.classList.contains('origin-wrapper')) {
-                          wrapper.classList.add('_active');
-                      }
-                  });
-                  if (window.innerWidth / parseFloat(getComputedStyle(document.documentElement).fontSize) <= lockWidthThreshold) {
-                      document.documentElement.classList.add('lock');
-                  }
-                  window.addEventListener('resize', function() {
-                      document.documentElement.classList.remove('lock');
-                      casesNavWrappers.forEach(function(wrapper) {
-                        if (wrapper.classList.contains('origin-wrapper')) {
-                            wrapper.classList.remove('_active');
-                        }
-                    });
-                  });
-              });
-          });
-      
-          casesCloseButton.addEventListener('click', function() {
+          // вызываем функцию открытия/закрытия меню категорий на мобилке:
+          openCategories();
+      }
+      if (footerNav) {
+        openCategories();
+      }
+      function openCategories() {
+        casesMobButtons.forEach(function(button) {
+          button.addEventListener('click', function() {
               casesNavWrappers.forEach(function(wrapper) {
-                  wrapper.classList.remove('_active');
+                  if (wrapper.classList.contains('origin-wrapper')) {
+                      wrapper.classList.add('_active');
+                  }
               });
               if (window.innerWidth / parseFloat(getComputedStyle(document.documentElement).fontSize) <= lockWidthThreshold) {
-                  document.documentElement.classList.remove('lock');
+                  document.documentElement.classList.add('lock');
               }
+              window.addEventListener('resize', function() {
+                  document.documentElement.classList.remove('lock');
+                  casesNavWrappers.forEach(function(wrapper) {
+                    if (wrapper.classList.contains('origin-wrapper')) {
+                        wrapper.classList.remove('_active');
+                    }
+                });
+              });
           });
+        });
+        casesCloseButton.addEventListener('click', function() {
+            casesNavWrappers.forEach(function(wrapper) {
+                wrapper.classList.remove('_active');
+            });
+            if (window.innerWidth / parseFloat(getComputedStyle(document.documentElement).fontSize) <= lockWidthThreshold) {
+                document.documentElement.classList.remove('lock');
+            }
+        });
       }
       
       

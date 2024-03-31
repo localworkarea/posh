@@ -5149,12 +5149,14 @@
                 }
             }
             const casesFooter = document.querySelector(".footer");
+            const headNav = document.querySelector(".head-section");
+            const footerNav = document.querySelector(".footer__case-nav");
             const casesNav = document.querySelector(".cases-nav");
             let casesMobButtons = document.querySelectorAll(".cases-nav__mob");
             let casesNavWrappers = document.querySelectorAll(".cases-nav__wrapper");
             const casesCloseButton = document.querySelector(".cases-nav__close");
             const lockWidthThreshold = 30.06125;
-            if (casesNav) {
+            if (headNav) {
                 const clonedNav = casesNav.cloneNode(true);
                 clonedNav.classList.add("cases-nav-clone");
                 casesFooter.insertBefore(clonedNav, casesFooter.firstChild);
@@ -5165,6 +5167,10 @@
                 }
                 casesMobButtons = document.querySelectorAll(".cases-nav__mob");
                 casesNavWrappers = document.querySelectorAll(".cases-nav__wrapper");
+                openCategories();
+            }
+            if (footerNav) openCategories();
+            function openCategories() {
                 casesMobButtons.forEach((function(button) {
                     button.addEventListener("click", (function() {
                         casesNavWrappers.forEach((function(wrapper) {
