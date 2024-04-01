@@ -144,7 +144,162 @@ function initSliders() {
 		// 		sliderInsightsWrapper.style.transitionDuration = "2500ms";
 		// });
 	}
-
+	if (document.querySelector('.slider-about-a')) {
+		new Swiper('.slider-about-a', { 
+			modules: [Autoplay, FreeMode],
+			observer: true,
+			observeParents: true,
+			slidesPerView: "auto",
+			speed: 5000,
+			centeredSlides: false,
+			longSwipes: true,
+			simulateTouch: true,
+			grabCursor: true,
+			autoplay: {
+				delay: -1,
+			},
+			freeMode: {
+				enabled: true,
+				momentumBounce: false,
+			},
+			nested: true,
+			loop: true,
+			loopAddBlankSlides: true,
+			breakpoints: {
+				300: {
+					spaceBetween: 17,
+				},
+				768: {
+					spaceBetween: 19,
+				}
+			},
+			on: {
+				touchStart: function() {
+					this.autoplay.stop();
+				},
+				touchEnd: function() {
+						this.autoplay.start();
+				},
+			}
+		});
+	}
+	if (document.querySelector('.slider-about-b')) {
+		new Swiper('.slider-about-b', { 
+			modules: [Autoplay, FreeMode],
+			observer: true,
+			observeParents: true,
+			slidesPerView: "auto",
+			speed: 5000,
+			centeredSlides: false,
+			longSwipes: true,
+			simulateTouch: true,
+			grabCursor: true,
+			autoplay: {
+				delay: -1,
+			},
+			freeMode: {
+				enabled: true,
+				momentumBounce: false,
+			},
+			nested: true,
+			loop: true,
+			loopAddBlankSlides: true,
+			// breakpoints: {
+			// 	300: {
+			// 		spaceBetween: 13,
+			// 	},
+			// 	768: {
+			// 		spaceBetween: 20,
+			// 	}
+			// },
+			on: {
+				touchStart: function() {
+					this.autoplay.stop();
+				},
+				touchEnd: function() {
+						this.autoplay.start();
+				},
+			}
+		});
+	}
+	if (document.querySelector('.slider-about-c')) {
+		new Swiper('.slider-about-c', { 
+			modules: [Autoplay, FreeMode],
+			observer: true,
+			observeParents: true,
+			slidesPerView: "auto",
+			speed: 4500,
+			centeredSlides: false,
+			longSwipes: true,
+			simulateTouch: true,
+			grabCursor: true,
+			autoplay: {
+				delay: -1,
+			},
+			freeMode: {
+				enabled: true,
+				momentumBounce: false,
+			},
+			nested: true,
+			loop: true,
+			loopAddBlankSlides: true,
+			breakpoints: {
+				300: {
+					spaceBetween: 23,
+				},
+				768: {
+					spaceBetween: 30,
+				}
+			},
+			on: {
+				touchStart: function() {
+					this.autoplay.stop();
+				},
+				touchEnd: function() {
+						this.autoplay.start();
+				},
+			}
+		});
+	}
+	if (document.querySelector('.slider-about-d')) {
+		new Swiper('.slider-about-d', { 
+			modules: [Autoplay, FreeMode],
+			observer: true,
+			observeParents: true,
+			slidesPerView: "auto",
+			speed: 4500,
+			centeredSlides: false,
+			longSwipes: true,
+			simulateTouch: true,
+			grabCursor: true,
+			autoplay: {
+				delay: -1,
+			},
+			freeMode: {
+				enabled: true,
+				momentumBounce: false,
+			},
+			nested: true,
+			loop: true,
+			loopAddBlankSlides: true,
+			breakpoints: {
+				300: {
+					spaceBetween: 23,
+				},
+				768: {
+					spaceBetween: 30,
+				}
+			},
+			on: {
+				touchStart: function() {
+					this.autoplay.stop();
+				},
+				touchEnd: function() {
+						this.autoplay.start();
+				},
+			}
+		});
+	}
 }
 
 

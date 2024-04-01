@@ -166,6 +166,8 @@ body {
       }
     }
   }
+
+
 }
 
 %animationMenuMob {
@@ -210,6 +212,18 @@ body {
   background-color: $mainWhite;
   @include adaptiveValue("padding-top", 70, 46,0,1366.98,480.98);
   @include adaptiveValue("padding-bottom", 100, 74,0,1366.98,480.98);
+}
+
+%marginOnFooter {
+  @include adaptiveValue("margin-bottom", 90, 75,0,1366.98,480.98);
+}
+%aboutPadding {
+  @include adaptiveValue("padding-left", 110, 0,2,1920,1366.98);
+  @include adaptiveValue("padding-right", 110, 0,2,1920,1366.98);
+}
+%aboutMrTopBot {
+  @include adaptiveValue("margin-top", 200, 50,0,1366.98,480.98);
+  @include adaptiveValue("margin-bottom", 200, 50,0,1366.98,480.98);
 }
 
 .btn {
@@ -264,6 +278,10 @@ body {
          width: toRem(9); 
       }
     }
+  }
+
+  &.btn--01,
+  &.btn--03 {
     &._active {
       &::before {
         width: 100%;
@@ -658,6 +676,12 @@ body {
   @include adaptiveValue("font-size", 50, 45,2,1920,1366.98);
   @include adaptiveValue("font-size", 45, 36,3,1366.98,480.98);
 }
+.title-xs {
+  font-weight: 400;
+  line-height: 1.24;
+  @include adaptiveValue("font-size", 50, 45,2,1920,1366.98);
+  @include adaptiveValue("font-size", 45, 31,3,1366.98,480.98);
+}
 
 .tiker {
   overflow: hidden;
@@ -779,48 +803,6 @@ body {
     &::before {
     }
   }
-}
-
-
-.head-section {
-  @media (min-width:$tablet) and (max-height:em(1080.98)) {
-      display: flex;
-      flex-direction: column;
-      min-height: 80vh;
-      .cases-nav {
-        flex: 1;
-        display: flex;
-        align-items: center;
-        margin: toRem(50) 0;
-      }
-      .tiker {
-        margin-top: 30vh;
-      }
-  }
-  @media (min-width:$tablet) and (min-height:em(1080.98)) {
-    padding-top: toRem(270);
-    padding-bottom: toRem(100);
-  }
-  @media (max-width:$tablet) and (min-width:$mobileSmall) {
-    padding-top: toRem(180);
-    padding-bottom: toRem(80);
-  }
-  @media (max-width:$mobileSmall){
-    padding-top: toRem(180);
-    padding-bottom: toRem(44); 
-  }
-  .tiker {
-    @media (min-width:$tablet) and (min-height:em(1080.98)) {
-      margin-bottom: toRem(98);
-    }
-    @media (max-width:$tablet) and (min-width:$mobileSmall) {
-      margin-bottom: toRem(80);
-    }
-    @media (max-width:$mobileSmall){
-       margin-bottom: toRem(54); 
-    }
-  }
-  .cases-nav {}
 }
 
 
@@ -968,3 +950,93 @@ body {
   }
 }
 
+// == head первый экран для cases, cases-filters, about ===
+.head-section {
+  @media (min-width:$tablet) and (max-height:em(1080.98)) {
+      display: flex;
+      flex-direction: column;
+      min-height: 80vh;
+      &.min {
+        min-height: 75vh;
+      }
+      .cases-nav,
+      .nav-pages {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        margin: toRem(50) 0;
+      }
+      .tiker {
+        margin-top: 30vh;
+      }
+      .nav-pages {
+        justify-content: center;
+      }
+  }
+  @media (min-width:$tablet) and (min-height:em(1080.98)) {
+    padding-top: toRem(270);
+    padding-bottom: toRem(100);
+  }
+  @media (max-width:$tablet) and (min-width:$mobileSmall) {
+    padding-top: toRem(180);
+    padding-bottom: toRem(80);
+  }
+  @media (max-width:$mobileSmall){
+    padding-top: toRem(180);
+    padding-bottom: toRem(44); 
+  }
+  .tiker {
+    @media (min-width:$tablet) and (min-height:em(1080.98)) {
+      margin-bottom: toRem(98);
+    }
+    @media (max-width:$tablet) and (min-width:$mobileSmall) {
+      margin-bottom: toRem(80);
+    }
+    @media (max-width:$mobileSmall){
+       margin-bottom: toRem(54); 
+    }
+  }
+  .cases-nav {}
+}
+
+// -- навигация по страницам "Про нас" "Партнери" "Клієнти" -----
+.nav-pages {
+  .footer & {
+    @extend %marginOnFooter;
+  }
+  // .nav-pages__body
+	&__body {
+    overflow-x: auto;
+    padding: 0 toRem(24);
+    display: flex;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+	}
+  // .nav-pages__list
+  &__list {
+    display: flex;
+    align-items: center;
+    @include adaptiveValue("gap", 41, 19,0,1366.98,480.98);
+    margin-left: auto;
+    margin-right: auto;
+  }
+  // .nav-pages__item
+  &__item {
+    flex: 0 0 auto;
+  }
+  // .nav-pages__btn
+  &__btn {
+    @media (min-width:$tablet){
+      max-width: toRem(249);
+      width: toRem(249);
+      height: toRem(41) !important;
+    }
+    .btn__txt {
+      @media (min-width:$tablet){
+        font-size: toRem(16) !important;
+        text-transform: inherit !important;
+      }
+    }
+  }
+}

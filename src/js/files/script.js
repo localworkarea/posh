@@ -566,7 +566,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
       // CASES MOBILE MENU FOR BUTTONS (CASES, CASE PAGES) ==============================================================
       const casesFooter = document.querySelector('.footer');
-      const headNav = document.querySelector('.head-section');
+      const headNav = document.querySelector('.head-section .cases-nav');
       const footerNav = document.querySelector('.footer__case-nav');
       const casesNav = document.querySelector('.cases-nav');
       let casesMobButtons = document.querySelectorAll('.cases-nav__mob'); 

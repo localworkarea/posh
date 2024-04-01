@@ -4174,6 +4174,146 @@
                     }
                 });
             }
+            if (document.querySelector(".slider-about-a")) new Swiper(".slider-about-a", {
+                modules: [ Autoplay, freeMode ],
+                observer: true,
+                observeParents: true,
+                slidesPerView: "auto",
+                speed: 5e3,
+                centeredSlides: false,
+                longSwipes: true,
+                simulateTouch: true,
+                grabCursor: true,
+                autoplay: {
+                    delay: -1
+                },
+                freeMode: {
+                    enabled: true,
+                    momentumBounce: false
+                },
+                nested: true,
+                loop: true,
+                loopAddBlankSlides: true,
+                breakpoints: {
+                    300: {
+                        spaceBetween: 17
+                    },
+                    768: {
+                        spaceBetween: 19
+                    }
+                },
+                on: {
+                    touchStart: function() {
+                        this.autoplay.stop();
+                    },
+                    touchEnd: function() {
+                        this.autoplay.start();
+                    }
+                }
+            });
+            if (document.querySelector(".slider-about-b")) new Swiper(".slider-about-b", {
+                modules: [ Autoplay, freeMode ],
+                observer: true,
+                observeParents: true,
+                slidesPerView: "auto",
+                speed: 5e3,
+                centeredSlides: false,
+                longSwipes: true,
+                simulateTouch: true,
+                grabCursor: true,
+                autoplay: {
+                    delay: -1
+                },
+                freeMode: {
+                    enabled: true,
+                    momentumBounce: false
+                },
+                nested: true,
+                loop: true,
+                loopAddBlankSlides: true,
+                on: {
+                    touchStart: function() {
+                        this.autoplay.stop();
+                    },
+                    touchEnd: function() {
+                        this.autoplay.start();
+                    }
+                }
+            });
+            if (document.querySelector(".slider-about-c")) new Swiper(".slider-about-c", {
+                modules: [ Autoplay, freeMode ],
+                observer: true,
+                observeParents: true,
+                slidesPerView: "auto",
+                speed: 4500,
+                centeredSlides: false,
+                longSwipes: true,
+                simulateTouch: true,
+                grabCursor: true,
+                autoplay: {
+                    delay: -1
+                },
+                freeMode: {
+                    enabled: true,
+                    momentumBounce: false
+                },
+                nested: true,
+                loop: true,
+                loopAddBlankSlides: true,
+                breakpoints: {
+                    300: {
+                        spaceBetween: 23
+                    },
+                    768: {
+                        spaceBetween: 30
+                    }
+                },
+                on: {
+                    touchStart: function() {
+                        this.autoplay.stop();
+                    },
+                    touchEnd: function() {
+                        this.autoplay.start();
+                    }
+                }
+            });
+            if (document.querySelector(".slider-about-d")) new Swiper(".slider-about-d", {
+                modules: [ Autoplay, freeMode ],
+                observer: true,
+                observeParents: true,
+                slidesPerView: "auto",
+                speed: 4500,
+                centeredSlides: false,
+                longSwipes: true,
+                simulateTouch: true,
+                grabCursor: true,
+                autoplay: {
+                    delay: -1
+                },
+                freeMode: {
+                    enabled: true,
+                    momentumBounce: false
+                },
+                nested: true,
+                loop: true,
+                loopAddBlankSlides: true,
+                breakpoints: {
+                    300: {
+                        spaceBetween: 23
+                    },
+                    768: {
+                        spaceBetween: 30
+                    }
+                },
+                on: {
+                    touchStart: function() {
+                        this.autoplay.stop();
+                    },
+                    touchEnd: function() {
+                        this.autoplay.start();
+                    }
+                }
+            });
         }
         window.addEventListener("load", (function(e) {
             initSliders();
@@ -5149,7 +5289,7 @@
                 }
             }
             const casesFooter = document.querySelector(".footer");
-            const headNav = document.querySelector(".head-section");
+            const headNav = document.querySelector(".head-section .cases-nav");
             const footerNav = document.querySelector(".footer__case-nav");
             const casesNav = document.querySelector(".cases-nav");
             let casesMobButtons = document.querySelectorAll(".cases-nav__mob");
