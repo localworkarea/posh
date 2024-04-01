@@ -1147,8 +1147,11 @@ body {
   transition: min-height 0.5s, background-color 0.5s, top 0.6s ease, opacity 1.5s ease 0s, -webkit-transform 0.6s ease, -webkit-clip-path 1.5s ease;
   transition: min-height 0.5s, background-color 0.5s, transform 0.6s ease, top 0.6s ease, opacity 1.5s ease 0s, clip-path 1.5s ease;
   transition: min-height 0.5s, background-color 0.5s, transform 0.6s ease, top 0.6s ease, opacity 1.5s ease 0s, clip-path 1.5s ease, -webkit-transform 0.6s ease, -webkit-clip-path 1.5s ease;
-  opacity: 0;
   background-color: #1A1F35;
+}
+
+.header.header-home {
+  opacity: 0;
 }
 
 .loaded .header.header-home {
@@ -1157,14 +1160,6 @@ body {
   transition: min-height 0.5s, background-color 0.5s, top 0.6s ease, opacity 1.5s ease 2s, -webkit-transform 0.6s ease, -webkit-clip-path 1.5s ease;
   transition: min-height 0.5s, background-color 0.5s, transform 0.6s ease, top 0.6s ease, opacity 1.5s ease 2s, clip-path 1.5s ease;
   transition: min-height 0.5s, background-color 0.5s, transform 0.6s ease, top 0.6s ease, opacity 1.5s ease 2s, clip-path 1.5s ease, -webkit-transform 0.6s ease, -webkit-clip-path 1.5s ease;
-}
-
-.loaded .header {
-  opacity: 1;
-  -webkit-transition: min-height 0.5s, background-color 0.5s, top 0.6s ease, opacity 0.5s ease 0s, -webkit-transform 0.6s ease, -webkit-clip-path 1.5s ease;
-  transition: min-height 0.5s, background-color 0.5s, top 0.6s ease, opacity 0.5s ease 0s, -webkit-transform 0.6s ease, -webkit-clip-path 1.5s ease;
-  transition: min-height 0.5s, background-color 0.5s, transform 0.6s ease, top 0.6s ease, opacity 0.5s ease 0s, clip-path 1.5s ease;
-  transition: min-height 0.5s, background-color 0.5s, transform 0.6s ease, top 0.6s ease, opacity 0.5s ease 0s, clip-path 1.5s ease, -webkit-transform 0.6s ease, -webkit-clip-path 1.5s ease;
 }
 
 .page-main .header {
