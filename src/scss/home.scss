@@ -1651,6 +1651,11 @@ background-color: $mainWhite;
     span {
       display: inline-block;
     }
+    opacity: 0;
+    transition: opacity .3s ease;
+    .loaded & {
+      opacity: 1;
+    }
     @media (min-width:$tablet){
       width: max-content;
       align-items: center;

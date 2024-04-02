@@ -2686,10 +2686,17 @@ body {
   -ms-grid-columns: auto 1fr;
   grid-template-columns: auto 1fr;
   text-transform: uppercase;
+  opacity: 0;
+  -webkit-transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
 }
 
 .head-cases__title span {
   display: inline-block;
+}
+
+.loaded .head-cases__title {
+  opacity: 1;
 }
 
 .head-cases__title .line {
