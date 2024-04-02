@@ -2868,11 +2868,6 @@ body {
   background-color: #FEFEFE;
 }
 
-.case-page__img {
-  height: auto;
-  width: 100%;
-}
-
 .case-page__content {
   color: #1A1F35;
   margin-left: auto;
@@ -7282,12 +7277,6 @@ body {
 
   .case-page {
     padding-bottom: 2.875rem;
-  }
-
-  .case-page__img {
-    margin-left: -1.5rem;
-    margin-right: -1.5rem;
-    width: calc(100% + 3rem);
   }
 
   .case-page__img,

@@ -1830,15 +1830,15 @@ background-color: $mainWhite;
   }
   // .case-page__img
   &__img {
-    height: auto;
-    width: 100%;
+    // height: auto;
+    // width: 100%;
     @media (min-width:$mobileSmall){
       border-radius: toRem(41);
     }
     @media (max-width:$mobileSmall){
-      margin-left: toRem(-24); 
-      margin-right: toRem(-24); 
-      width: calc(100% + toRem(48));
+      // margin-left: toRem(-24); 
+      // margin-right: toRem(-24); 
+      // width: calc(100% + toRem(48));
     }
   }
   // .case-page__content
