@@ -808,6 +808,19 @@ body {
 
 .case-card {
   width: 100%;  
+  &.case-card_sm {
+    @media (any-hover: hover){
+      &:hover{
+        .case-card__title {
+          img {
+            transform: translateX(5px);
+            transition-delay: .5s;
+            animation: arr-right 0.8s ease forwards;
+          }
+        }
+      }
+    }
+  }
   // .case-card_big
   &_big {
   }
@@ -917,6 +930,7 @@ body {
         width: toRem(9);
         height: auto;
         margin: 0 toRem(9);
+        transition: transform .45s ease;
       } 
     }
     .case-card_big & {
