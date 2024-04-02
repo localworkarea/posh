@@ -7279,6 +7279,12 @@ body {
     padding-bottom: 2.875rem;
   }
 
+  .case-page__img {
+    margin-left: -1.5rem;
+    margin-right: -1.5rem;
+    width: calc(100% + 3rem);
+  }
+
   .case-page__img,
   .case-page__content {
     margin-bottom: 1.5rem;
