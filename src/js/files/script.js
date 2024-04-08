@@ -95,9 +95,9 @@ document.addEventListener("DOMContentLoaded", function() {
   // Функция для обновления индексов и расстановки их заново
   const splitBoth = document.querySelectorAll('.split-both');
   const splitWords = document.querySelectorAll('.split-words');
+  const blockContents = document.querySelectorAll('.block-about__content');
+
   function updateIndexes() {
-    // const splitBoth = document.querySelectorAll('.split-both');
-    // const splitWords = document.querySelectorAll('.split-words');
     
     splitBoth.forEach((splitElement) => {
       const words = splitElement.querySelectorAll('.word');
@@ -113,6 +113,25 @@ document.addEventListener("DOMContentLoaded", function() {
         word.style.setProperty('--index', index);
       });
     });
+
+    // расстановка индексов для текстовых блоков внутри blockContents (страница About)
+    if (blockContents) {
+      blockContents.forEach((blockContent) => {
+        const splitWords = blockContent.querySelectorAll('.split-words');
+    
+        let totalIndex = 0; // Индекс для накопления индексов предыдущих элементов
+    
+        splitWords.forEach((splitElement) => {
+          const words = splitElement.querySelectorAll('.word');
+          
+          words.forEach((word, index) => {
+            // Устанавливаем индекс с учетом предыдущих индексов
+            word.style.setProperty('--index', totalIndex);
+            totalIndex++;
+          });
+        });
+      });
+    }
   }
   
   if (splitBoth || splitWords) {

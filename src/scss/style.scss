@@ -131,6 +131,18 @@ body {
 		padding-right: toRem(16);
 	}
 }
+[class*="__container-с"] {
+	@include adaptiveValue("max-width", 1680, 1348,0,1920,1366.98);
+	margin: 0 auto;
+	@media (min-width:$tablet){
+		padding-left: toRem(40);
+		padding-right: toRem(40);
+	}
+	@media (max-width: em(365.98)){
+		padding-left: toRem(16);
+		padding-right: toRem(16);
+	}
+}
 // @if ($responsiveType==1) {
 // 	// Чуйна
 

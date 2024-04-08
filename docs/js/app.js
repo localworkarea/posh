@@ -4212,31 +4212,23 @@
                 }
             });
             if (document.querySelector(".slider-about-b")) new Swiper(".slider-about-b", {
-                modules: [ Autoplay, freeMode ],
+                modules: [ freeMode ],
                 observer: true,
                 observeParents: true,
                 slidesPerView: "auto",
-                speed: 5e3,
+                speed: 500,
                 centeredSlides: false,
                 longSwipes: true,
                 simulateTouch: true,
                 grabCursor: true,
-                autoplay: {
-                    delay: -1
-                },
-                freeMode: {
-                    enabled: true,
-                    momentumBounce: false
-                },
-                nested: true,
                 loop: true,
                 loopAddBlankSlides: true,
-                on: {
-                    touchStart: function() {
-                        this.autoplay.stop();
+                breakpoints: {
+                    300: {
+                        spaceBetween: 13
                     },
-                    touchEnd: function() {
-                        this.autoplay.start();
+                    768: {
+                        spaceBetween: 20
                     }
                 }
             });
@@ -4311,6 +4303,22 @@
                     },
                     touchEnd: function() {
                         this.autoplay.start();
+                    }
+                }
+            });
+            if (document.querySelector(".case-page__slider")) new Swiper(".case-page__slider", {
+                observer: true,
+                observeParents: true,
+                slidesPerView: 1,
+                spaceBetween: 20,
+                speed: 500,
+                autoHeight: true,
+                breakpoints: {
+                    300: {
+                        spaceBetween: 16
+                    },
+                    768: {
+                        spaceBetween: 20
                     }
                 }
             });
@@ -4991,6 +4999,7 @@
             }));
             const splitBoth = document.querySelectorAll(".split-both");
             const splitWords = document.querySelectorAll(".split-words");
+            const blockContents = document.querySelectorAll(".block-about__content");
             function updateIndexes() {
                 splitBoth.forEach((splitElement => {
                     const words = splitElement.querySelectorAll(".word");
@@ -5002,6 +5011,17 @@
                     const words = splitElement.querySelectorAll(".word");
                     words.forEach(((word, index) => {
                         word.style.setProperty("--index", index);
+                    }));
+                }));
+                if (blockContents) blockContents.forEach((blockContent => {
+                    const splitWords = blockContent.querySelectorAll(".split-words");
+                    let totalIndex = 0;
+                    splitWords.forEach((splitElement => {
+                        const words = splitElement.querySelectorAll(".word");
+                        words.forEach(((word, index) => {
+                            word.style.setProperty("--index", totalIndex);
+                            totalIndex++;
+                        }));
                     }));
                 }));
             }

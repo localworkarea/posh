@@ -185,41 +185,41 @@ function initSliders() {
 	}
 	if (document.querySelector('.slider-about-b')) {
 		new Swiper('.slider-about-b', { 
-			modules: [Autoplay, FreeMode],
+			modules: [ FreeMode],
 			observer: true,
 			observeParents: true,
 			slidesPerView: "auto",
-			speed: 5000,
+			speed: 500,
 			centeredSlides: false,
 			longSwipes: true,
 			simulateTouch: true,
 			grabCursor: true,
-			autoplay: {
-				delay: -1,
-			},
-			freeMode: {
-				enabled: true,
-				momentumBounce: false,
-			},
-			nested: true,
+			// autoplay: {
+			// 	delay: -1,
+			// },
+			// freeMode: {
+			// 	enabled: true,
+			// 	momentumBounce: false,
+			// },
+			// nested: true,
 			loop: true,
 			loopAddBlankSlides: true,
-			// breakpoints: {
-			// 	300: {
-			// 		spaceBetween: 13,
+			breakpoints: {
+				300: {
+					spaceBetween: 13,
+				},
+				768: {
+					spaceBetween: 20,
+				}
+			},
+			// on: {
+			// 	touchStart: function() {
+			// 		this.autoplay.stop();
 			// 	},
-			// 	768: {
-			// 		spaceBetween: 20,
-			// 	}
-			// },
-			on: {
-				touchStart: function() {
-					this.autoplay.stop();
-				},
-				touchEnd: function() {
-						this.autoplay.start();
-				},
-			}
+			// 	touchEnd: function() {
+			// 			this.autoplay.start();
+			// 	},
+			// }
 		});
 	}
 	if (document.querySelector('.slider-about-c')) {
@@ -298,6 +298,32 @@ function initSliders() {
 						this.autoplay.start();
 				},
 			}
+		});
+	}
+	if (document.querySelector('.case-page__slider')) {
+		new Swiper('.case-page__slider', { 
+			// modules: [ FreeMode],
+			observer: true,
+			observeParents: true,
+			slidesPerView: 1,
+			spaceBetween: 20,
+			speed: 500,
+			autoHeight: true,
+			// centeredSlides: false,
+			// longSwipes: true,
+			// simulateTouch: true,
+			// grabCursor: true,
+			// nested: true,
+			// loop: true,
+			// loopAddBlankSlides: true,
+			breakpoints: {
+				300: {
+					spaceBetween: 16,
+				},
+				768: {
+					spaceBetween: 20,
+				}
+			},
 		});
 	}
 }

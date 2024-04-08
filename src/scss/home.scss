@@ -656,7 +656,7 @@
     @media (min-width:em(960.98)){
       height: 100%;
       width: 100%;
-      object-fit: cover;
+      object-fit: contain;
     }
 	}
 }
@@ -1576,7 +1576,7 @@ background-color: $mainWhite;
 	// .not-found__women
 	&__women {
     position: absolute;
-    bottom: 0;
+    bottom: toRem(-2);
     left: 50%;
     transform: translate(-38%,0);
     height: auto;
@@ -1616,6 +1616,15 @@ background-color: $mainWhite;
     }
     @media (max-width: em(650.98)){
       row-gap: toRem(25); 
+    }
+    .case-card {
+      opacity: 0;
+      transform: translateY(50%);
+      transition: opacity .45s ease, transform .75s ease;
+      &._watcher-view {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   }
 
@@ -1828,6 +1837,10 @@ background-color: $mainWhite;
   // .case-page__container-b
   &__container-b {
   }
+  // .case-page__container-с
+  &__container-с {
+
+  }
   // .case-page__img
   &__img {
     // height: auto;
@@ -1869,6 +1882,24 @@ background-color: $mainWhite;
   // .case-page__container
   &__container {
   }
+	// .case-page__slider
+	&__slider {
+    overflow: visible !important;
+	}
+	// .case-page__wrapper
+	&__wrapper {
+	}
+	// .case-page__slide
+	&__slide {
+    .case-page__img {
+      @media (max-width:$mobileSmall){
+        border-radius: toRem(16); 
+        margin-left: 0 !important; 
+        margin-right: 0 !important; 
+        width: 100% !important;
+      }
+    }
+	}
 }
 
 .case-page__img,
@@ -2042,6 +2073,22 @@ background-color: $mainWhite;
   }
   // .cases-nav__item
   &__item {
+    $initial-delay: 0.2s;
+    $delay-step: 0.06s;
+    @media (min-width:$mobileSmall){
+      transition: opacity .45s linear, transform .55s ease;
+      opacity: 0;
+      transform: translateY(50%);
+      .loaded & {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      @for $i from 1 through 25 {
+        &:nth-child(#{$i}) {
+            transition-delay: $initial-delay + ($delay-step * $i);
+        }
+      }
+    }
   }
   // .cases-nav__link
   &__link {
@@ -2064,6 +2111,10 @@ background-color: $mainWhite;
 //----------------------
 .about {
   @extend %bgPaddArticleCase;
+  // background-color: $mainWhite;
+  // @include adaptiveValue("padding-top", 143, 110,2,1920,1366.98);
+  // @include adaptiveValue("padding-top", 110, 46,3,1366.98,480.98);
+  // @include adaptiveValue("padding-bottom", 100, 74,0,1366.98,480.98);
   color: $darkBlue;
   // .about__main
   &__main {
@@ -2167,12 +2218,22 @@ background-color: $mainWhite;
   &__title {
     text-transform: uppercase;
     margin-bottom: toRem(20);
+    @extend %animSplitBothTitleLoaded;
+    opacity: 0;
+    transition: opacity .3s ease;
+    .loaded & {
+      opacity: 1;
+    }
   }
   // .main-about__text
   &__text {
     @include adaptiveValue("font-size", 26, 16,0,1366.98,480.98);
-    line-height: 1.24;
-    opacity: .3;
+    line-height: 1.1;
+    opacity: 0;
+    transition: opacity .3s ease;
+    .loaded & {
+      opacity: 0.3;
+    }
     @media (min-width:$mobileSmall){
       max-width: toRem(538);
     }
@@ -2221,10 +2282,43 @@ background-color: $mainWhite;
   // .block-about__title
   &__title {
     @include adaptiveValue("margin-bottom", 37, 30,0,1366.98,480.98);
+    // @extend %animSplitBothTitleWatch;
+    .word {
+      transform: translateY(100%);
+      opacity: 0;
+      transition: transform 0.35s ease, opacity .3s ease;
+    }
+    ._watcher-view & {
+      .word {
+        opacity: 1;
+        transform: translateY(0%);
+        transition-delay: calc(var(--index) * .03s)
+      }
+    }
   }
   // .block-about__txt
   &__txt {
     line-height: 1.24;
+    // text-wrap: pretty;
+    text-wrap: balance;
+    &.split-words {
+      &.txt-anim {
+        .word {
+          overflow: hidden;
+        }
+        .word-span {
+          display: inline-block;
+          transform: translateY(100%);
+          transition: transform 0.3s ease;
+        }
+        ._watcher-view & {
+          .word-span {
+            transform: translateY(0%);
+            transition-delay: calc(var(--index) * .025s)
+          }
+        }
+      }
+    }
     &:not(:last-child) {
       @include adaptiveValue("margin-bottom", 28, 24,0,1366.98,480.98);
     }
@@ -2325,6 +2419,7 @@ background-color: $mainWhite;
 
 .slider-about-b {
   @extend %aboutMrTopBot;
+  padding: 0 toRem(20);
   // .slider-about-b__wrapper
   &__wrapper {
   }
@@ -2334,7 +2429,7 @@ background-color: $mainWhite;
 	// .slider-about-b__card
 	&__card {
     color: #000;
-    @include adaptiveValue("padding-right", 20, 13,0,1366.98,480.98);
+    // @include adaptiveValue("padding-right", 20, 13,0,1366.98,480.98);
 	}
   // .slider-about-b__img
   &__img {
