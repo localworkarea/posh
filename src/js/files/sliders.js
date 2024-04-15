@@ -11,7 +11,7 @@ import {isMobile} from "./functions.js";
 // При необхідності підключаємо додаткові модулі слайдера, вказуючи їх у {} через кому
 // Приклад: { Navigation, Autoplay }
 import Swiper from 'swiper';
-import { FreeMode, Autoplay } from 'swiper/modules';
+import { FreeMode, Autoplay, Pagination } from 'swiper/modules';
 /*
 Основні модулі слайдера:
 Navigation, Pagination, Autoplay, 
@@ -150,7 +150,7 @@ function initSliders() {
 			observer: true,
 			observeParents: true,
 			slidesPerView: "auto",
-			speed: 5000,
+			speed: 4500,
 			centeredSlides: false,
 			longSwipes: true,
 			simulateTouch: true,
@@ -302,13 +302,13 @@ function initSliders() {
 	}
 	if (document.querySelector('.case-page__slider')) {
 		new Swiper('.case-page__slider', { 
-			// modules: [ FreeMode],
+			modules: [ Pagination],
 			observer: true,
 			observeParents: true,
 			slidesPerView: 1,
 			spaceBetween: 20,
 			speed: 500,
-			autoHeight: true,
+			// autoHeight: true,
 			// centeredSlides: false,
 			// longSwipes: true,
 			// simulateTouch: true,
@@ -316,6 +316,44 @@ function initSliders() {
 			// nested: true,
 			// loop: true,
 			// loopAddBlankSlides: true,
+			pagination: {
+				el: '.case-page__slider .swiper-pagination',
+				clickable: true,
+			},
+			breakpoints: {
+				300: {
+					spaceBetween: 16,
+				},
+				768: {
+					spaceBetween: 20,
+				}
+			},
+		});
+	}
+	if (document.querySelector('.case-page__slider-b')) {
+		new Swiper('.case-page__slider-b', { 
+			modules: [ FreeMode, Pagination],
+			observer: true,
+			observeParents: true,
+			slidesPerView: "auto",
+			spaceBetween: 20,
+			speed: 500,
+			// autoHeight: true,
+			// centeredSlides: false,
+			// longSwipes: true,
+			// simulateTouch: true,
+			// grabCursor: true,
+			// nested: true,
+			// loop: true,
+			// loopAddBlankSlides: true,
+			freeMode: {
+				enabled: true,
+				momentumBounce: false,
+			},
+			pagination: {
+				el: '.case-page__slider-b .swiper-pagination',
+				clickable: true,
+			},
 			breakpoints: {
 				300: {
 					spaceBetween: 16,

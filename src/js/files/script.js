@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function() {
   // Функция для обновления индексов и расстановки их заново
   const splitBoth = document.querySelectorAll('.split-both');
   const splitWords = document.querySelectorAll('.split-words');
-  const blockContents = document.querySelectorAll('.block-about__content');
+  // const blockContents = document.querySelectorAll('.block-about__content');
 
   function updateIndexes() {
     
@@ -114,24 +114,24 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     });
 
-    // расстановка индексов для текстовых блоков внутри blockContents (страница About)
-    if (blockContents) {
-      blockContents.forEach((blockContent) => {
-        const splitWords = blockContent.querySelectorAll('.split-words');
+    // // расстановка индексов для текстовых блоков внутри blockContents (страница About)
+    // if (blockContents) {
+    //   blockContents.forEach((blockContent) => {
+    //     const splitWords = blockContent.querySelectorAll('.split-words');
     
-        let totalIndex = 0; // Индекс для накопления индексов предыдущих элементов
+    //     let totalIndex = 0; // Индекс для накопления индексов предыдущих элементов
     
-        splitWords.forEach((splitElement) => {
-          const words = splitElement.querySelectorAll('.word');
+    //     splitWords.forEach((splitElement) => {
+    //       const words = splitElement.querySelectorAll('.word');
           
-          words.forEach((word, index) => {
-            // Устанавливаем индекс с учетом предыдущих индексов
-            word.style.setProperty('--index', totalIndex);
-            totalIndex++;
-          });
-        });
-      });
-    }
+    //       words.forEach((word, index) => {
+    //         // Устанавливаем индекс с учетом предыдущих индексов
+    //         word.style.setProperty('--index', totalIndex);
+    //         totalIndex++;
+    //       });
+    //     });
+    //   });
+    // }
   }
   
   if (splitBoth || splitWords) {
@@ -704,3 +704,38 @@ document.addEventListener("DOMContentLoaded", function() {
   //   }
   // });
   // -------------------------------------------------------------------------------------
+
+
+  function isElementInViewport(el) {
+    var rect = el.getBoundingClientRect();
+    var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    return (
+      rect.top <= viewportHeight && rect.bottom >= 0
+    );
+  }
+  
+
+function handleScroll() {
+  var paragraphs = document.querySelectorAll('.block-about__txt span');
+
+  paragraphs.forEach(function (paragraph) {
+    var scrollPos = window.pageYOffset || document.documentElement.scrollTop;
+    var paragraphTop = paragraph.getBoundingClientRect().top + scrollPos;
+    var paragraphBottom = paragraphTop + paragraph.offsetHeight;
+    var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    var gradientHeight = viewportHeight * 0.8;
+    console.log(paragraphBottom);
+    var progress = Math.max(0, Math.min(1, (scrollPos + viewportHeight - paragraphTop) / gradientHeight));
+
+    // Проверяем положение элемента относительно верха страницы
+    var isInViewport = isElementInViewport(paragraph);
+
+    if (isInViewport) {
+      paragraph.style.backgroundSize = (progress * 100) + '% 100%';
+    }
+  });
+}
+
+window.addEventListener('scroll', handleScroll);
+// window.addEventListener('load', handleScroll);
+handleScroll();
