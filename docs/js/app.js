@@ -4671,26 +4671,25 @@
                 }
             });
             if (document.querySelector(".case-page__slider-b")) new Swiper(".case-page__slider-b", {
-                modules: [ freeMode, Pagination ],
+                modules: [ freeMode ],
                 observer: true,
                 observeParents: true,
                 slidesPerView: "auto",
-                spaceBetween: 20,
-                speed: 500,
+                speed: 800,
                 freeMode: {
                     enabled: true,
                     momentumBounce: false
                 },
-                pagination: {
-                    el: ".case-page__slider-b .swiper-pagination",
-                    clickable: true
-                },
                 breakpoints: {
                     300: {
-                        spaceBetween: 16
+                        spaceBetween: 16,
+                        slidesPerView: "auto",
+                        autoHeight: true
                     },
                     768: {
-                        spaceBetween: 20
+                        spaceBetween: 20,
+                        slidesPerView: "auto",
+                        autoHeight: false
                     }
                 }
             });

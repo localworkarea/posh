@@ -332,12 +332,13 @@ function initSliders() {
 	}
 	if (document.querySelector('.case-page__slider-b')) {
 		new Swiper('.case-page__slider-b', { 
-			modules: [ FreeMode, Pagination],
+			modules: [FreeMode],
 			observer: true,
 			observeParents: true,
 			slidesPerView: "auto",
-			spaceBetween: 20,
-			speed: 500,
+			speed: 800,
+			// spaceBetween: 20,
+			// autoHeight: true,
 			// autoHeight: true,
 			// centeredSlides: false,
 			// longSwipes: true,
@@ -350,16 +351,20 @@ function initSliders() {
 				enabled: true,
 				momentumBounce: false,
 			},
-			pagination: {
-				el: '.case-page__slider-b .swiper-pagination',
-				clickable: true,
-			},
+			// pagination: {
+			// 	el: '.case-page__slider-b .swiper-pagination',
+			// 	clickable: true,
+			// },
 			breakpoints: {
 				300: {
 					spaceBetween: 16,
+					slidesPerView: "auto",
+					autoHeight: true,
 				},
 				768: {
 					spaceBetween: 20,
+					slidesPerView: "auto",
+					autoHeight: false,
 				}
 			},
 		});

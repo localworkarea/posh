@@ -1843,8 +1843,6 @@ background-color: $mainWhite;
   }
   // .case-page__img
   &__img {
-    // height: auto;
-    // width: 100%;
     @media (min-width:$mobileSmall){
       border-radius: toRem(41);
     }
@@ -1900,7 +1898,17 @@ background-color: $mainWhite;
       height: 75vh;
     }
     @media (max-width:$mobileSmall){
-       height: 50vh; 
+      height: toRem(200);
+    }
+    .case-page__slide {
+      overflow: hidden;
+      .case-page__img {
+        height: 100%;
+        width: auto !important;
+        @media (max-width:$mobileSmall){
+           height: toRem(200); 
+        }
+      }
     }
 	}
 
@@ -1918,13 +1926,50 @@ background-color: $mainWhite;
         width: 100% !important;
       }
       .case-page__slider-b & {
-        height: 100%;
-        width: 100%;
-        object-fit: contain;
+       
       }
     }
 	}
 }
+
+
+// .case-other {
+//   // .case-other__slider
+//   &__slider {
+//     overflow: visible !important;
+//     height: 350px;
+//   }
+//   // .case-other__wrapper
+//   &__wrapper {
+//   }
+//   // .case-other__slide
+//   &__slide {
+//     overflow: hidden;
+//     // display: flex;
+//     // width: fit-content;
+//     .slide-other {
+//       height: 350px;
+//       border-radius: 16px;
+//       overflow: hidden;
+//       img {
+//         height: 100%;
+//         width: auto;
+//       }
+//     }
+//   }
+// }
+
+
+// .swiper {
+// }
+// .swiper-wrapper {
+// }
+// .swiper-slide {
+// }
+
+
+
+
 
 .swiper-pagination {
   display: flex;
