@@ -1504,14 +1504,38 @@ background-color: $mainWhite;
   @include adaptiveValue("padding-top", 100, 0,2,1920,1366.98);
   @include adaptiveValue("padding-bottom", 200, 30,0,1920,1366.98);
   .footer-main__form {
-    // opacity: 0;
-    // .loaded & {
-    //   opacity: 1;
-    //   transition: opacity 1s ease 0s;
-    // }
+    opacity: 0;
+    .loaded & {
+      opacity: 1;
+      transition: opacity .3s ease 0s;
+    }
     @include adaptiveValue("max-width", 1250, 1100,2,1920,1366.98);
     margin: 0 auto;
   }
+  .form-footer__title,
+  .side-form__position,
+  .side-form__name,
+  .side-form__location,
+  .side-form__email,
+  .side-form__tel {
+      @extend %animSplitBothTitleLoaded;
+  }
+  // .form-footer__label {
+  //   @extend %animSplitBothTitleLoaded;
+  // }
+  // .side-form__img,
+  // .form-footer__bottom,
+  // .form-footer__input,
+  // .form-footer__checkbox,
+  // .side-form__social,
+  // .side-form__body::before {
+  //   opacity: 0;
+  //   transition: opacity .45s ease;
+  //   .loaded & {
+  //     opacity: 1;
+  //     transition-delay: .1s;
+  //   }
+  // }
 }
 
 
