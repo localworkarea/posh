@@ -13627,7 +13627,7 @@ body {
 }
 @media (min-width: toEm(1366.98)) {
   .articles-page .case-card__title-link {
-    font-size: 1.125rem;
+    font-size: 1.125rem !important;
   }
 }
 @media (any-hover: hover) {
