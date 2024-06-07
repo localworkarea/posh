@@ -641,14 +641,141 @@ document.addEventListener("DOMContentLoaded", function() {
         });
       }
       
+   
+      // == ISOTOP СЕТКА НА СТРАНИЦЕ PARTNERS ==========================
+      const itemsPartners = document.querySelector('[data-iso-items]');
+      if (itemsPartners) {
+        const itemsGrid = new Isotope(itemsPartners, {
+          itemSelector: '[data-iso-item]',
+          layoutMode: 'fitRows'
+        });
       
+        document.addEventListener("click", documentActions);
       
-      
-      // -------------------------------------------------------------------------------------
+        function documentActions(e) {
+          const targetElement = e.target;
+          if (targetElement.closest(".filter-partners__btn")) {
+            const filterItem = targetElement.closest(".filter-partners__btn");
+            const filterValue = filterItem.dataset.filter;
+            const filterActiveItem = document.querySelector('.filter-partners__btn.active');
+          
+            if (filterValue === "*") {
+              itemsGrid.arrange({ filter: '' });
+            } else {
+              itemsGrid.arrange({
+                filter: function(itemElem) {
+                  const filters = itemElem.getAttribute('data-filter').split(' ');
+                  return filters.includes(filterValue);
+                }
+              });
+            }
+          
+            filterActiveItem.classList.remove("active");
+            filterItem.classList.add("active");
+          
+            e.preventDefault();
+          }
+        }
+      }
+
+
+      // === страница CLIETNS - движение картинок ======================= 
+      const clientsItems = document.querySelectorAll('.clients__item');
+
+      if (clientsItems.length > 0) {
+          clientsItems.forEach(item => {
+          
+              item.addEventListener('mousemove', function(event) {
+                  const img = item.querySelector('.clients__img');
+                  const rect = item.getBoundingClientRect();
+                  const x = event.clientX - rect.left;
+                  const y = event.clientY - rect.top;
+              
+                  img.style.left = `${x + 10}px`;
+                  img.style.top = `${y + 10}px`;
+              });
+            
+          });
+      }
+      // =============================================================
+
+
+      // страница SERVICES - запус видео из слайдеров ================
+      const videoContainers = document.querySelectorAll('.slide-serv');    
+      if (videoContainers.length > 0) {
+          videoContainers.forEach(container => {
+              const buttonService = container.querySelector('.slide-serv__video-btn');
+              const video = container.querySelector('.slide-serv__video');
     
+              if (buttonService && video) {
+                  buttonService.addEventListener('click', function() {
+                      video.play();
+                      video.controls = true;
+                      video.muted = false; // Включаем звук
+                      buttonService.classList.add('_play');
+                  });
+              }
+          });
+      }
+      // ===================================================================
+
+      // === страница OUR-SERVICES === добавляем класс _sticky =======
+      const navElement = document.querySelector('.our-serv__nav');
+      if (navElement) {
+        function checkNavPosition() {
+          if (navElement) {
+            const rect = navElement.getBoundingClientRect();
+            if (rect.top >= 0) {
+              navElement.classList.add('_sticky');
+            } else {
+              navElement.classList.remove('_sticky');
+            }
+          }
+        }
+      
+        window.addEventListener('scroll', checkNavPosition);
+        checkNavPosition();
+      }
+      
+    // ====================================================================
+
+
+     // === страница OUR-SERVICES ===  навигация по странице =======
+    const navLinks = document.querySelectorAll('.nav-serv__link');
+
+    if (navLinks.length > 0) {
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                  let offset;
+                  const emWidth = window.innerWidth / 16; // Преобразуем ширину экрана в em
+                  if (emWidth >= 48.0625) { // 768.98 / 16
+                      offset = 28 * window.innerHeight / 100;
+                  } else {
+                      offset = 18 * window.innerHeight / 100;
+                  }
+
+                  const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - offset;
+
+                  window.scrollTo({
+                      top: targetPosition,
+                      behavior: 'smooth'
+                  });
+                }
+            });
+        });
+    }
+    // ====================================================================
+
+
+
+      
 }); // END OF DOMContentLoaded ----------------------------------------------------------------------------
-
-
 
 
 

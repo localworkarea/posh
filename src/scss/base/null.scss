@@ -87,3 +87,9 @@ h6 {
   background-color: #FEFEFE;
 }
 
+summary::-webkit-details-marker {
+  display: none;
+}
+summary {
+  list-style: none;
+}

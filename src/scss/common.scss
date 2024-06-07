@@ -26,6 +26,25 @@ body {
   }
 }
 
+%hoverLine {
+  position: relative;
+  &::before {
+    content:'';
+    position: absolute;
+    bottom: toRem(-2);
+    left: 0;
+    width: 0;
+    height: toRem(1);
+    background-color: $darkBlue;
+    transition: width .6s cubic-bezier(.215,.61,.355,1);
+  }
+  &:hover{
+    &::before {
+      width: 100%;
+    }
+  }
+}
+
 .split-lines,
 .split-words,
 .split-both {
@@ -225,7 +244,12 @@ body {
   @include adaptiveValue("margin-top", 200, 50,0,1366.98,480.98);
   @include adaptiveValue("margin-bottom", 200, 50,0,1366.98,480.98);
 }
-
+%mb30 {
+  margin-bottom: toRem(30);
+}
+%mb35-24 {
+  @include adaptiveValue("margin-bottom", 35, 24,0,1366.98,480.98);
+}
 .btn {
   display: flex;
   align-items: center;
@@ -697,6 +721,12 @@ body {
   @include adaptiveValue("font-size", 50, 45,2,1920,1366.98);
   @include adaptiveValue("font-size", 45, 36,3,1366.98,480.98);
 }
+%title-x {
+  font-weight: 400;
+  line-height: 1.24;
+  @include adaptiveValue("font-size", 50, 45,2,1920,1366.98);
+  @include adaptiveValue("font-size", 45, 36,3,1366.98,480.98);
+}
 .title-xs {
   font-weight: 400;
   line-height: 1.24;
@@ -831,7 +861,7 @@ body {
   &.case-card_sm {
     @media (any-hover: hover){
       &:hover{
-        .case-card__title {
+        .case-card__title-link {
           img {
             transform: translateX(5px);
             transition-delay: .5s;
@@ -927,16 +957,6 @@ body {
   // .case-card__title-link
   &__title-link {
     display: inline-block;
-  }
-  // .case-card__title
-  &__title {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    line-height: 1.1;
-    span {
-      display: inline-block;
-    }
     img {
       display: inline-block;
       vertical-align: middle;
@@ -979,7 +999,16 @@ body {
       @media (max-width:em(1366.98)){
           font-size: toRem(18);
       }
-
+    }
+  }
+  // .case-card__title
+  &__title {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    line-height: 1.1;
+    span {
+      display: inline-block;
     }
   }
 }
@@ -993,12 +1022,7 @@ body {
       &.min {
         min-height: 65vh;
       }
-      // .cases-nav {
-      //   flex: 1;
-      //   display: flex;
-      //   align-items: center;
-      //   margin: toRem(50) 0;
-      // }
+    
       .tiker {
         margin-top: 28vh;
       }
@@ -1047,33 +1071,10 @@ body {
     }
   }
 }
-// .head-section {
-//   .tiker {
-//     @include adaptiveValue("margin-top", 280, 220,2,1920,1366.98);
-//     @include adaptiveValue("margin-top", 220, 150,3,1366.98,480.98);
-//     .tiker__item {
-//       @include adaptiveValue("font-size", 78, 58,2,1366,1366.98);
-//       @include adaptiveValue("font-size", 58, 37,3,1366.98,480);
-//     }
-//   }
-//   .cases-nav {
-//     @include adaptiveValue("padding-top", 100, 44,0,1366.98,480.98);
-//     @include adaptiveValue("padding-bottom", 100, 44,0,1366.98,480.98);
-//     // @include adaptiveValue("padding-top", 100, 60,2,1920.98,1366.98);
-//     // @include adaptiveValue("padding-top", 60, 44,3,1366.98,480.98);
-//     // @include adaptiveValue("padding-bottom", 100, 60,2,1920.98,1366.98);
-//     // @include adaptiveValue("padding-bottom", 60, 44,3,1366.98,480.98);
-//   }
-// }
+
 
 // -- навигация по страницам "Про нас" "Партнери" "Клієнти" -----
 .nav-pages {
-  // .head-section & {
-  //   @include adaptiveValue("margin-top", 150, 93,2,1920,1366.98);
-  //   @include adaptiveValue("margin-top", 93, 55,3,1366.98,480.98);
-  //   @include adaptiveValue("margin-bottom", 154, 98,2,1920,1366.98);
-  //   @include adaptiveValue("margin-bottom", 98, 44,3,1366.98,480.98);
-  // }
   .footer & {
     @extend %marginOnFooter;
   }
@@ -1099,20 +1100,16 @@ body {
     flex: 0 0 auto;
     $initial-delay: 0.2s;
     $delay-step: 0.06s;
-    // @media (min-width:$mobileSmall){
       transition: opacity .45s linear, transform .55s ease;
       opacity: 0;
-      // transform: translateY(50%);
       .loaded & {
         opacity: 1;
-        // transform: translateY(0);
       }
       @for $i from 1 through 10 {
         &:nth-child(#{$i}) {
             transition-delay: $initial-delay + ($delay-step * $i);
         }
       }
-    // }
   }
   // .nav-pages__btn
   &__btn {

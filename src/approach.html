@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="uk">
+	@@include('html/_head.htm',{
+	"title":"Posh | OUR APPROACH"
+	})
+	<body>
+		<div  class="wrapper page-about">
+			<header data-scroll="20" data-scroll-show class="header header-all">
+				@@include('html/_header.htm',{})
+			</header>
+			<main class="page">
+
+
+      </main>
+      <footer class="footer br-r br-r--white">
+        <div class="nav-pages">
+          <div class="nav-pages__body">
+            <ul class="nav-pages__list">
+              <li class="nav-pages__item">
+                <a href="about.html" class="nav-pages__btn btn btn--04" aria-label="кнопка переходу на сторінку Про нас">
+                  <span class="btn__txt">Про нас</span>
+                  <img class="btn__arr-r" width="12" height="10" src="@img/icon/arr-btn.svg" alt="arrow to right">
+                </a>
+              </li>
+              <li class="nav-pages__item">
+                <a href="partners.html" class="nav-pages__btn btn btn--04 _active" aria-label="кнопка переходу на сторінку Партнери">
+                  <span class="btn__txt">Партнери</span>
+                  <img class="btn__arr-r" width="12" height="10" src="@img/icon/arr-btn.svg" alt="arrow to right">
+                </a>
+              </li>
+              <li class="nav-pages__item">
+                <a href="clients.html" class="nav-pages__btn btn btn--04" aria-label="кнопка переходу на сторінку Клієнти">
+                  <span class="btn__txt">Клієнти</span>
+                  <img class="btn__arr-r" width="12" height="10" src="@img/icon/arr-btn.svg" alt="arrow to right">
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        @@include('html/_footer-main.htm',{})
+      </footer>
+		</div>
+		@@include('html/_js.htm',{})
+	</body>
+</html>

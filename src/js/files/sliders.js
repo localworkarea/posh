@@ -11,7 +11,7 @@ import {isMobile} from "./functions.js";
 // При необхідності підключаємо додаткові модулі слайдера, вказуючи їх у {} через кому
 // Приклад: { Navigation, Autoplay }
 import Swiper from 'swiper';
-import { FreeMode, Autoplay, Pagination } from 'swiper/modules';
+import { FreeMode, Autoplay, Pagination, EffectCoverflow } from 'swiper/modules';
 /*
 Основні модулі слайдера:
 Navigation, Pagination, Autoplay, 
@@ -114,36 +114,11 @@ function initSliders() {
 				touchEnd: function() {
 						this.autoplay.start();
 				},
-			// 	mouseover: function() {
-			// 		// Остановка анимации при наведении курсора
-			// 		sliderInsightsWrapper.style.animationPlayState = "paused";
-			// 		sliderInsightsWrapper.classList.add('paused-animation');
-			// },
-			// 	mouseout: function() {
-			// 			// Возобновление анимации при уходе курсора
-			// 			sliderInsightsWrapper.style.animationPlayState = "running";
-			// 			sliderInsightsWrapper.classList.remove('paused-animation');
-			// 	}
 			}
 		});
-		// sliderInsightsWrapper.addEventListener('mouseover', function() {
-		// 	slider.autoplay.stop();
-		// 	// sliderInsightsWrapper.classList.add('paused-animation');
-		// 	// sliderInsightsWrapper.style.animationPlayState = "paused";
-		// 	// sliderInsightsWrapper.style.transitionTimingFunction = "unset";
-		// 	// sliderInsightsWrapper.style.transition = "none";
 
-		// });
-
-		// sliderInsightsWrapper.addEventListener('mouseout', function() {
-		// 		slider.autoplay.start();
-		// 		// sliderInsightsWrapper.classList.remove('paused-animation');
-		// 		// sliderInsightsWrapper.style.animationPlayState = "running";
-		// 		// sliderInsightsWrapper.style.transitionTimingFunction = "linear";
-		// 		sliderInsightsWrapper.style.transition = "";
-		// 		sliderInsightsWrapper.style.transitionDuration = "2500ms";
-		// });
 	}
+	// == page ABOUT.HTML ===========
 	if (document.querySelector('.slider-about-a')) {
 		new Swiper('.slider-about-a', { 
 			modules: [Autoplay, FreeMode],
@@ -369,82 +344,196 @@ function initSliders() {
 			},
 		});
 	}
+	// == page SERVICES.HTML ===========
+	if (document.querySelector('.services__slider')) {
+		new Swiper('.services__slider', { 
+			modules: [FreeMode],
+			observer: true,
+			observeParents: true,
+			slidesPerView: "auto",
+			speed: 800,
+			freeMode: {
+				enabled: true,
+				momentumBounce: false,
+			},
+			nested: true,
+			breakpoints: {
+				300: {
+					spaceBetween: 20,
+				},
+				769: {
+					spaceBetween: 37,
+				}
+			},
+			on: {
+			}
+		});
+	}
+	// == page SERVICE.HTML ===========
+	if (document.querySelector('.nav-serv__slider')) {
+		new Swiper('.nav-serv__slider', { 
+			modules: [FreeMode],
+			observer: true,
+			observeParents: true,
+			slidesPerView: "auto",
+			// speed: 800,
+			spaceBetween: 20,
+			freeMode: {
+				enabled: true,
+				momentumBounce: false,
+			},
+			nested: true,
+			on: {
+			}
+		});
+	}
+	// == paage OUR-SERVICES.HTML ============
+	if (document.querySelector('.our-serv__slider')) {
+		new Swiper('.our-serv__slider', { 
+			modules: [EffectCoverflow],
+			observer: true,
+			observeParents: true,
+			slidesPerView: 1,
+			speed: 800,
+			spaceBetween: 0,
+			direction: 'vertical',
+			effect: 'coverflow',
+			allowTouchMove: false,
+			// coverflowEffect: {
+			// 	depth: 200,
+			// 	modifier: 2.05,
+			// 	rotate: 0,
+			// 	stretch: 160,
+			// 	// scale: 1,
+			// },
+			breakpoints: {
+				300: {
+					coverflowEffect: {
+						depth: 100,
+						modifier: 1,
+						rotate: 0,
+						stretch: 320,
+					},
+				},
+				1366.98: {
+					coverflowEffect: {
+						depth: 200,
+						modifier: 2.05,
+						rotate: 0,
+						stretch: 160,
+					},
+				}
+			},
+			on: {
+			}
+		});
+		 // Initialize the observer to switch slides
+		 initSlideObserver();
+	}
+	// == page ARTICLE.HTML ======================
+	if (document.querySelector('.article__slider')) {
+		new Swiper('.article__slider', { 
+			modules: [Pagination],
+			observer: true,
+			observeParents: true,
+			slidesPerView: 1,
+			speed: 800,
+			spaceBetween: 20,
+			pagination: {
+				el: '.article__slider .swiper-pagination',
+				clickable: true,
+			},
+			on: {
+			}
+		});
+	}
+}
+
+// Функция переключения слайдов при появлении єлемента our-serv__item во вьюпорте просмотра. Дополнительно настройки: rootMargin - расстояния сверх и снизу указывают через какой промежуток во вьюпотре будет срабатывать событие
+// function initSlideObserver() {
+// 	const items = document.querySelectorAll('.our-serv__item');
+// 	const swiper = document.querySelector('.our-serv__slider').swiper;
+
+// 	const observerOptions = {
+// 			root: null,
+// 			rootMargin: `-28% 0px -22% 0px`, // top, right, bottom, left
+// 			threshold: 0.6
+// 	};
+
+// 	const observer = new IntersectionObserver((entries, observer) => {
+// 		entries.forEach(entry => {
+// 				const index = Array.from(items).indexOf(entry.target);
+// 				if (entry.isIntersecting) {
+// 						swiper.slideTo(index);
+// 						entry.target.classList.add('_view');
+// 				} else {
+// 						entry.target.classList.remove('_view');
+// 				}
+// 		});
+// }, observerOptions);
+
+// 	items.forEach(item => observer.observe(item));
+// }
+function initSlideObserver() {
+	const items = document.querySelectorAll('.our-serv__item');
+	const swiper = document.querySelector('.our-serv__slider').swiper;
+	const navSwiper = document.querySelector('.nav-serv__slider').swiper;
+	const navSlides = document.querySelectorAll('.nav-serv__slide');
+
+  let observerOptions;
+        if (window.innerWidth > 480.98) {
+            observerOptions = {
+                root: null,
+                rootMargin: `-28% 0px -22% 0px`, // top, right, bottom, left
+                threshold: 0.6
+            };
+        } else {
+            observerOptions = {
+                root: null,
+                rootMargin: 0, // top, right, bottom, left
+                threshold: 0.6
+            };
+        }
+
+				const observer = new IntersectionObserver((entries, observer) => {
+					entries.forEach(entry => {
+							const index = Array.from(items).indexOf(entry.target);
+							if (entry.isIntersecting) {
+									swiper.slideTo(index);
+									entry.target.classList.add('_view');
+			
+									navSlides.forEach(slide => slide.classList.remove('_active'));
+									navSlides[index].classList.add('_active');
+			
+									// == автопрокрутка nav-serv__slider при появлении нужного our-serv__item ---
+									// ---------------
+									// if (navSwiper) {
+									// 		const navWrapper = document.querySelector('.nav-serv__slider');
+									// 		const navSlide = navSlides[index];
+									// 		const navWrapperRect = navWrapper.getBoundingClientRect();
+									// 		const navSlideRect = navSlide.getBoundingClientRect();
+			
+									// 		if (navSlideRect.left < navWrapperRect.left || navSlideRect.right > navWrapperRect.right) {
+									// 			if (window.innerWidth > 480.98) {
+									// 				navSwiper.slideTo(index, 300);
+									// 			} else {
+									// 				// navSwiper.slideTo(index, 0);
+									// 			}
+									// 		}
+									// }
+							} else {
+									entry.target.classList.remove('_view');
+							}
+					});
+			}, observerOptions);
+			
+
+	items.forEach(item => observer.observe(item));
 }
 
 
 
-
-
 window.addEventListener("load", function (e) {
-// 	let mySwipers = {};
-
-// function initSlider(selector, options) {
-// 	if (!mySwipers[selector]) {
-// 		mySwipers[selector] = new Swiper(selector, options);
-// 	}
-// }
-
-// const touchScreenChecker = function () {
-// 	if (isMobile.any()) {
-// 		enableSwipers();
-// 	} else {
-// 		for (const selector in mySwipers) {
-// 			if (mySwipers[selector] !== undefined) {
-// 				mySwipers[selector].destroy(true, true);
-// 				mySwipers[selector] = undefined;
-// 			}
-// 		}
-// 	}
-// };
-
-// const enableSwipers = function () {
-// 	if (document.querySelector('.slider-insights')) {
-// 		initSlider('.slider-insights', {
-// 			modules: [Autoplay, FreeMode],
-// 			observer: true,
-// 			observeParents: true,
-// 			slidesPerView: "auto",
-// 			speed: 2500,
-// 			centeredSlides: false,
-// 			longSwipes: true,
-// 			autoplay: {
-// 				delay: -1,
-// 				disableOnInteraction: false,
-// 				pauseOnMouseEnter: true,
-// 			},
-// 			freeMode: {
-// 				enabled: true,
-// 				momentumBounce: false,
-// 				// sticky: true,
-// 				// momentumRatio: 0.3,
-// 			},
-// 			nested: true,
-// 			loop: true,
-// 			loopAddBlankSlides: true,
-// 			loopAdditionalSlides: 5,
-// 			breakpoints: {
-// 				300: {
-// 					spaceBetween: 24,
-// 				},
-// 				1500: {
-// 					spaceBetween: 40,
-// 				},
-// 			},
-// 			on: {
-// 				touchStart: function() {
-// 					this.autoplay.stop();
-// 				},
-// 				touchEnd: function() {
-// 						this.autoplay.start();
-// 				}
-// 			}
-// 		});
-// 	}
-// };
-
-// touchScreenChecker();
-
-
 
 	initSliders();
 	
