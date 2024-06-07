@@ -3505,11 +3505,11 @@ background-color: $mainWhite;
   // .our-serv__slider
   &__slider {
     // aspect-ratio: 480/310;
-    @media (min-width:em(1366.98)){
+    @media (min-width:em(1440.98)){
       height: 50vh;
       max-height: toRem(420);
     }
-    @media (max-width: em(1366.98)){
+    @media (max-width: em(1440.98)){
       height: toRem(350);
     }
     @media (min-width:$mobile){
@@ -3591,8 +3591,8 @@ background-color: $mainWhite;
   @extend %bgPaddArticleCase;
   .case-card__title-link {
     display: inline-block;
-    @media (min-width:toEm(1366.98)){
-      font-size: toRem(18) !important;
+    @media (min-width:em(1366.98)){
+      font-size: toRem(18);
     }
     @media (any-hover: hover){
       &:hover{

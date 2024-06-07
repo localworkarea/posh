@@ -415,7 +415,7 @@ function initSliders() {
 						stretch: 320,
 					},
 				},
-				1366.98: {
+				1440.98: {
 					coverflowEffect: {
 						depth: 200,
 						modifier: 2.05,
