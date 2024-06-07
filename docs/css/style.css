@@ -3563,6 +3563,10 @@ body {
   opacity: 0.31;
 }
 
+.client-part__right p:not(:last-child) {
+  margin-bottom: 0.9375rem;
+}
+
 .faq {
   background-color: #FEFEFE;
 }
@@ -4982,10 +4986,6 @@ body {
   .item-partners {
     width: 45%;
     max-width: 300px;
-  }
-
-  .client-part__right p br {
-    display: none;
   }
 
   .main-serv {
@@ -7998,6 +7998,11 @@ body {
 
   .item-partners__mail {
     font-size: 0.8125rem;
+  }
+
+  .client-part {
+    -ms-grid-columns: 100%;
+    grid-template-columns: 100%;
   }
 }
 

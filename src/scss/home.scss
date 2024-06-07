@@ -2914,6 +2914,9 @@ background-color: $mainWhite;
   @media (max-width: em(1200.98)) and (min-width:em(992.98)){
     grid-template-columns: auto toRem(700);     
   }
+  @media (max-width:$tablet){
+    grid-template-columns: 100%;   
+  }
   p {
     font-size: toRem(17);
     line-height: 1.2;
@@ -2933,10 +2936,8 @@ background-color: $mainWhite;
       @media (min-width: em(1200.98)){
           max-width: 90%;
       }
-      br {
-        @media (min-width:em(750.98)){
-           display: none; 
-        }
+      &:not(:last-child) {
+        margin-bottom: toRem(15);
       }
     }
   }
