@@ -72,7 +72,11 @@ body {
 		touch-action: none;
 		overscroll-behavior: none;
 	}
-  transition: opacity .3s;
+  &._reload  {
+		opacity: 0;
+		transition: unset;
+  }
+	transition: opacity .3s;
   .loaded & {
     opacity: 1;
   }

@@ -2,6 +2,7 @@ body {
   background-color: $darkBlue;
 }
 
+
 .page {
   .page-case & {
   }
@@ -736,11 +737,11 @@ body {
 .tiker {
   overflow: hidden;
   width: max-content;
+  overflow: visible;
   display: flex;
   align-items: center;
   position: relative;
   z-index: 3;
-  overflow: visible;
   &.tiker-blue {
     background-color: $lightBlue;
     color: $mainWhite;

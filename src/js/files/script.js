@@ -3,6 +3,15 @@ import {isMobile,  bodyLockStatus, bodyLock, bodyUnlock, bodyLockToggle  } from 
 // Підключення списку активних модулів
 import { flsModules } from "./modules.js";
 
+import SplitType from 'split-type'
+
+// import { gsap } from "gsap";
+    
+// import { ScrollTrigger } from "gsap/ScrollTrigger";
+// import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+
+// gsap.registerPlugin(ScrollTrigger,ScrollToPlugin)
+
 // import Typed from 'typed.js';
 
 
@@ -72,7 +81,6 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     });
   }
-  
   if (splitTextWords.length > 0) {
     splitTextWords.forEach(element => {
       const splitText = new SplitType(element, { types: 'words' });
@@ -138,8 +146,6 @@ document.addEventListener("DOMContentLoaded", function() {
     updateIndexes();
   }
   
- 
-
 
     // ИНДЕКСЫ ДЛЯ TRANSITION-DELAY (блок services-main) ========================================================
     const leftItems = document.querySelectorAll('.items-serv-left__item');
@@ -266,67 +272,45 @@ document.addEventListener("DOMContentLoaded", function() {
         loopCount: Infinity,
         smartBackspace: false,
         startDelay: startDelay,
-        onComplete: function () {
-          // Помечаем, что Typed завершил свой цикл
-          typedElement.setAttribute('data-typed-started', 'completed');
-        }
       });
   
-      // Проверяем при загрузке, есть ли у documentElement класс fp-section-1
-      if (document.documentElement.classList.contains('fp-section-1')) {
-        // Пауза перед стартом, если условие выполняется
-        setTimeout(function () {
-          typed.start();
-          typedElement.setAttribute('data-typed-started', 'true');
-        }, startDelay);
-      }
-  
-      // Наблюдаем за изменениями в атрибутах класса элемента
-      var observer = new MutationObserver(function(mutations) {
+   
+
+      var docObserver = new MutationObserver(function(mutations) {
         mutations.forEach(function(mutation) {
-          // Проверяем, добавлен ли класс fp-section-1 к documentElement
           if (document.documentElement.classList.contains('fp-section-1')) {
-            // Пауза перед стартом, если условие выполняется
             setTimeout(function () {
               typed.start();
               typedElement.setAttribute('data-typed-started', 'true');
             }, startDelay);
           } else {
-            // Если класс отсутствует, останавливаем Typed
             typed.stop();
             typedElement.setAttribute('data-typed-started', 'false');
           }
         });
       });
-  
-      // Наблюдаем за изменениями в атрибутах класса documentElement
-      observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
-  
-      // Наблюдаем за видимостью элемента
-      var intersectionObserver = new IntersectionObserver(handleIntersection, { threshold: 0.5 });
-  
-      intersectionObserver.observe(typedElement);
-    }
-  
-    function handleIntersection(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting && document.documentElement.classList.contains('fp-section-1')) {
-          // Если элемент виден во вьюпорте и document.documentElement содержит класс fp-section-1
-          // Пауза перед стартом, если условие выполняется
-          setTimeout(function () {
-            typed.start();
-            typedElement.setAttribute('data-typed-started', 'true');
-          }, startDelay);
-        } else {
-          // Если элемент не виден во вьюпорте или document.documentElement не содержит класс fp-section-1
-          typed.stop();
-          typedElement.setAttribute('data-typed-started', 'false');
-        }
-      });
-    }
-    // -------------------------------------------------------------------------------------
-
+    
+      docObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    
+      var stepsAElements = document.querySelectorAll('.steps-a');
+      stepsAElements.forEach(function(stepsAElement) {
+        var stepsAObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (stepsAElement.classList.contains('_watcher-view')) {
+              setTimeout(function () {
+                typed.start();
+                typedElement.setAttribute('data-typed-started', 'true');
+              }, startDelay);
+            } else {
+              typed.stop();
+              typedElement.setAttribute('data-typed-started', 'false');
+            }
+          });
+        });
       
+        stepsAObserver.observe(stepsAElement, { attributes: true, attributeFilter: ['class'] });
+      });      
+    }
       
       // ANIMATION SVG MASSAGE (FOOTER) ==============================================================
     function setupGroupAnimation(groupSelector, circleId, hoverRadius) {
@@ -773,10 +757,10 @@ document.addEventListener("DOMContentLoaded", function() {
     // ====================================================================
 
 
-
-      
-}); // END OF DOMContentLoaded ----------------------------------------------------------------------------
-
+    
+  }); // END OF DOMContentLoaded ----------------------------------------------------------------------------
+  
+  
 
 
   // CLONE TIKERS ==============================================================
@@ -800,37 +784,6 @@ document.addEventListener("DOMContentLoaded", function() {
       tiker.appendChild(clonedLine);
     }
   });
-
-  // window.addEventListener("load", function (e) {
-
-  
-  //   // Проверяем, является ли устройство мобильным
-  //   if (!isMobile.any()) {
-  //     // Находим элементы тикера
-  //     const tikerInsights = document.querySelector('.slider-insights');
-  //     const tikerLine = document.querySelector('.slider-insights__wrapper');
-  //     const clonedLine = tikerLine.cloneNode(true);
-  //     // Добавляем клон в конец элемента тикера
-  //     tikerInsights.appendChild(clonedLine);
-  //     // Присваиваем анимацию обоим линиям тикера
-  //     tikerLine.style.animation = "scroll 40s linear infinite";
-  //     clonedLine.style.animation = "scroll 40s linear infinite";
-  //     // Функция для приостановки анимации
-  //     function playStatePaused() {
-  //         tikerLine.style.animationPlayState = "paused";
-  //         clonedLine.style.animationPlayState = "paused";
-  //     }
-  //     // Функция для возобновления анимации
-  //     function playStateRunning() {
-  //         tikerLine.style.animationPlayState = "running";
-  //         clonedLine.style.animationPlayState = "running";
-  //     }
-  //     // Обработчики событий для мыши и касаний
-  //     tikerInsights.addEventListener("mouseover", playStatePaused);
-  //     tikerInsights.addEventListener("mouseout", playStateRunning);
-  //   }
-  // });
-  // -------------------------------------------------------------------------------------
 
 
   function isElementInViewport(el) {
@@ -862,7 +815,41 @@ function handleScroll() {
     }
   });
 }
-
 window.addEventListener('scroll', handleScroll);
 // window.addEventListener('load', handleScroll);
 handleScroll();
+
+
+
+
+
+// Отключение автоматического восстановления прокрутки
+// if ('scrollRestoration' in history) {
+//   history.scrollRestoration = 'manual';
+// }
+// // Обработчик события загрузки страницы
+// window.addEventListener('load', function () {
+//   if (typeof gsap !== 'undefined') {
+//     document.body.style.opacity = '';
+//     document.body.classList.remove('_reload');
+//     // if (typeof gsap.matchMediaRefresh === 'function') {
+//     //   gsap.matchMediaRefresh();
+//     // }
+//     // gsap.to(window, {duration: 0, scrollTo: {y: 0}});
+//   }
+// });
+// // Функция при смене ширины экрана
+// function changeOrientation() {
+//   if (typeof gsap !== 'undefined') {
+//     // document.body.style.opacity = '0';
+//     // document.body.classList.add('_reload');
+//     // if (typeof gsap.matchMediaRefresh === 'function') {
+//     //   // gsap.matchMediaRefresh();
+//     //   ScrollTrigger.refresh();
+//     // }
+//     // gsap.to(window, {duration: 0, scrollTo: {y: 0}});
+//     location.reload();
+//   }
+// }
+// window.addEventListener('orientationchange', changeOrientation);
+

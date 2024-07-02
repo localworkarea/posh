@@ -447,6 +447,46 @@ function initSliders() {
 			}
 		});
 	}
+		// == page APPROACH.HTML ===========
+		if (document.querySelector('.approach__slider')) {
+			new Swiper('.approach__slider', { 
+				modules: [Autoplay, FreeMode],
+				observer: true,
+				observeParents: true,
+				slidesPerView: "auto",
+				speed: 4500,
+				centeredSlides: false,
+				longSwipes: true,
+				simulateTouch: true,
+				grabCursor: true,
+				autoplay: {
+					delay: -1,
+				},
+				freeMode: {
+					enabled: true,
+					momentumBounce: false,
+				},
+				nested: true,
+				loop: true,
+				loopAddBlankSlides: true,
+				// breakpoints: {
+				// 	300: {
+				// 		// spaceBetween: 50,
+				// 	},
+				// 	768: {
+				// 		// spaceBetween: 60,
+				// 	}
+				// },
+				on: {
+					touchStart: function() {
+						this.autoplay.stop();
+					},
+					touchEnd: function() {
+							this.autoplay.start();
+					},
+				}
+			});
+		}
 }
 
 // Функция переключения слайдов при появлении єлемента our-serv__item во вьюпорте просмотра. Дополнительно настройки: rootMargin - расстояния сверх и снизу указывают через какой промежуток во вьюпотре будет срабатывать событие
