@@ -5346,7 +5346,7 @@ body {
 }
 
 .steps-d .steps__anim-wr svg {
-  width: 100%;
+  width: 100% !important;
 }
 
 .steps-c .steps__anim-wr {

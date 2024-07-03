@@ -7,8 +7,17 @@ document.addEventListener("DOMContentLoaded", function() {
     const girlStars = document.querySelectorAll('.girl-analys__stars path');
     const animGirlPuzzle = document.querySelector('.girl-puzzle');
     const animMenStar = document.querySelector('.men-star');
-   
 
+    const linePc01 = document.querySelector('.line-pc-01');
+    const linePc02 = document.querySelector('.line-pc-02');
+    const linePc03 = document.querySelector('.line-pc-03');
+
+    const lineMob01 = document.querySelector('.line-mob-01');
+    const lineMob02 = document.querySelector('.line-mob-02');
+    const lineMob03 = document.querySelector('.line-mob-03');
+    const lineMob04 = document.querySelector('.line-mob-04');
+    const lineMob05 = document.querySelector('.line-mob-05');
+   
     const retailSteps = document.querySelector('.retail__steps');
     const retailShelf = document.querySelector('.retail__shelf');
 
@@ -50,7 +59,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const stepsRetail02 = document.querySelector(".steps-retail-02");
     const stepsRetail03 = document.querySelector(".steps-retail-03");
  
-
       let breakPoint = 40.686;
       let mm = gsap.matchMedia();
       let scrollDuration = window.innerHeight * 2;
@@ -61,13 +69,9 @@ document.addEventListener("DOMContentLoaded", function() {
       }, (context) => {
       
         let {isDesktop, isMobile} = context.conditions;
-
-       
       
         if (isDesktop) {
-
           // === Retail__Steps =============================================
-          
           ScrollTrigger.create({
               trigger: retailSteps,
               start: "center center",
@@ -158,6 +162,63 @@ document.addEventListener("DOMContentLoaded", function() {
               { rotation: 360, xPercent: 40, duration: 0.1, ease: "none" }
             ]
           },0);
+
+          // Устанавливаем stroke-dashoffset и stroke-dasharray для каждой линии
+          const lines = [linePc01, linePc02, linePc03];
+          lines.forEach(line => {
+            const length = line.getTotalLength();
+            line.style.strokeDasharray = length;
+            line.style.strokeDashoffset = length;
+          });
+          
+          ScrollTrigger.create({
+            trigger: designCookie,
+            start: "center center",
+            endTrigger: designBoxes,
+            end: "center center",
+            scrub: true,
+            onUpdate: self => {
+              const progress = self.progress * 100;
+          
+              if (progress <= 15) {
+                // Анимация для первой линии (0-15%)
+                const lineProgress = progress / 15;
+                gsap.to(linePc01, { strokeDashoffset: (1 - lineProgress) * linePc01.getTotalLength(), overwrite: true });
+                gsap.to(linePc02, { strokeDashoffset: linePc02.getTotalLength(), overwrite: true });
+                gsap.to(linePc03, { strokeDashoffset: linePc03.getTotalLength(), overwrite: true });
+              } else if (progress <= 33) {
+                // Анимация для первой линии (15-33%)
+                const lineProgress = (progress - 15) / 18;
+                gsap.to(linePc01, { strokeDashoffset: -lineProgress * linePc01.getTotalLength(), overwrite: true });
+                gsap.to(linePc02, { strokeDashoffset: linePc02.getTotalLength(), overwrite: true });
+                gsap.to(linePc03, { strokeDashoffset: linePc03.getTotalLength(), overwrite: true });
+              } else if (progress <= 43) {
+                // Анимация для второй линии (33-43%)
+                const lineProgress = (progress - 33) / 10;
+                gsap.to(linePc01, { strokeDashoffset: -linePc01.getTotalLength(), overwrite: true });
+                gsap.to(linePc02, { strokeDashoffset: (1 - lineProgress) * linePc02.getTotalLength(), overwrite: true });
+                gsap.to(linePc03, { strokeDashoffset: linePc03.getTotalLength(), overwrite: true });
+              } else if (progress <= 66) {
+                // Анимация для второй линии (43-66%)
+                const lineProgress = (progress - 43) / 23;
+                gsap.to(linePc01, { strokeDashoffset: -linePc01.getTotalLength(), overwrite: true });
+                gsap.to(linePc02, { strokeDashoffset: -lineProgress * linePc02.getTotalLength(), overwrite: true });
+                gsap.to(linePc03, { strokeDashoffset: linePc03.getTotalLength(), overwrite: true });
+              } else if (progress <= 81) {
+                // Анимация для третьей линии (66-76%)
+                const lineProgress = (progress - 66) / 10;
+                gsap.to(linePc01, { strokeDashoffset: -linePc01.getTotalLength(), overwrite: true });
+                gsap.to(linePc02, { strokeDashoffset: -linePc02.getTotalLength(), overwrite: true });
+                gsap.to(linePc03, { strokeDashoffset: (1 - lineProgress) * linePc03.getTotalLength(), overwrite: true });
+              } else {
+                // Анимация для третьей линии (76-100%)
+                const lineProgress = (progress - 76) / 24;
+                gsap.to(linePc01, { strokeDashoffset: -linePc01.getTotalLength(), overwrite: true });
+                gsap.to(linePc02, { strokeDashoffset: -linePc02.getTotalLength(), overwrite: true });
+                gsap.to(linePc03, { strokeDashoffset: -lineProgress * linePc03.getTotalLength(), overwrite: true });
+              }
+            }
+          });
           
           // Вторая анимация для designBoxes и box
           const timeline = gsap.timeline({
@@ -385,6 +446,50 @@ document.addEventListener("DOMContentLoaded", function() {
               { rotation: 720, xPercent: 0, duration: 0.16, ease: "none" }
             ]
           });
+
+          // const progressMarker = document.querySelector('.progress-marker');
+          const linesMob = [lineMob01, lineMob02, lineMob03, lineMob04, lineMob05];
+          linesMob.forEach(line => {
+            const length = line.getTotalLength();
+            line.style.strokeDasharray = length;
+            line.style.strokeDashoffset = length;
+          });
+          
+          const animateLine = (line, progress, start, end) => {
+            const length = line.getTotalLength();
+            const midProgress = (end - start) / 5 + start;
+            
+            if (progress < start) {
+              gsap.to(line, { strokeDashoffset: length, overwrite: true });
+            } else if (progress < midProgress) {
+              const lineProgress = (progress - start) / (midProgress - start);
+              gsap.to(line, { strokeDashoffset: (1 - lineProgress) * length, overwrite: true });
+            } else if (progress < end) {
+              const lineProgress = (progress - midProgress) / (end - midProgress);
+              gsap.to(line, { strokeDashoffset: -lineProgress * length, overwrite: true });
+            } else {
+              gsap.to(line, { strokeDashoffset: -length, overwrite: true });
+            }
+          };
+          
+          ScrollTrigger.create({
+            trigger: designCookie,
+            start: "center center",
+            endTrigger: designBoxes,
+            end: "center center",
+            scrub: true,
+            onUpdate: self => {
+              const progress = self.progress * 100;
+              // progressMarker.textContent = `${progress.toFixed(1)}%`;
+          
+              animateLine(lineMob01, progress, 0, 26);
+              animateLine(lineMob02, progress, 26, 43);
+              animateLine(lineMob03, progress, 43, 45);
+              animateLine(lineMob04, progress, 54, 78);
+              animateLine(lineMob05, progress, 83, 100);
+            }
+          });
+
 
             const timeline = gsap.timeline({
               scrollTrigger: {
