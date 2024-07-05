@@ -642,6 +642,9 @@ document.addEventListener("DOMContentLoaded", function() {
             const filterItem = targetElement.closest(".filter-partners__btn");
             const filterValue = filterItem.dataset.filter;
             const filterActiveItem = document.querySelector('.filter-partners__btn.active');
+
+            const filterPartnersElement = document.querySelector('.filter-partners');
+            const filterPartnersTitle = document.querySelector('.filter-partners__title');
           
             if (filterValue === "*") {
               itemsGrid.arrange({ filter: '' });
@@ -656,6 +659,21 @@ document.addEventListener("DOMContentLoaded", function() {
           
             filterActiveItem.classList.remove("active");
             filterItem.classList.add("active");
+
+         
+             // Прокрутка на 80px от верхней части страницы, если необходимо
+            const topOffset = filterPartnersElement.getBoundingClientRect().top + window.scrollY - 80;
+            const currentScrollPosition = window.scrollY;
+            const screenHeight = window.innerHeight;
+            const elementTopPosition = filterPartnersElement.getBoundingClientRect().top;
+
+            // Проверка, если элемент выше центра экрана
+            if (elementTopPosition < screenHeight / 3 && Math.abs(currentScrollPosition - (topOffset + 80)) > 1) {
+              window.scrollTo({ top: topOffset, behavior: "auto" });
+            }
+
+            // Замена текста внутри filter-partners__title на текст кнопки
+            filterPartnersTitle.textContent = filterItem.textContent;
           
             e.preventDefault();
           }
@@ -705,6 +723,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
       // === страница OUR-SERVICES === добавляем класс _sticky =======
       const navElement = document.querySelector('.our-serv__nav');
+      const navLinks = document.querySelectorAll('.nav-serv__link');
+      const sliderElement = document.querySelector('.our-serv__slider');
+      const ourServ = document.querySelector('.our-serv');
+
       if (navElement) {
         function checkNavPosition() {
           if (navElement) {
@@ -719,42 +741,60 @@ document.addEventListener("DOMContentLoaded", function() {
       
         window.addEventListener('scroll', checkNavPosition);
         checkNavPosition();
-      }
-      
-    // ====================================================================
+      }  
 
+      //  навигация по странице =======    
+      if (navLinks.length > 0) {
+          navLinks.forEach(link => {
+              link.addEventListener('click', function(event) {
+                  event.preventDefault();
 
-     // === страница OUR-SERVICES ===  навигация по странице =======
-    const navLinks = document.querySelectorAll('.nav-serv__link');
+                  const targetId = this.getAttribute('href').substring(1);
+                  const targetElement = document.getElementById(targetId);
 
-    if (navLinks.length > 0) {
-        navLinks.forEach(link => {
-            link.addEventListener('click', function(event) {
-                event.preventDefault();
-                
-                const targetId = this.getAttribute('href').substring(1);
-                const targetElement = document.getElementById(targetId);
-                
-                if (targetElement) {
-                  let offset;
-                  const emWidth = window.innerWidth / 16; // Преобразуем ширину экрана в em
-                  if (emWidth >= 48.0625) { // 768.98 / 16
-                      offset = 28 * window.innerHeight / 100;
-                  } else {
-                      offset = 18 * window.innerHeight / 100;
+                  if (targetElement) {
+                      const sliderRect = sliderElement.getBoundingClientRect();
+                      const sliderCenter = sliderRect.top + sliderRect.height / 2;
+                  
+                      const targetRect = targetElement.getBoundingClientRect();
+                      const targetCenter = targetRect.top + targetRect.height / 2;
+                  
+                      const offset = targetCenter - sliderCenter;
+                  
+                      window.scrollBy({
+                          top: offset,
+                          behavior: 'smooth'
+                      });
                   }
+              });
+          });
+      }
 
-                  const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - offset;
 
-                  window.scrollTo({
-                      top: targetPosition,
-                      behavior: 'smooth'
-                  });
-                }
-            });
-        });
-    }
-    // ====================================================================
+    // == добавление отступа элементу  const navElement = document.querySelector('.our-serv__nav') через класс _top-mb - для создания отступа от следующего за разделом элементов (так .our-serv__nav не будет налазить на блоки ниже при ухода из страницы)
+    if (ourServ) {
+        const nextElement = ourServ.nextElementSibling;
+          const observerOptions = {
+              root: null,
+              rootMargin: '0px',
+              threshold: [0, 1]
+          };
+          const observer = new IntersectionObserver((entries, observer) => {
+              entries.forEach(entry => {
+                  if (entry.isIntersecting) {
+                      if (entry.boundingClientRect.top <= window.innerHeight) {
+                        navElement.classList.add('_top-mb');
+                      }
+                  } else {
+                    navElement.classList.remove('_top-mb');
+                  }
+              });
+          }, observerOptions);
+
+          observer.observe(nextElement);
+      }
+
+      // ====================================================================
 
 
     

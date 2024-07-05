@@ -415,12 +415,24 @@ function initSliders() {
 						stretch: 320,
 					},
 				},
-				1440.98: {
+				769: {
 					coverflowEffect: {
-						depth: 200,
-						modifier: 2.05,
+						depth: 100,
+						modifier: 10,
 						rotate: 0,
-						stretch: 160,
+						stretch: 40,
+					},
+				},
+				1500.98: {
+					coverflowEffect: {
+						// depth: 200,
+						// modifier: 2.05,
+						// rotate: 0,
+						// stretch: 160,
+						depth: 100,
+						modifier: 10,
+						rotate: 0,
+						stretch: 50,
 					},
 				}
 			},
@@ -530,7 +542,7 @@ function initSlideObserver() {
         } else {
             observerOptions = {
                 root: null,
-                rootMargin: 0, // top, right, bottom, left
+                rootMargin: "0px", // top, right, bottom, left
                 threshold: 0.6
             };
         }

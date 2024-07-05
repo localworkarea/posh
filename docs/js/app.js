@@ -4998,12 +4998,20 @@
                                 stretch: 320
                             }
                         },
-                        1440.98: {
+                        769: {
                             coverflowEffect: {
-                                depth: 200,
-                                modifier: 2.05,
+                                depth: 100,
+                                modifier: 10,
                                 rotate: 0,
-                                stretch: 160
+                                stretch: 40
+                            }
+                        },
+                        1500.98: {
+                            coverflowEffect: {
+                                depth: 100,
+                                modifier: 10,
+                                rotate: 0,
+                                stretch: 50
                             }
                         }
                     },
@@ -5066,7 +5074,7 @@
                 threshold: .6
             }; else observerOptions = {
                 root: null,
-                rootMargin: 0,
+                rootMargin: "0px",
                 threshold: .6
             };
             const observer = new IntersectionObserver(((entries, observer) => {
@@ -6735,6 +6743,8 @@
                         const filterItem = targetElement.closest(".filter-partners__btn");
                         const filterValue = filterItem.dataset.filter;
                         const filterActiveItem = document.querySelector(".filter-partners__btn.active");
+                        const filterPartnersElement = document.querySelector(".filter-partners");
+                        const filterPartnersTitle = document.querySelector(".filter-partners__title");
                         if (filterValue === "*") itemsGrid.arrange({
                             filter: ""
                         }); else itemsGrid.arrange({
@@ -6745,6 +6755,15 @@
                         });
                         filterActiveItem.classList.remove("active");
                         filterItem.classList.add("active");
+                        const topOffset = filterPartnersElement.getBoundingClientRect().top + window.scrollY - 80;
+                        const currentScrollPosition = window.scrollY;
+                        const screenHeight = window.innerHeight;
+                        const elementTopPosition = filterPartnersElement.getBoundingClientRect().top;
+                        if (elementTopPosition < screenHeight / 3 && Math.abs(currentScrollPosition - (topOffset + 80)) > 1) window.scrollTo({
+                            top: topOffset,
+                            behavior: "auto"
+                        });
+                        filterPartnersTitle.textContent = filterItem.textContent;
                         e.preventDefault();
                     }
                 }
@@ -6772,6 +6791,9 @@
                 }));
             }));
             const navElement = document.querySelector(".our-serv__nav");
+            const navLinks = document.querySelectorAll(".nav-serv__link");
+            const sliderElement = document.querySelector(".our-serv__slider");
+            const ourServ = document.querySelector(".our-serv");
             if (navElement) {
                 function checkNavPosition() {
                     if (navElement) {
@@ -6782,24 +6804,40 @@
                 window.addEventListener("scroll", checkNavPosition);
                 checkNavPosition();
             }
-            const navLinks = document.querySelectorAll(".nav-serv__link");
             if (navLinks.length > 0) navLinks.forEach((link => {
                 link.addEventListener("click", (function(event) {
                     event.preventDefault();
                     const targetId = this.getAttribute("href").substring(1);
                     const targetElement = document.getElementById(targetId);
                     if (targetElement) {
-                        let offset;
-                        const emWidth = window.innerWidth / 16;
-                        if (emWidth >= 48.0625) offset = 28 * window.innerHeight / 100; else offset = 18 * window.innerHeight / 100;
-                        const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - offset;
-                        window.scrollTo({
-                            top: targetPosition,
+                        const sliderRect = sliderElement.getBoundingClientRect();
+                        const sliderCenter = sliderRect.top + sliderRect.height / 2;
+                        const targetRect = targetElement.getBoundingClientRect();
+                        const targetCenter = targetRect.top + targetRect.height / 2;
+                        const offset = targetCenter - sliderCenter;
+                        window.scrollBy({
+                            top: offset,
                             behavior: "smooth"
                         });
                     }
                 }));
             }));
+            if (ourServ) {
+                const nextElement = ourServ.nextElementSibling;
+                const observerOptions = {
+                    root: null,
+                    rootMargin: "0px",
+                    threshold: [ 0, 1 ]
+                };
+                const observer = new IntersectionObserver(((entries, observer) => {
+                    entries.forEach((entry => {
+                        if (entry.isIntersecting) {
+                            if (entry.boundingClientRect.top <= window.innerHeight) navElement.classList.add("_top-mb");
+                        } else navElement.classList.remove("_top-mb");
+                    }));
+                }), observerOptions);
+                observer.observe(nextElement);
+            }
         }));
         const tikers = document.querySelectorAll(".tiker");
         tikers.forEach((tiker => {

@@ -68,12 +68,12 @@
   &_logo {
     display: inline-block;
     @media (max-width:$mobileSmall){
-      transition: opacity .6s ease;
-      .fp-section-1 &,
-      ._header-scroll & {
-        opacity: 0;
-        pointer-events: none;
-      }
+      // transition: opacity .6s ease;
+      // .fp-section-1 &,
+      // ._header-scroll & {
+      //   opacity: 0;
+      //   pointer-events: none;
+      // }
     }
     img {
       transition: width .5s ;
