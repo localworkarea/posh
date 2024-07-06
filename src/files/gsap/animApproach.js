@@ -1,6 +1,47 @@
+document.addEventListener('DOMContentLoaded', function() {
+  if (document.documentElement.requestFullscreen) {
+      // document.documentElement.requestFullscreen();
+  } else if (document.documentElement.mozRequestFullScreen) { /* Firefox */
+      document.documentElement.mozRequestFullScreen();
+  } else if (document.documentElement.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+      document.documentElement.webkitRequestFullscreen();
+  } else if (document.documentElement.msRequestFullscreen) { /* IE/Edge */
+      document.documentElement.msRequestFullscreen();
+  }
+});
+
+
 document.addEventListener("DOMContentLoaded", function() {
+
   if (typeof gsap !== 'undefined') {
+
+
+
+
+
     gsap.registerPlugin(ScrollTrigger,ScrollToPlugin)
+
+    // ScrollTrigger.scrollerProxy(".mob-body", {
+    //   scrollTop(value) {
+    //     if (arguments.length) {
+    //       document.querySelector(".mob-body").scrollTop = value;
+    //     }
+    //     return document.querySelector(".mob-body").scrollTop;
+    //   },
+    //   getBoundingClientRect() {
+    //     return {
+    //       top: 0,
+    //       left: 0,
+    //       width: window.innerWidth,
+    //       height: window.innerHeight
+    //     };
+    //   }
+    // });
+    
+    // ScrollTrigger.defaults({
+    //   scroller: ".mob-body"
+    // });
+    
     
     const animHandEye = document.querySelector('.hand-eye');
     const animGirlYouga = document.querySelector('.girl-youga');
