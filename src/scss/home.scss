@@ -3995,12 +3995,15 @@ background-color: $mainWhite;
     color: $mainWhite;
     font-weight: 700;
     line-height: 1.2;
-    @include adaptiveValue("font-size", 71, 40,0,1366,480.98);
+    @include adaptiveValue("font-size", 71, 50,0,1366,480.98);
 
     @extend %animSplitBothTitleLoaded;
     
     @media (min-width:em(550.98)){
       text-align: center;
+    }
+    @media (max-width: em(375.98)){
+        font-size: toRem(46) !important;
     }
 
     .heart-main {
@@ -4564,10 +4567,9 @@ background-color: $mainWhite;
         }
       }
       .ic-02-body {
-        transition: transform .85s cubic-bezier(.32,1.83,.32,.78) .3s, opacity .45s ease .3s;
-        // transition-delay: .3s ease;
         opacity: 0;
         transform: translate(0,65%);
+        transition: transform .85s cubic-bezier(.32,1.83,.32,.78) .3s, opacity .45s ease .3s; 
       }
       .ic-02-table {
         transform-box: fill-box;
@@ -5135,6 +5137,7 @@ background-color: $mainWhite;
     display: grid;
     place-items: center;
     .hand-eye {
+      width: 100%;
       // @include adaptiveValue("width", 255, 134,0,1366.98,480.98);
       height: auto;
       .hand {
@@ -5288,12 +5291,32 @@ background-color: $mainWhite;
   left: 0%;
   @include adaptiveValue("width", 900, 445,0,1366.98,480.98);
   aspect-ratio: 852/471;
+
+
+  &::before {
+    content:'';
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    transform: translate(0%,20%);
+    background-image: url('../img/approach/box/shadow.png');
+    background-repeat: no-repeat;
+    background-size:contain;
+    width: 110%;
+    height: auto;
+    aspect-ratio:998/474;
+    pointer-events: none;
+  }
+
+
   @media (min-width:$mobileSmall){
     transform: translate(-70%,-50%);
   }
   @media (max-width:$mobileSmall){
     transform: translate(-85%,-50%);
   }
+
 	// .box-item__wrapper
 	&__wrapper {
 	}
@@ -5335,9 +5358,9 @@ background-color: $mainWhite;
   z-index: 1;
   top: 50%;
   left: 50%;
-  transform: translate(-52.5%,-50%);
+  transform: translate(-52.5%,-51%);
   width: 100%;
-  @include adaptiveValue("max-width", 688, 340,0,1366.98,480.98);
+  @include adaptiveValue("max-width", 685, 340,0,1366.98,480.98);
   aspect-ratio:685/258;
   opacity: 0;
   transition: opacity .3s ease;
@@ -5345,33 +5368,17 @@ background-color: $mainWhite;
   &.active {
     opacity: 1;
   }
-  .video-steps-c {
+  .video-steps {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
     opacity: 0;
     &.play {
       opacity: 1;
     }
     aspect-ratio:685/258;
-  }
-}
-
-.steps-design {
-  position: absolute;
-  z-index: 1;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-51%);
-  width: 100%;
-  aspect-ratio: 700/258;
-  // .steps-design__item
-  &__item {
-    @extend %boxesPosition;
-    aspect-ratio: 700/258;
-    opacity: 0;
-    transition: opacity .45s ease 0.2;
-    &.active {
-      opacity: 1;
-      transition-delay: 0s;
-    }
   }
 }
 
@@ -5439,9 +5446,27 @@ background-color: $mainWhite;
     pointer-events: all;
   }
   &.steps-c {
+    &.active {
+      .steps__title {
+        transform: translate(0,0%);
+        opacity: 1;
+        transition-delay: 0s;
+      }
+    }
   }
   &.steps-d {
     &.active {
+      .steps__title {
+        transform: translate(0,0%);
+        opacity: 1;
+        // transition-delay: 0s;
+      }
+      .steps__anim {
+        &::before {
+          opacity: 1;
+          transform: translate(33%,0%);
+        }
+      }
       .hand-emotions__hand-02 {
         opacity: 1;
         @media (min-width: em(650.98)){
@@ -5454,8 +5479,22 @@ background-color: $mainWhite;
     }
   }
   &.steps-e {
+    &.active {
+      .steps__title {
+        transform: translate(0,0%);
+        opacity: 1;
+        // transition-delay: 0s;
+      }
+    }
   }
   &.steps-f {
+    &.active {
+      .steps__title {
+        transform: translate(0,0%);
+        opacity: 1;
+        // transition-delay: 0s;
+      }
+    }
   }
   @media (min-width:em(650.98)){
     display: grid;
@@ -5474,6 +5513,13 @@ background-color: $mainWhite;
   &__title {
     @extend %stepsABtitle;
     @extend %stepsTitleMin;
+
+
+    transform: translate(0,50%);
+    opacity: 0;
+    transition: transform .65s ease .3s, opacity .45s ease .3s;
+   
+
     @media (max-width:$mobileSmall){
        font-size: toRem(30) !important; 
        margin-bottom: toRem(5) !important;
@@ -5505,7 +5551,7 @@ background-color: $mainWhite;
           background-image:url('../img/approach/bg-txt-5.png');
         }
         .steps-e & {
-          background-image:url('../img/approach/bg-txt-6.svg');
+          background-image:url('../img/approach/bg-txt-6.svg') !important;
         }
         .steps-f & {
           background-image:url('../img/approach/bg-txt-7.png');
@@ -5547,6 +5593,25 @@ background-color: $mainWhite;
   }
   // .steps__anim
   &__anim {
+    position: relative;
+    .steps-d & {
+      &::before {
+        content:'';
+        position: absolute;
+        z-index: 0;
+        bottom: -31%;
+        left: 0;
+        transform: translate(100%,0%);
+        background-image: url('../img/approach/yep.svg');
+        background-repeat: no-repeat;
+        background-size:contain;
+        width: 40%;
+        height: auto;
+        aspect-ratio:192/64;
+        opacity: 0;
+        transition: transform .55s cubic-bezier(.17,1.53,.37,.97) .6s, opacity .3s ease .6s;
+      }
+    }
   }
   // .steps__anim-wr
   &__anim-wr {
@@ -5556,6 +5621,21 @@ background-color: $mainWhite;
     @media (max-width: em(650.98)){
       margin-inline: auto;
     }
+
+    .girl-puzzle {
+      // .girl-puzzle__puzzle
+      &__puzzle {
+        // opacity: 0;
+      }
+      // .girl-puzzle__puzzle-2
+      &__puzzle-2 {
+        // opacity: 0;
+      }
+      // .girl-puzzle__lines
+      &__lines {
+      }
+    }
+  
     
     .girl-youga,
     .hand-emotions__hand {
@@ -5635,13 +5715,13 @@ background-color: $mainWhite;
         }
       }
       .steps-e & {
+        width: 95% !important;
         @media (min-width:em(650.98)){
-          top: -20px;
+          top: -25px;
         }
         @media (max-width: em(650.98)){
-          top: -10px;
-          width: 84%;
-          left: -15%;
+          top: -20px;
+          left: -11%;
         }
       }
       .steps-f & {
@@ -5706,7 +5786,8 @@ background-color: $mainWhite;
         .logics & {
           bottom: 0;
           width: 120%;
-          height: 100%;
+          height: 115%;
+          aspect-ratio: 214/62;
           background-image:url('../img/approach/bg-txt-4.svg') !important;
         }
       }

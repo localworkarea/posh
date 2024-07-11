@@ -1,150 +1,115 @@
-onUpdate: self => {
-    const progress = self.progress * 100;
+let icon01AnimAdded = false;
+          let icon02AnimAdded = false;
+          let icon03AnimAdded = false;
+          
+          ScrollTrigger.create({
+              trigger: retailSteps,
+              start: "center center",
+              end: `+=${scrollDuration / 2}`,
+              pin: true,
+              pinSpacing: true,
+              scrub: true,
+              onUpdate: (self) => {
+                  let progress = self.progress;
+              
+                  if (progress < 0.45) {
+                      gsap.to(".steps-retail-01", { opacity: 1, duration: 0.3 });
+                      gsap.to(".steps-retail-02", { opacity: 0, duration: 0.3 });
+                      gsap.to(".steps-retail-03", { opacity: 0, duration: 0.3 });
+                  
+                      if (!icon01AnimAdded) {
+                        icon01.classList.add("_active-anim");
+                        setTimeout(() => {
+                            icon01.classList.remove("_active-anim");
+                        }, 1800);
+                        icon01AnimAdded = true;
+                        icon03AnimAdded = false;
+                      }
+                      icon01.addEventListener('mouseenter', () => {
+                        icon01.classList.add('_active-anim');
+                        setTimeout(() => {
+                          icon01.classList.remove('_active-anim');
+                        }, 1800);
+                      });
 
-    if (progress <= 15) {
-      // Анимация для первой линии (0-15%)
-      const lineProgress = progress / 15;
-      gsap.to(linePc01, { strokeDashoffset: (1 - lineProgress) * linePc01.getTotalLength(), overwrite: true });
-      gsap.to(linePc02, { strokeDashoffset: linePc02.getTotalLength(), overwrite: true });
-      gsap.to(linePc03, { strokeDashoffset: linePc03.getTotalLength(), overwrite: true });
-    } else if (progress <= 33) {
-      // Анимация для первой линии (15-33%)
-      const lineProgress = (progress - 15) / 18;
-      gsap.to(linePc01, { strokeDashoffset: -lineProgress * linePc01.getTotalLength(), overwrite: true });
-      gsap.to(linePc02, { strokeDashoffset: linePc02.getTotalLength(), overwrite: true });
-      gsap.to(linePc03, { strokeDashoffset: linePc03.getTotalLength(), overwrite: true });
-    } else if (progress <= 43) {
-      // Анимация для второй линии (33-43%)
-      const lineProgress = (progress - 33) / 10;
-      gsap.to(linePc01, { strokeDashoffset: -linePc01.getTotalLength(), overwrite: true });
-      gsap.to(linePc02, { strokeDashoffset: (1 - lineProgress) * linePc02.getTotalLength(), overwrite: true });
-      gsap.to(linePc03, { strokeDashoffset: linePc03.getTotalLength(), overwrite: true });
-    } else if (progress <= 66) {
-      // Анимация для второй линии (43-66%)
-      const lineProgress = (progress - 43) / 23;
-      gsap.to(linePc01, { strokeDashoffset: -linePc01.getTotalLength(), overwrite: true });
-      gsap.to(linePc02, { strokeDashoffset: -lineProgress * linePc02.getTotalLength(), overwrite: true });
-      gsap.to(linePc03, { strokeDashoffset: linePc03.getTotalLength(), overwrite: true });
-    } else if (progress <= 81) {
-      // Анимация для третьей линии (66-76%)
-      const lineProgress = (progress - 66) / 10;
-      gsap.to(linePc01, { strokeDashoffset: -linePc01.getTotalLength(), overwrite: true });
-      gsap.to(linePc02, { strokeDashoffset: -linePc02.getTotalLength(), overwrite: true });
-      gsap.to(linePc03, { strokeDashoffset: (1 - lineProgress) * linePc03.getTotalLength(), overwrite: true });
-    } else {
-      // Анимация для третьей линии (76-100%)
-      const lineProgress = (progress - 76) / 24;
-      gsap.to(linePc01, { strokeDashoffset: -linePc01.getTotalLength(), overwrite: true });
-      gsap.to(linePc02, { strokeDashoffset: -linePc02.getTotalLength(), overwrite: true });
-      gsap.to(linePc03, { strokeDashoffset: -lineProgress * linePc03.getTotalLength(), overwrite: true });
-    }
-  }
-});
-// линия 1
-// 0 - 10
-// 10 - 25
-// линия 2
-// 25 - 30
-// 30 - 40
-// линия 3
-// 40 - 42
-// 42 - 50
-// линия 4
-// 50 - 60
-// 60 - 75
-// линия 5
-// 75 - 80
-// 80 - 100
+                      icon02.classList.remove("_active-anim");
 
-// Линия 1 - 0-25% (0 - 10% - идем в 0 дальше в минус по скроллу)
-// Линия 2 - 25% - 40% (25 - 30% - идем в 0 дальше в минус по скроллу)
-// Линия 3 - 40% - 50% (40 - 42% - идем в 0 дальше в минус по скроллу)
-// Линия 4 - 50% - 75% (50 - 60% - идем в 0 дальше в минус по скроллу)
-// Линия 5-  75% -100% (75 - 80% - идем в 0 дальше в минус по скроллу)
+                      stepsRetail01.classList.add("_active");
+                      stepsRetail02.classList.remove("_active");
+                      stepsRetail03.classList.remove("_active");
 
-onUpdate: self => {
-    const progress = self.progress * 100;
+                  } else if (progress < 0.70) {
+                      gsap.to(".steps-retail-01", { opacity: 0, duration: 0.3 });
+                      gsap.to(".steps-retail-02", { opacity: 1, duration: 0.3 });
+                      gsap.to(".steps-retail-03", { opacity: 0, duration: 0.3 });
+                  
+                      icon02.classList.add("_active-anim");
+                      icon01AnimAdded = false;
+                      icon03AnimAdded = false;
+                      
+                      stepsRetail01.classList.remove("_active");
+                      stepsRetail02.classList.add("_active");
+                      stepsRetail03.classList.remove("_active");
 
-    if (progress <= 10) {
-      // Анимация для первой линии (0-10%)
-      const lineProgress = progress / 10;
-      gsap.to(lineMob01, { strokeDashoffset: (1 - lineProgress) * lineMob01.getTotalLength(), overwrite: true });
-      gsap.to(lineMob02, { strokeDashoffset: lineMob02.getTotalLength(), overwrite: true });
-      gsap.to(lineMob03, { strokeDashoffset: lineMob03.getTotalLength(), overwrite: true });
-      gsap.to(lineMob04, { strokeDashoffset: lineMob04.getTotalLength(), overwrite: true });
-      gsap.to(lineMob05, { strokeDashoffset: lineMob05.getTotalLength(), overwrite: true });
-    } else if (progress <= 25) {
-      // Анимация для первой линии (10-25%)
-      const lineProgress = (progress - 10) / 15;
-      gsap.to(lineMob01, { strokeDashoffset: -lineProgress * lineMob01.getTotalLength(), overwrite: true });
-      gsap.to(lineMob02, { strokeDashoffset: lineMob02.getTotalLength(), overwrite: true });
-      gsap.to(lineMob03, { strokeDashoffset: lineMob03.getTotalLength(), overwrite: true });
-      gsap.to(lineMob04, { strokeDashoffset: lineMob04.getTotalLength(), overwrite: true });
-      gsap.to(lineMob05, { strokeDashoffset: lineMob05.getTotalLength(), overwrite: true });
-    } else if (progress <= 30) {
-      // Анимация для второй линии (25-30%)
-      const lineProgress = (progress - 25) / 5;
-      gsap.to(lineMob01, { strokeDashoffset: -lineMob01.getTotalLength(), overwrite: true });
-      gsap.to(lineMob02, { strokeDashoffset: (1 - lineProgress) * lineMob02.getTotalLength(), overwrite: true });
-      gsap.to(lineMob03, { strokeDashoffset: lineMob03.getTotalLength(), overwrite: true });
-      gsap.to(lineMob04, { strokeDashoffset: lineMob04.getTotalLength(), overwrite: true });
-      gsap.to(lineMob05, { strokeDashoffset: lineMob05.getTotalLength(), overwrite: true });
-    } else if (progress <= 40) {
-      // Анимация для второй линии (30-40%)
-      const lineProgress = (progress - 30) / 10;
-      gsap.to(lineMob01, { strokeDashoffset: -lineMob01.getTotalLength(), overwrite: true });
-      gsap.to(lineMob02, { strokeDashoffset: -lineProgress * lineMob02.getTotalLength(), overwrite: true });
-      gsap.to(lineMob03, { strokeDashoffset: lineMob03.getTotalLength(), overwrite: true });
-      gsap.to(lineMob04, { strokeDashoffset: lineMob04.getTotalLength(), overwrite: true });
-      gsap.to(lineMob05, { strokeDashoffset: lineMob05.getTotalLength(), overwrite: true });
-    } else if (progress <= 42) {
-      // Анимация для третьей линии (40-42%)
-      const lineProgress = (progress - 40) / 2;
-      gsap.to(lineMob01, { strokeDashoffset: -lineMob01.getTotalLength(), overwrite: true });
-      gsap.to(lineMob02, { strokeDashoffset: -lineMob02.getTotalLength(), overwrite: true });
-      gsap.to(lineMob03, { strokeDashoffset: (1 - lineProgress) * lineMob03.getTotalLength(), overwrite: true });
-      gsap.to(lineMob04, { strokeDashoffset: lineMob04.getTotalLength(), overwrite: true });
-      gsap.to(lineMob05, { strokeDashoffset: lineMob05.getTotalLength(), overwrite: true });
-    } else if (progress <= 50) {
-      // Анимация для третьей линии (42-50%)
-      const lineProgress = (progress - 42) / 8;
-      gsap.to(lineMob01, { strokeDashoffset: -lineMob01.getTotalLength(), overwrite: true });
-      gsap.to(lineMob02, { strokeDashoffset: -lineMob02.getTotalLength(), overwrite: true });
-      gsap.to(lineMob03, { strokeDashoffset: -lineProgress * lineMob03.getTotalLength(), overwrite: true });
-      gsap.to(lineMob04, { strokeDashoffset: lineMob04.getTotalLength(), overwrite: true });
-      gsap.to(lineMob05, { strokeDashoffset: lineMob05.getTotalLength(), overwrite: true });
-    } else if (progress <= 60) {
-      // Анимация для четвертой линии (50-60%)
-      const lineProgress = (progress - 50) / 10;
-      gsap.to(lineMob01, { strokeDashoffset: -lineMob01.getTotalLength(), overwrite: true });
-      gsap.to(lineMob02, { strokeDashoffset: -lineMob02.getTotalLength(), overwrite: true });
-      gsap.to(lineMob03, { strokeDashoffset: -lineMob03.getTotalLength(), overwrite: true });
-      gsap.to(lineMob04, { strokeDashoffset: (1 - lineProgress) * lineMob04.getTotalLength(), overwrite: true });
-      gsap.to(lineMob05, { strokeDashoffset: lineMob05.getTotalLength(), overwrite: true });
-    } else if (progress <= 75) {
-      // Анимация для четвертой линии (60-75%)
-      const lineProgress = (progress - 60) / 15;
-      gsap.to(lineMob01, { strokeDashoffset: -lineMob01.getTotalLength(), overwrite: true });
-      gsap.to(lineMob02, { strokeDashoffset: -lineMob02.getTotalLength(), overwrite: true });
-      gsap.to(lineMob03, { strokeDashoffset: -lineMob03.getTotalLength(), overwrite: true });
-      gsap.to(lineMob04, { strokeDashoffset: -lineProgress * lineMob04.getTotalLength(), overwrite: true });
-      gsap.to(lineMob05, { strokeDashoffset: lineMob05.getTotalLength(), overwrite: true });
-    } else if (progress <= 80) {
-      // Анимация для пятой линии (75-80%)
-      const lineProgress = (progress - 75) / 5;
-      gsap.to(lineMob01, { strokeDashoffset: -lineMob01.getTotalLength(), overwrite: true });
-      gsap.to(lineMob02, { strokeDashoffset: -lineMob02.getTotalLength(), overwrite: true });
-      gsap.to(lineMob03, { strokeDashoffset: -lineMob03.getTotalLength(), overwrite: true });
-      gsap.to(lineMob04, { strokeDashoffset: -lineMob04.getTotalLength(), overwrite: true });
-      gsap.to(lineMob05, { strokeDashoffset: (1 - lineProgress) * lineMob05.getTotalLength(), overwrite: true });
-    } else {
-      // Когда прогресс больше 80%, все линии уходят в минус
-      gsap.to(lineMob01, { strokeDashoffset: -lineMob01.getTotalLength(), overwrite: true });
-      gsap.to(lineMob02, { strokeDashoffset: -lineMob02.getTotalLength(), overwrite: true });
-      gsap.to(lineMob03, { strokeDashoffset: -lineMob03.getTotalLength(), overwrite: true });
-      gsap.to(lineMob04, { strokeDashoffset: -lineMob04.getTotalLength(), overwrite: true });
-      gsap.to(lineMob05, { strokeDashoffset: -lineMob05.getTotalLength(), overwrite: true });
-    }
-  }
+                  } else if (progress < 1) {
+                      gsap.to(".steps-retail-01", { opacity: 0, duration: 0.3 });
+                      gsap.to(".steps-retail-02", { opacity: 0, duration: 0.3 });
+                      gsap.to(".steps-retail-03", { opacity: 1, duration: 0.3 });
+                      
+                      if (!icon03AnimAdded) {
+                        icon03.classList.add("_active-anim");
+                        setTimeout(() => {
+                            icon03.classList.remove("_active-anim");
+                        }, 2500);
+                        icon03AnimAdded = true;
+                        icon01AnimAdded = false;
+                      }
+                      icon03.addEventListener('mouseenter', () => {
+                        icon03.classList.add('_active-anim');
+                        setTimeout(() => {
+                          icon03.classList.remove('_active-anim');
+                        }, 2500);
+                      });
 
-  В общем такие баги: когда скролю вниз, то анимация начинается примерно через 10% когда уже прошел всю высоту скроле где расположена линиия, но когда возвращаюсь, то анимация начинается на 10% раньше чем я дойду до линии. Последняя 5 линия вообще не видно ни в ту ни в обратную сторону
+                      icon02.classList.remove("_active-anim");
+
+                      stepsRetail02.classList.remove("_active");
+                      stepsRetail03.classList.add("_active");
+                  }
+              },
+              onLeave: () => {
+                stepsRetail03.classList.remove("_active");
+                icon03AnimAdded = false;
+              },
+              onLeaveBack: () => {
+                  stepsRetail01.classList.remove("_active");
+                  icon01AnimAdded = false;
+              }
+          });
+
+
+          const elementsWithKeyframes = {
+            ".girl-puzzle__l1": [
+              { 
+                attr: { d: "M59.2354 " }, 
+              },
+              { 
+                attr: { d: "M54.6019" }, 
+              },
+              { 
+                attr: { d: "M59.2354 " }, delay: 2
+              },
+            ],
+            ".girl-puzzle__l2": [
+              { 
+                attr: { d: "M97.6091 " }, 
+              },
+              { 
+                attr: { d: "M118.031 " }, 
+              },
+              { 
+                attr: { d: "M97.6091 " }, delay: 2
+              },
+            ],
+           // остальные элементы svg
+          };
