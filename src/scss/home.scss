@@ -3965,14 +3965,14 @@ background-color: $mainWhite;
 
 // --- BLOCKS & SECTIONS ----------------------------------
 
-._page-top {
-  @media (max-width:$mobileSmall){
-     overflow: hidden; 
-    //  &.swipe-down {
-    //   overflow: auto;
-    //  }
-  }
-}
+// ._page-top {
+//   @media (max-width:$mobileSmall){
+//      overflow: hidden; 
+//     //  &.swipe-down {
+//     //   overflow: auto;
+//     //  }
+//   }
+// }
 
 .retail {
   padding-bottom: toRem(50);
@@ -3986,15 +3986,15 @@ background-color: $mainWhite;
       margin-bottom: toRem(80);
     }
     @media (max-width:$mobileSmall){
-      position: fixed;
-      z-index: 5;
-      top: 0;
-      left: 0;
-      width: 100%;
-      // height: 100%;
-      padding-left: toRem(20);
-      padding-right: toRem(20);
-      overflow: hidden;
+      // position: fixed;
+      // z-index: 5;
+      // top: 0;
+      // left: 0;
+      // width: 100%;
+      // // height: 100%;
+      // padding-left: toRem(20);
+      // padding-right: toRem(20);
+      // overflow: hidden;
 
       min-height: 100vh; 
       min-height: 100svh; 
@@ -4002,27 +4002,28 @@ background-color: $mainWhite;
       flex-direction: column;
       justify-content: space-between;
       row-gap: toRem(95);
-      transition: transform 0.7s cubic-bezier(0.55, 0.085, 0, 0.99) 0s;
-      transform: translate(0,-100%);
+      
+      // transition: transform 0.7s cubic-bezier(0.55, 0.085, 0, 0.99) 0s;
+      // transform: translate(0,-100%);
 
-      ._page-top & {
-        transform: translate(0,0);
-      }
-      .swipe-down & {
-        // transform: translate(0,-100%);
-      }
+      // ._page-top & {
+      //   transform: translate(0,0);
+      // }
+      // .swipe-down & {
+      //   // transform: translate(0,-100%);
+      // }
 
-      &::before {
-        content:'';
-        position: absolute;
-        z-index: -1;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color:$darkBlue;
+      // &::before {
+      //   content:'';
+      //   position: absolute;
+      //   z-index: -1;
+      //   top: 0;
+      //   left: 0;
+      //   width: 100%;
+      //   height: 100%;
+      //   background-color:$darkBlue;
 
-      }
+      // }
 
     }
 	}
