@@ -77,6 +77,10 @@ body {
 		transition: unset;
   }
 	transition: opacity .3s;
+	.no-scroll & {
+		overflow: hidden;
+		touch-action: none;
+	}
   .loaded & {
     opacity: 1;
   }

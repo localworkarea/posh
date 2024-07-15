@@ -26,6 +26,33 @@ document.addEventListener("DOMContentLoaded", function() {
     // ScrollTrigger.defaults({
     //   scroller: ".mob-body"
     // });
+
+  
+
+    function initializeSimpleBar() {
+      if (window.innerWidth < 480.98) {
+        if (document.querySelectorAll('.steps__about').length) {
+          document.querySelectorAll('.steps__about').forEach(scrollBlock => {
+            new SimpleBar(scrollBlock, {
+              autoHide: false,
+            });
+          });
+        }
+      }
+    }
+    
+    // Инициализация при загрузке страницы
+    initializeSimpleBar();
+    
+    // Инициализация при изменении размера окна
+    window.addEventListener('resize', () => {
+      initializeSimpleBar();
+    });
+    
+    // Инициализация при изменении ориентации устройства
+    window.addEventListener('orientationchange', () => {
+      initializeSimpleBar();
+    });
     
     
     const animHandEye = document.querySelector('.hand-eye');
@@ -522,7 +549,7 @@ document.addEventListener("DOMContentLoaded", function() {
               { rotation: 430, xPercent: 20, duration: 0.11, ease: "none" },
               { rotation: 530, xPercent: 145, duration: 0.1, ease: "none" },
               { rotation: 600, xPercent: 145, duration: 0.23, ease: "none" },
-              { rotation: 720, xPercent: 0, duration: 0.16, ease: "none" }
+              { rotation: 720, xPercent: -12, duration: 0.16, ease: "none" }
             ]
           });
 
@@ -624,9 +651,94 @@ document.addEventListener("DOMContentLoaded", function() {
               transform: 'translate(0%, 178%)',
               duration: scrollDuration / 100
             });
-  
+
+           
+            // timeline.to({}, {
+            //   duration: scrollDuration / 10,
+            //   // duration: 300,
+            //   onUpdate: function() {
+            //     boxCookieItem.classList.add('not-active');
+            //     cookiesWrapper.classList.add('not-active');
+            //     stepsPin.classList.add('active');
+            //     boxSteps.classList.add('active');
+            
+            //     let progress = this.progress();
+            //     let adjustedProgress = Math.min(progress / 0.8, 1);
+            //     let index = Math.floor(adjustedProgress * (stepsItems.length - 1));
+            //     let contentProgress = (adjustedProgress * (stepsItems.length - 1)) - index;
+            
+            //     stepsItems.forEach((step, i) => {
+            //       if (i === index) {
+            //         step.classList.add('active');
+            
+            //         // const stepAbout = step.querySelector('.steps__about');
+            //         // const stepAboutWr = step.querySelector('.steps__about_wr');
+            
+            //         // let aboutHeight = stepAboutWr.scrollHeight - stepAbout.clientHeight;
+            //         // stepAboutWr.style.transform = `translateY(-${aboutHeight * contentProgress}px)`;
+            
+            //         if (i === 0) {
+            //           if (!videoStepsC.classList.contains('play')) {
+            //             videoStepsC.classList.add('play');
+            //             videoStepsC.play();
+            //             videoStepsC.playbackRate = 2;
+            //           }
+            //         } else if (i > 0 && i - 1 < stepsDesignItems.length) {
+            //           stepsDesignItems[i - 1].classList.add('active');
+            //         }
+            //       } else {
+            //         step.classList.remove('active');
+            //         // const stepAboutWr = step.querySelector('.steps__about_wr');
+            //         // if (stepAboutWr) {
+            //         //   stepAboutWr.style.transform = 'translateY(0)';
+            //         // }
+            //         if (i === 0) {
+            //           if (videoStepsC.classList.contains('play')) {
+            //             videoStepsC.classList.remove('play');
+            //             videoStepsC.pause();
+            //             videoStepsC.currentTime = 0;
+            //           }
+            //         } else if (i - 1 < stepsDesignItems.length) {
+            //           stepsDesignItems[i - 1].classList.remove('active');
+            //         }
+            //       }
+            //     });
+            
+            //     // Прокручивание элемента .steps__about_wr на последнем stepsItems
+            //     // if (adjustedProgress >= 1) {
+            //     //   const lastStep = stepsItems[stepsItems.length - 1];
+            //     //   const lastStepAbout = lastStep.querySelector('.steps__about');
+            //     //   const lastStepAboutWr = lastStep.querySelector('.steps__about_wr');
+            //     //   let remainingProgress = (progress - 0.8) / 0.2; // Прогресс от 0 до 1 для последних 20% времени
+            //     //   let aboutHeight = lastStepAboutWr.scrollHeight - lastStepAbout.clientHeight;
+            //     //   lastStepAboutWr.style.transform = `translateY(-${aboutHeight * remainingProgress}px)`;
+            //     // }
+            //     // ----------------------------
+            
+            //     if (progress === 0) {
+            //       boxCookieItem.classList.remove('not-active');
+            //       cookiesWrapper.classList.remove('not-active');
+            //       stepsPin.classList.remove('active');
+            //       boxSteps.classList.remove('active');
+            //       stepsItems[0].classList.remove('active');
+            
+            //       if (videoStepsC.classList.contains('play')) {
+            //         videoStepsC.classList.remove('play');
+            //         videoStepsC.pause();
+            //         videoStepsC.currentTime = 0;
+            //       }
+            
+            //       stepsDesignItems.forEach(item => {
+            //         item.classList.remove('active');
+            //       });
+            //     }
+            //   }
+            // });
+
+            const videoSteps = [videoStepsC, videoStepsD, videoStepsE, videoStepsF];
             timeline.to({}, {
               duration: scrollDuration / 10,
+              // duration: 300,
               onUpdate: function() {
                 boxCookieItem.classList.add('not-active');
                 cookiesWrapper.classList.add('not-active');
@@ -641,51 +753,23 @@ document.addEventListener("DOMContentLoaded", function() {
                 stepsItems.forEach((step, i) => {
                   if (i === index) {
                     step.classList.add('active');
-            
-                    const stepAbout = step.querySelector('.steps__about');
-                    const stepAboutWr = step.querySelector('.steps__about_wr');
-            
-                    let aboutHeight = stepAboutWr.scrollHeight - stepAbout.clientHeight;
-                    stepAboutWr.style.transform = `translateY(-${aboutHeight * contentProgress}px)`;
-            
-                    if (i === 0) {
-                      if (!videoStepsC.classList.contains('play')) {
-                        videoStepsC.classList.add('play');
-                        videoStepsC.play();
-                        videoStepsC.playbackRate = 2;
-                      }
-                    } else if (i > 0 && i - 1 < stepsDesignItems.length) {
-                      stepsDesignItems[i - 1].classList.add('active');
+                    if (!videoSteps[i].classList.contains('play')) {
+                      videoSteps[i].classList.add('play');
+                      videoSteps[i].play();
+                      videoSteps[i].playbackRate = 2;
                     }
                   } else {
                     step.classList.remove('active');
-                    const stepAboutWr = step.querySelector('.steps__about_wr');
-                    if (stepAboutWr) {
-                      stepAboutWr.style.transform = 'translateY(0)';
-                    }
-                    if (i === 0) {
-                      if (videoStepsC.classList.contains('play')) {
-                        videoStepsC.classList.remove('play');
-                        videoStepsC.pause();
-                        videoStepsC.currentTime = 0;
-                      }
-                    } else if (i - 1 < stepsDesignItems.length) {
-                      stepsDesignItems[i - 1].classList.remove('active');
+                    if (videoSteps[i].classList.contains('play')) {
+                      videoSteps[i].classList.remove('play');
+                      videoSteps[i].pause();
+                      videoSteps[i].currentTime = 0;
                     }
                   }
                 });
             
-                // Прокручивание элемента .steps__about_wr на последнем stepsItems
-                if (adjustedProgress >= 1) {
-                  const lastStep = stepsItems[stepsItems.length - 1];
-                  const lastStepAbout = lastStep.querySelector('.steps__about');
-                  const lastStepAboutWr = lastStep.querySelector('.steps__about_wr');
-                  let remainingProgress = (progress - 0.8) / 0.2; // Прогресс от 0 до 1 для последних 20% времени
-                  let aboutHeight = lastStepAboutWr.scrollHeight - lastStepAbout.clientHeight;
-                  lastStepAboutWr.style.transform = `translateY(-${aboutHeight * remainingProgress}px)`;
-                }
-                // ----------------------------
-            
+        
+          
                 if (progress === 0) {
                   boxCookieItem.classList.remove('not-active');
                   cookiesWrapper.classList.remove('not-active');
@@ -693,18 +777,146 @@ document.addEventListener("DOMContentLoaded", function() {
                   boxSteps.classList.remove('active');
                   stepsItems[0].classList.remove('active');
             
-                  if (videoStepsC.classList.contains('play')) {
-                    videoStepsC.classList.remove('play');
-                    videoStepsC.pause();
-                    videoStepsC.currentTime = 0;
-                  }
-            
-                  stepsDesignItems.forEach(item => {
-                    item.classList.remove('active');
+                  videoSteps.forEach(video => {
+                    if (video.classList.contains('play')) {
+                      video.classList.remove('play');
+                      video.pause();
+                      video.currentTime = 0;
+                    }
                   });
+             
                 }
               }
             });
+
+
+
+
+
+
+            // let currentIndex = 0;
+            // let touchStartY = 0;
+            // const threshold = 50; // Порог для определения свайпа
+            // let isTouching = false;
+            
+            // function handleTouchStart(event) {
+            //   touchStartY = event.touches[0].clientY;
+            //   isTouching = true;
+            // }
+            
+            // function handleTouchEnd(event) {
+            //   const touchEndY = event.changedTouches[0].clientY;
+            //   const deltaY = touchEndY - touchStartY;
+            
+            //   if (Math.abs(deltaY) > threshold) {
+            //     if (deltaY < 0) {
+            //       // Свайп вверх, переключение на следующий элемент
+            //       currentIndex = Math.min(currentIndex + 1, stepsItems.length - 1);
+            //     } else {
+            //       // Свайп вниз, переключение на предыдущий элемент
+            //       currentIndex = Math.max(currentIndex - 1, 0);
+            //     }
+            //     switchStepItem(currentIndex);
+            //   }
+            //   isTouching = false;
+            // }
+            
+            // function switchStepItem(index) {
+            //   document.body.classList.add('no-scroll');
+            //   setTimeout(() => {
+            //     document.body.classList.remove('no-scroll');
+            //   }, 500);
+            
+            //   stepsItems.forEach((step, i) => {
+            //     if (i === index) {
+            //       step.classList.add('active');
+            
+            //       const stepAbout = step.querySelector('.steps__about');
+            //       const stepAboutWr = step.querySelector('.steps__about_wr');
+            
+            //       stepAboutWr.style.transform = 'translateY(0)'; // Начальное положение контента
+            
+            //       if (i === 0) {
+            //         if (!videoStepsC.classList.contains('play')) {
+            //           videoStepsC.classList.add('play');
+            //           videoStepsC.play();
+            //           videoStepsC.playbackRate = 2;
+            //         }
+            //       } else if (i > 0 && i - 1 < stepsDesignItems.length) {
+            //         stepsDesignItems[i - 1].classList.add('active');
+            //       }
+            //     } else {
+            //       step.classList.remove('active');
+            //       const stepAboutWr = step.querySelector('.steps__about_wr');
+            //       if (stepAboutWr) {
+            //         stepAboutWr.style.transform = 'translateY(0)';
+            //       }
+            //       if (i === 0) {
+            //         if (videoStepsC.classList.contains('play')) {
+            //           videoStepsC.classList.remove('play');
+            //           videoStepsC.pause();
+            //           videoStepsC.currentTime = 0;
+            //         }
+            //       } else if (i - 1 < stepsDesignItems.length) {
+            //         stepsDesignItems[i - 1].classList.remove('active');
+            //       }
+            //     }
+            //   });
+            // }
+            
+            // // Добавляем обработчики событий
+            // document.addEventListener('touchstart', handleTouchStart, { passive: true });
+            // document.addEventListener('touchend', handleTouchEnd, { passive: true });
+            
+            // let previousIndex = -1;
+            
+            // timeline.to({}, {
+            //   duration: scrollDuration / 10,
+            //   onUpdate: function() {
+            //     boxCookieItem.classList.add('not-active');
+            //     cookiesWrapper.classList.add('not-active');
+            //     stepsPin.classList.add('active');
+            //     boxSteps.classList.add('active');
+            
+            //     let progress = this.progress();
+            //     let adjustedProgress = Math.min(progress / 0.8, 1);
+            //     let index = Math.floor(adjustedProgress * (stepsItems.length - 1));
+            //     let contentProgress = (adjustedProgress * (stepsItems.length - 1)) - index;
+            
+            //     if (!isTouching && index !== previousIndex) {
+            //       currentIndex = index;
+            //       switchStepItem(currentIndex);
+            //     }
+            
+            //     if (progress === 0) {
+            //       boxCookieItem.classList.remove('not-active');
+            //       cookiesWrapper.classList.remove('not-active');
+            //       stepsPin.classList.remove('active');
+            //       boxSteps.classList.remove('active');
+            //       stepsItems[0].classList.remove('active');
+            
+            //       if (videoStepsC.classList.contains('play')) {
+            //         videoStepsC.classList.remove('play');
+            //         videoStepsC.pause();
+            //         videoStepsC.currentTime = 0;
+            //       }
+            
+            //       stepsDesignItems.forEach(item => {
+            //         item.classList.remove('active');
+            //       });
+            //     }
+            
+            //     previousIndex = index;
+            //   }
+            // });
+            
+
+ 
+
+
+
+
+
             
   
           ScrollTrigger.create({
@@ -718,25 +930,44 @@ document.addEventListener("DOMContentLoaded", function() {
             },
           });
 
+          const animation = gsap.timeline({ paused: true })
+          .to(box, {
+            transform: 'translate(-66%, 77%) scale(.3)',
+            opacity: 0,
+            duration: 0.7
+          }, 0)
+          .to(boxCookie, {
+            transform: 'translate(-25%, 274%) scale(.3)',
+            opacity: 0,
+            duration: 0.7
+          }, 0);
 
-          ScrollTrigger.create({
-            trigger: logics,
-            start: "top bottom",
-            end: "top top",
-            scrub: true,
-            onUpdate: (self) => {
-              const progress = self.progress;
-              gsap.to(box, {
-                transform: `translate(${(-48 + -20 * progress)}%, ${-50 + 130 * progress}%) scale(${1 - 0.7 * progress})`,
-                opacity: 1 - progress,
+          // ScrollTrigger для запуска анимации
+        ScrollTrigger.create({
+          trigger: logics,
+          start: "top bottom",
+          end: "center center",
+          onEnter: () => {
+            animation.play();
+              videoSteps.forEach(video => {
+                if (video.classList.contains('play')) {
+                  video.classList.remove('play');
+                  video.pause();
+                  video.currentTime = 0;
+                }
               });
-              gsap.to(boxCookie, {
-                transform: `translate(${(0 + -25 * progress)}%, ${0 + 274 * progress}%) scale(${1 - 0.7 * progress})`,
-                opacity: 1 - progress,
-              });
-          
-            },
-          });
+          },
+          onLeaveBack: () => {
+            animation.reverse();
+              if (videoSteps[3].classList.contains('play')) {
+                videoSteps[3].classList.add('play');
+                videoSteps[3].play();
+                videoSteps[3].playbackRate = 2;
+              }
+          },
+          ease: "power1.in"
+        });
+
             
             
         
