@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   if (typeof gsap !== 'undefined') {
 
-    gsap.registerPlugin(ScrollTrigger,ScrollToPlugin,Observer)
+    gsap.registerPlugin(ScrollTrigger,ScrollToPlugin)
 
     // ScrollTrigger.scrollerProxy(".mob-body", {
     //   scrollTop(value) {
@@ -26,6 +26,80 @@ document.addEventListener("DOMContentLoaded", function() {
     // ScrollTrigger.defaults({
     //   scroller: ".mob-body"
     // });
+
+    const MAX_WIDTH_EM = 30.061;
+    const retailHero = document.querySelector('.retail__hero');
+    const retailShelfSwipe = document.querySelector('.retail__shelf');
+    let startY = 0;
+
+    function emToPx(em) {
+        return em * parseFloat(getComputedStyle(document.documentElement).fontSize);
+    }
+
+    function handleSwipeStart(event) {
+        startY = event.touches[0].clientY;
+    }
+
+    function handleSwipeEnd(event) {
+        const endY = event.changedTouches[0].clientY;
+        const deltaY = endY - startY;
+
+        if (deltaY < 0) { // Swipe down
+          document.body.classList.add('swipe-down');
+          document.body.classList.remove('_page-top');
+        } 
+        else if (deltaY > 0) {
+          document.body.classList.remove('swipe-down');
+          document.body.classList.add('_page-top');
+        }
+
+    }
+
+    
+    function handleSwipeEndOnShelf(event) {
+      const endY = event.changedTouches[0].clientY;
+      const deltaY = endY - startY;
+
+      if (window.scrollY === 0 && deltaY > 0) { // Swipe down on retailShelfSwipe at top of the page
+          document.body.classList.remove('swipe-down');
+          document.body.classList.add('_page-top');
+      }
+    }
+
+
+    function checkInitialScrollPosition() {
+        if (window.innerWidth < emToPx(MAX_WIDTH_EM)) {
+          document.body.classList.add('_mobile');
+          if (window.scrollY === 0) {
+            document.body.classList.add('_page-top');
+            document.body.classList.remove('swipe-down');
+          } else {
+            document.body.classList.remove('_page-top');
+          }
+      } else {
+        document.body.classList.remove('_mobile');
+        retailHero.removeEventListener('touchstart', handleSwipeStart);
+        retailHero.removeEventListener('touchend', handleSwipeEnd);
+        retailShelfSwipe.removeEventListener('touchstart', handleSwipeStart);
+        retailShelfSwipe.removeEventListener('touchend', handleSwipeEndOnShelf);
+      }
+    }
+
+
+    function handleResize() {
+        checkInitialScrollPosition();
+    }
+
+    retailHero.addEventListener('touchstart', handleSwipeStart);
+    retailHero.addEventListener('touchend', handleSwipeEnd);
+    retailShelfSwipe.addEventListener('touchstart', handleSwipeStart);
+    retailShelfSwipe.addEventListener('touchend', handleSwipeEndOnShelf);
+    window.addEventListener('scroll', checkInitialScrollPosition);
+    window.addEventListener('resize', handleResize);
+
+    // Initial check
+    checkInitialScrollPosition();
+
 
   
 
