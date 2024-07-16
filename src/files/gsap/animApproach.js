@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   if (typeof gsap !== 'undefined') {
 
-    gsap.registerPlugin(ScrollTrigger,ScrollToPlugin)
+    gsap.registerPlugin(ScrollTrigger)
 
     // ScrollTrigger.scrollerProxy(".mob-body", {
     //   scrollTop(value) {
@@ -103,31 +103,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   
 
-    function initializeSimpleBar() {
-      if (window.innerWidth < 480.98) {
-        if (document.querySelectorAll('.steps__about').length) {
-          document.querySelectorAll('.steps__about').forEach(scrollBlock => {
-            new SimpleBar(scrollBlock, {
-              autoHide: false,
-            });
-          });
-        }
-      }
-    }
-    
-    // Инициализация при загрузке страницы
-    initializeSimpleBar();
-    
-    // Инициализация при изменении размера окна
-    window.addEventListener('resize', () => {
-      initializeSimpleBar();
-    });
-    
-    // Инициализация при изменении ориентации устройства
-    window.addEventListener('orientationchange', () => {
-      initializeSimpleBar();
-    });
-    
+
     
     const animHandEye = document.querySelector('.hand-eye');
     const animGirlYouga = document.querySelector('.girl-youga');
@@ -147,6 +123,7 @@ document.addEventListener("DOMContentLoaded", function() {
    
     const retailSteps = document.querySelector('.retail__steps');
     const retailShelf = document.querySelector('.retail__shelf');
+    const shelfCard = document.querySelectorAll('.shelf__card');
 
     const designCookie = document.querySelector('.design__cookie');
     const cookieWrapper = document.querySelector('.cookie-wrapper');
@@ -174,12 +151,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const videoStepsE = document.querySelector('.video-steps-e');
     const videoStepsF = document.querySelector('.video-steps-f');
     
-    
-    const stepsDesign = document.querySelector('.steps-design');
-    const stepsDesignItems = document.querySelectorAll('.steps-design .steps-design__item');
-    
     const logics = document.querySelector('.logics');
-
 
     const icon01 = document.querySelector(".ic-01");
     const icon02 = document.querySelector(".ic-02");
@@ -299,9 +271,9 @@ document.addEventListener("DOMContentLoaded", function() {
               start: "center center",
               endTrigger: designBoxes,
               end: "center center",
-              scrub: true,
+              scrub: 0.2,
               pin: true,
-              pinSpacing: true,
+              // pinSpacing: true,
             }
           });
 
@@ -541,23 +513,63 @@ document.addEventListener("DOMContentLoaded", function() {
         } // == end isDesktop -----------
       
         if (isMobile) {
-          ScrollTrigger.create({
-              id: "shelfPin",
+
+          // let scrollTween = gsap.to('.shelf__cards', {
+          //   xPercent: -50 * (shelfCard.length - 1),
+          //   ease: 'none',
+          //   scrollTrigger: {
+          //     trigger: retailShelf,
+          //     start: "center center",
+          //     end: "+=200%",
+          //     pin: true,
+          //     scrub: 0.2,
+          //     // onScrubComplete: ({progress, direction, isActive}) => console.log(progress, direction, isActive)
+          //   }
+          // });
+          
+
+          let tl5 = gsap.timeline({
+            scrollTrigger: {
               trigger: retailShelf,
-              start: "top top",
-              end: "+=100%",
+              start: "center center",
+              end: "+=200%",
               pin: true,
-              pinSpacing: true,
-              scrub: true,
-              onUpdate: (self) => {
-                  let progress = self.progress;
-                  let shelfCardsWidth = document.querySelector(".shelf__cards").offsetWidth;
-                  let windowWidth = window.innerWidth;
-                  let maxX = shelfCardsWidth - windowWidth + 50;
-                  let translateX = progress * -maxX;
-                  gsap.to(".shelf__cards", { x: translateX, duration: 0.3 });
-              },
+              scrub: 0.2,
+            }
           });
+          
+          // Первая часть анимации до паузы
+          tl5.to('.shelf__cards', {
+            xPercent: 0,
+            ease: 'none',
+            duration: 0.5 // Длительность до паузы
+          })
+          // .addPause("+=0.5") // Пауза на 1 секунду
+          // Оставшаяся часть анимации после паузы
+          .to('.shelf__cards', {
+            xPercent: -50 * (shelfCard.length - 1),
+            ease: 'none',
+            duration: 1 // Длительность анимации после паузы
+          });
+
+
+          // ScrollTrigger.create({
+          //     // id: "shelfPin",
+          //     trigger: retailShelf,
+          //     start: "top top",
+          //     end: "+=100%",
+          //     pin: true,
+          //     // pinSpacing: true,
+          //     scrub: 0.1,
+          //     onUpdate: (self) => {
+          //         let progress = self.progress;
+          //         let shelfCardsWidth = document.querySelector(".shelf__cards").offsetWidth;
+          //         let windowWidth = window.innerWidth;
+          //         let maxX = shelfCardsWidth - windowWidth + 50;
+          //         let translateX = progress * -maxX;
+          //         gsap.to(".shelf__cards", { x: translateX, duration: 0.3 });
+          //     },
+          // });
           ScrollTrigger.create({
             trigger: stepsRetail01,
             start: "center center",
@@ -609,7 +621,7 @@ document.addEventListener("DOMContentLoaded", function() {
               start: "center center",
               endTrigger: designBoxes,
               end: "center center",
-              scrub: true,
+              scrub: 0.2,
               pin: true,
               pinSpacing: true,
             }
@@ -842,8 +854,6 @@ document.addEventListener("DOMContentLoaded", function() {
                   }
                 });
             
-        
-          
                 if (progress === 0) {
                   boxCookieItem.classList.remove('not-active');
                   cookiesWrapper.classList.remove('not-active');
@@ -863,135 +873,6 @@ document.addEventListener("DOMContentLoaded", function() {
               }
             });
 
-
-
-
-
-
-            // let currentIndex = 0;
-            // let touchStartY = 0;
-            // const threshold = 50; // Порог для определения свайпа
-            // let isTouching = false;
-            
-            // function handleTouchStart(event) {
-            //   touchStartY = event.touches[0].clientY;
-            //   isTouching = true;
-            // }
-            
-            // function handleTouchEnd(event) {
-            //   const touchEndY = event.changedTouches[0].clientY;
-            //   const deltaY = touchEndY - touchStartY;
-            
-            //   if (Math.abs(deltaY) > threshold) {
-            //     if (deltaY < 0) {
-            //       // Свайп вверх, переключение на следующий элемент
-            //       currentIndex = Math.min(currentIndex + 1, stepsItems.length - 1);
-            //     } else {
-            //       // Свайп вниз, переключение на предыдущий элемент
-            //       currentIndex = Math.max(currentIndex - 1, 0);
-            //     }
-            //     switchStepItem(currentIndex);
-            //   }
-            //   isTouching = false;
-            // }
-            
-            // function switchStepItem(index) {
-            //   document.body.classList.add('no-scroll');
-            //   setTimeout(() => {
-            //     document.body.classList.remove('no-scroll');
-            //   }, 500);
-            
-            //   stepsItems.forEach((step, i) => {
-            //     if (i === index) {
-            //       step.classList.add('active');
-            
-            //       const stepAbout = step.querySelector('.steps__about');
-            //       const stepAboutWr = step.querySelector('.steps__about_wr');
-            
-            //       stepAboutWr.style.transform = 'translateY(0)'; // Начальное положение контента
-            
-            //       if (i === 0) {
-            //         if (!videoStepsC.classList.contains('play')) {
-            //           videoStepsC.classList.add('play');
-            //           videoStepsC.play();
-            //           videoStepsC.playbackRate = 2;
-            //         }
-            //       } else if (i > 0 && i - 1 < stepsDesignItems.length) {
-            //         stepsDesignItems[i - 1].classList.add('active');
-            //       }
-            //     } else {
-            //       step.classList.remove('active');
-            //       const stepAboutWr = step.querySelector('.steps__about_wr');
-            //       if (stepAboutWr) {
-            //         stepAboutWr.style.transform = 'translateY(0)';
-            //       }
-            //       if (i === 0) {
-            //         if (videoStepsC.classList.contains('play')) {
-            //           videoStepsC.classList.remove('play');
-            //           videoStepsC.pause();
-            //           videoStepsC.currentTime = 0;
-            //         }
-            //       } else if (i - 1 < stepsDesignItems.length) {
-            //         stepsDesignItems[i - 1].classList.remove('active');
-            //       }
-            //     }
-            //   });
-            // }
-            
-            // // Добавляем обработчики событий
-            // document.addEventListener('touchstart', handleTouchStart, { passive: true });
-            // document.addEventListener('touchend', handleTouchEnd, { passive: true });
-            
-            // let previousIndex = -1;
-            
-            // timeline.to({}, {
-            //   duration: scrollDuration / 10,
-            //   onUpdate: function() {
-            //     boxCookieItem.classList.add('not-active');
-            //     cookiesWrapper.classList.add('not-active');
-            //     stepsPin.classList.add('active');
-            //     boxSteps.classList.add('active');
-            
-            //     let progress = this.progress();
-            //     let adjustedProgress = Math.min(progress / 0.8, 1);
-            //     let index = Math.floor(adjustedProgress * (stepsItems.length - 1));
-            //     let contentProgress = (adjustedProgress * (stepsItems.length - 1)) - index;
-            
-            //     if (!isTouching && index !== previousIndex) {
-            //       currentIndex = index;
-            //       switchStepItem(currentIndex);
-            //     }
-            
-            //     if (progress === 0) {
-            //       boxCookieItem.classList.remove('not-active');
-            //       cookiesWrapper.classList.remove('not-active');
-            //       stepsPin.classList.remove('active');
-            //       boxSteps.classList.remove('active');
-            //       stepsItems[0].classList.remove('active');
-            
-            //       if (videoStepsC.classList.contains('play')) {
-            //         videoStepsC.classList.remove('play');
-            //         videoStepsC.pause();
-            //         videoStepsC.currentTime = 0;
-            //       }
-            
-            //       stepsDesignItems.forEach(item => {
-            //         item.classList.remove('active');
-            //       });
-            //     }
-            
-            //     previousIndex = index;
-            //   }
-            // });
-            
-
- 
-
-
-
-
-
-            
   
           ScrollTrigger.create({
             trigger: designBoxes,
@@ -1041,8 +922,6 @@ document.addEventListener("DOMContentLoaded", function() {
           },
           ease: "power1.in"
         });
-
-            
             
         
           
@@ -1061,14 +940,42 @@ document.addEventListener("DOMContentLoaded", function() {
       });
 
 
-      function checkScreenWidth() {
-          if (window.innerWidth > 650) {
-              document.querySelector('.shelf__cards').style.transform = 'unset';
+      // function checkScreenWidth() {
+      //     if (window.innerWidth > 650) {
+      //         document.querySelector('.shelf__cards').style.transform = 'unset';
+      //     }
+      // }
+      // window.addEventListener('resize', checkScreenWidth);
+      // window.addEventListener('orientationchange', checkScreenWidth);
+      // // document.addEventListener('DOMContentLoaded', checkScreenWidth);
+      // checkScreenWidth();
+
+
+      function initializeSimpleBar() {
+        if (window.innerWidth < 480.98) {
+          if (document.querySelectorAll('.steps__about').length) {
+            document.querySelectorAll('.steps__about').forEach(scrollBlock => {
+              new SimpleBar(scrollBlock, {
+                autoHide: false,
+              });
+            });
           }
+        }
       }
-      window.addEventListener('resize', checkScreenWidth);
-      window.addEventListener('orientationchange', checkScreenWidth);
-      document.addEventListener('DOMContentLoaded', checkScreenWidth);
+      
+      // Инициализация при загрузке страницы
+      initializeSimpleBar();
+      
+      // Инициализация при изменении размера окна
+      window.addEventListener('resize', () => {
+        initializeSimpleBar();
+      });
+      
+      // Инициализация при изменении ориентации устройства
+      window.addEventListener('orientationchange', () => {
+        initializeSimpleBar();
+      });
+      
 
   
     if (animHandEye) {
@@ -1287,28 +1194,6 @@ document.addEventListener("DOMContentLoaded", function() {
             attr: { d: "M191.252 35.3826L190.224 64.9032C190.224 64.9032 193.968 58.1356 200.863 58.369C207.779 58.7103 212.432 64.1896 212.057 71.5367C211.681 78.8838 208.257 86.1489 202.328 86.8478C196.399 87.5467 190.063 78.5879 190.063 78.5879L188.95 107.677" }, delay: 2
           },
         ],
-        // ".girl-puzzle__l5": [
-        //   { 
-        //     attr: { d: "M64.4532 106.124L74.1112 91.61" }, 
-        //   },
-        //   { 
-        //     attr: { d: "M82.2363 94.0403L94.5277 81.7271" }, 
-        //   },
-        //   { 
-        //     attr: { d: "M64.4532 106.124L74.1112 91.61" }, delay: 2
-        //   },
-        // ],
-        // ".girl-puzzle__l6": [
-        //   { 
-        //     attr: { d: "M45.7447 174.875C44.2977 159.263 48.6256 143.318 57.6014 130.503" }, 
-        //   },
-        //   { 
-        //     attr: { d: "M50.4428 157.754C52.089 142.168 59.4519 127.395 70.7494 116.609" }, 
-        //   },
-        //   { 
-        //     attr: { d: "M45.7447 174.875C44.2977 159.263 48.6256 143.318 57.6014 130.503" }, delay: 2
-        //   },
-        // ],
         ".girl-puzzle__r1": [
           { 
             attr: { d: "M167.095 241.468C181.679 235.965 195.256 236.087 214.956 226.896C228.695 220.553 243.472 202.765 252.098 190.476C260.745 178.08 266.47 163.982 270.486 149.433C275.072 150.68 279.549 151.906 284.114 153.262C285.255 150.912 286.96 149.123 288.491 147.074C288.923 146.6 291.766 140.78 291.658 140.758C292.501 141.038 293.281 141.641 293.693 142.395C294.669 144.269 293.418 146.037 292.643 147.676C287.907 159.057 283.28 170.461 278.544 181.842C273.508 194.173 268.363 206.481 261.574 218.015C254.784 229.549 246.372 240.199 235.49 248.007C218.713 260.019 205.936 271.707 186.121 277.514C166.306 283.322 145.142 284.044 125.006 279.593" }, 
@@ -1342,17 +1227,6 @@ document.addEventListener("DOMContentLoaded", function() {
             attr: { d: "M253.641 63.4062L241.539 90.352C241.539 90.352 247.562 85.4998 253.859 88.3199C260.134 91.2478 262.373 98.0786 259.25 104.74C256.128 111.401 250.214 116.835 244.46 115.243C238.706 113.651 236.222 102.962 236.222 102.962L224.207 129.477" }, delay: 2
           },
         ],
-        // ".girl-puzzle__r4": [
-        //   { 
-        //     attr: { d: "M243.474 251.387C255.891 243.212 265.727 231.052 271.172 217.235" }, 
-        //   },
-        //   { 
-        //     attr: { d: "M245.085 236.31C255.74 225.974 263.138 212.198 265.932 197.607" }, 
-        //   },
-        //   { 
-        //     attr: { d: "M243.474 251.387C255.891 243.212 265.727 231.052 271.172 217.235" }, delay: 2
-        //   },
-        // ],
         ".girl-puzzle__r5": [
           { 
             attr: { d: "M265.217 164.629C270.133 169.303 277.185 171.713 283.886 170.805" }, 
