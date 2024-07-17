@@ -513,8 +513,6 @@ document.addEventListener("DOMContentLoaded", function() {
             },
             
           });
-          
-          
 
           ScrollTrigger.create({
             trigger: designBoxes,
@@ -527,9 +525,6 @@ document.addEventListener("DOMContentLoaded", function() {
             },
           });
 
-
-        
-        
           const animation = gsap.timeline({ paused: true })
           .to(box, {
             transform: 'translate(-15%, 80%) scale(0.1)',
@@ -569,7 +564,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 
 
-
         } // == end isDesktop -----------
       
         if (isMobile) {
@@ -602,7 +596,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 icon01.classList.remove("_active-anim");
               }, 1800);
             },
-            
           });
           ScrollTrigger.create({
             trigger: stepsRetail02,
@@ -656,51 +649,44 @@ document.addEventListener("DOMContentLoaded", function() {
           });
 
           const progressMarker = document.querySelector('.progress-marker');
-          // const linesMob = [lineMob01, lineMob02, lineMob03, lineMob04, lineMob05];
-          // linesMob.forEach(line => {
-          //   const length = line.getTotalLength();
-          //   line.style.strokeDasharray = length;
-          //   line.style.strokeDashoffset = length;
-          // });
-          // const animateLine = (line, progress, start, end) => {
-          //   const length = line.getTotalLength();
-          //   const midProgress = (end - start) / 5 + start;
-            
-          //   if (progress < start) {
-          //     gsap.to(line, { strokeDashoffset: length, overwrite: true });
-          //   } else if (progress < midProgress) {
-          //     const lineProgress = (progress - start) / (midProgress - start);
-          //     gsap.to(line, { strokeDashoffset: (1 - lineProgress) * length, overwrite: true });
-          //   } else if (progress < end) {
-          //     const lineProgress = (progress - midProgress) / (end - midProgress);
-          //     gsap.to(line, { strokeDashoffset: -lineProgress * length, overwrite: true });
-          //   } else {
-          //     gsap.to(line, { strokeDashoffset: -length, overwrite: true });
-          //   }
-          // };
-         
-          ScrollTrigger.create({
-            trigger: designCookie,
-            start: "center center",
-            endTrigger: designBoxes,
-            end: "center center",
-            scrub: true,
-            onUpdate: self => {
-              const progress = self.progress * 100;
-              progressMarker.textContent = `${progress.toFixed(1)}%`;
+
+          // const length = lineMob01.getTotalLength();
+          // gsap.set(lineMob01, { strokeDasharray: length, strokeDashoffset: length });
+
+          // ScrollTrigger.create({
+          //   trigger: designCookie,
+          //   start: "center center",
+          //   endTrigger: designBoxes,
+          //   end: "center center",
+          //   scrub: true,
+          //   onUpdate: self => {
+          //     const progress = self.progress;
+          //     // progressMarker.textContent = `${progress.toFixed(1)}%`;
+              
+          //     let offset;
+          //     if (progress <= 0.1) {
+          //       offset = gsap.utils.interpolate(length, 0, progress / 0.1);
+          //     }
+          //     gsap.set(lineMob01, { strokeDashoffset: offset });
           
-              // animateLine(lineMob01, progress, 0, 26);
-              // animateLine(lineMob02, progress, 26, 43);
-              // animateLine(lineMob03, progress, 43, 45);
-              // animateLine(lineMob04, progress, 54, 78);
-              // animateLine(lineMob05, progress, 83, 100);
-            }
+          //   }
+          // });
+
+
+          const lengths = [
+            lineMob01.getTotalLength(),
+            lineMob02.getTotalLength(),
+            lineMob03.getTotalLength(),
+            lineMob04.getTotalLength(),
+            lineMob05.getTotalLength()
+          ];
+
+          const paths = [lineMob01, lineMob02, lineMob03, lineMob04, lineMob05];
+
+          // Устанавливаем начальные значения для всех путей
+          paths.forEach((path, i) => {
+            gsap.set(path, { strokeDasharray: lengths[i], strokeDashoffset: lengths[i], opacity: 0 });
           });
-
-
-          const length = lineMob01.getTotalLength();
-
-          gsap.set(lineMob01, { strokeDasharray: length, strokeDashoffset: length });
 
           ScrollTrigger.create({
             trigger: designCookie,
@@ -710,30 +696,44 @@ document.addEventListener("DOMContentLoaded", function() {
             scrub: true,
             onUpdate: self => {
               const progress = self.progress;
-          
-              let offset;
-              // Рассчитываем значение strokeDashoffset в зависимости от progress
-              if (progress <= 0.27) {
-                offset = gsap.utils.interpolate(length, 0, progress / 0.1);
-              } else if (progress <= 0.27) {
-                const eraseProgress = (progress - 0.1) / 0.9;
-                offset = gsap.utils.interpolate(0, -length, eraseProgress);
-              } else {
-                // После 27% фиксируем offset на -length
-                offset = -length;
-              }
-          
-              // Ограничиваем значение offset до -length
-              if (offset < -length) {
-                offset = -length;
-              }
-              gsap.set(lineMob01, { strokeDashoffset: offset });
-          
+            
+              paths.forEach((path, i) => {
+                let offset;
+                let startProgress;
+              
+                switch (i) {
+                  case 0:
+                    startProgress = 0;
+                    break;
+                  case 1:
+                    startProgress = 0.25;
+                    break;
+                  case 2:
+                    startProgress = 0.37;
+                    break;
+                  case 3:
+                    startProgress = 0.45;
+                    break;
+                  case 4:
+                    startProgress = 0.77;
+                    break;
+                }
+              
+                if (progress >= startProgress && progress <= startProgress + 0.1) {
+                  offset = gsap.utils.interpolate(lengths[i], 0, (progress - startProgress) / 0.1);
+                  gsap.set(path, { strokeDashoffset: offset, opacity: 1 });
+                } else if (progress < startProgress) {
+                  gsap.set(path, { opacity: 0 });
+                }
+              });
+            
               // Отладочный вывод
-              console.log(`Progress: ${progress}, Offset: ${offset}`);
+              console.log(`Progress: ${progress}`);
             }
           });
-         
+
+
+
 
             const timeline = gsap.timeline({
               scrollTrigger: {
@@ -899,20 +899,7 @@ document.addEventListener("DOMContentLoaded", function() {
           
         } // == end isMobile -----------
 
-   
-
-        window.addEventListener('resize', () => {
-          ScrollTrigger.refresh();
-        });
-      
-        window.addEventListener('orientationchange', () => {
-          ScrollTrigger.refresh();
-        });
-      
-
-        ScrollTrigger.refresh();
       });
-
 
       function initializeSimpleBar() {
         if (window.innerWidth < 480.98) {
@@ -926,24 +913,22 @@ document.addEventListener("DOMContentLoaded", function() {
         }
       }
       
-      // Инициализация при загрузке страницы
+      window.addEventListener('resize', () => {
+        ScrollTrigger.refresh();
+        initializeSimpleBar();
+      });
+    
+      window.addEventListener('orientationchange', () => {
+        ScrollTrigger.refresh();
+        initializeSimpleBar();
+      });
+
+      ScrollTrigger.refresh();
       initializeSimpleBar();
       
-      // Инициализация при изменении размера окна
-      window.addEventListener('resize', () => {
-        initializeSimpleBar();
-      });
-      
-      // Инициализация при изменении ориентации устройства
-      window.addEventListener('orientationchange', () => {
-        initializeSimpleBar();
-      });
-      
-      // == EYE =====================
       
       
-      
-      if (animHandEye) {
+    if (animHandEye) {
       gsap.set(".eye-01, .eye-02, .eye-03", { transformOrigin: "center center" });
       const eyeAnimation  = gsap.timeline({
         paused: true,
