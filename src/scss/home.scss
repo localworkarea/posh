@@ -3965,12 +3965,20 @@ background-color: $mainWhite;
 
 // --- BLOCKS & SECTIONS ----------------------------------
 
+
+._mobile {
+  overflow: hidden;
+}
+
+
 // ._page-top {
 //   @media (max-width:$mobileSmall){
 //      overflow: hidden; 
 //     //  &.swipe-down {
 //     //   overflow: auto;
 //     //  }
+// 		touch-action: none;
+// 		overscroll-behavior: none;
 //   }
 // }
 
@@ -4090,6 +4098,11 @@ background-color: $mainWhite;
     }
     @media (max-width:em(900.98)){
       margin-bottom: toRem(50);
+    }
+    @media (max-width: em(650.98)){
+        // position: relative;
+        // height: 100%;
+        // width: 100%;
     }
   }
   // .retail__steps
@@ -5008,8 +5021,15 @@ background-color: $mainWhite;
         transition-delay: .3s;
       }
     }
+    // @media (max-width:$mobileSmall){
+    //    will-change: transform; 
+    // }
 
     .cookie-wrapper {
+    //   @media (max-width:$mobileSmall){
+    //     will-change: transform; 
+    //  }
+ 
       &.not-active {
         opacity: 0;
       }
@@ -5962,6 +5982,42 @@ background-color: $mainWhite;
   }
 }
 
+
+
+// .page-approach {
+//   @media (min-width:em(650.98)){
+//     display: flex;
+//   }
+//   @media (max-width:em(650.98)){
+//       display: none;
+//   }
+// }
+
+// .approach-02__wrapper {
+//   overflow-x: hidden;
+//   overflow-y: auto;
+// }
+
+// .fullpage-mob {
+//   @media (min-width:em(650.98)){
+//     display: none;
+//   }
+//   @media (max-width:em(650.98)){
+//     z-index: 5;
+//       display: block;
+//   }
+// }
+// .approach-01 {
+// }
+// .approach-02 {
+//   min-height: 100svh;
+// }
+
+// .fp-init body {
+//   @media (min-width:em(650.98)){
+//       overflow: auto !important;
+//   }
+// }
 /* КОНЕЦ */
 
 // .simplebar-content-wrapper {

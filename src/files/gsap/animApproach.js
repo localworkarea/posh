@@ -1,5 +1,3 @@
-
-
 document.addEventListener("DOMContentLoaded", function() {
 
   if (typeof gsap !== 'undefined') {
@@ -27,9 +25,10 @@ document.addEventListener("DOMContentLoaded", function() {
     //   scroller: ".mob-body"
     // });
 
-    // const MAX_WIDTH_EM = 30.061;
+
     // const retailHero = document.querySelector('.retail__hero');
-    // // const retailShelfSwipe = document.querySelector('.retail__shelf');
+    // const MAX_WIDTH_EM = 30.061;
+    // const retailShelfSwipe = document.querySelector('.retail__shelf');
     // let startY = 0;
 
     // function emToPx(em) {
@@ -46,15 +45,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
     //     if (deltaY < 0) { // Swipe down
     //       document.body.classList.add('swipe-down');
-    //       // document.body.classList.remove('_page-top');
+    //       document.body.classList.remove('_page-top');
     //     } 
     //     else if (deltaY > 0) {
     //       document.body.classList.remove('swipe-down');
-    //       // document.body.classList.add('_page-top');
+    //       document.body.classList.add('_page-top');
     //     }
 
     // }
-
     
     // function handleSwipeEndOnShelf(event) {
     //   const endY = event.changedTouches[0].clientY;
@@ -66,22 +64,21 @@ document.addEventListener("DOMContentLoaded", function() {
     //   }
     // }
 
-
     // function checkInitialScrollPosition() {
     //     if (window.innerWidth < emToPx(MAX_WIDTH_EM)) {
     //       document.body.classList.add('_mobile');
     //       if (window.scrollY === 0) {
-    //         // document.body.classList.add('_page-top');
+    //         document.body.classList.add('_page-top');
     //         document.body.classList.remove('swipe-down');
     //       } else {
-    //         // document.body.classList.remove('_page-top');
+    //         document.body.classList.remove('_page-top');
     //       }
     //   } else {
     //     document.body.classList.remove('_mobile');
     //     retailHero.removeEventListener('touchstart', handleSwipeStart);
     //     retailHero.removeEventListener('touchend', handleSwipeEnd);
-    //     // retailShelfSwipe.removeEventListener('touchstart', handleSwipeStart);
-    //     // retailShelfSwipe.removeEventListener('touchend', handleSwipeEndOnShelf);
+    //     retailShelfSwipe.removeEventListener('touchstart', handleSwipeStart);
+    //     retailShelfSwipe.removeEventListener('touchend', handleSwipeEndOnShelf);
     //   }
     // }
 
@@ -92,14 +89,175 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // retailHero.addEventListener('touchstart', handleSwipeStart);
     // retailHero.addEventListener('touchend', handleSwipeEnd);
-    // // retailShelfSwipe.addEventListener('touchstart', handleSwipeStart);
-    // // retailShelfSwipe.addEventListener('touchend', handleSwipeEndOnShelf);
+    // retailShelfSwipe.addEventListener('touchstart', handleSwipeStart);
+    // retailShelfSwipe.addEventListener('touchend', handleSwipeEndOnShelf);
     // window.addEventListener('scroll', checkInitialScrollPosition);
     // window.addEventListener('resize', handleResize);
 
     // // Initial check
     // checkInitialScrollPosition();
 
+
+
+
+
+
+
+    // const MAX_WIDTH_EM = 30.061;
+    // const retailHero = document.querySelector('.retail__hero');
+    // const retailShelfSwipe = document.querySelector('.retail__shelf');
+    // let startY = 0;
+    
+    // function emToPx(em) {
+    //     return em * parseFloat(getComputedStyle(document.documentElement).fontSize);
+    // }
+    
+    // function isIOS() {
+    //     return /iP(hone|od|ad)/.test(navigator.platform) ||
+    //            (navigator.userAgent.includes("Mac") && "ontouchend" in document);
+    // }
+    
+    // function handleSwipeStart(event) {
+    //     startY = event.touches[0].clientY;
+    
+    //     if (isIOS()) {
+    //         const scrollElement = event.currentTarget;
+    //         if (scrollElement.scrollHeight !== scrollElement.clientHeight) {
+    //             if (scrollElement.scrollTop === 0) {
+    //                 scrollElement.scrollTop = 1;
+    //             }
+    //             if (scrollElement.scrollTop === scrollElement.scrollHeight - scrollElement.clientHeight) {
+    //                 scrollElement.scrollTop = scrollElement.scrollHeight - scrollElement.clientHeight - 1;
+    //             }
+    //         }
+    //     }
+    // }
+    
+    // function handleSwipeEnd(event) {
+    //     const endY = event.changedTouches[0].clientY;
+    //     const deltaY = endY - startY;
+    
+    //     if (deltaY < 0) { // Swipe down
+    //       setTimeout(() => {
+    //           document.body.classList.add('swipe-down');
+    //           document.body.classList.remove('_page-top');
+    //       }, 100);
+    //     } else if (deltaY > 0) {
+    //         document.body.classList.remove('swipe-down');
+    //         document.body.classList.add('_page-top');
+    //     }
+    // }
+    
+    // function handleSwipeEndOnShelf(event) {
+    //     const endY = event.changedTouches[0].clientY;
+    //     const deltaY = endY - startY;
+    
+    //     if (window.scrollY === 0 && deltaY > 0) { // Swipe down on retailShelfSwipe at top of the page
+    //         document.body.classList.remove('swipe-down');
+    //         document.body.classList.add('_page-top');
+    //     }
+    // }
+    
+    // function checkInitialScrollPosition() {
+    //     if (window.innerWidth < emToPx(MAX_WIDTH_EM)) {
+    //         document.body.classList.add('_mobile');
+    //         if (window.scrollY === 0) {
+    //             document.body.classList.add('_page-top');
+    //             document.body.classList.remove('swipe-down');
+    //         } else {
+    //             // document.body.classList.remove('_page-top');
+    //         }
+    //     } else {
+    //         document.body.classList.remove('_mobile');
+    //         retailHero.removeEventListener('touchstart', handleSwipeStart);
+    //         retailHero.removeEventListener('touchend', handleSwipeEnd);
+    //         retailShelfSwipe.removeEventListener('touchstart', handleSwipeStart);
+    //         retailShelfSwipe.removeEventListener('touchend', handleSwipeEndOnShelf);
+    //     }
+    // }
+    
+    // function handleResize() {
+    //     checkInitialScrollPosition();
+    // }
+    
+    // retailHero.addEventListener('touchstart', handleSwipeStart);
+    // retailHero.addEventListener('touchend', handleSwipeEnd);
+    // retailShelfSwipe.addEventListener('touchstart', handleSwipeStart);
+    // retailShelfSwipe.addEventListener('touchend', handleSwipeEndOnShelf);
+    // window.addEventListener('scroll', checkInitialScrollPosition);
+    // window.addEventListener('resize', handleResize);
+    
+    // // Initial check
+    // checkInitialScrollPosition();
+    
+
+
+
+
+   
+
+    const MAX_WIDTH_EM = 30.061;
+    const retailHero = document.querySelector('.retail__hero');
+    const retailShelfSwipe = document.querySelector('.retail__shelf');
+    const isIOS = /iP(hone|od|ad)/.test(navigator.platform) || (navigator.userAgent.includes("Mac") && "ontouchend" in document);
+    const fontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
+    let startY = 0;
+    
+    function emToPx(em) {
+      return em * fontSize;
+    }
+    
+    function handleSwipeStart(event) {
+        startY = event.touches[0].clientY;
+    
+        if (isIOS) {
+            const scrollElement = event.currentTarget;
+            if (scrollElement.scrollHeight !== scrollElement.clientHeight) {
+                if (scrollElement.scrollTop === 0) {
+                    scrollElement.scrollTop = 1;
+                }
+                if (scrollElement.scrollTop === scrollElement.scrollHeight - scrollElement.clientHeight) {
+                    scrollElement.scrollTop = scrollElement.scrollHeight - scrollElement.clientHeight - 1;
+                }
+            }
+        }
+    }
+    
+    function handleSwipeEnd(event) {
+        const endY = event.changedTouches[0].clientY;
+        const deltaY = endY - startY;
+    
+        if (deltaY < 0 && window.scrollY === 0) { // Swipe up
+            console.log('свайп вверх');
+            retailShelfSwipe.scrollIntoView({ behavior: 'smooth' });
+        } else if (deltaY > 0 && window.scrollY === 0) { // Swipe down
+            console.log('свайп вниз');
+        }
+    }
+
+    function checkInitialScrollPosition() {
+      if (window.innerWidth < emToPx(MAX_WIDTH_EM)) {
+        if (window.scrollY === 0) {
+              document.body.classList.add('_mobile');
+          } else {
+            document.body.classList.remove('_mobile');
+          }
+      } else {
+          document.body.classList.remove('_mobile');
+          retailHero.removeEventListener('touchstart', handleSwipeStart);
+          retailHero.removeEventListener('touchend', handleSwipeEnd);
+      }
+    }
+
+    function handleResize() {
+        checkInitialScrollPosition();
+    }
+    retailHero.addEventListener('touchstart', handleSwipeStart);
+    retailHero.addEventListener('touchend', handleSwipeEnd);
+    window.addEventListener('scroll', checkInitialScrollPosition);
+    window.addEventListener('resize', handleResize);
+
+    checkInitialScrollPosition();
 
   
 
@@ -514,62 +672,18 @@ document.addEventListener("DOMContentLoaded", function() {
       
         if (isMobile) {
 
-          // let scrollTween = gsap.to('.shelf__cards', {
-          //   xPercent: -50 * (shelfCard.length - 1),
-          //   ease: 'none',
-          //   scrollTrigger: {
-          //     trigger: retailShelf,
-          //     start: "center center",
-          //     end: "+=200%",
-          //     pin: true,
-          //     scrub: 0.2,
-          //     // onScrubComplete: ({progress, direction, isActive}) => console.log(progress, direction, isActive)
-          //   }
-          // });
-          
-
-          let tl5 = gsap.timeline({
+          let scrollTween = gsap.to('.shelf__cards', {
+            xPercent: -50 * (shelfCard.length - 1),
+            ease: 'none',
             scrollTrigger: {
               trigger: retailShelf,
               start: "center center",
               end: "+=200%",
               pin: true,
-              scrub: 0.2,
+              scrub: 0.1,
             }
           });
           
-          // Первая часть анимации до паузы
-          tl5.to('.shelf__cards', {
-            xPercent: 0,
-            ease: 'none',
-            duration: 0.5 // Длительность до паузы
-          })
-          // .addPause("+=0.5") // Пауза на 1 секунду
-          // Оставшаяся часть анимации после паузы
-          .to('.shelf__cards', {
-            xPercent: -50 * (shelfCard.length - 1),
-            ease: 'none',
-            duration: 1 // Длительность анимации после паузы
-          });
-
-
-          // ScrollTrigger.create({
-          //     // id: "shelfPin",
-          //     trigger: retailShelf,
-          //     start: "top top",
-          //     end: "+=100%",
-          //     pin: true,
-          //     // pinSpacing: true,
-          //     scrub: 0.1,
-          //     onUpdate: (self) => {
-          //         let progress = self.progress;
-          //         let shelfCardsWidth = document.querySelector(".shelf__cards").offsetWidth;
-          //         let windowWidth = window.innerWidth;
-          //         let maxX = shelfCardsWidth - windowWidth + 50;
-          //         let translateX = progress * -maxX;
-          //         gsap.to(".shelf__cards", { x: translateX, duration: 0.3 });
-          //     },
-          // });
           ScrollTrigger.create({
             trigger: stepsRetail01,
             start: "center center",
@@ -738,89 +852,6 @@ document.addEventListener("DOMContentLoaded", function() {
               duration: scrollDuration / 100
             });
 
-           
-            // timeline.to({}, {
-            //   duration: scrollDuration / 10,
-            //   // duration: 300,
-            //   onUpdate: function() {
-            //     boxCookieItem.classList.add('not-active');
-            //     cookiesWrapper.classList.add('not-active');
-            //     stepsPin.classList.add('active');
-            //     boxSteps.classList.add('active');
-            
-            //     let progress = this.progress();
-            //     let adjustedProgress = Math.min(progress / 0.8, 1);
-            //     let index = Math.floor(adjustedProgress * (stepsItems.length - 1));
-            //     let contentProgress = (adjustedProgress * (stepsItems.length - 1)) - index;
-            
-            //     stepsItems.forEach((step, i) => {
-            //       if (i === index) {
-            //         step.classList.add('active');
-            
-            //         // const stepAbout = step.querySelector('.steps__about');
-            //         // const stepAboutWr = step.querySelector('.steps__about_wr');
-            
-            //         // let aboutHeight = stepAboutWr.scrollHeight - stepAbout.clientHeight;
-            //         // stepAboutWr.style.transform = `translateY(-${aboutHeight * contentProgress}px)`;
-            
-            //         if (i === 0) {
-            //           if (!videoStepsC.classList.contains('play')) {
-            //             videoStepsC.classList.add('play');
-            //             videoStepsC.play();
-            //             videoStepsC.playbackRate = 2;
-            //           }
-            //         } else if (i > 0 && i - 1 < stepsDesignItems.length) {
-            //           stepsDesignItems[i - 1].classList.add('active');
-            //         }
-            //       } else {
-            //         step.classList.remove('active');
-            //         // const stepAboutWr = step.querySelector('.steps__about_wr');
-            //         // if (stepAboutWr) {
-            //         //   stepAboutWr.style.transform = 'translateY(0)';
-            //         // }
-            //         if (i === 0) {
-            //           if (videoStepsC.classList.contains('play')) {
-            //             videoStepsC.classList.remove('play');
-            //             videoStepsC.pause();
-            //             videoStepsC.currentTime = 0;
-            //           }
-            //         } else if (i - 1 < stepsDesignItems.length) {
-            //           stepsDesignItems[i - 1].classList.remove('active');
-            //         }
-            //       }
-            //     });
-            
-            //     // Прокручивание элемента .steps__about_wr на последнем stepsItems
-            //     // if (adjustedProgress >= 1) {
-            //     //   const lastStep = stepsItems[stepsItems.length - 1];
-            //     //   const lastStepAbout = lastStep.querySelector('.steps__about');
-            //     //   const lastStepAboutWr = lastStep.querySelector('.steps__about_wr');
-            //     //   let remainingProgress = (progress - 0.8) / 0.2; // Прогресс от 0 до 1 для последних 20% времени
-            //     //   let aboutHeight = lastStepAboutWr.scrollHeight - lastStepAbout.clientHeight;
-            //     //   lastStepAboutWr.style.transform = `translateY(-${aboutHeight * remainingProgress}px)`;
-            //     // }
-            //     // ----------------------------
-            
-            //     if (progress === 0) {
-            //       boxCookieItem.classList.remove('not-active');
-            //       cookiesWrapper.classList.remove('not-active');
-            //       stepsPin.classList.remove('active');
-            //       boxSteps.classList.remove('active');
-            //       stepsItems[0].classList.remove('active');
-            
-            //       if (videoStepsC.classList.contains('play')) {
-            //         videoStepsC.classList.remove('play');
-            //         videoStepsC.pause();
-            //         videoStepsC.currentTime = 0;
-            //       }
-            
-            //       stepsDesignItems.forEach(item => {
-            //         item.classList.remove('active');
-            //       });
-            //     }
-            //   }
-            // });
-
             const videoSteps = [videoStepsC, videoStepsD, videoStepsE, videoStepsF];
             timeline.to({}, {
               duration: scrollDuration / 10,
@@ -927,6 +958,8 @@ document.addEventListener("DOMContentLoaded", function() {
           
         } // == end isMobile -----------
 
+   
+
         window.addEventListener('resize', () => {
           ScrollTrigger.refresh();
         });
@@ -938,17 +971,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
         ScrollTrigger.refresh();
       });
-
-
-      // function checkScreenWidth() {
-      //     if (window.innerWidth > 650) {
-      //         document.querySelector('.shelf__cards').style.transform = 'unset';
-      //     }
-      // }
-      // window.addEventListener('resize', checkScreenWidth);
-      // window.addEventListener('orientationchange', checkScreenWidth);
-      // // document.addEventListener('DOMContentLoaded', checkScreenWidth);
-      // checkScreenWidth();
 
 
       function initializeSimpleBar() {

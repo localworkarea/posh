@@ -32,14 +32,14 @@
                   </span>
                 </div> споживач
               </h1>
-              <button data-goto=".retail__shelf"  class="retail__btn">
+              <button data-goto=".retail__shelf"  class="retail__btn" aria-label="перемикання на наступний екран">
                 <svg width="61" height="61" viewBox="0 0 61 61" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <circle cx="30.5" cy="30.5" r="30" stroke="white"/>
                   <path d="M15.5 24L30 38.5L44.5 24" stroke="white"/>
                 </svg>
               </button>
             </div>
-            <div data-watch data-watch-threshold="0.8" class="retail__shelf shelf">
+            <div data-watch data-watch-threshold="0.8"  class="retail__shelf shelf">
               <div class="shelf__body">
                 <img class="shelf__women" src="@img/women/women-2.webp" width="228" height="367" alt="жінка, що розглядає товари на полиці">
                 <p class="shelf__title">
@@ -149,7 +149,7 @@
                 </div>
               </div>
             </div>
-            <div class="retail__steps steps-retail">
+            <div  class="retail__steps steps-retail">
               <div class="steps-retail__block steps-retail-01">
                 <div class="steps-retail__left">
                   <div class="steps-retail__anim">
@@ -437,7 +437,7 @@
                 </div>
               </div>
             </div>
-            <div data-watch data-watch-threshold="0.3" class="retail__goal goal-retail">
+            <div data-watch data-watch-threshold="0.3"   class="retail__goal goal-retail">
               <p class="goal-retail__goal ">
                <b>Мета дизайну паковання -</b> надати релевантну<span>*</span> відповідь на запити споживача у моменті вибору продукту з полиці
               </p>
@@ -447,7 +447,7 @@
             </div>
           </div>
         </section>
-        <section class="approach br-r">
+        <section  class="approach br-r">
           <div class="approach__container">
             <div class="approach__head head-appr">
               <h2 class="head-appr__title">
@@ -962,7 +962,7 @@
             </div>
           </div>
         </section>
-        <section class="faq">
+        <section  class="faq">
           <div class="faq__container">
             <div class="faq__left">
               <div class="faq__body">
@@ -1113,8 +1113,9 @@
         </div>
         @@include('html/_footer-main.htm',{})
       </footer>
+
 		</div>
-   
+
 
   
 		@@include('html/_js.htm',{})

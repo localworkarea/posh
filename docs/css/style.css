@@ -4143,6 +4143,10 @@ body {
   background-size: contain;
 }
 
+._mobile {
+  overflow: hidden;
+}
+
 .retail {
   padding-bottom: 3.125rem;
 }
