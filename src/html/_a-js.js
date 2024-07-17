@@ -160,149 +160,92 @@ tl5.to('.shelf__cards', {
 
 
 
-<div data-fp data-fp-effect="fade" class="fullpage-mob">
-      <div data-fp-section class="approach-01">
-        <section class="retail__container approach-01__cont">
-        </section>
-      </div>
-      <div data-fp-section class="approach-02">
-        <div class="approach-02__wrapper">
-          <section class="retail">
-            <div class="retail__container approach-02__cont">
-              <div  class="retail__shelf shelf"></div>
-              <div  class="retail__steps steps-retail"></div>
-            </div>
-          </section>
-        </div>
-      </div>
-  </div>
 
 
-
-
-
-
-
-
-
-
-
-if (isMobile) {
-
-  let scrollTween = gsap.to('.shelf__cards', {
-    xPercent: -50 * (shelfCard.length - 1),
-    ease: 'none',
-    scrollTrigger: {
-      // мой код ....
-    }
-  });
-  
-  ScrollTrigger.create({
-    // мой код ....
-    
-  });
-  ScrollTrigger.create({
-    // мой код ....
-  });
-  ScrollTrigger.create({
-    // мой код ....
-  });
-   // === Design__Cookie =============================================
-  const tl = gsap.timeline({
-    scrollTrigger: {
-       // мой код ....
-    }
-  });
-
-  tl.to(cookieWrapper, {
-    // мой код ....
-  });
-
-  // const progressMarker = document.querySelector('.progress-marker');
-  const linesMob = [lineMob01, lineMob02, lineMob03, lineMob04, lineMob05];
-  linesMob.forEach(line => {
- // мой код ....
-  });
-  const animateLine = (line, progress, start, end) => {
-    // мой код ....
-  };
-  ScrollTrigger.create({
-    // мой код ....
-  });
-
-    const timeline = gsap.timeline({
-       // мой код ....
-    });
-
-    timeline.to({}, {
-       // мой код ....
-    });
-    
-    timeline.to(box, {
-       // мой код ....
-    }, `-=${scrollDuration / 10000}`); // Начало сразу после предыдущей анимации
-    
-    timeline.to({}, {
-      // мой код ....
-    }, `-=${scrollDuration / 3500}`);
-
-    
-    timeline.to(boxWrapper, {
-    // мой код ....
-    });
-
-    const videoSteps = [videoStepsC, videoStepsD, videoStepsE, videoStepsF];
-    timeline.to({}, {
-      duration: scrollDuration / 10,
-      // duration: 300,
-      onUpdate: function() {
-        // мой код ....
-      }
-    });
-
-
-  ScrollTrigger.create({
-  // мой код ....
-  });
-
-  const animation = gsap.timeline({ paused: true })
-  .to(box, {
-    transform: 'translate(-66%, 77%) scale(.3)',
-    opacity: 0,
-    duration: 0.7
-  }, 0)
-  .to(boxCookie, {
-    transform: 'translate(-25%, 274%) scale(.3)',
-    opacity: 0,
-    duration: 0.7
-  }, 0);
-
-  // ScrollTrigger для запуска анимации
-ScrollTrigger.create({
-  trigger: logics,
-  start: "top bottom",
-  end: "center center",
-  onEnter: () => {
-    animation.play();
-      videoSteps.forEach(video => {
-        if (video.classList.contains('play')) {
-          video.classList.remove('play');
-          video.pause();
-          video.currentTime = 0;
-        }
-      });
-  },
-  onLeaveBack: () => {
-    animation.reverse();
-      if (videoSteps[3].classList.contains('play')) {
-        videoSteps[3].classList.add('play');
-        videoSteps[3].play();
-        videoSteps[3].playbackRate = 2;
-      }
-  },
-  ease: "power1.in"
-});
-    
+const animations = {
+  eye01: gsap.to(".eye-01", {// мой код ....
+  }),
+  eye02: gsap.to(".eye-02", {// мой код ....
+  }),
+  eye03: gsap.to(".eye-03", {// мой код ....
+  }),
 
   
-} // == end isMobile -----------
+  hair: gsap.to(".hair", {// мой код ....
+  }),
+  tlGirlYougaCircle: // мой код ....
+
+  tlStars: // мой код ....,
+  girlPuzzleHair:  // мой код ....,
+};
+
+const observerOptions = {
+  root: null, // Означает область просмотра
+  rootMargin: "0px",
+  threshold: 0.1 // Процент видимости элемента для запуска анимации
+};
+
+// Функция для запуска и остановки анимаций
+const observer = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animations.eye01.play();
+      animations.eye02.play();
+      animations.eye03.play();
+      animations.hair.play();
+      animations.tlGirlYougaCircle.play();
+      animations.tlStars.play();
+      animations.girlPuzzleHair.play();
+      animations.mainTimeline.play();
+    } else {
+      animations.eye01.pause();
+      animations.eye02.pause();
+      animations.eye03.pause();
+      animations.hair.pause();
+      animations.tlGirlYougaCircle.pause();
+      animations.tlStars.pause();
+      animations.girlPuzzleHair.pause();
+      animations.mainTimeline.pause();
+    }
+  });
+}, observerOptions);
+
+const elements = document.querySelectorAll(".eye-01, .eye-02, .eye-03, .hair, .girl-youga__circle-01, .girl-youga__circle-02, .girl-youga__circle-03, .girl-youga__line, .girl-analys__stars path, .girl-puzzle__hair, .girl-puzzle__lines path");
+elements.forEach(el => observer.observe(el));
+
+
+
+
+
+if (animHandEye) {
+  gsap.to(".eye-01", {
+   duration: 0.9,
+   repeat: -1,
+   yoyo: true,
+   keyframes: [
+     { attr: { d: "M188 124C188 159.677 203.355 166 225.935 166" }, ease: "power4.InOut", time: 0 },
+     { attr: { d: "M188 124C203.5 146 205.5 148.5 225.935 166" }, ease: "power4.InOut", time: 0.15 },
+     { attr: { d: "M188 124C188 159.677 203.355 166 225.935 166" }, ease: "power4.InOut", time: 0.25 },
+   ]
+ }),
+ gsap.to(".eye-02", {
+   duration: 0.9,
+   repeat: -1,
+   yoyo: true,
+   keyframes: [
+     { attr: { d: "M188 124C220.363 130.374 229.36 139.13 225.935 165.548" }, ease: "power4.InOut", time: 0 },
+     { attr: { d: "M188 124C207.5 145.5 211 148.5 225.935 165.548" }, ease: "power4.InOut", time: 0.15 },
+     { attr: { d: "M188 124C220.363 130.374 229.36 139.13 225.935 165.548" }, ease: "power4.InOut", time: 0.25 },
+   ]
+ }),
+ gsap.to(".eye-03", {
+   duration: 0.9,
+   repeat: -1,
+   yoyo: true,
+   keyframes: [
+     { attr: { cx: 209.538, cy: 147.107, rx: 9.95618, ry: 5.41558 }, ease: "power4.InOut", time: 0 },
+     { attr: { cx: 208.108, cy: 148.258, rx: 2.38377, ry: 5.41558 }, ease: "power4.InOut", time: 0.15 },
+     { attr: { cx: 209.538, cy: 147.107, rx: 9.95618, ry: 5.41558}, ease: "power4.InOut", time: 0.25 },
+   ]
+ });
+}

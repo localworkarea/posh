@@ -4,104 +4,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     gsap.registerPlugin(ScrollTrigger)
 
-    // ScrollTrigger.scrollerProxy(".mob-body", {
-    //   scrollTop(value) {
-    //     if (arguments.length) {
-    //       document.querySelector(".mob-body").scrollTop = value;
-    //     }
-    //     return document.querySelector(".mob-body").scrollTop;
-    //   },
-    //   getBoundingClientRect() {
-    //     return {
-    //       top: 0,
-    //       left: 0,
-    //       width: window.innerWidth,
-    //       height: window.innerHeight
-    //     };
-    //   }
-    // });
-    
-    // ScrollTrigger.defaults({
-    //   scroller: ".mob-body"
-    // });
-
-
-    // const retailHero = document.querySelector('.retail__hero');
-    // const MAX_WIDTH_EM = 30.061;
-    // const retailShelfSwipe = document.querySelector('.retail__shelf');
-    // let startY = 0;
-
-    // function emToPx(em) {
-    //     return em * parseFloat(getComputedStyle(document.documentElement).fontSize);
-    // }
-
-    // function handleSwipeStart(event) {
-    //     startY = event.touches[0].clientY;
-    // }
-
-    // function handleSwipeEnd(event) {
-    //     const endY = event.changedTouches[0].clientY;
-    //     const deltaY = endY - startY;
-
-    //     if (deltaY < 0) { // Swipe down
-    //       document.body.classList.add('swipe-down');
-    //       document.body.classList.remove('_page-top');
-    //     } 
-    //     else if (deltaY > 0) {
-    //       document.body.classList.remove('swipe-down');
-    //       document.body.classList.add('_page-top');
-    //     }
-
-    // }
-    
-    // function handleSwipeEndOnShelf(event) {
-    //   const endY = event.changedTouches[0].clientY;
-    //   const deltaY = endY - startY;
-
-    //   if (window.scrollY === 0 && deltaY > 0) { // Swipe down on retailShelfSwipe at top of the page
-    //       document.body.classList.remove('swipe-down');
-    //       document.body.classList.add('_page-top');
-    //   }
-    // }
-
-    // function checkInitialScrollPosition() {
-    //     if (window.innerWidth < emToPx(MAX_WIDTH_EM)) {
-    //       document.body.classList.add('_mobile');
-    //       if (window.scrollY === 0) {
-    //         document.body.classList.add('_page-top');
-    //         document.body.classList.remove('swipe-down');
-    //       } else {
-    //         document.body.classList.remove('_page-top');
-    //       }
-    //   } else {
-    //     document.body.classList.remove('_mobile');
-    //     retailHero.removeEventListener('touchstart', handleSwipeStart);
-    //     retailHero.removeEventListener('touchend', handleSwipeEnd);
-    //     retailShelfSwipe.removeEventListener('touchstart', handleSwipeStart);
-    //     retailShelfSwipe.removeEventListener('touchend', handleSwipeEndOnShelf);
-    //   }
-    // }
-
-
-    // function handleResize() {
-    //     checkInitialScrollPosition();
-    // }
-
-    // retailHero.addEventListener('touchstart', handleSwipeStart);
-    // retailHero.addEventListener('touchend', handleSwipeEnd);
-    // retailShelfSwipe.addEventListener('touchstart', handleSwipeStart);
-    // retailShelfSwipe.addEventListener('touchend', handleSwipeEndOnShelf);
-    // window.addEventListener('scroll', checkInitialScrollPosition);
-    // window.addEventListener('resize', handleResize);
-
-    // // Initial check
-    // checkInitialScrollPosition();
-
-
-
-
-
-
 
     // const MAX_WIDTH_EM = 30.061;
     // const retailHero = document.querySelector('.retail__hero');
@@ -192,72 +94,70 @@ document.addEventListener("DOMContentLoaded", function() {
     
 
 
-
-
    
 
-    const MAX_WIDTH_EM = 30.061;
-    const retailHero = document.querySelector('.retail__hero');
-    const retailShelfSwipe = document.querySelector('.retail__shelf');
-    const isIOS = /iP(hone|od|ad)/.test(navigator.platform) || (navigator.userAgent.includes("Mac") && "ontouchend" in document);
-    const fontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
-    let startY = 0;
-    
-    function emToPx(em) {
-      return em * fontSize;
-    }
-    
-    function handleSwipeStart(event) {
-        startY = event.touches[0].clientY;
-    
-        if (isIOS) {
-            const scrollElement = event.currentTarget;
-            if (scrollElement.scrollHeight !== scrollElement.clientHeight) {
-                if (scrollElement.scrollTop === 0) {
-                    scrollElement.scrollTop = 1;
-                }
-                if (scrollElement.scrollTop === scrollElement.scrollHeight - scrollElement.clientHeight) {
-                    scrollElement.scrollTop = scrollElement.scrollHeight - scrollElement.clientHeight - 1;
-                }
-            }
-        }
-    }
-    
-    function handleSwipeEnd(event) {
-        const endY = event.changedTouches[0].clientY;
-        const deltaY = endY - startY;
-    
-        if (deltaY < 0 && window.scrollY === 0) { // Swipe up
-            console.log('свайп вверх');
-            retailShelfSwipe.scrollIntoView({ behavior: 'smooth' });
-        } else if (deltaY > 0 && window.scrollY === 0) { // Swipe down
-            console.log('свайп вниз');
-        }
-    }
+    // const MAX_WIDTH_EM = 30.061;
+    // const retailHero = document.querySelector('.retail__hero');
+    // const retailShelfSwipe = document.querySelector('.retail__shelf');
+    // const isIOS = /iP(hone|od|ad)/.test(navigator.platform) || (navigator.userAgent.includes("Mac") && "ontouchend" in document);
+    // const fontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
+    // let startY = 0;
 
-    function checkInitialScrollPosition() {
-      if (window.innerWidth < emToPx(MAX_WIDTH_EM)) {
-        if (window.scrollY === 0) {
-              document.body.classList.add('_mobile');
-          } else {
-            document.body.classList.remove('_mobile');
-          }
-      } else {
-          document.body.classList.remove('_mobile');
-          retailHero.removeEventListener('touchstart', handleSwipeStart);
-          retailHero.removeEventListener('touchend', handleSwipeEnd);
-      }
-    }
+    // function emToPx(em) {
+    //   return em * fontSize;
+    // }
 
-    function handleResize() {
-        checkInitialScrollPosition();
-    }
-    retailHero.addEventListener('touchstart', handleSwipeStart);
-    retailHero.addEventListener('touchend', handleSwipeEnd);
-    window.addEventListener('scroll', checkInitialScrollPosition);
-    window.addEventListener('resize', handleResize);
+    // function handleSwipeStart(event) {
+    //     startY = event.touches[0].clientY;
+    
+    //     if (isIOS) {
+    //         const scrollElement = event.currentTarget;
+    //         if (scrollElement.scrollHeight !== scrollElement.clientHeight) {
+    //             if (scrollElement.scrollTop === 0) {
+    //                 scrollElement.scrollTop = 1;
+    //             }
+    //             if (scrollElement.scrollTop === scrollElement.scrollHeight - scrollElement.clientHeight) {
+    //                 scrollElement.scrollTop = scrollElement.scrollHeight - scrollElement.clientHeight - 1;
+    //             }
+    //         }
+    //     }
+    // }
 
-    checkInitialScrollPosition();
+    // function handleSwipeEnd(event) {
+    //     const endY = event.changedTouches[0].clientY;
+    //     const deltaY = endY - startY;
+    
+    //     if (deltaY < 0 && window.scrollY === 0) { // Swipe up
+    //         console.log('свайп вверх');
+    //         retailShelfSwipe.scrollIntoView({ behavior: 'smooth' });
+    //     } else if (deltaY > 0 && window.scrollY === 0) { // Swipe down
+    //         console.log('свайп вниз');
+    //     }
+    // }
+
+    // function checkInitialScrollPosition() {
+    //   if (window.innerWidth < emToPx(MAX_WIDTH_EM)) {
+    //     if (window.scrollY === 0) {
+    //           document.body.classList.add('_mobile');
+    //       } else {
+    //         document.body.classList.remove('_mobile');
+    //       }
+    //   } else {
+    //       document.body.classList.remove('_mobile');
+    //       retailHero.removeEventListener('touchstart', handleSwipeStart);
+    //       retailHero.removeEventListener('touchend', handleSwipeEnd);
+    //   }
+    // }
+
+    // function handleResize() {
+    //     checkInitialScrollPosition();
+    // }
+    // retailHero.addEventListener('touchstart', handleSwipeStart);
+    // retailHero.addEventListener('touchend', handleSwipeEnd);
+    // window.addEventListener('scroll', checkInitialScrollPosition);
+    // window.addEventListener('resize', handleResize);
+
+    // checkInitialScrollPosition();
 
   
 
@@ -318,8 +218,9 @@ document.addEventListener("DOMContentLoaded", function() {
     const stepsRetail01 = document.querySelector(".steps-retail-01");
     const stepsRetail02 = document.querySelector(".steps-retail-02");
     const stepsRetail03 = document.querySelector(".steps-retail-03");
- 
-      let breakPoint = 40.686;
+
+
+    let breakPoint = 40.686;
       let mm = gsap.matchMedia();
       let scrollDuration = window.innerHeight * 2;
 
@@ -610,6 +511,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 });
               }
             },
+            
           });
           
           
@@ -677,10 +579,10 @@ document.addEventListener("DOMContentLoaded", function() {
             ease: 'none',
             scrollTrigger: {
               trigger: retailShelf,
-              start: "center center",
+              start: "top top",
               end: "+=200%",
               pin: true,
-              scrub: 0.1,
+              scrub: true,
             }
           });
           
@@ -737,7 +639,7 @@ document.addEventListener("DOMContentLoaded", function() {
               end: "center center",
               scrub: 0.2,
               pin: true,
-              pinSpacing: true,
+              // pinSpacing: true,
             }
           });
 
@@ -753,29 +655,30 @@ document.addEventListener("DOMContentLoaded", function() {
             ]
           });
 
-          // const progressMarker = document.querySelector('.progress-marker');
-          const linesMob = [lineMob01, lineMob02, lineMob03, lineMob04, lineMob05];
-          linesMob.forEach(line => {
-            const length = line.getTotalLength();
-            line.style.strokeDasharray = length;
-            line.style.strokeDashoffset = length;
-          });
-          const animateLine = (line, progress, start, end) => {
-            const length = line.getTotalLength();
-            const midProgress = (end - start) / 5 + start;
+          const progressMarker = document.querySelector('.progress-marker');
+          // const linesMob = [lineMob01, lineMob02, lineMob03, lineMob04, lineMob05];
+          // linesMob.forEach(line => {
+          //   const length = line.getTotalLength();
+          //   line.style.strokeDasharray = length;
+          //   line.style.strokeDashoffset = length;
+          // });
+          // const animateLine = (line, progress, start, end) => {
+          //   const length = line.getTotalLength();
+          //   const midProgress = (end - start) / 5 + start;
             
-            if (progress < start) {
-              gsap.to(line, { strokeDashoffset: length, overwrite: true });
-            } else if (progress < midProgress) {
-              const lineProgress = (progress - start) / (midProgress - start);
-              gsap.to(line, { strokeDashoffset: (1 - lineProgress) * length, overwrite: true });
-            } else if (progress < end) {
-              const lineProgress = (progress - midProgress) / (end - midProgress);
-              gsap.to(line, { strokeDashoffset: -lineProgress * length, overwrite: true });
-            } else {
-              gsap.to(line, { strokeDashoffset: -length, overwrite: true });
-            }
-          };
+          //   if (progress < start) {
+          //     gsap.to(line, { strokeDashoffset: length, overwrite: true });
+          //   } else if (progress < midProgress) {
+          //     const lineProgress = (progress - start) / (midProgress - start);
+          //     gsap.to(line, { strokeDashoffset: (1 - lineProgress) * length, overwrite: true });
+          //   } else if (progress < end) {
+          //     const lineProgress = (progress - midProgress) / (end - midProgress);
+          //     gsap.to(line, { strokeDashoffset: -lineProgress * length, overwrite: true });
+          //   } else {
+          //     gsap.to(line, { strokeDashoffset: -length, overwrite: true });
+          //   }
+          // };
+         
           ScrollTrigger.create({
             trigger: designCookie,
             start: "center center",
@@ -784,15 +687,53 @@ document.addEventListener("DOMContentLoaded", function() {
             scrub: true,
             onUpdate: self => {
               const progress = self.progress * 100;
-              // progressMarker.textContent = `${progress.toFixed(1)}%`;
+              progressMarker.textContent = `${progress.toFixed(1)}%`;
           
-              animateLine(lineMob01, progress, 0, 26);
-              animateLine(lineMob02, progress, 26, 43);
-              animateLine(lineMob03, progress, 43, 45);
-              animateLine(lineMob04, progress, 54, 78);
-              animateLine(lineMob05, progress, 83, 100);
+              // animateLine(lineMob01, progress, 0, 26);
+              // animateLine(lineMob02, progress, 26, 43);
+              // animateLine(lineMob03, progress, 43, 45);
+              // animateLine(lineMob04, progress, 54, 78);
+              // animateLine(lineMob05, progress, 83, 100);
             }
           });
+
+
+          const length = lineMob01.getTotalLength();
+
+          gsap.set(lineMob01, { strokeDasharray: length, strokeDashoffset: length });
+
+          ScrollTrigger.create({
+            trigger: designCookie,
+            start: "center center",
+            endTrigger: designBoxes,
+            end: "center center",
+            scrub: true,
+            onUpdate: self => {
+              const progress = self.progress;
+          
+              let offset;
+              // Рассчитываем значение strokeDashoffset в зависимости от progress
+              if (progress <= 0.27) {
+                offset = gsap.utils.interpolate(length, 0, progress / 0.1);
+              } else if (progress <= 0.27) {
+                const eraseProgress = (progress - 0.1) / 0.9;
+                offset = gsap.utils.interpolate(0, -length, eraseProgress);
+              } else {
+                // После 27% фиксируем offset на -length
+                offset = -length;
+              }
+          
+              // Ограничиваем значение offset до -length
+              if (offset < -length) {
+                offset = -length;
+              }
+              gsap.set(lineMob01, { strokeDashoffset: offset });
+          
+              // Отладочный вывод
+              console.log(`Progress: ${progress}, Offset: ${offset}`);
+            }
+          });
+         
 
             const timeline = gsap.timeline({
               scrollTrigger: {
@@ -800,7 +741,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 start: `center center`,
                 end: `+=${scrollDuration * 2}`,
                 pin: true,
-                pinSpacing: true,
+                // pinSpacing: true,
                 scrub: true,
               }
             });
@@ -998,57 +939,60 @@ document.addEventListener("DOMContentLoaded", function() {
         initializeSimpleBar();
       });
       
-
-  
-    if (animHandEye) {
+      // == EYE =====================
+      
+      
+      
+      if (animHandEye) {
       gsap.set(".eye-01, .eye-02, .eye-03", { transformOrigin: "center center" });
-      gsap.to(".eye-01", {
-        duration: 0.9,
-        // repeatDelay: 1,
+      const eyeAnimation  = gsap.timeline({
+        paused: true,
         repeat: -1,
         yoyo: true,
-        keyframes: [
-          { 
-            attr: { d: "M188 124C188 159.677 203.355 166 225.935 166" }, 
-            ease: "power4.InOut", 
-            time: 0 
-          },
-          { 
-            attr: { d: "M188 124C203.5 146 205.5 148.5 225.935 166" }, 
-            ease: "power4.InOut", 
-            time: 0.15 
-          },
-          { 
-            attr: { d: "M188 124C188 159.677 203.355 166 225.935 166" }, 
-            ease: "power4.InOut", 
-            time: 0.25 
-          },
-        ]
       });
-      gsap.to(".eye-02", {
+      eyeAnimation .to(".eye-01", {
         duration: 0.9,
-        // repeatDelay: 1,
-        repeat: -1,
-        yoyo: true,
+        keyframes: [
+          { attr: { d: "M188 124C188 159.677 203.355 166 225.935 166" }, ease: "power4.InOut", time: 0 },
+          { attr: { d: "M188 124C203.5 146 205.5 148.5 225.935 166" }, ease: "power4.InOut", time: 0.15 },
+          { attr: { d: "M188 124C188 159.677 203.355 166 225.935 166" }, ease: "power4.InOut", time: 0.25 },
+        ]
+      }),
+      eyeAnimation .to(".eye-02", {
+        duration: 0.9,
         keyframes: [
           { attr: { d: "M188 124C220.363 130.374 229.36 139.13 225.935 165.548" }, ease: "power4.InOut", time: 0 },
           { attr: { d: "M188 124C207.5 145.5 211 148.5 225.935 165.548" }, ease: "power4.InOut", time: 0.15 },
           { attr: { d: "M188 124C220.363 130.374 229.36 139.13 225.935 165.548" }, ease: "power4.InOut", time: 0.25 },
         ]
-      });
-      gsap.to(".eye-03", {
+      }, 0),
+      eyeAnimation .to(".eye-03", {
         duration: 0.9,
-        // repeatDelay: 1,
-        repeat: -1,
-        yoyo: true,
         keyframes: [
           { attr: { cx: 209.538, cy: 147.107, rx: 9.95618, ry: 5.41558 }, ease: "power4.InOut", time: 0 },
           { attr: { cx: 208.108, cy: 148.258, rx: 2.38377, ry: 5.41558 }, ease: "power4.InOut", time: 0.15 },
           { attr: { cx: 209.538, cy: 147.107, rx: 9.95618, ry: 5.41558}, ease: "power4.InOut", time: 0.25 },
         ]
+      }, 0);
+      ScrollTrigger.create({
+        trigger: animHandEye,
+        start: "top 80%",
+        end: "bottom 20%",
+        onEnter: () => {
+          eyeAnimation.play(); 
+        },
+        onEnterBack: () => {
+          eyeAnimation.play();
+        },
+        onLeave: () => {
+          eyeAnimation.pause(); 
+        },
+        onLeaveBack: () => {
+          eyeAnimation.pause();
+        },
       });
     }
-    
+
     if (animGirlYouga) {
       // .hair ==============================================
       gsap.to(".hair", {
@@ -1075,7 +1019,7 @@ document.addEventListener("DOMContentLoaded", function() {
           },
         ]
       });
-  
+ 
       // .girl-youga__circle ===================
       const animationSettings = {
         duration: 2,
@@ -1135,6 +1079,23 @@ document.addEventListener("DOMContentLoaded", function() {
           }, 
           index * 0.1 // Добавляем небольшую задержку между каждой звездочкой
         ); 
+      });
+      ScrollTrigger.create({
+        trigger: girlStars,
+        start: "top 80%",
+        end: "bottom 20%",
+        onEnter: () => {
+          tlStars.play(); 
+        },
+        onEnterBack: () => {
+          tlStars.play();
+        },
+        onLeave: () => {
+          tlStars.pause(); 
+        },
+        onLeaveBack: () => {
+          tlStars.pause();
+        },
       });
     }
   

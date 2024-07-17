@@ -4143,10 +4143,6 @@ body {
   background-size: contain;
 }
 
-._mobile {
-  overflow: hidden;
-}
-
 .retail {
   padding-bottom: 3.125rem;
 }
@@ -5427,6 +5423,38 @@ body {
   width: 100%;
 }
 
+.steps-pin._watcher-view .girl-youga,
+.steps-pin._watcher-view .hand-emotions__hand {
+  -webkit-animation: floating 4s infinite forwards;
+          animation: floating 4s infinite forwards;
+}
+
+.steps-pin._watcher-view .girl-youga__star-01,
+.steps-pin._watcher-view .girl-youga__star-02,
+.steps-pin._watcher-view .girl-youga__star-03 {
+  -webkit-animation: stars 3s infinite forwards;
+          animation: stars 3s infinite forwards;
+}
+
+.steps-pin._watcher-view .hair-rotation-01 {
+  -webkit-animation: rotation 4s linear infinite normal;
+          animation: rotation 4s linear infinite normal;
+}
+
+.steps-pin._watcher-view .hair-rotation-02 {
+  animation: rotation 4s linear infinite reverse;
+}
+
+.steps-pin._watcher-view .hand-emotions__star {
+  -webkit-animation: scaleSteps 0.9s steps(3) infinite;
+          animation: scaleSteps 0.9s steps(3) infinite;
+}
+
+.steps-pin._watcher-view .girl-analys__cirle {
+  -webkit-animation: rotation 3s linear infinite;
+          animation: rotation 3s linear infinite;
+}
+
 .steps__anim-wr .girl-youga__star-01,
 .steps__anim-wr .girl-youga__star-02,
 .steps__anim-wr .girl-youga__star-03,
@@ -5574,19 +5602,6 @@ body {
   transition: transform 0.55s cubic-bezier(0.17, 1.53, 0.37, 0.97) 0.6s, opacity 0.3s ease 0.6s, -webkit-transform 0.55s cubic-bezier(0.17, 1.53, 0.37, 0.97) 0.6s;
 }
 
-.steps__anim-wr .girl-youga,
-.steps__anim-wr .hand-emotions__hand {
-  -webkit-animation: floating 4s infinite forwards;
-          animation: floating 4s infinite forwards;
-}
-
-.steps__anim-wr .girl-youga__star-01,
-.steps__anim-wr .girl-youga__star-02,
-.steps__anim-wr .girl-youga__star-03 {
-  -webkit-animation: stars 3s infinite forwards;
-          animation: stars 3s infinite forwards;
-}
-
 .steps__anim-wr .girl-youga__star-02 {
   -webkit-animation-delay: 0.4s;
           animation-delay: 0.4s;
@@ -5597,15 +5612,6 @@ body {
           animation-delay: 0.8s;
 }
 
-.steps__anim-wr .hair-rotation-01 {
-  -webkit-animation: rotation 4s linear infinite normal;
-          animation: rotation 4s linear infinite normal;
-}
-
-.steps__anim-wr .hair-rotation-02 {
-  animation: rotation 4s linear infinite reverse;
-}
-
 .steps__anim-wr .hand-emotions__hand-02 {
   opacity: 0;
   -webkit-transition: opacity 0.2s ease, -webkit-transform 0.65s ease;
@@ -5614,16 +5620,6 @@ body {
   transition: transform 0.65s ease, opacity 0.2s ease, -webkit-transform 0.65s ease;
   -webkit-transition-delay: 0.3s;
           transition-delay: 0.3s;
-}
-
-.steps__anim-wr .hand-emotions__star {
-  -webkit-animation: scaleSteps 0.9s steps(3) infinite;
-          animation: scaleSteps 0.9s steps(3) infinite;
-}
-
-.steps__anim-wr .girl-analys__cirle {
-  -webkit-animation: rotation 3s linear infinite;
-          animation: rotation 3s linear infinite;
 }
 
 .steps__anim-wr svg {
@@ -5805,6 +5801,18 @@ body {
 }
 
 /* КОНЕЦ */
+
+.progress-marker {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  z-index: 1000;
+  font-family: Arial, sans-serif;
+}
 
 .swiper {
   overflow: hidden;
@@ -12110,6 +12118,7 @@ body {
         -ms-flex-pack: justify;
             justify-content: space-between;
     row-gap: 5.9375rem;
+    padding-bottom: 3.125rem;
   }
 
   .retail__title {
@@ -12117,7 +12126,6 @@ body {
   }
 
   .retail__btn {
-    margin-bottom: 3.125rem;
     opacity: 0;
     -webkit-transition: opacity 0.45s ease;
     transition: opacity 0.45s ease;

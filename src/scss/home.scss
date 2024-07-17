@@ -3967,7 +3967,7 @@ background-color: $mainWhite;
 
 
 ._mobile {
-  overflow: hidden;
+  // overflow: hidden;
 }
 
 
@@ -4010,6 +4010,7 @@ background-color: $mainWhite;
       flex-direction: column;
       justify-content: space-between;
       row-gap: toRem(95);
+      padding-bottom: toRem(50);
       
       // transition: transform 0.7s cubic-bezier(0.55, 0.085, 0, 0.99) 0s;
       // transform: translate(0,-100%);
@@ -4083,7 +4084,7 @@ background-color: $mainWhite;
        display: none; 
     }
     @media (max-width:$mobileSmall){
-        margin-bottom: toRem(50);
+        // margin-bottom: toRem(50);
         opacity: 0;
         transition: opacity .45s ease;
         .loaded & {
@@ -5520,6 +5521,30 @@ background-color: $mainWhite;
   @media (min-width:em(650.98)){
     bottom: 36%;
   }
+  &._watcher-view {
+    .girl-youga,
+    .hand-emotions__hand {
+      animation: floating 4s infinite forwards;
+    }
+    .girl-youga__star-01,
+    .girl-youga__star-02,
+    .girl-youga__star-03 {
+      animation: stars 3s infinite forwards;
+    }
+    .hair-rotation-01  {
+      animation: rotation 4s linear infinite normal;
+    }
+    .hair-rotation-02 {
+      animation: rotation 4s linear infinite reverse;
+    }
+    .hand-emotions__star {
+      animation: scaleSteps .9s steps(3) infinite;
+    }
+
+    .girl-analys__cirle {
+      animation: rotation 3s linear infinite;
+    }
+  }
 }
 
 %forAnimBoxOrigin {
@@ -5749,7 +5774,7 @@ background-color: $mainWhite;
     
     .girl-youga,
     .hand-emotions__hand {
-      animation: floating 4s infinite forwards;
+      // animation: floating 4s infinite forwards;
     }
     .girl-youga__star-01,
     .girl-youga__star-02,
@@ -5764,7 +5789,7 @@ background-color: $mainWhite;
     .girl-youga__star-01,
     .girl-youga__star-02,
     .girl-youga__star-03 {
-      animation: stars 3s infinite forwards;
+      // animation: stars 3s infinite forwards;
     }
     .girl-youga__star-02 {
       animation-delay: .4s;
@@ -5773,10 +5798,10 @@ background-color: $mainWhite;
       animation-delay: .8s;
     }
     .hair-rotation-01  {
-      animation: rotation 4s linear infinite normal;
+      // animation: rotation 4s linear infinite normal;
     }
     .hair-rotation-02 {
-      animation: rotation 4s linear infinite reverse;
+      // animation: rotation 4s linear infinite reverse;
     }
 
     .hand-emotions__hand-02 {
@@ -5792,11 +5817,11 @@ background-color: $mainWhite;
       }
     }
     .hand-emotions__star {
-      animation: scaleSteps .9s steps(3) infinite;
+      // animation: scaleSteps .9s steps(3) infinite;
     }
 
     .girl-analys__cirle {
-      animation: rotation 3s linear infinite;
+      // animation: rotation 3s linear infinite;
     }
     svg {
       position: relative;
@@ -6033,15 +6058,15 @@ background-color: $mainWhite;
 // }
 
 
-// .progress-marker {
-//   position: fixed;
-//   top: 10px;
-//   left: 10px;
-//   background-color: rgba(0, 0, 0, 0.7);
-//   color: white;
-//   padding: 5px 10px;
-//   border-radius: 5px;
-//   z-index: 1000;
-//   font-family: Arial, sans-serif;
-// }
+.progress-marker {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  z-index: 1000;
+  font-family: Arial, sans-serif;
+}
 
