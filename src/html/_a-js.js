@@ -3,6 +3,165 @@ document.addEventListener("DOMContentLoaded", function() {
   if (typeof gsap !== 'undefined') {
 
     gsap.registerPlugin(ScrollTrigger)
+
+
+    // const MAX_WIDTH_EM = 30.061;
+    // const retailHero = document.querySelector('.retail__hero');
+    // const retailShelfSwipe = document.querySelector('.retail__shelf');
+    // let startY = 0;
+    
+    // function emToPx(em) {
+    //     return em * parseFloat(getComputedStyle(document.documentElement).fontSize);
+    // }
+    
+    // function isIOS() {
+    //     return /iP(hone|od|ad)/.test(navigator.platform) ||
+    //            (navigator.userAgent.includes("Mac") && "ontouchend" in document);
+    // }
+    
+    // function handleSwipeStart(event) {
+    //     startY = event.touches[0].clientY;
+    
+    //     if (isIOS()) {
+    //         const scrollElement = event.currentTarget;
+    //         if (scrollElement.scrollHeight !== scrollElement.clientHeight) {
+    //             if (scrollElement.scrollTop === 0) {
+    //                 scrollElement.scrollTop = 1;
+    //             }
+    //             if (scrollElement.scrollTop === scrollElement.scrollHeight - scrollElement.clientHeight) {
+    //                 scrollElement.scrollTop = scrollElement.scrollHeight - scrollElement.clientHeight - 1;
+    //             }
+    //         }
+    //     }
+    // }
+    
+    // function handleSwipeEnd(event) {
+    //     const endY = event.changedTouches[0].clientY;
+    //     const deltaY = endY - startY;
+    
+    //     if (deltaY < 0) { // Swipe down
+    //       setTimeout(() => {
+    //           document.body.classList.add('swipe-down');
+    //           document.body.classList.remove('_page-top');
+    //       }, 100);
+    //     } else if (deltaY > 0) {
+    //         document.body.classList.remove('swipe-down');
+    //         document.body.classList.add('_page-top');
+    //     }
+    // }
+    
+    // function handleSwipeEndOnShelf(event) {
+    //     const endY = event.changedTouches[0].clientY;
+    //     const deltaY = endY - startY;
+    
+    //     if (window.scrollY === 0 && deltaY > 0) { // Swipe down on retailShelfSwipe at top of the page
+    //         document.body.classList.remove('swipe-down');
+    //         document.body.classList.add('_page-top');
+    //     }
+    // }
+    
+    // function checkInitialScrollPosition() {
+    //     if (window.innerWidth < emToPx(MAX_WIDTH_EM)) {
+    //         document.body.classList.add('_mobile');
+    //         if (window.scrollY === 0) {
+    //             document.body.classList.add('_page-top');
+    //             document.body.classList.remove('swipe-down');
+    //         } else {
+    //             // document.body.classList.remove('_page-top');
+    //         }
+    //     } else {
+    //         document.body.classList.remove('_mobile');
+    //         retailHero.removeEventListener('touchstart', handleSwipeStart);
+    //         retailHero.removeEventListener('touchend', handleSwipeEnd);
+    //         retailShelfSwipe.removeEventListener('touchstart', handleSwipeStart);
+    //         retailShelfSwipe.removeEventListener('touchend', handleSwipeEndOnShelf);
+    //     }
+    // }
+    
+    // function handleResize() {
+    //     checkInitialScrollPosition();
+    // }
+    
+    // retailHero.addEventListener('touchstart', handleSwipeStart);
+    // retailHero.addEventListener('touchend', handleSwipeEnd);
+    // retailShelfSwipe.addEventListener('touchstart', handleSwipeStart);
+    // retailShelfSwipe.addEventListener('touchend', handleSwipeEndOnShelf);
+    // window.addEventListener('scroll', checkInitialScrollPosition);
+    // window.addEventListener('resize', handleResize);
+    
+    // // Initial check
+    // checkInitialScrollPosition();
+    
+
+
+   
+
+    // const MAX_WIDTH_EM = 30.061;
+    // const retailHero = document.querySelector('.retail__hero');
+    // const retailShelfSwipe = document.querySelector('.retail__shelf');
+    // const isIOS = /iP(hone|od|ad)/.test(navigator.platform) || (navigator.userAgent.includes("Mac") && "ontouchend" in document);
+    // const fontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
+    // let startY = 0;
+
+    // function emToPx(em) {
+    //   return em * fontSize;
+    // }
+
+    // function handleSwipeStart(event) {
+    //     startY = event.touches[0].clientY;
+    
+    //     if (isIOS) {
+    //         const scrollElement = event.currentTarget;
+    //         if (scrollElement.scrollHeight !== scrollElement.clientHeight) {
+    //             if (scrollElement.scrollTop === 0) {
+    //                 scrollElement.scrollTop = 1;
+    //             }
+    //             if (scrollElement.scrollTop === scrollElement.scrollHeight - scrollElement.clientHeight) {
+    //                 scrollElement.scrollTop = scrollElement.scrollHeight - scrollElement.clientHeight - 1;
+    //             }
+    //         }
+    //     }
+    // }
+
+    // function handleSwipeEnd(event) {
+    //     const endY = event.changedTouches[0].clientY;
+    //     const deltaY = endY - startY;
+    
+    //     if (deltaY < 0 && window.scrollY === 0) { // Swipe up
+    //         console.log('свайп вверх');
+    //         retailShelfSwipe.scrollIntoView({ behavior: 'smooth' });
+    //     } else if (deltaY > 0 && window.scrollY === 0) { // Swipe down
+    //         console.log('свайп вниз');
+    //     }
+    // }
+
+    // function checkInitialScrollPosition() {
+    //   if (window.innerWidth < emToPx(MAX_WIDTH_EM)) {
+    //     if (window.scrollY === 0) {
+    //           document.body.classList.add('_mobile');
+    //       } else {
+    //         document.body.classList.remove('_mobile');
+    //       }
+    //   } else {
+    //       document.body.classList.remove('_mobile');
+    //       retailHero.removeEventListener('touchstart', handleSwipeStart);
+    //       retailHero.removeEventListener('touchend', handleSwipeEnd);
+    //   }
+    // }
+
+    // function handleResize() {
+    //     checkInitialScrollPosition();
+    // }
+    // retailHero.addEventListener('touchstart', handleSwipeStart);
+    // retailHero.addEventListener('touchend', handleSwipeEnd);
+    // window.addEventListener('scroll', checkInitialScrollPosition);
+    // window.addEventListener('resize', handleResize);
+
+    // checkInitialScrollPosition();
+
+  
+
+
     
     const animHandEye = document.querySelector('.hand-eye');
     const animGirlYouga = document.querySelector('.girl-youga');
@@ -21,7 +180,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const lineMob05 = document.querySelector('.line-mob-05');
    
     const retailSteps = document.querySelector('.retail__steps');
-    const retailShelf = document.querySelector('.retail__shelf');
+    const retailShelf = document.querySelector('.shelf');
+    const shelfCards = document.querySelector('.shelf__cards');
     const shelfCard = document.querySelectorAll('.shelf__card');
 
     const designCookie = document.querySelector('.design__cookie');
@@ -409,18 +569,29 @@ document.addEventListener("DOMContentLoaded", function() {
       
         if (isMobile) {
 
-          let scrollTween = gsap.to('.shelf__cards', {
-            xPercent: -50 * (shelfCard.length - 1),
-            ease: 'none',
+                  // ScrollTrigger.normalizeScroll(true);
+        // ScrollTrigger.config ({ ignoreMobileResize : true } ) ; 
+
+          const totalWidth = shelfCards.scrollWidth - retailShelf.offsetWidth;
+          gsap.to(shelfCards, {
+            x: -totalWidth,
+            ease: "none",
             scrollTrigger: {
               trigger: retailShelf,
               start: "top top",
-              end: "+=200%",
+              end: "+=100%",
               pin: true,
-              scrub: true,
+              scrub: 0.1,
+              // onUpdate: self => {
+              //   const progress = self.progress;
+              //   console.log(`Progress: ${progress}`);
+              // }
             }
           });
+  
           
+
+   
           ScrollTrigger.create({
             trigger: stepsRetail01,
             start: "center center",
@@ -488,6 +659,31 @@ document.addEventListener("DOMContentLoaded", function() {
               { rotation: 720, xPercent: -12, duration: 0.16, ease: "none" }
             ]
           });
+
+          const progressMarker = document.querySelector('.progress-marker');
+
+          // const length = lineMob01.getTotalLength();
+          // gsap.set(lineMob01, { strokeDasharray: length, strokeDashoffset: length });
+
+          // ScrollTrigger.create({
+          //   trigger: designCookie,
+          //   start: "center center",
+          //   endTrigger: designBoxes,
+          //   end: "center center",
+          //   scrub: true,
+          //   onUpdate: self => {
+          //     const progress = self.progress;
+          //     // progressMarker.textContent = `${progress.toFixed(1)}%`;
+              
+          //     let offset;
+          //     if (progress <= 0.1) {
+          //       offset = gsap.utils.interpolate(length, 0, progress / 0.1);
+          //     }
+          //     gsap.set(lineMob01, { strokeDashoffset: offset });
+          
+          //   }
+          // });
+
 
           const lengths = [
             lineMob01.getTotalLength(),
@@ -710,37 +906,36 @@ document.addEventListener("DOMContentLoaded", function() {
           },
           ease: "power1.in"
         });
-            
-        
+
           
         } // == end isMobile -----------
 
       });
 
-      function initializeSimpleBar() {
-        if (window.innerWidth < 480.98) {
-          if (document.querySelectorAll('.steps__about').length) {
-            document.querySelectorAll('.steps__about').forEach(scrollBlock => {
-              new SimpleBar(scrollBlock, {
-                autoHide: false,
-              });
-            });
-          }
-        }
-      }
+      // function initializeSimpleBar() {
+      //   if (window.innerWidth < 480.98) {
+      //     if (document.querySelectorAll('.steps__about').length) {
+      //       document.querySelectorAll('.steps__about').forEach(scrollBlock => {
+      //         new SimpleBar(scrollBlock, {
+      //           autoHide: false,
+      //         });
+      //       });
+      //     }
+      //   }
+      // }
+      // initializeSimpleBar();
       
-      window.addEventListener('resize', () => {
-        ScrollTrigger.refresh();
-        initializeSimpleBar();
-      });
+      // window.addEventListener('resize', () => {
+        // ScrollTrigger.refresh();
+        // initializeSimpleBar();
+      // });
     
       window.addEventListener('orientationchange', () => {
-        ScrollTrigger.refresh();
-        initializeSimpleBar();
+        // ScrollTrigger.refresh();
+        // initializeSimpleBar();
       });
 
-      ScrollTrigger.refresh();
-      initializeSimpleBar();
+      // ScrollTrigger.refresh();
       
       
       
@@ -1184,5 +1379,106 @@ function changeOrientation() {
 }
 window.addEventListener('orientationchange', changeOrientation);
 
+
+
+
+
+
+
+const retailShelf = document.querySelector('.retail__shelf');
+const shelfCards = document.querySelector('.shelf__cards');
+const shelfBlocks = document.querySelector('.shelf__blocks');
+
+gsap.to(shelfCards, {
+  xPercent: -100 * (shelfCards.children.length - 1),
+  ease: "none",
+  scrollTrigger: {
+    trigger: retailShelf,
+    id: "shelf",
+    start: "top top",
+    end: () => `+=${retailShelf.offsetHeight}`,
+    pin: true,
+    scrub: true,
+    onUpdate: (self) => {
+      const progress = self.progress;
+      const maxScroll = shelfCards.scrollWidth - shelfBlocks.clientWidth;
+      shelfCards.style.transform = `translateX(-${progress * maxScroll}px)`;
+    }
+  }
+});
+
+// Горизонтальный свайп
+let isDragging = false;
+let startX;
+let scrollLeft;
+let isScrolling = false;
+let currentScrollPosition = window.scrollY;
+
+shelfCards.addEventListener('mousedown', (e) => {
+  isDragging = true;
+  startX = e.pageX - shelfCards.offsetLeft;
+  scrollLeft = shelfCards.scrollLeft;
+  isScrolling = true;
+  currentScrollPosition = window.scrollY;
+});
+
+shelfCards.addEventListener('mouseleave', () => {
+  isDragging = false;
+  isScrolling = false;
+});
+
+shelfCards.addEventListener('mouseup', () => {
+  isDragging = false;
+  isScrolling = false;
+});
+
+shelfCards.addEventListener('mousemove', (e) => {
+  if (!isDragging) return;
+  e.preventDefault();
+  const x = e.pageX - shelfCards.offsetLeft;
+  const walk = (x - startX) * 0.5; // скорость скролла
+  shelfCards.scrollLeft = scrollLeft - walk;
+  updateScrollTrigger();
+});
+
+shelfCards.addEventListener('touchstart', (e) => {
+  isDragging = true;
+  startX = e.touches[0].pageX - shelfCards.offsetLeft;
+  scrollLeft = shelfCards.scrollLeft;
+  isScrolling = true;
+  currentScrollPosition = window.scrollY;
+});
+
+shelfCards.addEventListener('touchend', () => {
+  isDragging = false;
+  isScrolling = false;
+});
+
+shelfCards.addEventListener('touchmove', (e) => {
+  if (!isDragging) return;
+  const x = e.touches[0].pageX - shelfCards.offsetLeft;
+  const walk = (x - startX) * 0.5; // скорость скролла
+  shelfCards.scrollLeft = scrollLeft - walk;
+  updateScrollTrigger();
+});
+
+function updateScrollTrigger() {
+  if (!isScrolling) return; // предотвратить прыжки при касании
+  const progress = shelfCards.scrollLeft / (shelfCards.scrollWidth - shelfBlocks.clientWidth);
+  const trigger = ScrollTrigger.getById("shelf");
+  const maxScroll = trigger.end - trigger.start;
+  const adjustedMaxScroll = maxScroll * (shelfCards.scrollWidth - shelfBlocks.clientWidth) / shelfCards.scrollWidth;
+  const scrollPosition = progress * adjustedMaxScroll + trigger.start;
+
+  // Обновляем положение shelfCards
+  gsap.set(shelfCards, { x: -shelfCards.scrollLeft });
+  
+  // Проверяем, чтобы не скроллить дальше правого края
+  if (scrollPosition >= adjustedMaxScroll) {
+    window.scrollTo(0, adjustedMaxScroll);
+  } else {
+    window.scrollTo(0, currentScrollPosition + (scrollPosition - window.scrollY));
+  }
+}
 
 
