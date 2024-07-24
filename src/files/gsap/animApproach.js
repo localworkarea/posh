@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const retailSteps = document.querySelector('.retail__steps');
     const retailShelf = document.querySelector('.shelf');
     const shelfCards = document.querySelector('.shelf__cards');
-    const shelfCard = document.querySelectorAll('.shelf__card');
+    // const shelfCard = document.querySelectorAll('.shelf__card');
 
     const designCookie = document.querySelector('.design__cookie');
     const cookieWrapper = document.querySelector('.cookie-wrapper');
@@ -83,9 +83,10 @@ document.addEventListener("DOMContentLoaded", function() {
           ScrollTrigger.create({
               trigger: retailSteps,
               start: "center center",
-              end: `+=${scrollDuration / 2}`,
+              // end: scrollDuration,
+              end: "+=300%",
               pin: true,
-              pinSpacing: true,
+              // pinSpacing: true,
               scrub: true,
               onUpdate: (self) => {
                   let progress = self.progress;
@@ -116,7 +117,7 @@ document.addEventListener("DOMContentLoaded", function() {
                       stepsRetail02.classList.remove("_active");
                       stepsRetail03.classList.remove("_active");
 
-                  } else if (progress < 0.70) {
+                  } else if (progress < 0.80) {
                       gsap.to(".steps-retail-01", { opacity: 0, duration: 0.3 });
                       gsap.to(".steps-retail-02", { opacity: 1, duration: 0.3 });
                       gsap.to(".steps-retail-03", { opacity: 0, duration: 0.3 });
@@ -182,10 +183,10 @@ document.addEventListener("DOMContentLoaded", function() {
           tl.to(cookieWrapper, {
             keyframes: [
               { rotation: 90, xPercent: 45, duration: 0.15, ease: "none" },
-              { rotation: 180, xPercent: 150, duration: 0.25, ease: "none" },
-              { rotation: 260, xPercent: 150, duration: 0.3, ease: "none" },
-              { rotation: 340, xPercent: 60, duration: 0.20, ease: "none" },
-              { rotation: 360, xPercent: 40, duration: 0.1, ease: "none" }
+              { rotation: 180, xPercent: 210, duration: 0.25, ease: "none" },
+              { rotation: 260, xPercent: 210, duration: 0.3, ease: "none" },
+              { rotation: 340, xPercent: 160, duration: 0.20, ease: "none" },
+              { rotation: 360, xPercent: 143.5, duration: 0.1, ease: "none" }
             ]
           },0);
 
@@ -253,27 +254,44 @@ document.addEventListener("DOMContentLoaded", function() {
               start: `center center`,
               end: `+=${scrollDuration * 2}`,
               pin: true,
-              pinSpacing: true,
+              // pinSpacing: true,
               scrub: true,
             }
           });
           
           // Анимация cookies
+          // timeline.to({}, {
+          //   duration: scrollDuration / 1000,
+          //   onUpdate: function() {
+          //     let progress = this.progress();
+          //     let index = Math.floor(progress * (cookies.length - 1));
+          //     cookies.forEach((cookie, i) => {
+          //       if (i === index) {
+          //         cookie.classList.add('active');
+          //       } else {
+          //         cookie.classList.remove('active');
+          //       }
+          //     });
+          //     if (progress === 0) {
+          //       cookies[0].classList.remove('active');
+          //     }
+          //   }
+          // });
+
           timeline.to({}, {
             duration: scrollDuration / 1000,
             onUpdate: function() {
               let progress = this.progress();
-              let index = Math.floor(progress * (cookies.length - 1));
-              cookies.forEach((cookie, i) => {
-                if (i === index) {
-                  cookie.classList.add('active');
-                } else {
-                  cookie.classList.remove('active');
-                }
-              });
+              cookies.forEach(cookie => cookie.classList.add('active'));
               if (progress === 0) {
-                cookies[0].classList.remove('active');
+                cookies.forEach(cookie => cookie.classList.remove('active'));
               }
+              const scaleValue = 1 - (1 - 0.73) * progress;
+              cookies.forEach(cookie => {
+                gsap.set(cookie, {
+                  transform: `translate(-50%, -50%) scale(${scaleValue})`
+                });
+              });
             }
           });
           
@@ -281,13 +299,15 @@ document.addEventListener("DOMContentLoaded", function() {
           timeline.to(box, {
             ease: "power2.out",
             left: '50%',
-            transform: 'translate(-48%, -50%)',
-            duration: scrollDuration / 1500
+            // transform: 'translate(-48%, -50%)',
+            transform: 'translate(-50%, -50%)',
+            duration: scrollDuration / 500
           }, "+=0.1");
+
           
           // Анимация boxItems после анимации box
           timeline.to({}, {
-            duration: scrollDuration / 1500,
+            duration: scrollDuration / 500,
             onUpdate: function() {
               let progress = this.progress();
               let index = Math.floor(progress * (boxItems.length - 1));
@@ -302,6 +322,7 @@ document.addEventListener("DOMContentLoaded", function() {
           });
 
           timeline.to(boxWrapper, {
+            duration: scrollDuration / 500,
             ease: "power2.out",
             transform: 'translate(0%, 70%)',
           });
@@ -309,7 +330,7 @@ document.addEventListener("DOMContentLoaded", function() {
  
           const videoSteps = [videoStepsC, videoStepsD, videoStepsE, videoStepsF];
           timeline.to({}, {
-            duration: scrollDuration / 500,
+            duration: scrollDuration / 100,
             onUpdate: function() {
               boxCookieItem.classList.add('not-active');
               cookiesWrapper.classList.add('not-active');
@@ -387,13 +408,13 @@ document.addEventListener("DOMContentLoaded", function() {
           end: "center center",
           onEnter: () => {
             animation.play();
-              videoSteps.forEach(video => {
-                if (video.classList.contains('play')) {
-                  video.classList.remove('play');
-                  video.pause();
-                  video.currentTime = 0;
-                }
-              });
+              // videoSteps.forEach(video => {
+              //   if (video.classList.contains('play')) {
+                  // video.classList.remove('play');
+                  // video.pause();
+                  // video.currentTime = 0;
+              //   }
+              // });
           },
           onLeaveBack: () => {
             animation.reverse();
@@ -498,34 +519,11 @@ document.addEventListener("DOMContentLoaded", function() {
               { rotation: 430, xPercent: 20, duration: 0.11, ease: "none" },
               { rotation: 530, xPercent: 145, duration: 0.1, ease: "none" },
               { rotation: 600, xPercent: 145, duration: 0.23, ease: "none" },
-              { rotation: 720, xPercent: -12, duration: 0.16, ease: "none" }
+              { rotation: 720, xPercent: 35, duration: 0.16, ease: "none" }
             ]
           });
 
           const progressMarker = document.querySelector('.progress-marker');
-
-          // const length = lineMob01.getTotalLength();
-          // gsap.set(lineMob01, { strokeDasharray: length, strokeDashoffset: length });
-
-          // ScrollTrigger.create({
-          //   trigger: designCookie,
-          //   start: "center center",
-          //   endTrigger: designBoxes,
-          //   end: "center center",
-          //   scrub: true,
-          //   onUpdate: self => {
-          //     const progress = self.progress;
-          //     // progressMarker.textContent = `${progress.toFixed(1)}%`;
-              
-          //     let offset;
-          //     if (progress <= 0.1) {
-          //       offset = gsap.utils.interpolate(length, 0, progress / 0.1);
-          //     }
-          //     gsap.set(lineMob01, { strokeDashoffset: offset });
-          
-          //   }
-          // });
-
 
           const lengths = [
             lineMob01.getTotalLength(),
@@ -587,41 +585,38 @@ document.addEventListener("DOMContentLoaded", function() {
           });
 
 
-
-
             const timeline = gsap.timeline({
               scrollTrigger: {
                 trigger: designBoxes,
                 start: `center center`,
                 end: `+=${scrollDuration * 2}`,
                 pin: true,
-                // pinSpacing: true,
                 scrub: true,
               }
             });
 
             timeline.to({}, {
-              duration: scrollDuration / 100,
+              duration: scrollDuration / 500,
               onUpdate: function() {
                 let progress = this.progress();
-                let index = Math.floor(progress * (cookies.length - 1));
-                cookies.forEach((cookie, i) => {
-                  if (i === index) {
-                    cookie.classList.add('active');
-                  } else {
-                    cookie.classList.remove('active');
-                  }
-                });
+                cookies.forEach(cookie => cookie.classList.add('active'));
                 if (progress === 0) {
-                  cookies[0].classList.remove('active');
+                  cookies.forEach(cookie => cookie.classList.remove('active'));
                 }
+                const scaleValue = 1 - (1 - 0.45) * progress;
+                cookies.forEach(cookie => {
+                  gsap.set(cookie, {
+                    transform: `translate(-50%, -50%) scale(${scaleValue})`
+                  });
+                });
               }
             });
             
             timeline.to(box, {
               ease: "power2.out",
               left: '50%',
-              transform: 'translate(-48%, -50%)',
+              // transform: 'translate(-48%, -50%)',
+              transform: 'translate(-50%, -50%)',
               duration: scrollDuration / 100
             }, `-=${scrollDuration / 10000}`); // Начало сразу после предыдущей анимации
             

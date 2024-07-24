@@ -5039,7 +5039,8 @@ background-color: $mainWhite;
       }
       position: relative;
       transform-origin: center center;
-      @include adaptiveValue("width", 375, 200,0,1366.98,480.98);
+      // @include adaptiveValue("width", 375, 200,0,1366.98,480.98);
+      @include adaptiveValue("width", 277, 200,0,1366.98,480.98);
       aspect-ratio: 1/1;
       .cookie {
        @extend %boxesPosition;
@@ -5349,7 +5350,8 @@ background-color: $mainWhite;
   
   top: 50%;
   left: 0%;
-  @include adaptiveValue("width", 900, 445,0,1366.98,480.98);
+  // @include adaptiveValue("width", 900, 445,0,1366.98,480.98);
+  @include adaptiveValue("width", 980, 490,0,1366.98,480.98);
   aspect-ratio: 852/471;
 
 
@@ -5359,13 +5361,15 @@ background-color: $mainWhite;
     z-index: -1;
     top: 0;
     left: 0;
-    transform: translate(0%,20%);
+    // transform: translate(0%,20%);
+    transform: translate(-5%,4%);
     background-image: url('../img/approach/box/shadow.png');
     background-repeat: no-repeat;
     background-size:contain;
     width: 110%;
     height: auto;
-    aspect-ratio:998/474;
+    // aspect-ratio:998/474;
+    aspect-ratio:1083/556;
     pointer-events: none;
   }
 
@@ -5398,48 +5402,51 @@ background-color: $mainWhite;
   }
   pointer-events: none;
   position: absolute;
+  transform-origin: center;
   top: 50%;
-  left: 0;
-  // transform: translate(-12%,-50%);
-  transform: translate(-17%,-50%);
-  @include adaptiveValue("width", 375, 200,0,1366.98,480.98);
+  // left: 0;
+  left: 50%;
+  // transform: translate(-17%,-50%);
+  transform: translate(-50%,-50%) scale(1);
+  // @include adaptiveValue("width", 375, 200,0,1366.98,480.98);
+  @include adaptiveValue("width", 277, 200,0,1366.98,480.98);
   aspect-ratio: 1/1;
   .cookie {
     @extend %boxesPosition;
     aspect-ratio: 1/1;
 
-    @media (max-width:$mobileSmall){
-      &:nth-child(12) {
-        transform: translate(-50%, -50%) scale(0.985);
-      } 
-      &:nth-child(13) {
-        transform: translate(-50%, -50%) scale(0.97);
-      } 
-      &:nth-child(14) {
-        transform: translate(-50%, -50%) scale(0.955);
-      }
-      &:nth-child(15) {
-        transform: translate(-50%, -50%) scale(0.94);
-      } 
-      &:nth-child(16) {
-        transform: translate(-50%, -50%) scale(0.925);
-      } 
-      &:nth-child(17) {
-        transform: translate(-50%, -50%) scale(0.91);
-      } 
-      &:nth-child(18) {
-        transform: translate(-50%, -50%) scale(0.895);
-      } 
-      &:nth-child(19) {
-        transform: translate(-50%, -50%) scale(0.88);
-      } 
-      &:nth-child(20) {
-        transform: translate(-50%, -50%) scale(0.865);
-      } 
-      &:nth-child(21) {
-        transform: translate(-50%, -50%) scale(0.85);
-      } 
-    }    
+    // @media (max-width:$mobileSmall){
+    //   &:nth-child(12) {
+    //     transform: translate(-50%, -50%) scale(0.985);
+    //   } 
+    //   &:nth-child(13) {
+    //     transform: translate(-50%, -50%) scale(0.97);
+    //   } 
+    //   &:nth-child(14) {
+    //     transform: translate(-50%, -50%) scale(0.955);
+    //   }
+    //   &:nth-child(15) {
+    //     transform: translate(-50%, -50%) scale(0.94);
+    //   } 
+    //   &:nth-child(16) {
+    //     transform: translate(-50%, -50%) scale(0.925);
+    //   } 
+    //   &:nth-child(17) {
+    //     transform: translate(-50%, -50%) scale(0.91);
+    //   } 
+    //   &:nth-child(18) {
+    //     transform: translate(-50%, -50%) scale(0.895);
+    //   } 
+    //   &:nth-child(19) {
+    //     transform: translate(-50%, -50%) scale(0.88);
+    //   } 
+    //   &:nth-child(20) {
+    //     transform: translate(-50%, -50%) scale(0.865);
+    //   } 
+    //   &:nth-child(21) {
+    //     transform: translate(-50%, -50%) scale(0.85);
+    //   } 
+    // }    
 
 
     opacity: 0;
@@ -5454,7 +5461,8 @@ background-color: $mainWhite;
   z-index: 1;
   top: 50%;
   left: 50%;
-  transform: translate(-52.5%,-51%);
+  // transform: translate(-52.5%,-51%);
+  transform: translate(-51%,-50%);
   width: 100%;
   @include adaptiveValue("max-width", 685, 340,0,1366.98,480.98);
   aspect-ratio:685/258;
@@ -5491,13 +5499,14 @@ background-color: $mainWhite;
     z-index: -1;
     top: 0;
     left: 0;
-    transform: translate(-9%,-8%);
+    transform: translate(-14%,-22%);
     background-image: url('../img/approach/box/shadow.png');
     background-repeat: no-repeat;
     background-size:contain;
     width: 147%;
     height: auto;
-    aspect-ratio:998/474;
+    // aspect-ratio:998/474;
+    aspect-ratio:1083/556;
     pointer-events: none;
   }
 
