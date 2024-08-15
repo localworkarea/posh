@@ -11,7 +11,7 @@ import {isMobile} from "./functions.js";
 // При необхідності підключаємо додаткові модулі слайдера, вказуючи їх у {} через кому
 // Приклад: { Navigation, Autoplay }
 import Swiper from 'swiper';
-import { FreeMode, Autoplay, Pagination, EffectCoverflow } from 'swiper/modules';
+import {Navigation, FreeMode, Autoplay, Pagination, EffectCoverflow } from 'swiper/modules';
 /*
 Основні модулі слайдера:
 Navigation, Pagination, Autoplay, 
@@ -277,7 +277,7 @@ function initSliders() {
 	}
 	if (document.querySelector('.case-page__slider')) {
 		new Swiper('.case-page__slider', { 
-			modules: [ Pagination],
+			modules: [Navigation, Pagination],
 			observer: true,
 			observeParents: true,
 			slidesPerView: 1,
@@ -294,6 +294,10 @@ function initSliders() {
 			pagination: {
 				el: '.case-page__slider .swiper-pagination',
 				clickable: true,
+			},
+			navigation: {
+				prevEl: '.swiper-button-prev',
+				nextEl: '.swiper-button-next',
 			},
 			breakpoints: {
 				300: {

@@ -16,7 +16,8 @@ import lightGallery from 'lightgallery';
 // Плагіни
 // lgZoom, lgAutoplay, lgComment, lgFullscreen, lgHash, lgPager, lgRotate, lgShare, lgThumbnail, lgVideo, lgMediumZoom
 // import lgThumbnail from 'lightgallery/plugins/thumbnail/lg-thumbnail.min.js'
-//import lgZoom from 'lightgallery/plugins/zoom/lg-zoom.min.js'
+import lgZoom from 'lightgallery/plugins/zoom/lg-zoom.min.js'
+// import lgMediumZoom from 'lightgallery/plugins/mediumZoom/lg-medium-zoom.min.js'
 
 // Базові стилі
 import '@scss/libs/gallery/lightgallery.scss';
@@ -37,24 +38,72 @@ import '@scss/libs/gallery/lightgallery.scss';
 // import '@scss/libs/gallery/lightgallery-bundle.scss';
 
 // Запуск
-const galleries = document.querySelectorAll('[data-gallery]');
-if (galleries.length) {
-	let galleyItems = [];
-	galleries.forEach(gallery => {
-		galleyItems.push({
-			gallery,
-			galleryClass: lightGallery(gallery, {
-				// plugins: [lgZoom, lgThumbnail],
-				licenseKey: '7EC452A9-0CFD441C-BD984C7C-17C8456E',
-				speed: 500,
-			})
-		})
-	});
-	// Додаємо в об'єкт модулів
-	flsModules.gallery = galleyItems;
+function initializeGalleries() {
+    const galleries = document.querySelectorAll('[data-gallery]');
+    if (galleries.length) {
+        let galleyItems = [];
+        galleries.forEach(gallery => {
+            galleyItems.push({
+                gallery,
+                galleryClass: lightGallery(gallery, {
+                    plugins: [lgZoom],
+                    selector: '.case-page__gl-img',
+                    licenseKey: '7EC452A9-0CFD441C-BD984C7C-17C8456E',
+                    mobileSettings: {
+                        speed: 500,
+    
+                        closeOnTap: true,
+                        counter: false,
+                        easing: "ease",
+                        hideScrollbar: false,
+                        resetScrollPosition: true,
+    
+                        // zoomFromOrigin: false,
+                        // startClass: 	"lg-start-zoom",
+    
+                        // trapFocus: true,
+    
+    
+                        controls: true, 
+                        showCloseIcon: true,
+    
+                        actualSize: true,
+                        zoom: true,
+    
+                    
+                    },
+                })
+            })
+        });
+        // Додаємо в об'єкт модулів
+        flsModules.gallery = galleyItems;
+    }
 }
 
 
+function destroyGalleries() {
+    if (flsModules.gallery) {
+        flsModules.gallery.forEach(item => {
+            item.galleryClass.destroy();
+        });
+        flsModules.gallery = null;
+    }
+}
 
+function checkScreenWidth() {
+    if (window.innerWidth < 480) {
+        if (!flsModules.gallery) {
+            initializeGalleries();
+        }
+    } else {
+        if (flsModules.gallery) {
+            destroyGalleries();
+        }
+    }
+}
 
+// Initial check
+checkScreenWidth();
 
+// Handle screen resizing
+window.addEventListener('resize', checkScreenWidth);

@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20240724114315">
+	<link rel="stylesheet" href="css/style.min.css?_v=20240815111846">
 	<link rel="shortcut icon" href="favicon.ico">
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -222,47 +222,25 @@
 									</span> споживач
 								</h2>
 								<p class="about-main__sub-title">
-									Якщо бренд - здобуває любов, то паковання - створює першу симпатію!
+									Якщо бренд - здобуває любов, тоді паковання - створює першу симпатію!
 								</p>
-								<p class="about-main__txt txt-main">
-									Саме на цьому питанні спеціалізується агентство POSH. Ось уже понад 10 років ми розробляємо паковання для продуктів із різних категорій і сегментів. Основна наша мета - релевантність.
-								</p>
-								<div class="about-main__typed-body">
-									<div id="typed-strings">
-										<p>
-											Як зробити паковання помітним?
-										</p>
-										<p>
-											Як зробити паковання зрозумілим?
-										</p>
-										<p>
-											Як зробити паковання переконливим?
-										</p>
-										<p>
-											Як потрапити до рук покупця?
-										</p>
-										<p>
-											Як передбачити емоційні мотиви покупця?
-										</p>
-									</div>
-									<span id="typed" data-typed-started="false" class="about-main__typed"></span>
-								</div>
 								<a href="approach.html" class="about-main__link btn btn--01" aria-label="кнопка переходу на сторінку Наш підхід">
-									<span class="btn__txt">ДЕТАЛЬНІШЕ</span>
+									<span class="btn__txt">НАШ ПІДХІД</span>
 									<img class="btn__arr-r" src="img/icon/arr-btn.svg" width="12" height="10" alt="arrow to right">
 								</a>
 							</div>
-							<div class="about-main__bg bg-main">
-								<picture><source srcset="img/shelf.webp" type="image/webp"><img class="bg-main__shelf" width="848" height="514" src="img/shelf.png" alt="шафа з полицями та товарами"></picture>
+							<div class="about-main__bg">
+								<picture>
+									<source media="(min-width: 62.06125em)" srcset="img/shelf-main-pc.png" type="image/webp">
+									<source media="(max-width: 62.06125em)" srcset="img/shelf-main-mb.png" type="image/webp">
+									<img class="about-main__shelf" src="img/shelf-main-pc.png" width="737" height="507" alt="полка з товарами">
+								</picture>
 							</div>
-						</div>
-
-						<div class="about-main__bg-women bg-women">
-							<div class="bg-women__container">
-								<div class="bg-women__wrapper">
-									<picture><source srcset="img/women/women.webp" type="image/webp"><img class="bg-women__women" width="269" height="609" src="img/women/women.png" alt="жінка, що розгядає товари на полиці"></picture>
-								</div>
-							</div>
+							<picture>
+								<source media="(min-width: 30.06125em)" srcset="img/women/women3-pc.png" type="image/webp">
+								<source media="(max-width: 30.06125em)" srcset="img/women/women3-mb.png" type="image/webp">
+								<img class="about-main__women" src="img/women/women3-pc.png" width="222" height="407" alt="дівчинка розглядає полку з товарами">
+							</picture>
 						</div>
 						<div class="about-main__circle circle-about">
 							<div class="circle-about__container">
@@ -295,22 +273,18 @@
 							<a href="case.html" class="case-card__link" aria-label="посилання на кейс">
 								<picture>
 									<source media="(max-width: 30.06125em)" srcset="img/cases/nut-one-mob.webp" type="image/webp">
-									<source media="(max-width: 30.06125em)" srcset="img/cases/nut-one-mob.jpg" type="image/jpg">
 									<source srcset="img/cases/nut-one.webp" type="image/webp">
-									<source srcset="img/cases/nut-one.jpg" type="image/jpg">
-									<img class="case-card__img ibg" src="img/cases/nut-one.jpg" srcset="img/cases/nut-one.jpg" width="1280" height="630" alt="roshen nut out">
+									<img class="case-card__img ibg" src="img/cases/nut-one.jpg" width="1280" height="630" alt="roshen nut out">
 								</picture>
 							</a>
 							<div class="case-card__container">
-								<div class="case-card__footer">
-									<a data-watch data-watch-once href="case.html" class="case-card__title-link" aria-label="посилання на кейс">
-										<h3 class="case-card__title title-card split-both">
-											Roshen
-											<img src="img/icon/arr-btn.svg" width="15" height="14" alt="стрілочка направлена вліво">
-											nut out
-										</h3>
-									</a>
-								</div>
+								<a data-watch data-watch-once href="case.html" class="case-card__title-link" aria-label="посилання на кейс">
+									<h3 class="case-card__title title-card split-both">
+										Roshen
+										<img src="img/icon/arr-btn.svg" width="15" height="14" alt="стрілочка направлена вліво">
+										nut out
+									</h3>
+								</a>
 							</div>
 						</article>
 						<div class="cases-main__container">
@@ -321,21 +295,17 @@
 											<a href="case.html" class="case-card__link" aria-label="посилання на кейс">
 												<picture>
 													<source media="(max-width: 30.06125em)" srcset="img/cases/colonist-mob.webp" type="image/webp">
-													<source media="(max-width: 30.06125em)" srcset="img/cases/colonist-mob.jpg" type="image/jpg">
 													<source srcset="img/cases/colonist.webp" type="image/webp">
-													<source srcset="img/cases/colonist.jpg" type="image/jpg">
 													<img class="case-card__img ibg" src="img/cases/colonist.jpg" width="624" height="441" srcset="img/cases/colonist.jpg" alt="картинка">
 												</picture>
 											</a>
-											<div class="case-card__footer">
-												<a href="case.html" class="case-card__title-link" aria-label="посилання на кейс">
-													<h3 class="case-card__title title-card split-both">
-														kolonist
-														<img src="img/icon/arr-btn.svg" width="15" height="14" alt="стрілочка направлена вліво">
-														fresh roasted coffee
-													</h3>
-												</a>
-											</div>
+											<a href="case.html" class="case-card__title-link" aria-label="посилання на кейс">
+												<h3 class="case-card__title title-card split-both">
+													kolonist
+													<div><img src="img/icon/arr-btn.svg" width="15" height="14" alt="стрілочка направлена вліво"></div>
+													<span class="mb-br">fresh roasted coffee</span>
+												</h3>
+											</a>
 										</article>
 									</div>
 									<div class="slider-main__slide swiper-slide">
@@ -343,21 +313,17 @@
 											<a href="case.html" class="case-card__link" aria-label="посилання на кейс">
 												<picture>
 													<source media="(max-width: 30.06125em)" srcset="img/cases/powerup-mob.webp" type="image/webp">
-													<source media="(max-width: 30.06125em)" srcset="img/cases/powerup-mob.jpg" type="image/jpg">
 													<source srcset="img/cases/powerup.webp" type="image/webp">
-													<source srcset="img/cases/powerup.jpg" type="image/jpg">
 													<img class="case-card__img ibg" src="img/cases/powerup.jpg" width="624" height="441" srcset="img/cases/powerup.jpg" alt="картинка">
 												</picture>
 											</a>
-											<div class="case-card__footer">
-												<a href="case.html" class="case-card__title-link" aria-label="посилання на кейс">
-													<h3 class="case-card__title title-card split-both">
-														Varus
-														<img src="img/icon/arr-btn.svg" width="15" height="14" alt="стрілочка направлена вліво">
-														power up
-													</h3>
-												</a>
-											</div>
+											<a href="case.html" class="case-card__title-link" aria-label="посилання на кейс">
+												<h3 class="case-card__title title-card split-both">
+													Varus
+													<div><img src="img/icon/arr-btn.svg" width="15" height="14" alt="стрілочка направлена вліво"></div>
+													<span class="mb-br">power up</span>
+												</h3>
+											</a>
 										</article>
 									</div>
 									<div class="slider-main__slide swiper-slide">
@@ -365,21 +331,17 @@
 											<a href="case.html" class="case-card__link" aria-label="посилання на кейс">
 												<picture>
 													<source media="(max-width: 30.06125em)" srcset="img/cases/coffee-mob.webp" type="image/webp">
-													<source media="(max-width: 30.06125em)" srcset="img/cases/coffee-mob.jpg" type="image/jpg">
 													<source srcset="img/cases/coffee.webp" type="image/webp">
-													<source srcset="img/cases/coffee.jpg" type="image/jpg">
 													<img class="case-card__img ibg" src="img/cases/coffee.jpg" width="624" height="441" srcset="img/cases/coffee.jpg" alt="картинка">
 												</picture>
 											</a>
-											<div class="case-card__footer">
-												<a href="case.html" class="case-card__title-link" aria-label="посилання на кейс">
-													<h3 class="case-card__title title-card split-both">
-														kolonist
-														<img src="img/icon/arr-btn.svg" width="15" height="14" alt="стрілочка направлена вліво">
-														fresh roasted coffee
-													</h3>
-												</a>
-											</div>
+											<a href="case.html" class="case-card__title-link" aria-label="посилання на кейс">
+												<h3 class="case-card__title title-card split-both">
+													kolonist
+													<div><img src="img/icon/arr-btn.svg" width="15" height="14" alt="стрілочка направлена вліво"></div>
+													<span class="mb-br">fresh roasted coffee</span>
+												</h3>
+											</a>
 										</article>
 									</div>
 									<div class="slider-main__slide swiper-slide">
@@ -387,25 +349,21 @@
 											<a href="case.html" class="case-card__link" aria-label="посилання на кейс">
 												<picture>
 													<source media="(max-width: 30.06125em)" srcset="img/cases/varus-mob.webp" type="image/webp">
-													<source media="(max-width: 30.06125em)" srcset="img/cases/varus-mob.jpg" type="image/jpg">
 													<source srcset="img/cases/varus.webp" type="image/webp">
-													<source srcset="img/cases/varus.jpg" type="image/jpg">
 													<img class="case-card__img ibg" src="img/cases/varus.jpg" width="624" height="441" srcset="img/cases/varus.jpg" alt="картинка">
 												</picture>
 											</a>
-											<div class="case-card__footer">
-												<a href="case.html" class="case-card__title-link" aria-label="посилання на кейс">
-													<h3 class="case-card__title title-card split-both">
-														Varus
-														<img src="img/icon/arr-btn.svg" width="15" height="14" alt="стрілочка направлена вліво">
-														pover up
-													</h3>
-												</a>
-											</div>
+											<a href="case.html" class="case-card__title-link" aria-label="посилання на кейс">
+												<h3 class="case-card__title title-card split-both">
+													Varus
+													<div><img src="img/icon/arr-btn.svg" width="15" height="14" alt="стрілочка направлена вліво"></div>
+													<span class="mb-br">pover up</span>
+												</h3>
+											</a>
 										</article>
 									</div>
 									<div class="slider-main__slide swiper-slide slide-link">
-										<a href="#" class="slider-main__slide-link btn-mask" aria-label="кнопка посилання на всі кейси">
+										<a href="cases.html" class="slider-main__slide-link btn-mask" aria-label="кнопка посилання на всі кейси">
 											<span class="btn-mask__body">
 												<span class="btn-mask__txt-2">ВСІ КЕЙСИ</span>
 												<img class="btn-mask__arr-r" src="img/icon/arr-btn.svg" width="14" height="11" alt="arrow to right">
@@ -984,7 +942,7 @@
 								</p>
 								<img data-watch data-watch-once class="footer-main__arr-ic" src="img/icon/arr-btn.svg" width="21" height="19" alt="стрілка що вказує вправо на кнопку завантаження файлу">
 								<div data-watch data-watch-once class="footer-main__button">
-									<a href="files/posh-fmcg-branding-ua.pdf" download="posh-fmcg-branding-ua.pdf" class="footer-main__link btn btn--01" aria-label="кнопка завантаження файлу презентації">
+									<a href="files/posh-fmcg-branding-ua.pdf" target="_blank" rel="noopener noreferrer" class="footer-main__link btn btn--01" aria-label="кнопка завантаження файлу презентації">
 										<span class="btn__txt">ЗАВАНТАЖИТИ</span>
 										<img class="btn__arr-r" src="img/icon/arr-btn.svg" width="15" height="12" alt="arrow to right">
 									</a>
@@ -1116,31 +1074,31 @@
 											</ul>
 											<ul data-watch data-watch-once class="footer-main__social social-footer">
 												<li class="social-footer__item">
-													<a href="#" class="social-footer__link hover-line">
+													<a href="#" class="social-footer__link hover-line" target="_blank">
 														facebook
 														<img src="img/icon/arr-deg-black.svg" width="8" height="8" alt="стрілочка вверх по діагоналі">
 													</a>
 												</li>
 												<li class="social-footer__item">
-													<a href="#" class="social-footer__link hover-line">
+													<a href="#" class="social-footer__link hover-line" target="_blank">
 														instagram
 														<img src="img/icon/arr-deg-black.svg" width="8" height="8" alt="стрілочка вверх по діагоналі">
 													</a>
 												</li>
 												<li class="social-footer__item">
-													<a href="#" class="social-footer__link hover-line">
+													<a href="#" class="social-footer__link hover-line" target="_blank">
 														behance
 														<img src="img/icon/arr-deg-black.svg" width="8" height="8" alt="стрілочка вверх по діагоналі">
 													</a>
 												</li>
 												<li class="social-footer__item">
-													<a href="#" class="social-footer__link hover-line">
+													<a href="#" class="social-footer__link hover-line" target="_blank">
 														dribble
 														<img src="img/icon/arr-deg-black.svg" width="8" height="8" alt="стрілочка вверх по діагоналі">
 													</a>
 												</li>
 												<li class="social-footer__item">
-													<a href="#" class="social-footer__link hover-line">
+													<a href="#" class="social-footer__link hover-line" target="_blank">
 														linkedin
 														<img src="img/icon/arr-deg-black.svg" width="8" height="8" alt="стрілочка вверх по діагоналі">
 													</a>
@@ -1294,8 +1252,7 @@
 			<span></span>
 		</div> -->
 
-	<script src="js/app.min.js?_v=20240724114315"></script>
-	<script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js?_v=20240724114315"></script>
+	<script src="js/app.min.js?_v=20240815111846"></script>
 </body>
 
 </html>

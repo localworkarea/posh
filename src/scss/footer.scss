@@ -96,7 +96,7 @@
   &__body {
     position: relative;
     z-index: 1;
-    @include adaptiveValue("border-radius", 36, 30,0,1366,480);
+    @include adaptiveValue("border-radius", 36, 20,0,1366,480);
     background-color: $mainWhite;
     @include adaptiveValue("padding-top", 55, 43,0,1366,480);
     @include adaptiveValue("padding-bottom", 34, 22,2,1920,1366.98);
@@ -167,6 +167,16 @@
     max-width: fit-content;
     line-height: 1.2;
   }
+  &__email,
+  &__phone,
+  &__location {
+    text-underline-position: under;
+    @media (any-hover: hover){
+      &:hover{
+        text-decoration: underline !important;
+      }
+    }
+  }
 	// .footer-main__email
 	&__email {
     white-space: nowrap;
@@ -188,12 +198,8 @@
     @include adaptiveValue("font-size", 18, 15,2,1920,1366.98);
     @include adaptiveValue("font-size", 15, 18,3,1366.98,480.98);
     line-height: 1.2;
-    text-underline-position: under;
-    @media (any-hover: hover){
-      &:hover{
-        text-decoration: underline !important;
-      }
-    }
+   
+   
     span {
       @media (max-width:$mobileSmall){
         display: inline-block;
@@ -591,7 +597,7 @@
 .form-footer {
   position: absolute;
   z-index: 3;
-  @include adaptiveValue("border-radius", 36, 30,0,1366,480);
+  @include adaptiveValue("border-radius", 36, 20,0,1366,480);
   
   top: 0;
   left: 50%;
@@ -1117,9 +1123,15 @@
   &__link {
     display: inline-block;
     flex: 0 0 auto;
+    transition: opacity .3s ease;
     img {
       width: toRem(35);
       height: auto;
+    }
+    @media (any-hover: hover){
+      &:hover{
+        opacity: 0.6;
+      }
     }
   }
   // .side-form__info
@@ -1153,6 +1165,17 @@
     }
     @media (max-width: em(650.98)){
         margin-bottom: toRem(16);
+    }
+  }
+  &__tel,
+  &__email,
+  &__location {
+    text-underline-position: under;
+    text-decoration-thickness: toRem(1);
+    @media (any-hover: hover){
+      &:hover{
+        text-decoration: underline;
+      }
     }
   }
   // .side-form__tel

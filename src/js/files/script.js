@@ -276,21 +276,21 @@ document.addEventListener("DOMContentLoaded", function() {
   
    
 
-      var docObserver = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
-          if (document.documentElement.classList.contains('fp-section-1')) {
-            setTimeout(function () {
-              typed.start();
-              typedElement.setAttribute('data-typed-started', 'true');
-            }, startDelay);
-          } else {
-            typed.stop();
-            typedElement.setAttribute('data-typed-started', 'false');
-          }
-        });
-      });
+      // var docObserver = new MutationObserver(function(mutations) {
+      //   mutations.forEach(function(mutation) {
+      //     if (document.documentElement.classList.contains('fp-section-1')) {
+      //       setTimeout(function () {
+      //         typed.start();
+      //         typedElement.setAttribute('data-typed-started', 'true');
+      //       }, startDelay);
+      //     } else {
+      //       typed.stop();
+      //       typedElement.setAttribute('data-typed-started', 'false');
+      //     }
+      //   });
+      // });
     
-      docObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+      // docObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
     
       var stepsAElements = document.querySelectorAll('.steps-a');
       stepsAElements.forEach(function(stepsAElement) {
@@ -726,6 +726,8 @@ document.addEventListener("DOMContentLoaded", function() {
       const navLinks = document.querySelectorAll('.nav-serv__link');
       const sliderElement = document.querySelector('.our-serv__slider');
       const ourServ = document.querySelector('.our-serv');
+      const ourServPhotos = document.querySelector('.our-serv__photos');
+      const lastServItem = document.querySelector('.our-serv__item:last-child');
 
       if (navElement) {
         function checkNavPosition() {
@@ -741,58 +743,105 @@ document.addEventListener("DOMContentLoaded", function() {
       
         window.addEventListener('scroll', checkNavPosition);
         checkNavPosition();
+    
+        if (navLinks.length > 0) {
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+  
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+  
+                    if (targetElement) {
+                        const sliderRect = sliderElement.getBoundingClientRect();
+                        const sliderCenter = sliderRect.top + sliderRect.height / 2;
+                    
+                        const targetRect = targetElement.getBoundingClientRect();
+                        const targetCenter = targetRect.top + targetRect.height / 2;
+                    
+                        const offset = targetCenter - sliderCenter;
+                    
+                        window.scrollBy({
+                            top: offset,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        }
       }  
 
-      //  навигация по странице =======    
-      if (navLinks.length > 0) {
-          navLinks.forEach(link => {
-              link.addEventListener('click', function(event) {
-                  event.preventDefault();
-
-                  const targetId = this.getAttribute('href').substring(1);
-                  const targetElement = document.getElementById(targetId);
-
-                  if (targetElement) {
-                      const sliderRect = sliderElement.getBoundingClientRect();
-                      const sliderCenter = sliderRect.top + sliderRect.height / 2;
-                  
-                      const targetRect = targetElement.getBoundingClientRect();
-                      const targetCenter = targetRect.top + targetRect.height / 2;
-                  
-                      const offset = targetCenter - sliderCenter;
-                  
-                      window.scrollBy({
-                          top: offset,
-                          behavior: 'smooth'
-                      });
-                  }
-              });
-          });
+      if (sliderElement) {
+        function adjustPaddingBottom() {
+            const sliderRect = sliderElement.getBoundingClientRect();
+            const sliderCenter = sliderRect.top + sliderRect.height / 2;
+        
+            const lastItemRect = lastServItem.getBoundingClientRect();
+            const lastItemCenter = lastItemRect.top + lastItemRect.height / 2;
+        
+            const offset = lastItemCenter - sliderCenter;
+        
+            if (offset <= 0) {
+                const distanceToBottom = ourServPhotos.getBoundingClientRect().bottom - sliderRect.bottom;
+                const paddingBottom = Math.abs(distanceToBottom);
+            
+                ourServPhotos.style.paddingBottom = `${paddingBottom}px`;
+            } else {
+                ourServPhotos.style.paddingBottom = '0';
+            }
+        }
+        window.addEventListener('scroll', adjustPaddingBottom);
+        adjustPaddingBottom();
       }
+
+
+      //  навигация по странице =======    
 
 
     // == добавление отступа элементу  const navElement = document.querySelector('.our-serv__nav') через класс _top-mb - для создания отступа от следующего за разделом элементов (так .our-serv__nav не будет налазить на блоки ниже при ухода из страницы)
-    if (ourServ) {
-        const nextElement = ourServ.nextElementSibling;
-          const observerOptions = {
-              root: null,
-              rootMargin: '0px',
-              threshold: [0, 1]
-          };
-          const observer = new IntersectionObserver((entries, observer) => {
-              entries.forEach(entry => {
-                  if (entry.isIntersecting) {
-                      if (entry.boundingClientRect.top <= window.innerHeight) {
-                        navElement.classList.add('_top-mb');
-                      }
-                  } else {
-                    navElement.classList.remove('_top-mb');
-                  }
-              });
-          }, observerOptions);
+    // if (ourServ) {
+    //     const nextElement = ourServ.nextElementSibling;
+    //       const observerOptions = {
+    //           root: null,
+    //           rootMargin: '0px',
+    //           // threshold: [0, 1]
+    //           threshold: 0.45
+    //       };
+    //       const observer = new IntersectionObserver((entries, observer) => {
+    //           entries.forEach(entry => {
+    //               if (entry.isIntersecting) {
+    //                   if (entry.boundingClientRect.top <= window.innerHeight) {
+    //                     navElement.classList.add('_top-mb');
+    //                   }
+    //               } else {
+    //                 navElement.classList.remove('_top-mb');
+    //               }
+    //           });
+    //       }, observerOptions);
 
-          observer.observe(nextElement);
+    //       observer.observe(nextElement);
+    //   }
+
+
+    if (ourServ) {
+      function checkOurServPosition() {
+        const rect = navElement.getBoundingClientRect();
+        const topPosition = rect.top;
+    
+        if (topPosition <= 0) {
+          navElement.classList.add('_top-mb');
+        } else if (topPosition > 60) {
+          navElement.classList.remove('_top-mb');
+        }
       }
+    
+      window.addEventListener('scroll', checkOurServPosition);
+      checkOurServPosition();
+    }
+    
+      
+          
+ 
 
       // ====================================================================
 
@@ -826,38 +875,38 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
 
-  function isElementInViewport(el) {
-    var rect = el.getBoundingClientRect();
-    var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-    return (
-      rect.top <= viewportHeight && rect.bottom >= 0
-    );
-  }
+  // function isElementInViewport(el) {
+  //   var rect = el.getBoundingClientRect();
+  //   var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+  //   return (
+  //     rect.top <= viewportHeight && rect.bottom >= 0
+  //   );
+  // }
   
 
-function handleScroll() {
-  var paragraphs = document.querySelectorAll('.block-about__txt span');
+// function handleScroll() {
+//   var paragraphs = document.querySelectorAll('.block-about__txt span');
 
-  paragraphs.forEach(function (paragraph) {
-    var scrollPos = window.pageYOffset || document.documentElement.scrollTop;
-    var paragraphTop = paragraph.getBoundingClientRect().top + scrollPos;
-    var paragraphBottom = paragraphTop + paragraph.offsetHeight;
-    var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-    var gradientHeight = viewportHeight * 0.8;
-    console.log(paragraphBottom);
-    var progress = Math.max(0, Math.min(1, (scrollPos + viewportHeight - paragraphTop) / gradientHeight));
+//   paragraphs.forEach(function (paragraph) {
+//     var scrollPos = window.pageYOffset || document.documentElement.scrollTop;
+//     var paragraphTop = paragraph.getBoundingClientRect().top + scrollPos;
+//     var paragraphBottom = paragraphTop + paragraph.offsetHeight;
+//     var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+//     var gradientHeight = viewportHeight * 0.8;
+//     console.log(paragraphBottom);
+//     var progress = Math.max(0, Math.min(1, (scrollPos + viewportHeight - paragraphTop) / gradientHeight));
 
-    // Проверяем положение элемента относительно верха страницы
-    var isInViewport = isElementInViewport(paragraph);
+//     // Проверяем положение элемента относительно верха страницы
+//     var isInViewport = isElementInViewport(paragraph);
 
-    if (isInViewport) {
-      paragraph.style.backgroundSize = (progress * 100) + '% 100%';
-    }
-  });
-}
-window.addEventListener('scroll', handleScroll);
-// window.addEventListener('load', handleScroll);
-handleScroll();
+//     if (isInViewport) {
+//       paragraph.style.backgroundSize = (progress * 100) + '% 100%';
+//     }
+//   });
+// }
+// window.addEventListener('scroll', handleScroll);
+// // window.addEventListener('load', handleScroll);
+// handleScroll();
 
 
 
