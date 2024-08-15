@@ -25,7 +25,7 @@ import '@scss/libs/gallery/lightgallery.scss';
 // import '@scss/libs/gallery/lg-thumbnail.scss';
 // import '@scss/libs/gallery/lg-video.scss';
 // import '@scss/libs/gallery/lg-autoplay.scss';
-// import '@scss/libs/gallery/lg-zoom.scss';
+import '@scss/libs/gallery/lg-zoom.scss';
 // import '@scss/libs/gallery/lg-pager.scss';
 // import '@scss/libs/gallery/lg-fullscreen.scss';
 // import '@scss/libs/gallery/lg-share.scss';
@@ -47,28 +47,38 @@ function initializeGalleries() {
                 gallery,
                 galleryClass: lightGallery(gallery, {
                     plugins: [lgZoom],
+                    
+                    pager: false,
+                    captions: false,
+                    lastRow: "hide",
+
                     selector: '.case-page__gl-img',
                     licenseKey: '7EC452A9-0CFD441C-BD984C7C-17C8456E',
                     mobileSettings: {
                         speed: 500,
     
                         closeOnTap: true,
-                        counter: false,
+                        counter: true,
                         easing: "ease",
                         hideScrollbar: false,
                         resetScrollPosition: true,
     
-                        // zoomFromOrigin: false,
                         // startClass: 	"lg-start-zoom",
-    
+                        
                         // trapFocus: true,
-    
-    
+                        
+                        
                         controls: true, 
                         showCloseIcon: true,
-    
+                        
+                        zoomFromOrigin: true,
                         actualSize: true,
                         zoom: true,
+                        scale: 0.5,
+
+                        // zoomFromOrigin: false, // Пробуем включить зум с оригинальной позиции
+                        // useLeftForZoom: true, // Использование left для позиционирования
+                        // getCaptionFromTitleOrAlt: true // Включаем подписи из alt атрибута
     
                     
                     },

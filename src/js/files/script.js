@@ -5,6 +5,14 @@ import { flsModules } from "./modules.js";
 
 import SplitType from 'split-type'
 
+// import lightGallery from 'lightgallery';
+
+// Plugins
+// import lgThumbnail from 'lightgallery/plugins/thumbnail'
+// import lgZoom from 'lightgallery/plugins/zoom'
+
+
+
 // import { gsap } from "gsap";
     
 // import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -942,3 +950,89 @@ document.addEventListener("DOMContentLoaded", function() {
 // }
 // window.addEventListener('orientationchange', changeOrientation);
 
+
+let galleryItems = [];
+function initGalleries() {
+    const galleries = document.querySelectorAll('[data-gallery]');
+    if (galleries.length) {
+        galleries.forEach(gallery => {
+            galleryItems.push({
+                gallery,
+                galleryClass: lightGallery(gallery, {
+                    plugins: [
+                        lgZoom, 
+                        // lgRotate
+                    ],
+                    selector: '.case-page__gl-img',
+                    licenseKey: '7EC452A9-0CFD441C-BD984C7C-17C8456E',
+                    mobileSettings: {
+                      speed: 500,
+                      showCloseIcon: true,
+                      controls: false, 
+                      counter: true,
+                      closeOnTap: true,
+
+                      easing: "ease",
+                      hideScrollbar: false,
+                      resetScrollPosition: true,
+                      
+                      
+                      // zoomFromOrigin: false,
+                      // actualSize: false,
+                      // zoom: false,
+                      zoomFromOrigin: true,
+                      actualSize: true,
+                      zoom: true,
+                      scale: 1,
+                      
+                      
+                      // rotate: true,
+                      // flipHorizontal: true,
+                      // flipVertical: true,
+                      // rotateLeft: true,
+                      // rotateRight: true,
+                    },
+                })
+            });
+        });
+    }
+}
+
+function destroyGalleries() {
+  galleryItems.forEach(item => {
+      item.galleryClass.destroy();
+  });
+  galleryItems = []; // Очистка массива после удаления всех галерей
+}
+
+function handleLinkClick(event) {
+  if (window.innerWidth > 480) {
+      event.preventDefault(); // Отменяет действие по умолчанию
+  }
+}
+
+function checkAndInitGalleries() {
+  const links = document.querySelectorAll('.case-page__gl-img');
+
+  if (window.innerWidth <= 480) {
+      if (galleryItems.length === 0) {
+          initGalleries();
+      }
+  } else {
+      if (galleryItems.length > 0) {
+          destroyGalleries();
+      }
+      // Добавляем обработчик клика, чтобы отменить действие по умолчанию на ширине больше 480px
+      links.forEach(link => {
+          link.addEventListener('click', handleLinkClick);
+      });
+  }
+}
+
+// Инициализация при загрузке страницы
+checkAndInitGalleries();
+
+// Добавление слушателя на изменение размера экрана
+window.addEventListener('resize', () => {
+  checkAndInitGalleries();
+});
