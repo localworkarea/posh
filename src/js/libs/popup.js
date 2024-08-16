@@ -34,7 +34,7 @@ class Popup {
 			closeEsc: true, // Закриття ESC
 			bodyLock: true, // Блокування скролла
 			hashSettings: {
-				location: true, // Хеш в адресному рядку
+				location: false, // Хеш в адресному рядку
 				goHash: true, // Перехід по наявності в адресному рядку
 			},
 			on: { // Події
@@ -131,11 +131,16 @@ class Popup {
 			}
 			// Закриття на порожньому місці (popup__wrapper) та кнопки закриття (popup__close) для закриття
 			const buttonClose = e.target.closest(`[${this.options.attributeCloseButton}]`);
-			if (buttonClose || !e.target.closest(`.${this.options.classes.popupContent}`) && this.isOpen) {
-				e.preventDefault();
-				this.close();
-				return;
-			}
+			// if (buttonClose || !e.target.closest(`.${this.options.classes.popupContent}`) && this.isOpen) {
+			// 	e.preventDefault();
+			// 	this.close();
+			// 	return;
+			// }
+			if (buttonClose) {
+        e.preventDefault();
+        this.close();
+        return;
+    	}
 		}.bind(this));
 		// Закриття ESC
 		document.addEventListener("keydown", function (e) {
@@ -299,6 +304,26 @@ class Popup {
 				popup: this
 			}
 		}));
+
+
+		// Отслеживание положения case-popup относительно popup-case__content
+		const casePopup = document.querySelector('.case-popup');
+		const popupCaseContent = document.querySelector('.popup-case__content');
+
+		if (popupCaseContent) {
+		    const casePopupRect = casePopup.getBoundingClientRect();
+		    const popupCaseContentRect = popupCaseContent.getBoundingClientRect();
+		
+		    if (casePopupRect.top < popupCaseContentRect.top) {
+		        setTimeout(() => {
+		            popupCaseContent.scrollTo({
+		                top: popupCaseContent.scrollTop + (casePopupRect.top - popupCaseContentRect.top),
+		            });
+		        }, 900);
+		    }
+		}
+
+
 
 		setTimeout(() => {
 			this._focusTrap();

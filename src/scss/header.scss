@@ -397,14 +397,14 @@
       height: 100%;
       // position: relative;
       &.link-1 {
-        margin-right: 2px;
+        margin-right: 4px;
         // left: -2px;
         @media (any-hover: hover){
           &:hover{
             ~ .lang-header__bg {
               opacity: 1;
               transform: translateX(0%);
-              margin-left: 2px;
+              // margin-left: 2px;
             }
           }
         }

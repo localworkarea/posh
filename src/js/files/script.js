@@ -883,74 +883,8 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
 
-  // function isElementInViewport(el) {
-  //   var rect = el.getBoundingClientRect();
-  //   var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-  //   return (
-  //     rect.top <= viewportHeight && rect.bottom >= 0
-  //   );
-  // }
-  
 
-// function handleScroll() {
-//   var paragraphs = document.querySelectorAll('.block-about__txt span');
-
-//   paragraphs.forEach(function (paragraph) {
-//     var scrollPos = window.pageYOffset || document.documentElement.scrollTop;
-//     var paragraphTop = paragraph.getBoundingClientRect().top + scrollPos;
-//     var paragraphBottom = paragraphTop + paragraph.offsetHeight;
-//     var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-//     var gradientHeight = viewportHeight * 0.8;
-//     console.log(paragraphBottom);
-//     var progress = Math.max(0, Math.min(1, (scrollPos + viewportHeight - paragraphTop) / gradientHeight));
-
-//     // Проверяем положение элемента относительно верха страницы
-//     var isInViewport = isElementInViewport(paragraph);
-
-//     if (isInViewport) {
-//       paragraph.style.backgroundSize = (progress * 100) + '% 100%';
-//     }
-//   });
-// }
-// window.addEventListener('scroll', handleScroll);
-// // window.addEventListener('load', handleScroll);
-// handleScroll();
-
-
-
-
-
-// Отключение автоматического восстановления прокрутки
-// if ('scrollRestoration' in history) {
-//   history.scrollRestoration = 'manual';
-// }
-// // Обработчик события загрузки страницы
-// window.addEventListener('load', function () {
-//   if (typeof gsap !== 'undefined') {
-//     document.body.style.opacity = '';
-//     document.body.classList.remove('_reload');
-//     // if (typeof gsap.matchMediaRefresh === 'function') {
-//     //   gsap.matchMediaRefresh();
-//     // }
-//     // gsap.to(window, {duration: 0, scrollTo: {y: 0}});
-//   }
-// });
-// // Функция при смене ширины экрана
-// function changeOrientation() {
-//   if (typeof gsap !== 'undefined') {
-//     // document.body.style.opacity = '0';
-//     // document.body.classList.add('_reload');
-//     // if (typeof gsap.matchMediaRefresh === 'function') {
-//     //   // gsap.matchMediaRefresh();
-//     //   ScrollTrigger.refresh();
-//     // }
-//     // gsap.to(window, {duration: 0, scrollTo: {y: 0}});
-//     location.reload();
-//   }
-// }
-// window.addEventListener('orientationchange', changeOrientation);
-
-
+  // GALERY (lightgallery.js) ==============================================================
 let galleryItems = [];
 function initGalleries() {
     const galleries = document.querySelectorAll('[data-gallery]');
@@ -1001,13 +935,14 @@ function initGalleries() {
 function destroyGalleries() {
   galleryItems.forEach(item => {
       item.galleryClass.destroy();
-  });
-  galleryItems = []; // Очистка массива после удаления всех галерей
+    });
+    // Очистка массива после удаления всех галерей
+    galleryItems = []; 
 }
 
 function handleLinkClick(event) {
   if (window.innerWidth > 480) {
-      event.preventDefault(); // Отменяет действие по умолчанию
+      event.preventDefault();
   }
 }
 
@@ -1022,17 +957,15 @@ function checkAndInitGalleries() {
       if (galleryItems.length > 0) {
           destroyGalleries();
       }
-      // Добавляем обработчик клика, чтобы отменить действие по умолчанию на ширине больше 480px
       links.forEach(link => {
           link.addEventListener('click', handleLinkClick);
       });
   }
 }
 
-// Инициализация при загрузке страницы
 checkAndInitGalleries();
 
-// Добавление слушателя на изменение размера экрана
 window.addEventListener('resize', () => {
   checkAndInitGalleries();
 });
+// ============================================================================================

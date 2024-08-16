@@ -1529,6 +1529,7 @@ background-color: $mainWhite;
 .cases {
 }
 .cases-page {
+
  @extend %bgPaddArticleCase;
   // .cases-page__container
   &__container {
@@ -1553,6 +1554,7 @@ background-color: $mainWhite;
       row-gap: toRem(25); 
     }
     .case-card {
+      cursor: pointer;
       opacity: 0;
       transform: translateY(20%);
       transition: opacity .55s ease, transform .65s ease;
@@ -1781,10 +1783,15 @@ background-color: $mainWhite;
   }
 }
 
-.case-page {
+%casePagePadd {
+  overflow: hidden;
   background-color: $mainWhite;
   @include adaptiveValue("padding-top", 70, 46,0,1366.98,480.98);
   @include adaptiveValue("padding-bottom", 70, 46,0,1366.98,480.98);
+}
+
+.case-page {
+  @extend %casePagePadd;
   // .case-page__header
   &__header {
   }
@@ -3707,11 +3714,6 @@ background-color: $mainWhite;
     display: inline-block;
     @media (min-width:em(1366.98)){
       font-size: toRem(18);
-    }
-    @media (any-hover: hover){
-      &:hover{
-          text-decoration: underline;
-      }
     }
   }
 }
