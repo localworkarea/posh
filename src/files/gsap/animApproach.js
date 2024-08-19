@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const designBoxes = document.querySelector('.design__boxes');
     const box = document.querySelector('.box');
     const boxBox = document.querySelector('.box-box');
+    const boxItemWr = document.querySelector('.box-item__wrapper');
     const boxItems = document.querySelectorAll('.box .box-item');
 
     const boxWrapper = document.querySelectorAll('.boxes-wrapper');
@@ -45,6 +46,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const stepsPin = document.querySelector('.steps-pin');
     const stepsItems = document.querySelectorAll('.steps-pin .steps');
     const stepsAboutItems = document.querySelectorAll('.steps__about');
+    const stepsAnim = document.querySelectorAll('.steps__anim');
+    const stepsMob = document.querySelector('.steps-mb');
 
     const boxSteps = document.querySelector('.box-steps');
     const videoStepsC = document.querySelector('.video-steps-c');
@@ -84,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function() {
               trigger: retailSteps,
               start: "center center",
               // end: scrollDuration,
-              end: "+=300%",
+              end: "+=100%",
               pin: true,
               // pinSpacing: true,
               scrub: true,
@@ -254,29 +257,10 @@ document.addEventListener("DOMContentLoaded", function() {
               start: `center center`,
               end: `+=${scrollDuration * 2}`,
               pin: true,
-              // pinSpacing: true,
               scrub: true,
             }
           });
           
-          // Анимация cookies
-          // timeline.to({}, {
-          //   duration: scrollDuration / 1000,
-          //   onUpdate: function() {
-          //     let progress = this.progress();
-          //     let index = Math.floor(progress * (cookies.length - 1));
-          //     cookies.forEach((cookie, i) => {
-          //       if (i === index) {
-          //         cookie.classList.add('active');
-          //       } else {
-          //         cookie.classList.remove('active');
-          //       }
-          //     });
-          //     if (progress === 0) {
-          //       cookies[0].classList.remove('active');
-          //     }
-          //   }
-          // });
 
           timeline.to({}, {
             duration: scrollDuration / 1000,
@@ -304,7 +288,6 @@ document.addEventListener("DOMContentLoaded", function() {
             duration: scrollDuration / 500
           }, "+=0.1");
 
-          
           // Анимация boxItems после анимации box
           timeline.to({}, {
             duration: scrollDuration / 500,
@@ -326,7 +309,6 @@ document.addEventListener("DOMContentLoaded", function() {
             ease: "power2.out",
             transform: 'translate(0%, 70%)',
           });
-
  
           const videoSteps = [videoStepsC, videoStepsD, videoStepsE, videoStepsF];
           timeline.to({}, {
@@ -347,7 +329,7 @@ document.addEventListener("DOMContentLoaded", function() {
                   if (!videoSteps[i].classList.contains('play')) {
                     videoSteps[i].classList.add('play');
                     videoSteps[i].play();
-                    videoSteps[i].playbackRate = 2;
+                    // videoSteps[i].playbackRate = 2;
                   }
                 } else {
                   step.classList.remove('active');
@@ -401,40 +383,33 @@ document.addEventListener("DOMContentLoaded", function() {
             duration: 0.7
           }, 0);
         
-        // ScrollTrigger для запуска анимации
-        ScrollTrigger.create({
-          trigger: logics,
-          start: "top bottom",
-          end: "center center",
-          onEnter: () => {
-            animation.play();
-              // videoSteps.forEach(video => {
-              //   if (video.classList.contains('play')) {
-                  // video.classList.remove('play');
-                  // video.pause();
-                  // video.currentTime = 0;
-              //   }
-              // });
-          },
-          onLeaveBack: () => {
-            animation.reverse();
-              if (videoSteps[3].classList.contains('play')) {
-                videoSteps[3].classList.add('play');
-                videoSteps[3].play();
-                videoSteps[3].playbackRate = 2;
-              }
-          },
-          ease: "power3.out"
-        });
+          // ScrollTrigger для запуска анимации
+          ScrollTrigger.create({
+            trigger: logics,
+            start: "bottom bottom",
+            end: "center center",
+            onEnter: () => {
+              animation.play();
+            },
+            onLeaveBack: () => {
+              animation.reverse();
+                if (videoSteps[3].classList.contains('play')) {
+                  videoSteps[3].classList.add('play');
+                  videoSteps[3].play();
+                  // videoSteps[3].playbackRate = 2;
+                }
+            },
+            ease: "power3.out"
+          });
 
-
-        } // == end isDesktop -----------
+        } // == end isDesktop --------------------------------------------------------------
       
+
+
+
+
+
         if (isMobile) {
-
-                  // ScrollTrigger.normalizeScroll(true);
-        // ScrollTrigger.config ({ ignoreMobileResize : true } ) ; 
-
           const totalWidth = shelfCards.scrollWidth - retailShelf.offsetWidth;
           gsap.to(shelfCards, {
             x: -totalWidth,
@@ -452,9 +427,6 @@ document.addEventListener("DOMContentLoaded", function() {
             }
           });
   
-          
-
-   
           ScrollTrigger.create({
             trigger: stepsRetail01,
             start: "center center",
@@ -643,56 +615,317 @@ document.addEventListener("DOMContentLoaded", function() {
             });
 
             const videoSteps = [videoStepsC, videoStepsD, videoStepsE, videoStepsF];
-            timeline.to({}, {
-              duration: scrollDuration / 10,
-              // duration: 300,
-              onUpdate: function() {
-                boxCookieItem.classList.add('not-active');
-                cookiesWrapper.classList.add('not-active');
-                stepsPin.classList.add('active');
-                boxSteps.classList.add('active');
+            const activeClasses = ['active-c', 'active-d', 'active-e', 'active-f'];
+            // timeline.to({}, {
+            //   duration: scrollDuration / 10,
+            //   // duration: 300,
+              
+            //   onUpdate: function() {
+            //     boxCookieItem.classList.add('not-active');
+            //     cookiesWrapper.classList.add('not-active');
+            //     stepsPin.classList.add('active');
+            //     boxSteps.classList.add('active');
             
-                let progress = this.progress();
-                let adjustedProgress = Math.min(progress / 0.8, 1);
-                let index = Math.floor(adjustedProgress * (stepsItems.length - 1));
-                let contentProgress = (adjustedProgress * (stepsItems.length - 1)) - index;
+            //     let progress = this.progress();
+            //     let adjustedProgress = Math.min(progress / 0.8, 1);
+            //     let index = Math.floor(adjustedProgress * (stepsItems.length - 1));
+
+            //     // Удаление всех классов `active-c`, `active-d`, `active-e`, `active-f` с `stepsPin`
+            //     activeClasses.forEach(cls => stepsPin.classList.remove(cls));
             
-                stepsItems.forEach((step, i) => {
-                  if (i === index) {
-                    step.classList.add('active');
-                    if (!videoSteps[i].classList.contains('play')) {
-                      videoSteps[i].classList.add('play');
-                      videoSteps[i].play();
-                      videoSteps[i].playbackRate = 2;
-                    }
-                  } else {
-                    step.classList.remove('active');
-                    if (videoSteps[i].classList.contains('play')) {
-                      videoSteps[i].classList.remove('play');
-                      videoSteps[i].pause();
-                      videoSteps[i].currentTime = 0;
-                    }
-                  }
-                });
+            //     stepsItems.forEach((step, i) => {
+            //       if (i === index) {
+            //         step.classList.add('active');
+            //         stepsPin.classList.add(activeClasses[i]);
+
+            //         if (!videoSteps[i].classList.contains('play')) {
+            //           videoSteps[i].classList.add('play');
+            //           videoSteps[i].play();
+            //           // videoSteps[i].playbackRate = 2;
+            //         }
+
+            //         if (stepsAnim[i]) {
+            //           stepsAnim[i].classList.add('active');
+            //         }
+
+            //       } else {
+            //         step.classList.remove('active');
+            //         if (videoSteps[i].classList.contains('play')) {
+            //           videoSteps[i].classList.remove('play');
+            //           videoSteps[i].pause();
+            //           videoSteps[i].currentTime = 0;
+            //         }
+            //         if (stepsAnim[i]) {
+            //           stepsAnim[i].classList.remove('active');
+            //         }
+            //       }
+            //     });
             
-                if (progress === 0) {
-                  boxCookieItem.classList.remove('not-active');
-                  cookiesWrapper.classList.remove('not-active');
-                  stepsPin.classList.remove('active');
-                  boxSteps.classList.remove('active');
-                  stepsItems[0].classList.remove('active');
+            //     if (progress === 0) {
+            //       boxCookieItem.classList.remove('not-active');
+            //       cookiesWrapper.classList.remove('not-active');
+            //       stepsPin.classList.remove('active');
+            //       boxSteps.classList.remove('active');
+            //       stepsItems[0].classList.remove('active');
+
+            //       videoSteps.forEach(video => {
+            //         if (video.classList.contains('play')) {
+            //           video.classList.remove('play');
+            //           video.pause();
+            //           video.currentTime = 0;
+            //         }
+            //       });
+
+            //       stepsAnim.forEach(anim => anim.classList.remove('active'));
+             
+            //     }
+            //   }
+            // });
+
+                // ПЕРВЫЙ ХОРОШИЙ ВАРИАНТ ======================
+
+            // timeline.to({}, {
+            //   duration: scrollDuration / 10,
+            //   onStart: function() {
+            //     boxCookieItem.classList.add('not-active');
+            //     cookiesWrapper.classList.add('not-active');
+            //     stepsPin.classList.add('active');
+            //     boxSteps.classList.add('active');
+            //   },
+            //   onUpdate: function() {
+            //     let progress = this.progress();
+            //     let totalHeight = stepsMob.scrollHeight;
+            //     let visibleHeight = stepsPin.offsetHeight;
+            //     let maxScrollY = totalHeight - visibleHeight;
+            //     let adjustedProgress = Math.min(progress / 0.8, 1);
+            //     let translateY = -maxScrollY * adjustedProgress;
             
-                  videoSteps.forEach(video => {
-                    if (video.classList.contains('play')) {
-                      video.classList.remove('play');
-                      video.pause();
-                      video.currentTime = 0;
+            //     stepsMob.style.transform = `translateY(${translateY}px)`;
+            
+            //     let index = Math.floor(adjustedProgress * (stepsItems.length - 1));
+            
+            //     activeClasses.forEach(cls => stepsPin.classList.remove(cls));
+            
+            //     stepsItems.forEach((step, i) => {
+            //       if (i === index) {
+            //         step.classList.add('active');
+            //         stepsPin.classList.add(activeClasses[i]);
+            
+            //         if (!videoSteps[i].classList.contains('play')) {
+            //           videoSteps[i].classList.add('play');
+            //           videoSteps[i].play();
+            //         }
+            
+            //         if (stepsAnim[i]) {
+            //           stepsAnim[i].classList.add('active');
+            //         }
+            
+            //       } else {
+            //         step.classList.remove('active');
+            //         if (videoSteps[i].classList.contains('play')) {
+            //           videoSteps[i].classList.remove('play');
+            //           videoSteps[i].pause();
+            //           videoSteps[i].currentTime = 0;
+            //         }
+            //         if (stepsAnim[i]) {
+            //           stepsAnim[i].classList.remove('active');
+            //         }
+            //       }
+            //     });
+            
+            //     if (progress === 0) {
+            //       boxCookieItem.classList.remove('not-active');
+            //       cookiesWrapper.classList.remove('not-active');
+            //       stepsPin.classList.remove('active');
+            //       boxSteps.classList.remove('active');
+            //       stepsItems[0].classList.remove('active');
+            
+            //       videoSteps.forEach(video => {
+            //         if (video.classList.contains('play')) {
+            //           video.classList.remove('play');
+            //           video.pause();
+            //           video.currentTime = 0;
+            //         }
+            //       });
+            
+            //     }
+            //   }
+            // });
+
+
+
+              // ПОСЛЕДНИЕ ВАРИАНТЫ ======================================
+
+              // timeline.to({}, {
+              //   duration: scrollDuration / 10,
+              //   onStart: function() {
+              //     boxCookieItem.classList.add('not-active');
+              //     cookiesWrapper.classList.add('not-active');
+              //     stepsPin.classList.add('active');
+              //     boxSteps.classList.add('active');
+              //   },
+              //   onUpdate: function() {
+              //     let progress = this.progress();
+              //     let totalHeight = stepsMob.scrollHeight;
+              //     let visibleHeight = stepsPin.offsetHeight;
+              //     let maxScrollY = totalHeight - visibleHeight;
+              //     let adjustedProgress = Math.min(progress / 0.8, 1);
+              //     let translateY = -maxScrollY * adjustedProgress;
+              
+              //     stepsMob.style.transform = `translateY(${translateY}px)`;
+              
+              //     let index = Math.floor(adjustedProgress * (stepsItems.length - 1));
+              
+              //     activeClasses.forEach(cls => stepsPin.classList.remove(cls));
+              
+              //     stepsItems.forEach((step, i) => {
+              //       if (i === index) {
+              //         step.classList.add('active');
+              //         stepsPin.classList.add(activeClasses[i]);
+              
+              //         // Проверяем, воспроизводится ли уже видео перед вызовом play()
+              //         if (!videoSteps[i].classList.contains('play')) {
+              //           videoSteps[i].classList.add('play');
+              //           videoSteps[i].play().catch(error => {
+              //             console.error(`Ошибка воспроизведения видео: ${error}`);
+              //           });
+              //         }
+              
+              //         if (stepsAnim[i]) {
+              //           stepsAnim[i].classList.add('active');
+              //         }
+              
+              //       } else {
+              //         step.classList.remove('active');
+              //         // Проверяем, воспроизводится ли видео перед вызовом pause()
+              //         if (videoSteps[i].classList.contains('play')) {
+              //           videoSteps[i].classList.remove('play');
+              //           videoSteps[i].pause();
+              //           videoSteps[i].currentTime = 0;
+              //         }
+              //         if (stepsAnim[i]) {
+              //           stepsAnim[i].classList.remove('active');
+              //         }
+              //       }
+              //     });
+              
+              //     if (progress === 0) {
+              //       boxCookieItem.classList.remove('not-active');
+              //       cookiesWrapper.classList.remove('not-active');
+              //       stepsPin.classList.remove('active');
+              //       boxSteps.classList.remove('active');
+              //       stepsItems[0].classList.remove('active');
+              
+              //       videoSteps.forEach(video => {
+              //         if (video.classList.contains('play')) {
+              //           video.classList.remove('play');
+              //           video.pause();
+              //           video.currentTime = 0;
+              //         }
+              //       });
+              
+              //       stepsAnim.forEach(anim => anim.classList.remove('active'));
+              //     }
+              //   }
+              // });
+
+            // Пример объявления переменной steps
+
+              timeline.to({}, {
+                duration: scrollDuration / 10,
+                onStart: function() {
+                  // boxCookie.classList.add('not-active');
+                  boxCookieItem.classList.add('not-active');
+                  cookiesWrapper.classList.add('not-active');
+                  // boxItemWr.classList.add('not-active');
+                  stepsPin.classList.add('active');
+                  boxSteps.classList.add('active');
+                },
+                onUpdate: function() {
+                  let progress = this.progress();
+                  let totalHeight = stepsMob.scrollHeight;
+                  let visibleHeight = stepsPin.offsetHeight;
+                  let maxScrollY = totalHeight - visibleHeight;
+                  let adjustedProgress = Math.min(progress / 0.99, 1);
+                  let translateY = -maxScrollY * adjustedProgress;
+                
+                  stepsMob.style.transform = `translateY(${translateY}px)`;
+                
+                  // Вычисление центра экрана
+                  let viewportHeight = window.innerHeight;
+                  let viewportCenter = viewportHeight / 2;
+                
+                  // Найти индекс элемента, который должен быть активным
+                  let index = 0;
+                  let minDistance = Infinity;
+
+                  stepsItems.forEach((step, i) => {
+                    let stepRect = step.getBoundingClientRect();
+                    let distanceToCenter = Math.abs((stepRect.top + stepRect.bottom) / 2 - viewportCenter);
+                  
+                    if (distanceToCenter < minDistance) {
+                      minDistance = distanceToCenter;
+                      index = i;
                     }
                   });
-             
+                
+                  // Обновление классов
+                  activeClasses.forEach(cls => stepsPin.classList.remove(cls));
+                  stepsItems.forEach((step, i) => {
+                    if (i === index) {
+                      step.classList.add('active');
+                      stepsPin.classList.add(activeClasses[i]);
+                    
+                      if (!videoSteps[i].classList.contains('play')) {
+                        videoSteps[i].classList.add('play');
+                        videoSteps[i].play().catch(error => {
+                          console.error(`Ошибка воспроизведения видео: ${error}`);
+                        });
+                      }
+                    
+                      if (stepsAnim[i]) {
+                        stepsAnim[i].classList.add('active');
+                      }
+                    } else {
+                      step.classList.remove('active');
+                      if (videoSteps[i].classList.contains('play')) {
+                        videoSteps[i].classList.remove('play');
+                        videoSteps[i].pause();
+                        videoSteps[i].currentTime = 0;
+                      }
+                      if (stepsAnim[i]) {
+                        stepsAnim[i].classList.remove('active');
+                      }
+                    }
+                  });
+                
+                  // Обработка начального состояния
+                  if (progress === 0) {
+                    // boxCookie.classList.remove('not-active');
+                    boxCookieItem.classList.remove('not-active');
+                    cookiesWrapper.classList.remove('not-active');
+                    // boxItemWr.classList.remove('not-active');
+                    stepsPin.classList.remove('active');
+                    boxSteps.classList.remove('active');
+                    stepsItems.forEach(item => item.classList.remove('active'));
+                  
+                    videoSteps.forEach(video => {
+                      if (video.classList.contains('play')) {
+                        video.classList.remove('play');
+                        video.pause();
+                        video.currentTime = 0;
+                      }
+                    });
+                  
+                    stepsAnim.forEach(anim => anim.classList.remove('active'));
+                  }
                 }
-              }
-            });
+              });
+
+              
+              
+              
+              
 
   
           ScrollTrigger.create({
@@ -719,57 +952,34 @@ document.addEventListener("DOMContentLoaded", function() {
           }, 0);
 
           // ScrollTrigger для запуска анимации
-        ScrollTrigger.create({
-          trigger: logics,
-          start: "top bottom",
-          end: "center center",
-          onEnter: () => {
-            animation.play();
-              videoSteps.forEach(video => {
-                if (video.classList.contains('play')) {
-                  video.classList.remove('play');
-                  video.pause();
-                  video.currentTime = 0;
+          ScrollTrigger.create({
+            trigger: logics,
+            start: "center bottom",
+            end: "center center",
+            onEnter: () => {
+              animation.play();
+            },
+            onLeaveBack: () => {
+              animation.reverse();
+                if (videoSteps[3].classList.contains('play')) {
+                  videoSteps[3].classList.add('play');
+                  videoSteps[3].play();
+                  // videoSteps[3].playbackRate = 2;
                 }
-              });
-          },
-          onLeaveBack: () => {
-            animation.reverse();
-              if (videoSteps[3].classList.contains('play')) {
-                videoSteps[3].classList.add('play');
-                videoSteps[3].play();
-                videoSteps[3].playbackRate = 2;
-              }
-          },
-          ease: "power1.in"
-        });
+            },
+            // ease: "power1.in"
+          });
 
-          
-        } // == end isMobile -----------
+        } // == end isMobile ---------------------------------------------------------------------
 
-      });
+      }); // == end Media =================
 
-      // function initializeSimpleBar() {
-      //   if (window.innerWidth < 480.98) {
-      //     if (document.querySelectorAll('.steps__about').length) {
-      //       document.querySelectorAll('.steps__about').forEach(scrollBlock => {
-      //         new SimpleBar(scrollBlock, {
-      //           autoHide: false,
-      //         });
-      //       });
-      //     }
-      //   }
-      // }
-      // initializeSimpleBar();
-      
       // window.addEventListener('resize', () => {
         // ScrollTrigger.refresh();
-        // initializeSimpleBar();
       // });
     
       window.addEventListener('orientationchange', () => {
         // ScrollTrigger.refresh();
-        // initializeSimpleBar();
       });
 
       // ScrollTrigger.refresh();

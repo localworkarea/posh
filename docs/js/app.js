@@ -1104,8 +1104,10 @@
                 const fileInput = form.querySelector(".file-upload__input");
                 const fileErrorSpan = form.querySelector(".file-error");
                 const fileInputBody = document.querySelector(".file-upload");
-                fileInput.value = "";
-                fileInputBody.classList.remove("_upload");
+                if (fileInput) {
+                    fileInput.value = "";
+                    fileInputBody.classList.remove("_upload");
+                }
                 if (fileErrorSpan) fileErrorSpan.textContent = "";
                 formValidate.formClean(form);
             }
@@ -4963,24 +4965,6 @@
                 }
             });
         }
-        function effect_target_effectTarget(effectParams, slideEl) {
-            const transformEl = utils_getSlideTransformEl(slideEl);
-            if (transformEl !== slideEl) {
-                transformEl.style.backfaceVisibility = "hidden";
-                transformEl.style["-webkit-backface-visibility"] = "hidden";
-            }
-            return transformEl;
-        }
-        function create_shadow_createShadow(suffix, slideEl, side) {
-            const shadowClass = `swiper-slide-shadow${side ? `-${side}` : ""}${suffix ? ` swiper-slide-shadow-${suffix}` : ""}`;
-            const shadowContainer = utils_getSlideTransformEl(slideEl);
-            let shadowEl = shadowContainer.querySelector(`.${shadowClass.split(" ").join(".")}`);
-            if (!shadowEl) {
-                shadowEl = utils_createElement("div", shadowClass.split(" "));
-                shadowContainer.append(shadowEl);
-            }
-            return shadowEl;
-        }
         function effect_init_effectInit(params) {
             const {effect, swiper, on, setTranslate, setTransition, overwriteParams, perspective, recreateShadows, getEffectParams} = params;
             on("beforeInit", (() => {
@@ -5020,6 +5004,109 @@
                     }
                 }));
             }));
+        }
+        function effect_target_effectTarget(effectParams, slideEl) {
+            const transformEl = utils_getSlideTransformEl(slideEl);
+            if (transformEl !== slideEl) {
+                transformEl.style.backfaceVisibility = "hidden";
+                transformEl.style["-webkit-backface-visibility"] = "hidden";
+            }
+            return transformEl;
+        }
+        function effect_virtual_transition_end_effectVirtualTransitionEnd(_ref) {
+            let {swiper, duration, transformElements, allSlides} = _ref;
+            const {activeIndex} = swiper;
+            const getSlide = el => {
+                if (!el.parentElement) {
+                    const slide = swiper.slides.filter((slideEl => slideEl.shadowRoot && slideEl.shadowRoot === el.parentNode))[0];
+                    return slide;
+                }
+                return el.parentElement;
+            };
+            if (swiper.params.virtualTranslate && duration !== 0) {
+                let eventTriggered = false;
+                let transitionEndTarget;
+                if (allSlides) transitionEndTarget = transformElements; else transitionEndTarget = transformElements.filter((transformEl => {
+                    const el = transformEl.classList.contains("swiper-slide-transform") ? getSlide(transformEl) : transformEl;
+                    return swiper.getSlideIndex(el) === activeIndex;
+                }));
+                transitionEndTarget.forEach((el => {
+                    utils_elementTransitionEnd(el, (() => {
+                        if (eventTriggered) return;
+                        if (!swiper || swiper.destroyed) return;
+                        eventTriggered = true;
+                        swiper.animating = false;
+                        const evt = new window.CustomEvent("transitionend", {
+                            bubbles: true,
+                            cancelable: true
+                        });
+                        swiper.wrapperEl.dispatchEvent(evt);
+                    }));
+                }));
+            }
+        }
+        function EffectFade(_ref) {
+            let {swiper, extendParams, on} = _ref;
+            extendParams({
+                fadeEffect: {
+                    crossFade: false
+                }
+            });
+            const setTranslate = () => {
+                const {slides} = swiper;
+                const params = swiper.params.fadeEffect;
+                for (let i = 0; i < slides.length; i += 1) {
+                    const slideEl = swiper.slides[i];
+                    const offset = slideEl.swiperSlideOffset;
+                    let tx = -offset;
+                    if (!swiper.params.virtualTranslate) tx -= swiper.translate;
+                    let ty = 0;
+                    if (!swiper.isHorizontal()) {
+                        ty = tx;
+                        tx = 0;
+                    }
+                    const slideOpacity = swiper.params.fadeEffect.crossFade ? Math.max(1 - Math.abs(slideEl.progress), 0) : 1 + Math.min(Math.max(slideEl.progress, -1), 0);
+                    const targetEl = effect_target_effectTarget(params, slideEl);
+                    targetEl.style.opacity = slideOpacity;
+                    targetEl.style.transform = `translate3d(${tx}px, ${ty}px, 0px)`;
+                }
+            };
+            const setTransition = duration => {
+                const transformElements = swiper.slides.map((slideEl => utils_getSlideTransformEl(slideEl)));
+                transformElements.forEach((el => {
+                    el.style.transitionDuration = `${duration}ms`;
+                }));
+                effect_virtual_transition_end_effectVirtualTransitionEnd({
+                    swiper,
+                    duration,
+                    transformElements,
+                    allSlides: true
+                });
+            };
+            effect_init_effectInit({
+                effect: "fade",
+                swiper,
+                on,
+                setTranslate,
+                setTransition,
+                overwriteParams: () => ({
+                    slidesPerView: 1,
+                    slidesPerGroup: 1,
+                    watchSlidesProgress: true,
+                    spaceBetween: 0,
+                    virtualTranslate: !swiper.params.cssMode
+                })
+            });
+        }
+        function create_shadow_createShadow(suffix, slideEl, side) {
+            const shadowClass = `swiper-slide-shadow${side ? `-${side}` : ""}${suffix ? ` swiper-slide-shadow-${suffix}` : ""}`;
+            const shadowContainer = utils_getSlideTransformEl(slideEl);
+            let shadowEl = shadowContainer.querySelector(`.${shadowClass.split(" ").join(".")}`);
+            if (!shadowEl) {
+                shadowEl = utils_createElement("div", shadowClass.split(" "));
+                shadowContainer.append(shadowEl);
+            }
+            return shadowEl;
         }
         function EffectCoverflow(_ref) {
             let {swiper, extendParams, on} = _ref;
@@ -5438,6 +5525,24 @@
                 pagination: {
                     el: ".article__slider .swiper-pagination",
                     clickable: true
+                },
+                on: {}
+            });
+            if (document.querySelector(".works__slider")) new Swiper(".works__slider", {
+                modules: [ Autoplay, EffectFade ],
+                observer: true,
+                observeParents: true,
+                slidesPerView: 1,
+                speed: 800,
+                spaceBetween: 20,
+                loop: true,
+                autoplay: {
+                    delay: 1500,
+                    pauseOnMouseEnter: true
+                },
+                effect: "fade",
+                fadeEffect: {
+                    crossFade: true
                 },
                 on: {}
             });
@@ -7242,6 +7347,18 @@
                 }
                 window.addEventListener("scroll", checkOurServPosition);
                 checkOurServPosition();
+            }
+            const faqBody = document.querySelector(".faq__body");
+            if (faqBody) {
+                const faqLink = faqBody.querySelector(".faq__link");
+                const formCloseBtn = faqBody.querySelector(".form-faq__close");
+                faqLink.addEventListener("click", (function(event) {
+                    event.preventDefault();
+                    faqBody.classList.add("_form-open");
+                }));
+                formCloseBtn.addEventListener("click", (function() {
+                    faqBody.classList.remove("_form-open");
+                }));
             }
         }));
         const tikers = document.querySelectorAll(".tiker");

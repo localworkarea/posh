@@ -170,12 +170,7 @@
   &__email,
   &__phone,
   &__location {
-    text-underline-position: under;
-    @media (any-hover: hover){
-      &:hover{
-        text-decoration: underline !important;
-      }
-    }
+    @extend %hoverFooter;
   }
 	// .footer-main__email
 	&__email {
@@ -1170,13 +1165,7 @@
   &__tel,
   &__email,
   &__location {
-    text-underline-position: under;
-    text-decoration-thickness: toRem(1);
-    @media (any-hover: hover){
-      &:hover{
-        text-decoration: underline;
-      }
-    }
+    @extend %hoverFooter;
   }
   // .side-form__tel
   &__tel {
@@ -1204,6 +1193,30 @@
       }
       @media (max-width:$mobileSmall){
         text-align: left;
+      }
+    }
+  }
+}
+
+
+%hoverFooter {
+  display: inline-block;
+  width: fit-content;
+  position: relative;
+  &::before {
+    content:'';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: toRem(1);
+    background-color: #000;
+    transition: width .45s ease;
+  }
+  @media (any-hover: hover){
+    &:hover{
+      &::before {
+        width: 100%;
       }
     }
   }

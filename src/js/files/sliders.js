@@ -11,7 +11,7 @@ import {isMobile} from "./functions.js";
 // При необхідності підключаємо додаткові модулі слайдера, вказуючи їх у {} через кому
 // Приклад: { Navigation, Autoplay }
 import Swiper from 'swiper';
-import {Navigation, FreeMode, Autoplay, Pagination, EffectCoverflow } from 'swiper/modules';
+import {Navigation, FreeMode, Autoplay, Pagination, EffectCoverflow, EffectFade } from 'swiper/modules';
 /*
 Основні модулі слайдера:
 Navigation, Pagination, Autoplay, 
@@ -463,6 +463,27 @@ function initSliders() {
 			}
 		});
 	}
+	if (document.querySelector('.works__slider')) {
+		new Swiper('.works__slider', { 
+			modules: [Autoplay, EffectFade],
+			observer: true,
+			observeParents: true,
+			slidesPerView: 1,
+			speed: 800,
+			spaceBetween: 20,
+			loop: true,
+			autoplay: {
+				delay: 1500,
+				pauseOnMouseEnter: true,
+			},
+			effect: 'fade',
+			fadeEffect: {
+				crossFade: true
+			},
+			on: {
+			}
+		});
+	}
 		// == page APPROACH.HTML ===========
 		if (document.querySelector('.approach__slider')) {
 			new Swiper('.approach__slider', { 
@@ -503,6 +524,7 @@ function initSliders() {
 				}
 			});
 		}
+		
 }
 
 // Функция переключения слайдов при появлении єлемента our-serv__item во вьюпорте просмотра. Дополнительно настройки: rootMargin - расстояния сверх и снизу указывают через какой промежуток во вьюпотре будет срабатывать событие

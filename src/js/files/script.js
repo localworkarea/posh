@@ -847,12 +847,27 @@ document.addEventListener("DOMContentLoaded", function() {
       checkOurServPosition();
     }
     
-      
-          
- 
-
       // ====================================================================
 
+
+      
+      // Открытие/закрытие окна формы внутри FAQ блока ====================================
+      const faqBody = document.querySelector('.faq__body');
+  
+      if (faqBody) {
+        const faqLink = faqBody.querySelector('.faq__link');
+        const formCloseBtn = faqBody.querySelector('.form-faq__close');
+    
+        faqLink.addEventListener('click', function (event) {
+          event.preventDefault();
+          faqBody.classList.add('_form-open');
+        });
+    
+        formCloseBtn.addEventListener('click', function () {
+          faqBody.classList.remove('_form-open');
+        });
+      }
+      // ===========================================================================
 
     
   }); // END OF DOMContentLoaded ----------------------------------------------------------------------------
