@@ -3040,6 +3040,10 @@ body {
   display: grid;
 }
 
+.cases-page__body:not(:last-child) {
+  margin-bottom: 3.125rem;
+}
+
 .cases-page__body .case-card {
   cursor: pointer;
   opacity: 0;
@@ -6248,6 +6252,10 @@ body {
 }
 
 /* КОНЕЦ */
+
+.load-more__btn {
+  margin-inline: auto;
+}
 
 .swiper {
   overflow: hidden;

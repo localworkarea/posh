@@ -1544,6 +1544,9 @@ background-color: $mainWhite;
   &__body {
     display: grid;
     @include adaptiveValue("column-gap", 52, 24,0,1920,1366.98);
+    &:not(:last-child) {
+      margin-bottom: toRem(50);
+    }
     @media (min-width:em(650.98)){
       grid-template-columns: repeat(3, 1fr);
       row-gap: toRem(52);
@@ -6472,3 +6475,10 @@ background-color: $mainWhite;
 //   font-family: Arial, sans-serif;
 // }
 
+
+.load-more {
+  // .load-more__btn
+  &__btn {
+    margin-inline: auto;
+  }
+}
