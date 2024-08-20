@@ -6116,9 +6116,9 @@
             let scrollDirection = 0;
             let timer;
             const ourServNav = document.querySelector(".our-serv__nav");
-            const handleScroll = scrollTop => {
+            const handleScroll = (scrollTop, isPopupContent) => {
                 clearTimeout(timer);
-                if (scrollTop >= startPoint) {
+                if (scrollTop >= startPoint || isPopupContent) {
                     if (!header.classList.contains("_header-scroll")) header.classList.add("_header-scroll");
                     if (headerShow) if (scrollTop > scrollDirection) {
                         if (header.classList.contains("_header-show")) header.classList.remove("_header-show");
@@ -6128,7 +6128,7 @@
                         if (ourServNav && !ourServNav.classList.contains("_header-show")) ourServNav.classList.add("_header-show");
                     }
                 } else {
-                    if (header.classList.contains("_header-scroll")) header.classList.remove("_header-scroll");
+                    if (header.classList.contains("_header-scroll") && !isPopupContent) header.classList.remove("_header-scroll");
                     if (headerShow) {
                         if (header.classList.contains("_header-show")) header.classList.remove("_header-show");
                         if (ourServNav && ourServNav.classList.contains("_header-show")) ourServNav.classList.remove("_header-show");
@@ -6137,12 +6137,22 @@
                 scrollDirection = scrollTop <= 0 ? 0 : scrollTop;
             };
             const sectionTwo = document.querySelector(".section-02");
+            const popupContent = document.querySelector(".popup-case__content");
+            const scrollListener = () => {
+                const isPopupContent = document.documentElement.classList.contains("popup-show") && popupContent;
+                const scrollTop = isPopupContent ? popupContent.scrollTop : window.scrollY;
+                handleScroll(scrollTop, isPopupContent);
+            };
             if (sectionTwo) sectionTwo.addEventListener("scroll", (function(e) {
                 if (!addWindowScrollEvent) return;
-                handleScroll(sectionTwo.scrollTop);
+                scrollListener();
             })); else window.addEventListener("scroll", (function(e) {
                 if (!addWindowScrollEvent) return;
-                handleScroll(window.scrollY);
+                scrollListener();
+            }));
+            if (popupContent) popupContent.addEventListener("scroll", (function(e) {
+                if (!addWindowScrollEvent) return;
+                if (document.documentElement.classList.contains("popup-show")) scrollListener();
             }));
         }
         setTimeout((() => {

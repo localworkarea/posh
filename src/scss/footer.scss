@@ -1160,6 +1160,7 @@
     }
     @media (max-width: em(650.98)){
         margin-bottom: toRem(16);
+        align-items: center;
     }
   }
   &__tel,
@@ -1184,7 +1185,7 @@
        font-size: toRem(20); 
     }
     @media (max-width:em(650.98)){
-       display: none; 
+       display: none !important; 
     }
     .page-contacts & {
       @media (max-width: em(650.98)){

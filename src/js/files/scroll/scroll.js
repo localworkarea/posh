@@ -82,6 +82,151 @@ export function pageNavigation() {
 }
 
 
+// export function headerScroll() {
+// 	let addWindowScrollEvent = true;
+// 	const header = document.querySelector('header.header');
+// 	const headerShow = header.hasAttribute('data-scroll-show');
+// 	const headerShowTimer = header.dataset.scrollShow ? header.dataset.scrollShow : 500;
+// 	const startPoint = header.dataset.scroll ? header.dataset.scroll : 1;
+// 	let scrollDirection = 0;
+// 	let timer;
+
+// 	const ourServNav = document.querySelector('.our-serv__nav');
+
+// 	const handleScroll = (scrollTop) => {
+// 			clearTimeout(timer);
+// 			if (scrollTop >= startPoint) {
+// 					if (!header.classList.contains('_header-scroll')) {
+// 							header.classList.add('_header-scroll');
+// 					}
+
+// 					if (headerShow) {
+// 							if (scrollTop > scrollDirection) {
+// 									if (header.classList.contains('_header-show')) {
+// 											header.classList.remove('_header-show');
+// 									}
+// 									if (ourServNav && ourServNav.classList.contains('_header-show')) {
+// 											ourServNav.classList.remove('_header-show');
+// 									}
+// 							} else {
+// 									if (!header.classList.contains('_header-show')) {
+// 											header.classList.add('_header-show');
+// 									}
+// 									if (ourServNav && !ourServNav.classList.contains('_header-show')) {
+// 											ourServNav.classList.add('_header-show');
+// 									}
+// 							}
+// 					}
+// 			} else {
+// 					if (header.classList.contains('_header-scroll')) {
+// 							header.classList.remove('_header-scroll');
+// 					}
+// 					if (headerShow) {
+// 							if (header.classList.contains('_header-show')) {
+// 									header.classList.remove('_header-show');
+// 							}
+// 							if (ourServNav && ourServNav.classList.contains('_header-show')) {
+// 									ourServNav.classList.remove('_header-show');
+// 							}
+// 					}
+// 			}
+// 			scrollDirection = scrollTop <= 0 ? 0 : scrollTop;
+// 	};
+
+// 	const sectionTwo = document.querySelector('.section-02');
+// 	if (sectionTwo) {
+// 			sectionTwo.addEventListener("scroll", function (e) {
+// 					if (!addWindowScrollEvent) return;
+// 					handleScroll(sectionTwo.scrollTop);
+// 			});
+// 	} else {
+// 			window.addEventListener("scroll", function (e) {
+// 					if (!addWindowScrollEvent) return;
+// 					handleScroll(window.scrollY);
+// 			});
+// 	}
+// }
+
+// export function headerScroll() {
+// 	let addWindowScrollEvent = true;
+// 	const header = document.querySelector('header.header');
+// 	const headerShow = header.hasAttribute('data-scroll-show');
+// 	const headerShowTimer = header.dataset.scrollShow ? header.dataset.scrollShow : 500;
+// 	const startPoint = header.dataset.scroll ? header.dataset.scroll : 1;
+// 	let scrollDirection = 0;
+// 	let timer;
+
+// 	const ourServNav = document.querySelector('.our-serv__nav');
+
+// 	const handleScroll = (scrollTop) => {
+// 		clearTimeout(timer);
+// 		if (scrollTop >= startPoint) {
+// 			if (!header.classList.contains('_header-scroll')) {
+// 				header.classList.add('_header-scroll');
+// 			}
+
+// 			if (headerShow) {
+// 				if (scrollTop > scrollDirection) {
+// 					if (header.classList.contains('_header-show')) {
+// 						header.classList.remove('_header-show');
+// 					}
+// 					if (ourServNav && ourServNav.classList.contains('_header-show')) {
+// 						ourServNav.classList.remove('_header-show');
+// 					}
+// 				} else {
+// 					if (!header.classList.contains('_header-show')) {
+// 						header.classList.add('_header-show');
+// 					}
+// 					if (ourServNav && !ourServNav.classList.contains('_header-show')) {
+// 						ourServNav.classList.add('_header-show');
+// 					}
+// 				}
+// 			}
+// 		} else {
+// 			if (header.classList.contains('_header-scroll')) {
+// 				header.classList.remove('_header-scroll');
+// 			}
+// 			if (headerShow) {
+// 				if (header.classList.contains('_header-show')) {
+// 					header.classList.remove('_header-show');
+// 				}
+// 				if (ourServNav && ourServNav.classList.contains('_header-show')) {
+// 					ourServNav.classList.remove('_header-show');
+// 				}
+// 			}
+// 		}
+// 		scrollDirection = scrollTop <= 0 ? 0 : scrollTop;
+// 	};
+
+// 	const sectionTwo = document.querySelector('.section-02');
+// 	const popupContent = document.querySelector('.popup-case__content');
+
+// 	const scrollListener = () => {
+// 		const scrollTop = document.documentElement.classList.contains('popup-show') && popupContent ? popupContent.scrollTop : window.scrollY;
+// 		handleScroll(scrollTop);
+// 	};
+
+// 	if (sectionTwo) {
+// 		sectionTwo.addEventListener("scroll", function (e) {
+// 			if (!addWindowScrollEvent) return;
+// 			scrollListener();
+// 		});
+// 	} else {
+// 		window.addEventListener("scroll", function (e) {
+// 			if (!addWindowScrollEvent) return;
+// 			scrollListener();
+// 		});
+// 	}
+
+// 	if (popupContent) {
+// 		popupContent.addEventListener("scroll", function (e) {
+// 			if (!addWindowScrollEvent) return;
+// 			if (document.documentElement.classList.contains('popup-show')) {
+// 				scrollListener();
+// 			}
+// 		});
+// 	}
+// }
 export function headerScroll() {
 	let addWindowScrollEvent = true;
 	const header = document.querySelector('header.header');
@@ -93,59 +238,78 @@ export function headerScroll() {
 
 	const ourServNav = document.querySelector('.our-serv__nav');
 
-	const handleScroll = (scrollTop) => {
-			clearTimeout(timer);
-			if (scrollTop >= startPoint) {
-					if (!header.classList.contains('_header-scroll')) {
-							header.classList.add('_header-scroll');
-					}
+	const handleScroll = (scrollTop, isPopupContent) => {
+		clearTimeout(timer);
 
-					if (headerShow) {
-							if (scrollTop > scrollDirection) {
-									if (header.classList.contains('_header-show')) {
-											header.classList.remove('_header-show');
-									}
-									if (ourServNav && ourServNav.classList.contains('_header-show')) {
-											ourServNav.classList.remove('_header-show');
-									}
-							} else {
-									if (!header.classList.contains('_header-show')) {
-											header.classList.add('_header-show');
-									}
-									if (ourServNav && !ourServNav.classList.contains('_header-show')) {
-											ourServNav.classList.add('_header-show');
-									}
-							}
-					}
-			} else {
-					if (header.classList.contains('_header-scroll')) {
-							header.classList.remove('_header-scroll');
-					}
-					if (headerShow) {
-							if (header.classList.contains('_header-show')) {
-									header.classList.remove('_header-show');
-							}
-							if (ourServNav && ourServNav.classList.contains('_header-show')) {
-									ourServNav.classList.remove('_header-show');
-							}
-					}
+		if (scrollTop >= startPoint || isPopupContent) {
+			if (!header.classList.contains('_header-scroll')) {
+				header.classList.add('_header-scroll');
 			}
-			scrollDirection = scrollTop <= 0 ? 0 : scrollTop;
+
+			if (headerShow) {
+				if (scrollTop > scrollDirection) {
+					if (header.classList.contains('_header-show')) {
+						header.classList.remove('_header-show');
+					}
+					if (ourServNav && ourServNav.classList.contains('_header-show')) {
+						ourServNav.classList.remove('_header-show');
+					}
+				} else {
+					if (!header.classList.contains('_header-show')) {
+						header.classList.add('_header-show');
+					}
+					if (ourServNav && !ourServNav.classList.contains('_header-show')) {
+						ourServNav.classList.add('_header-show');
+					}
+				}
+			}
+		} else {
+			if (header.classList.contains('_header-scroll') && !isPopupContent) {
+				header.classList.remove('_header-scroll');
+			}
+			if (headerShow) {
+				if (header.classList.contains('_header-show')) {
+					header.classList.remove('_header-show');
+				}
+				if (ourServNav && ourServNav.classList.contains('_header-show')) {
+					ourServNav.classList.remove('_header-show');
+				}
+			}
+		}
+		scrollDirection = scrollTop <= 0 ? 0 : scrollTop;
 	};
 
 	const sectionTwo = document.querySelector('.section-02');
+	const popupContent = document.querySelector('.popup-case__content');
+
+	const scrollListener = () => {
+		const isPopupContent = document.documentElement.classList.contains('popup-show') && popupContent;
+		const scrollTop = isPopupContent ? popupContent.scrollTop : window.scrollY;
+		handleScroll(scrollTop, isPopupContent);
+	};
+
 	if (sectionTwo) {
-			sectionTwo.addEventListener("scroll", function (e) {
-					if (!addWindowScrollEvent) return;
-					handleScroll(sectionTwo.scrollTop);
-			});
+		sectionTwo.addEventListener("scroll", function (e) {
+			if (!addWindowScrollEvent) return;
+			scrollListener();
+		});
 	} else {
-			window.addEventListener("scroll", function (e) {
-					if (!addWindowScrollEvent) return;
-					handleScroll(window.scrollY);
-			});
+		window.addEventListener("scroll", function (e) {
+			if (!addWindowScrollEvent) return;
+			scrollListener();
+		});
+	}
+
+	if (popupContent) {
+		popupContent.addEventListener("scroll", function (e) {
+			if (!addWindowScrollEvent) return;
+			if (document.documentElement.classList.contains('popup-show')) {
+				scrollListener();
+			}
+		});
 	}
 }
+
 
 
 
