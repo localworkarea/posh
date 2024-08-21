@@ -114,10 +114,11 @@ body::after {
 		width: 100%;
 		display: flex;
 		justify-content: space-between;
-		@include adaptiveValue("padding-top", 80, 22,0,1366.98,480.98);
+		// @include adaptiveValue("padding-top", 80, 22,0,1366.98,480.98);
 		@include adaptiveValue("padding-bottom", 42, 22,0,1366.98,480.98);
 		@include adaptiveValue("padding-left", 90, 20,0,1366.98,480.98);
 		@include adaptiveValue("padding-right", 90, 20,0,1366.98,480.98);
+		padding-top: toRem(80);
 	}
 	&__close,
 	&__next {
