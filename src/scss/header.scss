@@ -50,7 +50,7 @@
   }
   &.header-all {
     &._header-scroll {
-      @media (min-width:em(136.98)){
+      @media (min-width:em(1366.98)){
         min-height: toRem(70);
       }
       @media (max-width: em(1366.98)) and (min-width:$mobileSmall){

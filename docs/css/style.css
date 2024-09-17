@@ -6362,10 +6362,6 @@ body {
   .fp-section-1 .header {
     min-height: 4.375rem;
   }
-
-  .header.header-all._header-scroll {
-    min-height: 4.375rem;
-  }
 }
 
 @media (min-width: 22.87375em) {
@@ -8692,6 +8688,10 @@ body {
 
   .nav-pages__list {
     gap: 2.5625rem;
+  }
+
+  .header.header-all._header-scroll {
+    min-height: 4.375rem;
   }
 
   .menu__list {
